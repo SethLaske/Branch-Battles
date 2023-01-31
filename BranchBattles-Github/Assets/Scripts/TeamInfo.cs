@@ -64,7 +64,7 @@ public class TeamInfo : MonoBehaviour
             TroopTimer += Time.deltaTime;
             if (TroopTimer >= SpawnUnits[0].SpawnTime)  //Spawns the next unit queued up 
             {
-                Unit FreshMeat = Instantiate(SpawnUnits[0], new Vector3(Barracks.transform.position.x + (Team * 3), -2.25f, 0), Quaternion.identity);
+                Unit FreshMeat = Instantiate(SpawnUnits[0], new Vector3(Barracks.transform.position.x + (Team * .1f), -2.25f, 0), Quaternion.identity);
                 if (Team < 0)
                 {
                     FreshMeat.transform.Rotate(new Vector3(0, 180, 0));
@@ -102,6 +102,10 @@ public class TeamInfo : MonoBehaviour
 
             
         }
+    }
+
+    public void useMagic(GameObject magic, float distance) {
+        Instantiate(magic, new Vector3(distance, .2f, 0), Quaternion.Euler(new Vector2(0, 0)));
     }
 
     public void spawnSoldier1()

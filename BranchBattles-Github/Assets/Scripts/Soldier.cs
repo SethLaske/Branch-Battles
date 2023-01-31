@@ -259,169 +259,7 @@ public class Soldier : Unit
         HealthTimer = 0;
     }
 
-    //I broke some stuff so im going to try and rewrite it just using man ahead and man behind
-
-    /*
-    public override void Wait()
-    {
-        if (Target == null)
-        { //These lines work, so Im seperating them from the stuff that deals with the enemy.
-            if (Stopped == false)
-            {
-                if (General.RallyPoint * Team > (transform.position.x * Team) + tolerance)
-                {
-                    State = "Walk";
-                }
-                else if (General.RallyPoint * Team < (transform.position.x * Team) - tolerance)
-                {
-                    State = "Retreat";
-                }
-                else if(Physics2D.OverlapCircle(transform.position + new Vector3(RetreatIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))
-                    {
-                        //Debug.Log("Needs to back up, soldier is backing in");
-                        Stopped = true;
-                        State = "Retreat";
-                    }
-            }
-            else
-            {
-                //Conditions to stop waiting while stopped
-                //Retreat
-                //The unit in front has moved forward
-
-                if (!Physics2D.OverlapCircle(transform.position + new Vector3(AdvanceIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))
-                {
-                    //Stopped = false;
-                    State = "Walk";
-                }
-                else
-                {
-                    if (General.RallyPoint * Team < (transform.position.x * Team) || Physics2D.OverlapCircle(transform.position + new Vector3(RetreatIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))
-                    {
-                        //Debug.Log("Needs to back up, soldier is backing in");
-                        State = "Retreat";
-                    }
-                }
-            }
-
-        }
-        else //Witchcraft
-        {
-            if (Vector3.Distance(transform.position, Target.transform.position) < AttackRange)
-            {
-                State = "Attack";
-            }
-            else if (Vector3.Distance(new Vector3(General.RallyPoint, Target.transform.position.y, 0), Target.transform.position) > AgroRange)  //Compares distance the enemy is from the rally point to how far the rally point is
-            {
-                Target = null;
-            }
-            else if (Stopped == false) {
-                State = "Walk";
-            }
-        }
-
-
-    }
-
-    public override void Walk()
-    {
-        //Walk information
-        Stopped = false;
-        transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
-
-        //Debug.Log("Rally at: " + (General.RallyPoint * Team) + "Point at " + (transform.position.x * Team));
-
-        //Checks for whether to change state
-        if (Target == null)
-        {   //These lines work, so Im seperating them from the stuff that deals with the enemy.
-            if (General.RallyPoint * Team < (transform.position.x * Team))
-            {
-                State = "Wait";
-            }
-            else if (Physics2D.OverlapCircle(transform.position + new Vector3(FrontStoppingDistance * Team, 0, 0), .1f, MovementBlockers))
-            {
-                Stopped = true;
-                State = "Wait";
-                //Debug.Log("Stopping the walk");
-            }
-        }
-        else
-        {   //New shit for dealing with an enemy
-            if (Vector3.Distance(transform.position, Target.transform.position) < AttackRange)
-            {
-                State = "Attack";
-            }
-            else if (Physics2D.OverlapCircle(transform.position + new Vector3(FrontStoppingDistance * Team, 0, 0), .1f, MovementBlockers))
-            {
-                Stopped = true;
-                State = "Wait";
-                
-            }
-        }
-
-
-    }
-
     
-    public override void Attack()
-    {
-        //Debug.Log("Mistakes have been made");
-        //Attack information
-        if (Target != null)
-        {
-            if (Vector3.Distance(transform.position, Target.transform.position) < AttackRange)
-            {
-                if (Timer <= 0)
-                {
-                    Target.TakeDamage(Damage);
-                    Timer = AttackCooldown;
-                }
-                else
-                {
-                    Timer -= Time.deltaTime;
-                }
-            }
-            //else if (Vector3.Distance(transform.position, Target.transform.position) < TriggerRange)
-            //{
-              //  transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);    //Not giving them the option to follow regular wait commands
-            //}
-            else {
-                State = "Walk";
-            }
-        }
-        else
-        {
-            State = "Wait";
-        }
-    }
-
-    public override void Retreat()
-    {
-        //I shouldnt need to adapt this to attack, because it should flip to wait before attacking
-        Stopped = false;
-        if (Physics2D.OverlapCircle(transform.position + new Vector3(BackCheckDistance * Team, 0, 0), .1f, MovementBlockers))   //Needs to creep back slowly as there is an ally behind it
-        {
-            transform.position += new Vector3(-MoveSpeed * .7f * Time.deltaTime, 0, 0);
-            //Stopped = false;
-            State = "Wait";
-        }
-        else {  //Nothing is behind it so it can back up at full speed
-            //Stopped = false;
-            transform.position += new Vector3(-MoveSpeed * 1.25f * Time.deltaTime, 0, 0);
-          
-            if ((General.RallyPoint * Team > (transform.position.x * Team)) && !Physics2D.OverlapCircle(transform.position + new Vector3(FrontCheckDistance * Team, 0, 0), .1f, MovementBlockers)) {
-                Stopped = true;
-                State = "Wait";                
-            }
-
-        }
-        //Retreat information
-        
-        //Checks for whether to change state
-        
-    }
-    */
-
 
     //Sets the target as the closest available target
     private void OnTriggerStay2D(Collider2D collision)
@@ -438,12 +276,21 @@ public class Soldier : Unit
                     //Debug.Log("Adding Target");
                     Target = thing;
                 }
-                else if (Vector3.Distance(transform.position, thing.transform.position) < Vector3.Distance(transform.position, Target.transform.position)) {
+                else if (Vector3.Distance(transform.position, thing.transform.position) < Vector3.Distance(transform.position, Target.transform.position))
+                {
                     Target = thing;
                 }
                 State = "Attack";
 
             }
+            else {
+                //This automatically opens the gate for units, which is fine for AI, but bad for player
+                //Gate blocker = collision.GetComponent<Gate>();
+                //if (blocker != null && ManAhead) {
+                //    blocker.gateSelected();
+                //}
+            }
+
             //else
             //{
             //    State = "Wait";

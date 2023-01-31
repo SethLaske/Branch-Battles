@@ -9,8 +9,10 @@ public class Player : MonoBehaviour
     public TeamInfo Peasants;
 
     public bool PassRally;
-    
-    
+    public bool UseMagic;
+
+    public GameObject magic;
+
     void Start()
     {
         
@@ -30,6 +32,11 @@ public class Player : MonoBehaviour
                 Peasants.setRallyPoint(Worldpos.x);
                 PassRally = false;
             }
+            else if (UseMagic == true)  //Sets the rally point if rally was already selected
+            {
+                Peasants.useMagic(magic, Worldpos.x);
+                UseMagic = false;
+            }
             else {  //Checks to see what the player pressed
                 RaycastHit2D hit = Physics2D.Raycast(Worldpos, Vector2.zero, 10, 1);
 
@@ -43,6 +50,22 @@ public class Player : MonoBehaviour
                     {
                         gate.gateSelected();
                     }
+                    else {
+                        Pacifist pacifist = hit.transform.gameObject.GetComponent<Pacifist>();
+                        if (pacifist != null && !pacifist.Full)
+                        {
+                            if (pacifist.Resource.Equals("Mine"))
+                            {
+                                pacifist.Resource = "Gem";
+                            }
+                            else if (pacifist.Resource.Equals("Gem"))
+                            {
+                                pacifist.Resource = "Mine";
+
+                            }
+                        }
+                    }
+                    
                 }
             }
             
@@ -55,6 +78,11 @@ public class Player : MonoBehaviour
     public void prepRallyPoint()
     {
         PassRally = true;
+    }
+
+    public void prepMagicSpell()
+    {
+        UseMagic = true;
     }
 
     //Both options are available whether winning or losing

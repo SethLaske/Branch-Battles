@@ -106,4 +106,21 @@ public class Unit : Damageable
     {
         State = "Defeat";
     }
+
+    public void Stun(float Duration)
+    {
+        StartCoroutine(StunDebuff(Duration));
+    }
+
+    //Implementing it as such will allow the effects to stack, for better or worse
+    IEnumerator StunDebuff(float Duration)
+    {
+        MoveSpeed /= 2;
+        AttackCooldown *= 1.25f;
+
+        yield return new WaitForSeconds(Duration);
+
+        MoveSpeed *= 2;
+        AttackCooldown /= 1.25f;
+    }
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 //This should be the super class to all pacifists, but currently just directly handles the miner
 public class Pacifist : Unit
 {
+    public string Resource = "Mine";
     public bool Full = false;
     public int BagAmount;
 
@@ -55,7 +56,7 @@ public class Pacifist : Unit
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Mine"))        
+        if (collision.gameObject.CompareTag(Resource))        
         {
             State = "Mining";   //Being in the mining State should mean that it does nothing
             StartCoroutine(IMine());

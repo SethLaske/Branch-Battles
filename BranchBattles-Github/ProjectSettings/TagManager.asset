@@ -9,6 +9,7 @@ TagManager:
   - Unit
   - Mine
   - Gate
+  - Gem
   layers:
   - Default
   - TransparentFX
