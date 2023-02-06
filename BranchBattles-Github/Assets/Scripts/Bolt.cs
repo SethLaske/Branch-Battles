@@ -31,7 +31,7 @@ public class Bolt : MonoBehaviour
         Unit unit = other.GetComponent<Unit>();
         if (unit != null) { //Bolt would need a team check... but its lightning 
             unit.TakeDamage(5);
-            unit.Stun(5); 
+            unit.Stun(5, 1.5f); 
             
             Bolt chainedBolt = Instantiate(bolt, unit.transform.position + (transform.rotation * new Vector3(0.75f, 0, 0)), transform.rotation);
             chainedBolt.Duration = Duration - .1f;

@@ -6,6 +6,7 @@ public class CameraControls : MonoBehaviour
 {
     public int cameraSpeed = 5;
     private bool border = false;
+    public float cameraAcceleration = 0;
 
     
     // Start is called before the first frame update
@@ -22,11 +23,17 @@ public class CameraControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxisRaw("Horizontal") != 0) {
-            if (!border || (transform.position.x * Input.GetAxisRaw("Horizontal") < 0)){ 
-                transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * cameraSpeed * Time.deltaTime, 0, 0);
+        if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            if (!border || (transform.position.x * Input.GetAxisRaw("Horizontal") < 0))
+            {
+                transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * (cameraSpeed + cameraAcceleration) * Time.deltaTime, 0, 0);
                 border = false;
             }
+            cameraAcceleration += (10f * Time.deltaTime); 
+        }
+        else {
+            cameraAcceleration = 0;
         }
     }
 

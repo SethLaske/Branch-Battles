@@ -65,7 +65,14 @@ public class Pacifist : Unit
         if (collision.gameObject.CompareTag("Building"))         //Will be compared to barracks/team base eventually
         {
             if (Full == true) {
-                General.Gold += BagAmount;
+                if (Resource.Equals("Mine"))
+                {
+                    General.Gold += BagAmount;
+                }
+                else if (Resource.Equals("Gem") && General.Gems < 2) {
+                    General.Gems++;
+                }
+                
                 Full = false;
             }
             State = "Walk";

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 //Used to show a levels information, and then to start the fight
-public class ButtonSelect : MonoBehaviour
+public class LevelSelect : MonoBehaviour
 {
     public GameObject selectedLevel;
     // Start is called before the first frame update

@@ -32,10 +32,12 @@ public class TeamBase : Building
         if (Team == -1) //Activates the correct UI 
         {
             VictoryScreen.SetActive(true);
+            PlayerPrefs.SetInt("CompletedLevels", (PlayerPrefs.GetInt("CompletedLevels") + 1));
         }
         else if (Team == 1)
         {
             DefeatScreen.SetActive(true);
+            //PlayerPrefs.SetInt("CompletedLevels", 30);
         }
     }
 

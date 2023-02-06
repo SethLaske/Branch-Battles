@@ -11,6 +11,7 @@ public class Damageable : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
+        //Debug.Log("Taken Damage: " + damage);
         //Simple stuff
         this.HP -= damage;
 

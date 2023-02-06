@@ -187,7 +187,7 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 20
-  MoveSpeed: 3
+  MoveSpeed: 4
   Damage: 1
   AttackRange: 2
   AgroRange: 0
@@ -202,8 +202,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   tolerance: 0.5
+  Resource: Mine
   Full: 0
-  BagAmount: 5
+  BagAmount: 10
 --- !u!61 &1792269021062788890
 BoxCollider2D:
   m_ObjectHideFlags: 0

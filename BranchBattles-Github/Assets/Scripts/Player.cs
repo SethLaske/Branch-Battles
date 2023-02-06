@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
     public TeamInfo Peasants;
 
     public bool PassRally;
-    public bool UseMagic;
+    public bool UseLightning;
+    public bool UseTheWorld;
 
-    public GameObject magic;
+    public Magic Lightning;
+    public Magic TheWorld;
 
     void Start()
     {
@@ -32,10 +34,15 @@ public class Player : MonoBehaviour
                 Peasants.setRallyPoint(Worldpos.x);
                 PassRally = false;
             }
-            else if (UseMagic == true)  //Sets the rally point if rally was already selected
+            else if (UseLightning == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.useMagic(magic, Worldpos.x);
-                UseMagic = false;
+                Peasants.useMagic(Lightning, Worldpos.x);
+                UseLightning = false;
+            }
+            else if (UseTheWorld == true)  //Sets the rally point if rally was already selected
+            {
+                Peasants.useMagic(TheWorld, Worldpos.x);
+                UseTheWorld = false;
             }
             else {  //Checks to see what the player pressed
                 RaycastHit2D hit = Physics2D.Raycast(Worldpos, Vector2.zero, 10, 1);
@@ -80,9 +87,14 @@ public class Player : MonoBehaviour
         PassRally = true;
     }
 
-    public void prepMagicSpell()
+    public void prepLightningSpell()
     {
-        UseMagic = true;
+        UseLightning = true;
+    }
+
+    public void prepTheWorld()
+    {
+        UseTheWorld = true;
     }
 
     //Both options are available whether winning or losing

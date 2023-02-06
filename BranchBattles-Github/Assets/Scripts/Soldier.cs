@@ -201,16 +201,16 @@ public class Soldier : Unit
             {
                 State = "Retreat";
             }
-            if (Vector3.Distance(transform.position, Target.transform.position) < AttackRange)
+            if (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange)
             {
-                if (AttackTimer <= 0)
+                if (AttackTimer > AttackCooldown)
                 {
                     Target.TakeDamage(Damage);
-                    AttackTimer = AttackCooldown;
+                    AttackTimer = 0;
                 }
                 else
                 {
-                    AttackTimer -= Time.deltaTime;
+                    AttackTimer += Time.deltaTime;
                 }
             }
             
@@ -264,10 +264,10 @@ public class Soldier : Unit
     //Sets the target as the closest available target
     private void OnTriggerStay2D(Collider2D collision)
     {
-        
-        if (collision.gameObject.CompareTag("Unit") || collision.gameObject.CompareTag("Building") || collision.gameObject.CompareTag("Gate")  )    //Need to change this to a damageable check
+
+        Damageable thing = collision.GetComponent<Damageable>();
+        if (thing != null)    //Need to change this to a damageable check
         {
-            Damageable thing = collision.GetComponent<Damageable>();
             if (thing.Team != Team)
             {
                 //Debug.Log("Viable Target found");

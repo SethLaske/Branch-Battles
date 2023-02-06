@@ -13,6 +13,7 @@ public class TeamInfo : MonoBehaviour
     public int Gold;
     public int TroopCount;
     public int TroopMax;
+    public int Gems;
 
     //A list of all the units that need to be trained
     public List<Unit> SpawnUnits = new List<Unit>();
@@ -104,8 +105,11 @@ public class TeamInfo : MonoBehaviour
         }
     }
 
-    public void useMagic(GameObject magic, float distance) {
-        Instantiate(magic, new Vector3(distance, .2f, 0), Quaternion.Euler(new Vector2(0, 0)));
+    public void useMagic(Magic magic, float distance) {
+        if (Gems > 0) {
+            Instantiate(magic, new Vector3(distance, 10f, 0), Quaternion.Euler(new Vector2(0, 0)));
+            Gems--;
+        } 
     }
 
     public void spawnSoldier1()
