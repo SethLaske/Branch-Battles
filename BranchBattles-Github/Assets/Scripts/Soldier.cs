@@ -20,6 +20,7 @@ public class Soldier : Unit
     public bool ManAhead;
     public bool ManBehind;
 
+    public AudioSource attackSound;
     // Start is called before the first frame update
     void Start()
     {
@@ -206,6 +207,7 @@ public class Soldier : Unit
                 if (AttackTimer > AttackCooldown)
                 {
                     Target.TakeDamage(Damage);
+                    attackSound.Play();
                     AttackTimer = 0;
                 }
                 else

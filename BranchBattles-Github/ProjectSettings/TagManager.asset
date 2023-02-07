@@ -10,6 +10,7 @@ TagManager:
   - Mine
   - Gate
   - Gem
+  - Exposition Message
   layers:
   - Default
   - TransparentFX

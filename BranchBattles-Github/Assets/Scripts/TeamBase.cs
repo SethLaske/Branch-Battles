@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 //Not a great class, but handles game overs for now, and will be fine unless a team can have multiple barracks
 public class TeamBase : Building
 {
-    public GameObject VictoryScreen;
-    public GameObject DefeatScreen;
-    public GameObject UI;
+    
+
+    public LevelManager levelmanager;
 
     // Start is called before the first frame update
     void Start()
@@ -28,17 +28,7 @@ public class TeamBase : Building
         base.Die(); //Destroys the enemy
         General.Defeat();   //Both these classes are currently empty but could be used to send animations to each sides troops
         General.Opponent.Victory();
-        UI.SetActive(false);
-        if (Team == -1) //Activates the correct UI 
-        {
-            VictoryScreen.SetActive(true);
-            PlayerPrefs.SetInt("CompletedLevels", (PlayerPrefs.GetInt("CompletedLevels") + 1));
-        }
-        else if (Team == 1)
-        {
-            DefeatScreen.SetActive(true);
-            //PlayerPrefs.SetInt("CompletedLevels", 30);
-        }
+        levelmanager.GameOver(Team);
     }
 
     

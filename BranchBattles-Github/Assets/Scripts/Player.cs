@@ -64,10 +64,12 @@ public class Player : MonoBehaviour
                             if (pacifist.Resource.Equals("Mine"))
                             {
                                 pacifist.Resource = "Gem";
+                                pacifist.pick.color = Color.magenta;
                             }
                             else if (pacifist.Resource.Equals("Gem"))
                             {
                                 pacifist.Resource = "Mine";
+                                pacifist.pick.color = Color.yellow;
 
                             }
                         }

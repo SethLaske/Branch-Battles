@@ -9,7 +9,9 @@ public class Pacifist : Unit
     public string Resource = "Mine";
     public bool Full = false;
     public int BagAmount;
+    public AudioSource dropOff;
 
+    public SpriteRenderer pick;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,12 +43,12 @@ public class Pacifist : Unit
 
     IEnumerator IMine()
     {
-        
+        Full = true;
         //Debug.Log("Time Starting");
         yield return new WaitForSeconds(2);
 
         
-        Full = true;
+        
         State = "Retreat";
 
         
@@ -65,6 +67,7 @@ public class Pacifist : Unit
         if (collision.gameObject.CompareTag("Building"))         //Will be compared to barracks/team base eventually
         {
             if (Full == true) {
+                dropOff.Play();
                 if (Resource.Equals("Mine"))
                 {
                     General.Gold += BagAmount;
