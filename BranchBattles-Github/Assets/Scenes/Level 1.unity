@@ -1774,6 +1774,7 @@ MonoBehaviour:
   General: {fileID: 1952470770}
   Team: 1
   HP: 50
+  Armor: 0
   levelmanager: {fileID: 821179108}
 --- !u!1 &821179107
 GameObject:
@@ -1883,6 +1884,7 @@ MonoBehaviour:
   Soldier1: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
   Soldier2: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
   Soldier3: {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
+  Soldier4: {fileID: 0}
   Pacifist1: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
   Opponent: {fileID: 1952470770}
 --- !u!4 &822466836
@@ -2660,6 +2662,7 @@ MonoBehaviour:
   General: {fileID: 822466835}
   Team: -1
   HP: 50
+  Armor: 0
   levelmanager: {fileID: 821179108}
 --- !u!1 &1391326599
 GameObject:
@@ -3400,7 +3403,7 @@ GameObject:
   - component: {fileID: 1952470771}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3449,6 +3452,7 @@ MonoBehaviour:
   Soldier1: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
   Soldier2: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
   Soldier3: {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
+  Soldier4: {fileID: 1116175229595562662, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
   Pacifist1: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
   Opponent: {fileID: 822466835}
 --- !u!114 &1952470771
@@ -3465,8 +3469,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Peasants: {fileID: 1952470770}
   PassRally: 0
-  UseLightning: 0
-  UseTheWorld: 0
+  UseMagic1: 0
+  UseMagic2: 0
   Lightning: {fileID: 0}
   TheWorld: {fileID: 0}
 --- !u!1 &1967155276
@@ -3560,6 +3564,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 563878322187215823, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2317800658747970734, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
       value: 1

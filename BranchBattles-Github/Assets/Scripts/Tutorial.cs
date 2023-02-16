@@ -31,30 +31,37 @@ public class Tutorial : MonoBehaviour
     
     void Update()
     {
+        if (PassRally == true)
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.nearClipPlane;
+            Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+            Peasants.RallyFlag.transform.position = new Vector3(Worldpos.x, Peasants.RallyFlag.transform.position.y, 0);
+        }
         if (Input.GetMouseButtonDown(0))    //All of the various options for what a player can press (excluding UI buttons)
         {
             
             if (CameraScreen.activeInHierarchy) {
-                CameraScreen.SetActive(false);
+                //CameraScreen.SetActive(false);
                 ReadCamera();
             } else if (TroopsScreen.activeInHierarchy)
             {
-                TroopsScreen.SetActive(false);
+                //TroopsScreen.SetActive(false);
                 ReadTroops();
             }
             else if (PacifistScreen.activeInHierarchy)
             {
-                PacifistScreen.SetActive(false);
+                //PacifistScreen.SetActive(false);
                 ReadPacifist();
             }
             else if (RallyScreen.activeInHierarchy)
             {
-                RallyScreen.SetActive(false);
+                //RallyScreen.SetActive(false);
                 ReadRally();
             }
             else if (ChargeScreen.activeInHierarchy)
             {
-                ChargeScreen.SetActive(false);
+                //ChargeScreen.SetActive(false);
                 ReadCharge();
             }
 
@@ -129,9 +136,15 @@ public class Tutorial : MonoBehaviour
         SceneManager.LoadScene("LevelSelect");
     }
 
+    IEnumerator clickBuffer(GameObject read) {
+        yield return new WaitForSeconds(2f);
+        read.SetActive(false);
+    }
+
     //Tutorial Specific Scripts
     public void ReadCamera() {
-        CameraScreen.SetActive(false);
+        StartCoroutine(clickBuffer(CameraScreen));
+        //CameraScreen.SetActive(false);
         StartCoroutine(ShowTroops());
         Barbarians.spawnPacifist1();
     }
@@ -147,7 +160,8 @@ public class Tutorial : MonoBehaviour
 
     public void ReadTroops()
     {
-        TroopsScreen.SetActive(false);
+        StartCoroutine(clickBuffer(TroopsScreen));
+        //TroopsScreen.SetActive(false);
         StartCoroutine(ShowPacifist());
         
     }
@@ -161,7 +175,8 @@ public class Tutorial : MonoBehaviour
 
     public void ReadPacifist()
     {
-        PacifistScreen.SetActive(false);
+        StartCoroutine(clickBuffer(PacifistScreen));
+        //PacifistScreen.SetActive(false);
         StartCoroutine(ShowRally());
     }
 
@@ -175,7 +190,8 @@ public class Tutorial : MonoBehaviour
 
     public void ReadRally()
     {
-        RallyScreen.SetActive(false);
+        StartCoroutine(clickBuffer(RallyScreen)); 
+        //RallyScreen.SetActive(false);
         StartCoroutine(ShowCharge());
     }
 
@@ -188,7 +204,8 @@ public class Tutorial : MonoBehaviour
 
     public void ReadCharge()
     {
-        ChargeScreen.SetActive(false);
+        StartCoroutine(clickBuffer(ChargeScreen));
+        //ChargeScreen.SetActive(false);
         
     }
 

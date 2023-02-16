@@ -5,6 +5,7 @@ using UnityEngine;
 //Super class for all units that can be trained, and fight/have utility
 public class Unit : Damageable
 {
+    public Animator animator;
     //Various Stats each unit has
     public float MoveSpeed; //Speed to travel across the map
     public float Damage;    //Damage done per attacl
@@ -17,12 +18,19 @@ public class Unit : Damageable
     public int TroopSpaces;     //Troop spaces the unit takes up in the army
     public float SpawnTime;     //Time the unit needs to spawn
 
+    public GameObject HealthBar;    //Health bar is currently handled here... probably shouldnt
+    public float AppearanceTime = 1.5f;
+    public float maxHealth = .5f;
+    public float HealthTimer = 0;
+
     public string State;    //Determines what actions they need to pursue
 
     public Damageable Target;   //Targets should only be things we want to attack. NOTHING ELSE
     public LayerMask MovementBlockers;  //things that block movement forward
 
     public float tolerance = .25f;  //Handles the tolerance to allow for imperfections
+
+    public GameObject corpse;
 
     //These are just rough plans for units to follow, and are edited in sub classes
     public virtual void Wait() {
@@ -94,6 +102,7 @@ public class Unit : Damageable
     public override void Die() {
         
         General.TroopCount -= TroopSpaces;
+        Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -123,4 +132,15 @@ public class Unit : Damageable
         MoveSpeed *= Intensity;
         AttackCooldown /= Intensity;
     }
+
+    public override void TakeDamage(float Damage)
+    {
+        base.TakeDamage(Damage);
+        HealthBar.transform.localScale = new Vector3(HP / maxHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
+        //slider.value = HealthObject.HP;
+        HealthBar.SetActive(true);
+        HealthTimer = 0;
+    }
+
+    
 }

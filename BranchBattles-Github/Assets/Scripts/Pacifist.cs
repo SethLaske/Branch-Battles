@@ -8,6 +8,7 @@ public class Pacifist : Unit
 {
     public string Resource = "Mine";
     public bool Full = false;
+
     public int BagAmount;
     public AudioSource dropOff;
 
@@ -17,11 +18,26 @@ public class Pacifist : Unit
     {
         AttackTimer = AttackCooldown;
         State = "Walk";
+        maxHealth = HP;
+        if (Team < 0)
+        {
+            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (HealthTimer < AppearanceTime)
+        {
+            HealthTimer += Time.deltaTime;
+        }
+        else if (HealthTimer > AppearanceTime)
+        {
+            HealthBar.SetActive(false);
+            HealthTimer = AppearanceTime; //Stops the timer from continuing to add
+        }
+
         if (State == "Wait")
         {
             Wait();
@@ -55,6 +71,22 @@ public class Pacifist : Unit
         //Debug.Log("Time ending");
     }
 
+    public void changeResource() {
+        if (!Full)
+        {
+            if (Resource.Equals("Mine"))
+            {
+                Resource = "Gem";
+                pick.color = Color.magenta;
+            }
+            else if (Resource.Equals("Gem"))
+            {
+                Resource = "Mine";
+                pick.color = Color.yellow;
+
+            }
+        } 
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

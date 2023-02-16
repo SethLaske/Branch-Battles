@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1888746803844743681}
   - component: {fileID: 1169858046625495191}
   - component: {fileID: 3098053328963865687}
+  - component: {fileID: 2421140077324994775}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -94,10 +95,10 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 272214254648096260}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -125,8 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 752d18086e8ff2f49a108a770ad44d84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magicSound: {fileID: 0}
+  magicSound: {fileID: 3098053328963865687}
   Bolt: {fileID: 194598016232562218, guid: 720540578f7d9cf43bd088af39ed1b29, type: 3}
+  AOE: {fileID: 2421140077324994775}
+  dropSpeed: 10
 --- !u!82 &3098053328963865687
 AudioSource:
   m_ObjectHideFlags: 0
@@ -223,3 +226,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!60 &2421140077324994775
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272214254648096260}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 10}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.64, y: 0.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0}
+      - {x: 0.25, y: 3}
+      - {x: -0.25, y: 3}

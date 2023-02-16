@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Soldier : Unit
 {
-    public GameObject HealthBar;    //Health bar is currently handled here... probably shouldnt
-    public float AppearanceTime = 1.5f;
-    private float maxHealth = .5f;
-    public float HealthTimer = 0;
+    
 
     //A series of tests to try and improve the appearance of troops as they move back and forth in a group
     //private float FrontStoppingDistance = 1;
@@ -27,6 +24,9 @@ public class Soldier : Unit
         maxHealth = HP;
         AttackTimer = AttackCooldown;
         State = "Walk";
+        if (Team < 0) {
+            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
     }
 
     // Update is called once per frame
@@ -65,23 +65,41 @@ public class Soldier : Unit
             ManBehind = false;
         }
 
+        if (Target == null)
+        {
+            if (General.RallyPoint * Team < (transform.position.x * Team) - tolerance)  //If the rally point is behind, we always prioritize that
+            {
+                State = "Retreat";
+            }
+        }
+        else {
+            if ((General.RallyPoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
+            {
+                State = "Retreat";
+                Debug.Log("Attack -> Retreat");
+            }
+        }
 
         //Performs the various actions per the state it is in
         if (State == "Wait")
         {
             Wait();
+            animator.SetBool("Attacking", false);
         }
         else if (State == "Walk")
         {
             Walk();
+            animator.SetBool("Attacking", false);
         }
         else if (State == "Attack")
         {
             Attack();
+            animator.SetBool("Attacking", true);
         }
         else if (State == "Retreat")
         {
             Retreat();
+            animator.SetBool("Attacking", false);
         }
 
         
@@ -93,30 +111,31 @@ public class Soldier : Unit
             {
                 //Debug.Log(Vector3.Distance(transform.position, Target.transform.position));
 
-                if (Vector3.Distance(transform.position, Target.transform.position) < AttackRange)
+                if (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange)
                 {    //The target is within range
                     State = "Attack";
                 }
-                else if ((General.RallyPoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //Hiding this for now as well && ManAhead == false)
+                else if ((General.RallyPoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)  //Hiding this for now as well && ManAhead == false)
                 {   //We want to reach the target and no one is infront of us
                     //if man ahead is true its not the enemy
                     //Debug.Log("Need to advance forward my max target is: " + ((General.RallyPoint + (AgroRange * Team)) * Team) + "And the enemy is at " + Target.transform.position.x);
                     State = "Walk";
+                    
                 }
                 else {  //If we reach this point, then it has a target it cant reach. If the target is out of range, this covers it. If its falsely removing it, the Collision detector will add it back
 
                     //Just going to do nothing to see what happens (might need to cover retreating here later)
-                    State = "Retreat";
-                    Target = null;
+                    //State = "Retreat";
+                    //Target = null;
                 }
             }
             else
             {
-                if (General.RallyPoint * Team < (transform.position.x * Team) - tolerance)  //If the rally point is behind, we always prioritize that
+                /*if (General.RallyPoint * Team < (transform.position.x * Team) - tolerance)  //If the rally point is behind, we always prioritize that
                 {
                     State = "Retreat";
                 }
-                else if (General.RallyPoint * Team > (transform.position.x * Team) + tolerance && !Physics2D.OverlapCircle(transform.position + new Vector3(AdvanceIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))     //Needs to walk forward and the next guy up has given him room
+                else*/ if (General.RallyPoint * Team > (transform.position.x * Team) + tolerance && !Physics2D.OverlapCircle(transform.position + new Vector3(AdvanceIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))     //Needs to walk forward and the next guy up has given him room
                 {
                     State = "Walk";
                 }
@@ -132,76 +151,37 @@ public class Soldier : Unit
     public override void Walk()
     {
 
-        if (Target == null && General.RallyPoint * Team < (transform.position.x * Team)) {   //There is no target and they only respect the rally point
-            State = "Retreat";
-        }
-        else if( Target != null && (General.RallyPoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)   //or there is a target, but its beyond the agro range
+       
+            if (Target != null && (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange))   //or there is a target, but its beyond the agro range
             {
-                State = "Retreat";
+                State = "Attack";
+                Debug.Log("Wait > Attack");
             }
-        
-        else
-        {
             if (ManAhead == false)
             {
                 transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
-                if (Target != null && (Vector3.Distance(transform.position, Target.transform.position) < AttackRange))   //or there is a target, but its beyond the agro range
-                {
-                    State = "Attack";
+            //fix backup and overshooting
+                if (transform.position.x * Team > General.RallyPoint * Team) {
+                    State = "Wait"; //If past rally point
+                    Debug.Log("Wait > Walk");
                 }
             }
             else {
                 State = "Wait"; //If theres someone ahead, need to wait
+                Debug.Log("Wait > Walk");
             }
-        }
-
-        //Letting wait do a lot of the work right now. Walk will switch to retreat, walk forward, or transition to wait
-
-        /*
-        if (Target == null)
-        {  
-            if (General.RallyPoint * Team < (transform.position.x * Team))
-            {
-                State = "Wait";
-            }
-            else if (Physics2D.OverlapCircle(transform.position + new Vector3(FrontStoppingDistance * Team, 0, 0), .1f, MovementBlockers))
-            {
-                Stopped = true;
-                State = "Wait";
-               
-            }
-        }
-        else
-        {  
-            if (Vector3.Distance(transform.position, Target.transform.position) < AttackRange)
-            {
-                State = "Attack";
-            }
-            else if (Physics2D.OverlapCircle(transform.position + new Vector3(FrontStoppingDistance * Team, 0, 0), .1f, MovementBlockers))
-            {
-                Stopped = true;
-                State = "Wait";
-
-            }
-        }
-        */
+       
 
     }
 
     //I think we only want to be in attack if we are actively attacking, otherwise it will be sent to a different state
     public override void Attack()
     {
-        //if ((General.RallyPoint + AgroRange) * Team < (transform.position.x * Team))  //If the rally point is behind, we always prioritize that
-        //{
-        //    State = "Retreat";
-        //}
+        
 
         if (Target != null)
         {
-            if ((General.RallyPoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
-            {
-                State = "Retreat";
-            }
+            
             if (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange)
             {
                 if (AttackTimer > AttackCooldown)
@@ -219,11 +199,13 @@ public class Soldier : Unit
             else
             {
                 State = "Walk";
+                Debug.Log("Attack -> Walk");
             }
         }
         else
         {
             State = "Wait";
+            Debug.Log("Attack -> Wait");
         }
     }
 
@@ -253,13 +235,7 @@ public class Soldier : Unit
 
     }
 
-    public override void TakeDamage(float Damage) {
-        base.TakeDamage(Damage);
-        HealthBar.transform.localScale = new Vector3(HP / maxHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
-        //slider.value = HealthObject.HP;
-        HealthBar.SetActive(true);
-        HealthTimer = 0;
-    }
+    
 
     
 
@@ -282,7 +258,7 @@ public class Soldier : Unit
                 {
                     Target = thing;
                 }
-                State = "Attack";
+                //State = "Attack";
 
             }
             else {

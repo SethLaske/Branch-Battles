@@ -7,6 +7,8 @@ using UnityEngine;
 public class Lightning : Magic
 {
     public GameObject Bolt;
+    public Collider2D AOE;
+    public float dropSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +22,7 @@ public class Lightning : Magic
     // Update is called once per frame
     void Update()
     {
-        
+        AOE.offset += Vector2.down * dropSpeed * Time.deltaTime;
     }
 
 

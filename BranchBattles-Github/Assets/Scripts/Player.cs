@@ -9,8 +9,12 @@ public class Player : MonoBehaviour
     public TeamInfo Peasants;
 
     public bool PassRally;
-    public bool UseLightning;
-    public bool UseTheWorld;
+
+    public bool UseMagic1;
+    public bool UseMagic2;
+
+    //public bool UseLightning;
+    //public bool UseTheWorld;
 
     public Magic Lightning;
     public Magic TheWorld;
@@ -23,6 +27,12 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if (PassRally == true) {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = Camera.main.nearClipPlane;
+            Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+            Peasants.RallyFlag.transform.position = new Vector3(Worldpos.x, Peasants.RallyFlag.transform.position.y, 0);
+        }
         if (Input.GetMouseButtonDown(0))    //All of the various options for what a player can press (excluding UI buttons)
         {
             Vector3 mousePos = Input.mousePosition;
@@ -34,15 +44,15 @@ public class Player : MonoBehaviour
                 Peasants.setRallyPoint(Worldpos.x);
                 PassRally = false;
             }
-            else if (UseLightning == true)  //Sets the rally point if rally was already selected
+            else if (UseMagic1 == true)  //Sets the rally point if rally was already selected
             {
                 Peasants.useMagic(Lightning, Worldpos.x);
-                UseLightning = false;
+                UseMagic1 = false;
             }
-            else if (UseTheWorld == true)  //Sets the rally point if rally was already selected
+            else if (UseMagic2 == true)  //Sets the rally point if rally was already selected
             {
                 Peasants.useMagic(TheWorld, Worldpos.x);
-                UseTheWorld = false;
+                UseMagic2 = false;
             }
             else {  //Checks to see what the player pressed
                 RaycastHit2D hit = Physics2D.Raycast(Worldpos, Vector2.zero, 10, 1);
@@ -59,19 +69,9 @@ public class Player : MonoBehaviour
                     }
                     else {
                         Pacifist pacifist = hit.transform.gameObject.GetComponent<Pacifist>();
-                        if (pacifist != null && !pacifist.Full)
+                        if (pacifist != null)
                         {
-                            if (pacifist.Resource.Equals("Mine"))
-                            {
-                                pacifist.Resource = "Gem";
-                                pacifist.pick.color = Color.magenta;
-                            }
-                            else if (pacifist.Resource.Equals("Gem"))
-                            {
-                                pacifist.Resource = "Mine";
-                                pacifist.pick.color = Color.yellow;
-
-                            }
+                            pacifist.changeResource();
                         }
                     }
                     
@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
     {
         PassRally = true;
     }
-
+    /*
     public void prepLightningSpell()
     {
         UseLightning = true;
@@ -97,6 +97,15 @@ public class Player : MonoBehaviour
     public void prepTheWorld()
     {
         UseTheWorld = true;
+    }*/
+
+    public void prepMagic1() {
+        UseMagic1 = true;
+    }
+
+    public void prepMagic2()
+    {
+        UseMagic2 = true;
     }
 
     //Both options are available whether winning or losing

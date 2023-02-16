@@ -37,6 +37,7 @@ public class TeamInfo : MonoBehaviour
     public Unit Soldier1;
     public Unit Soldier2;
     public Unit Soldier3;
+    public Unit Soldier4;
 
     public Unit Pacifist1;
 
