@@ -116,6 +116,7 @@ MonoBehaviour:
   HP: 15
   Armor: 0
   animator: {fileID: 8141524261004105529}
+  unitName: Soldier
   MoveSpeed: 5
   Damage: 5
   AttackRange: 1.9

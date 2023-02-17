@@ -32,34 +32,46 @@ public class PlayerConnector : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
+    //Auto
     void Start()
     {
         if (autoInitiate) {
-            GameObject PlayerTag = GameObject.FindGameObjectWithTag("Player");
+            GameObject PlayerTag = GameObject.FindGameObjectWithTag("Player");  //finds the player
             player = PlayerTag.GetComponent<Player>();
             playerTeam = player.Peasants;
 
             playerBase.HealthObject = playerTeam.Barracks;
+            playerBase.slider.maxValue = playerTeam.Barracks.HP;
+            Debug.Log("Setting up enemy health bar");
             enemyBase.HealthObject = playerTeam.Opponent.Barracks;
+            enemyBase.slider.maxValue = playerTeam.Opponent.Barracks.HP;
 
             Rally.onClick.AddListener(player.prepRallyPoint);
             Charge.onClick.AddListener(playerTeam.Charge);
 
             counters.player = playerTeam;
 
-            pacifist1.onClick.AddListener(playerTeam.spawnPacifist1);
+            initButton(pacifist1, playerTeam.Pacifist1);
+            //pacifist1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Pacifist1));
 
-            //soldier1.onClick.AddListener(playerTeam.spawnSoldier1);
-            soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
-            soldier2.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier2));
-            soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
-            soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
+            initButton(soldier1, playerTeam.Soldier1);
+            initButton(soldier2, playerTeam.Soldier2);
+            initButton(soldier3, playerTeam.Soldier3);
+            initButton(soldier4, playerTeam.Soldier4);
+            
+            //soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
+            //soldier2.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier2));
+            //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
+            //soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
 
             magicPrep1.onClick.AddListener(player.prepMagic1);
             magicPrep2.onClick.AddListener(player.prepMagic2);
         }
     }
 
-   
+    public void initButton(Button button, Unit unit) {
+        button.onClick.AddListener(() => playerTeam.spawnUnit(unit));
+        UnitButtons script = button.GetComponent<UnitButtons>();
+        script.setUnitType(unit);
+    }
 }

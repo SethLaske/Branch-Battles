@@ -13,10 +13,12 @@ public class Tutorial : MonoBehaviour
     public bool PassRally;
 
     public GameObject CameraScreen;
-    public GameObject TroopsUI;
-    public GameObject TroopsScreen;
+    public GameObject SoldiersUI;
+    public GameObject SoldiersScreen;
     public GameObject PacifistUI;
     public GameObject PacifistScreen;
+    public GameObject ArchersUI;
+    public GameObject ArchersScreen;
     public GameObject RallyUI;
     public GameObject RallyScreen;
     public GameObject ChargeUI;
@@ -44,15 +46,20 @@ public class Tutorial : MonoBehaviour
             if (CameraScreen.activeInHierarchy) {
                 //CameraScreen.SetActive(false);
                 ReadCamera();
-            } else if (TroopsScreen.activeInHierarchy)
+            } else if (SoldiersScreen.activeInHierarchy)
             {
                 //TroopsScreen.SetActive(false);
-                ReadTroops();
+                ReadSoldier();
             }
             else if (PacifistScreen.activeInHierarchy)
             {
                 //PacifistScreen.SetActive(false);
                 ReadPacifist();
+            }
+            else if (ArchersScreen.activeInHierarchy)
+            {
+                //TroopsScreen.SetActive(false);
+                ReadArcher();
             }
             else if (RallyScreen.activeInHierarchy)
             {
@@ -145,22 +152,22 @@ public class Tutorial : MonoBehaviour
     public void ReadCamera() {
         StartCoroutine(clickBuffer(CameraScreen));
         //CameraScreen.SetActive(false);
-        StartCoroutine(ShowTroops());
+        StartCoroutine(ShowSoldier());
         Barbarians.spawnPacifist1();
     }
 
-    IEnumerator ShowTroops()
+    IEnumerator ShowSoldier()
     {
         yield return new WaitForSeconds(3);
-        TroopsUI.SetActive(true);
-        TroopsScreen.SetActive(true);
+        SoldiersUI.SetActive(true);
+        SoldiersScreen.SetActive(true);
         Barbarians.spawnSoldier1();
         //Barbarians.spawnSoldier1();
     }
 
-    public void ReadTroops()
+    public void ReadSoldier()
     {
-        StartCoroutine(clickBuffer(TroopsScreen));
+        StartCoroutine(clickBuffer(SoldiersScreen));
         //TroopsScreen.SetActive(false);
         StartCoroutine(ShowPacifist());
         
@@ -177,13 +184,30 @@ public class Tutorial : MonoBehaviour
     {
         StartCoroutine(clickBuffer(PacifistScreen));
         //PacifistScreen.SetActive(false);
-        StartCoroutine(ShowRally());
+        StartCoroutine(ShowArcher());
+    }
+    IEnumerator ShowArcher()
+    {
+        yield return new WaitForSeconds(3);
+        ArchersUI.SetActive(true);
+        ArchersScreen.SetActive(true);
+        Barbarians.spawnSoldier1();
+        Barbarians.spawnSoldier1();
+        Barbarians.spawnSoldier2();
     }
 
+    public void ReadArcher()
+    {
+        StartCoroutine(clickBuffer(ArchersScreen));
+        //TroopsScreen.SetActive(false);
+        StartCoroutine(ShowRally());
+
+    }
     IEnumerator ShowRally()
     {
-        StartCoroutine(EnemyAttacking());
+        
         yield return new WaitForSeconds(5);
+        Barbarians.setRallyPoint(10);
         RallyUI.SetActive(true);
         RallyScreen.SetActive(true);
     }
@@ -205,13 +229,15 @@ public class Tutorial : MonoBehaviour
     public void ReadCharge()
     {
         StartCoroutine(clickBuffer(ChargeScreen));
+        Barbarians.Charge();
+        StartCoroutine(EnemyAttacking());
         //ChargeScreen.SetActive(false);
-        
+
     }
 
 
     IEnumerator EnemyAttacking() {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(8);
         Barbarians.spawnSoldier1();
         Barbarians.spawnSoldier2();
         StartCoroutine(EnemyAttacking());

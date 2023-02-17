@@ -11,7 +11,8 @@ public class BaseHealthBar : MonoBehaviour
 	
 	private void Start()
     {
-		slider.maxValue = HealthObject.HP;
+		//moved to Player Connector to prevent some errors on start up
+		//slider.maxValue = HealthObject.HP;
 	}
 
     void Update()

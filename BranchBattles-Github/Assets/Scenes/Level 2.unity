@@ -1182,6 +1182,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraSpeed: 10
   cameraAcceleration: 0
+  mapWidth: 100
+  FrontGround: {fileID: 0}
+  FGSpeed: 0
+  CBG: {fileID: 0}
+  CBGSpeed: 0
+  DBG: {fileID: 0}
+  DBGSpeed: 0
 --- !u!61 &519420034
 BoxCollider2D:
   m_ObjectHideFlags: 0

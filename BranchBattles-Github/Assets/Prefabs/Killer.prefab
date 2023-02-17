@@ -114,6 +114,7 @@ MonoBehaviour:
   HP: 100
   Armor: 0
   animator: {fileID: 2390069074983376228}
+  unitName: Dev
   MoveSpeed: 12
   Damage: 50
   AttackRange: 6

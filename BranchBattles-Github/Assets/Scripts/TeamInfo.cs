@@ -47,7 +47,7 @@ public class TeamInfo : MonoBehaviour
     void Start()
     {
         
-        RallyPoint = Barracks.transform.position.x + (Team * 14);
+        RallyPoint = Barracks.transform.position.x + (Team * 10);
         RallyFlag.transform.position = new Vector3(RallyPoint, RallyFlag.transform.position.y);
     }
 

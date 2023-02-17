@@ -6,6 +6,7 @@ using UnityEngine;
 public class Unit : Damageable
 {
     public Animator animator;
+    public string unitName;     //called to show on buttons etc...
     //Various Stats each unit has
     public float MoveSpeed; //Speed to travel across the map
     public float Damage;    //Damage done per attacl
