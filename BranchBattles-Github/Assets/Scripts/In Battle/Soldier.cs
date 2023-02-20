@@ -77,6 +77,8 @@ public class Soldier : Unit
             {
                 State = "Retreat";
                 Debug.Log("Attack -> Retreat");
+                Target = null;
+                Debug.Log("Setting target as null");
             }
         }
 
@@ -126,7 +128,8 @@ public class Soldier : Unit
 
                     //Just going to do nothing to see what happens (might need to cover retreating here later)
                     //State = "Retreat";
-                    //Target = null;
+                    Target = null;
+                    
                 }
             }
             else

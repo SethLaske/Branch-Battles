@@ -17,6 +17,8 @@ public class CameraControls : MonoBehaviour
     public GameObject DBG;
     public float DBGSpeed;
 
+    public float magnitude;
+    public float duration;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,12 @@ public class CameraControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetMouseButtonDown(1)) {
+            
+            StartCoroutine(ScreenShake(magnitude, duration));
+        
+        }
+
         if (Input.GetAxisRaw("Horizontal") != 0)
         {
             if (!border || (transform.position.x * Input.GetAxisRaw("Horizontal") < 0))
@@ -74,5 +82,34 @@ public class CameraControls : MonoBehaviour
             border = true;
             //Debug.Log("Touched border");
         }
+    }
+
+    public void CallShake(float magnitude, float duration) {
+        StartCoroutine(ScreenShake(magnitude, duration));
+    }
+    IEnumerator ScreenShake(float magnitude, float duration) {
+        
+        Vector3 changes = new Vector3(0, 0, 0);
+        
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float change = magnitude - (magnitude * Mathf.Abs(duration / 2 - elapsed));
+            float x = Random.Range(-1f, 1f) * change;
+            float y = Random.Range(-1f, 1f) * change;
+
+            transform.position += new Vector3(x, y, 0);
+
+            changes += new Vector3(x, y, 0);
+
+            Debug.Log("Moving to " + transform.position);
+            elapsed += Time.deltaTime;
+            
+            yield return 0;
+            transform.position -= new Vector3(x, y, 0);
+        }
+        //transform.position -= changes;
+
     }
 }

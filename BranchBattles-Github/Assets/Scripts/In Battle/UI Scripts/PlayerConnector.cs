@@ -67,6 +67,14 @@ public class PlayerConnector : MonoBehaviour
             magicPrep1.onClick.AddListener(player.prepMagic1);
             magicPrep2.onClick.AddListener(player.prepMagic2);
         }
+        else    //Specific for tutorial
+        {
+            playerBase.slider.maxValue = playerBase.HealthObject.HP;
+            enemyBase.slider.maxValue = enemyBase.HealthObject.HP;
+
+
+        }
+
     }
 
     public void initButton(Button button, Unit unit) {

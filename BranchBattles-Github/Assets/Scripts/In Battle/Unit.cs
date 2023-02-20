@@ -21,7 +21,7 @@ public class Unit : Damageable
 
     public GameObject HealthBar;    //Health bar is currently handled here... probably shouldnt
     public float AppearanceTime = 1.5f;
-    public float maxHealth = .5f;
+    
     public float HealthTimer = 0;
 
     public string State;    //Determines what actions they need to pursue

@@ -49,7 +49,10 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 1
   HP: 30
+  maxHealth: 0.5
+  Armor: 0
   defender: {fileID: 0}
+  animator: {fileID: 4769952497284394059}
   Damage: 10
   AttackSpeed: 1.5
   AttackRange: 10
@@ -89,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741208122748926876}
   - component: {fileID: 1741208122748926867}
+  - component: {fileID: 4769952497284394059}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -163,3 +167,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4769952497284394059
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741208122748926877}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c8ba232f62d577498e37cb49a0e002f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

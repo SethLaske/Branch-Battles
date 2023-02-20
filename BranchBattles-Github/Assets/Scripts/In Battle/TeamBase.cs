@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 //Not a great class, but handles game overs for now, and will be fine unless a team can have multiple barracks
 public class TeamBase : Building
 {
-    
 
+    public CameraControls playercamera;
     public LevelManager levelmanager;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        maxHealth = HP;
+        playercamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControls>();
     }
 
     // Update is called once per frame
@@ -31,5 +32,15 @@ public class TeamBase : Building
         levelmanager.GameOver(Team);
     }
 
-    
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        if (Team == 1) {
+            float amount = (.3f * ((maxHealth - HP) / maxHealth)) + .1f;
+            playercamera.CallShake(amount, amount);
+        }
+        
+    }
+
+
 }

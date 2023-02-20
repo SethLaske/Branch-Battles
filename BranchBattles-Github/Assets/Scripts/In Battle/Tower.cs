@@ -6,6 +6,8 @@ public class Tower : Building
 {
     public TowerSoldier defender;
 
+    public Animator animator;
+
     public float Damage;
     public float AttackSpeed;
     public float AttackRange;
@@ -13,7 +15,7 @@ public class Tower : Building
     // Start is called before the first frame update
     void Start()
     {
-
+        maxHealth = HP;
     }
 
     // Update is called once per frame
@@ -58,6 +60,26 @@ public class Tower : Building
             Destroy(defender.GetComponent<CircleCollider2D>());
             defender.transform.position += new Vector3(-1 * Team, -4, 0);
             defender.gameObject.layer = 6;
+        }
+    }
+
+    public override void TakeDamage(float damage)
+    {
+        base.TakeDamage(damage);
+        float damagePercent = HP / maxHealth;
+        if (damagePercent < .2) {
+            animator.SetInteger("Destruction", 5);
+        } else if (damagePercent < .4)
+        {
+            animator.SetInteger("Destruction", 4);
+        }
+        else if (damagePercent < .6)
+        {
+            animator.SetInteger("Destruction", 3);
+        }
+        else if (damagePercent < .8)
+        {
+            animator.SetInteger("Destruction", 2);
         }
     }
 }
