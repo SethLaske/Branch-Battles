@@ -112,9 +112,11 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 100
+  maxHealth: 0.5
   Armor: 0
   animator: {fileID: 2390069074983376228}
   unitName: Dev
+  unitClassification: 4
   MoveSpeed: 12
   Damage: 50
   AttackRange: 6
@@ -126,7 +128,6 @@ MonoBehaviour:
   SpawnTime: 1
   HealthBar: {fileID: 8761439705502324260}
   AppearanceTime: 1.5
-  maxHealth: 0.5
   HealthTimer: 0.5
   State: 
   Target: {fileID: 0}

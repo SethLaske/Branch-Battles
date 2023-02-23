@@ -89,7 +89,7 @@ public class CameraControls : MonoBehaviour
     }
     IEnumerator ScreenShake(float magnitude, float duration) {
         
-        Vector3 changes = new Vector3(0, 0, 0);
+        //Vector3 changes = new Vector3(0, 0, 0);
         
         float elapsed = 0f;
 
@@ -101,9 +101,9 @@ public class CameraControls : MonoBehaviour
 
             transform.position += new Vector3(x, y, 0);
 
-            changes += new Vector3(x, y, 0);
+            //changes += new Vector3(x, y, 0);
 
-            Debug.Log("Moving to " + transform.position);
+            //Debug.Log("Moving to " + transform.position);
             elapsed += Time.deltaTime;
             
             yield return 0;

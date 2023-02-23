@@ -89,7 +89,7 @@ public class Tutorial : MonoBehaviour
                 //Debug.Log("Mouse Pressed at " + Worldpos);
                 if (hit)
                 {
-                    Debug.Log("Something Found" + hit.transform.name);
+                    //Debug.Log("Something Found" + hit.transform.name);
                     Gate gate = hit.transform.gameObject.GetComponent<Gate>();
                     if (gate != null) 
                     {
@@ -174,8 +174,9 @@ public class Tutorial : MonoBehaviour
     }
 
     IEnumerator ShowPacifist (){
-        yield return new WaitForSeconds(5);
         Barbarians.Charge();
+        yield return new WaitForSeconds(10);
+        Barbarians.setRallyPoint(10);
         PacifistUI.SetActive(true);
         PacifistScreen.SetActive(true);
     }
@@ -188,12 +189,12 @@ public class Tutorial : MonoBehaviour
     }
     IEnumerator ShowArcher()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(7);
         ArchersUI.SetActive(true);
         ArchersScreen.SetActive(true);
         Barbarians.spawnSoldier1();
         Barbarians.spawnSoldier1();
-        Barbarians.spawnSoldier2();
+        //Barbarians.spawnSoldier2();
     }
 
     public void ReadArcher()
@@ -221,7 +222,8 @@ public class Tutorial : MonoBehaviour
 
     IEnumerator ShowCharge()
     {
-        yield return new WaitForSeconds(5);
+        Barbarians.Charge();
+        yield return new WaitForSeconds(10);
         ChargeUI.SetActive(true);
         ChargeScreen.SetActive(true);
     }
@@ -237,9 +239,13 @@ public class Tutorial : MonoBehaviour
 
 
     IEnumerator EnemyAttacking() {
-        yield return new WaitForSeconds(8);
-        Barbarians.spawnSoldier1();
-        Barbarians.spawnSoldier2();
-        StartCoroutine(EnemyAttacking());
+
+        if (Barbarians != null) {
+            Barbarians.spawnSoldier1();
+            Barbarians.spawnSoldier2();
+            yield return new WaitForSeconds(13);
+            StartCoroutine(EnemyAttacking());
+        }
+        
     }
 }

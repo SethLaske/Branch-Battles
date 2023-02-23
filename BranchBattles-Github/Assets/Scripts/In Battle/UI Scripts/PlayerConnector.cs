@@ -29,7 +29,7 @@ public class PlayerConnector : MonoBehaviour
     public Button magicPrep1;
     public Button magicPrep2;
 
-
+    public LevelManager levelManager;
 
 
     //Auto
@@ -40,9 +40,12 @@ public class PlayerConnector : MonoBehaviour
             player = PlayerTag.GetComponent<Player>();
             playerTeam = player.Peasants;
 
+            //levelManager.PlayerObject = player.gameObject;
+            //levelManager.EnemyObject = playerTeam.Opponent.gameObject;
+
             playerBase.HealthObject = playerTeam.Barracks;
             playerBase.slider.maxValue = playerTeam.Barracks.HP;
-            Debug.Log("Setting up enemy health bar");
+            //Debug.Log("Setting up enemy health bar");
             enemyBase.HealthObject = playerTeam.Opponent.Barracks;
             enemyBase.slider.maxValue = playerTeam.Opponent.Barracks.HP;
 
@@ -51,14 +54,22 @@ public class PlayerConnector : MonoBehaviour
 
             counters.player = playerTeam;
 
-            initButton(pacifist1, playerTeam.Pacifist1);
-            //pacifist1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Pacifist1));
 
+            initButton(pacifist1, playerTeam.Pacifist1);
             initButton(soldier1, playerTeam.Soldier1);
             initButton(soldier2, playerTeam.Soldier2);
             initButton(soldier3, playerTeam.Soldier3);
             initButton(soldier4, playerTeam.Soldier4);
             
+
+            //This is the good way for when the troops are slowly added and memory works properly. Until then the bad way must be used
+            /*initButton(pacifist1, PlayerInfo.PlayerTroops[0]);
+            initButton(soldier1, PlayerInfo.PlayerTroops[1]);
+            initButton(soldier2, PlayerInfo.PlayerTroops[2]);
+            initButton(soldier3, PlayerInfo.PlayerTroops[3]);
+            initButton(soldier4, PlayerInfo.PlayerTroops[4]);
+            */
+
             //soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
             //soldier2.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier2));
             //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
@@ -66,6 +77,15 @@ public class PlayerConnector : MonoBehaviour
 
             magicPrep1.onClick.AddListener(player.prepMagic1);
             magicPrep2.onClick.AddListener(player.prepMagic2);
+
+
+            
+
+            TeamBase playerbase = playerTeam.Barracks.GetComponent<TeamBase>();
+            playerbase.levelmanager = levelManager;
+
+            TeamBase enemybase = playerTeam.Barracks.GetComponent<TeamBase>();
+            enemybase.levelmanager = levelManager;
         }
         else    //Specific for tutorial
         {
@@ -78,8 +98,15 @@ public class PlayerConnector : MonoBehaviour
     }
 
     public void initButton(Button button, Unit unit) {
-        button.onClick.AddListener(() => playerTeam.spawnUnit(unit));
-        UnitButtons script = button.GetComponent<UnitButtons>();
-        script.setUnitType(unit);
+        if (unit == null)
+        {
+            button.gameObject.SetActive(false);
+        }
+        else {
+            button.onClick.AddListener(() => playerTeam.spawnUnit(unit));
+            UnitButtons script = button.GetComponent<UnitButtons>();
+            script.setUnitType(unit);
+        }
+        
     }
 }

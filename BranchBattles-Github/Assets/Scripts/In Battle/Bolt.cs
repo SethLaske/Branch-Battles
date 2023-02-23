@@ -9,7 +9,7 @@ public class Bolt : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Bolt created");
+        //Debug.Log("Bolt created");
         StartCoroutine(ChainBolt());
     }
 

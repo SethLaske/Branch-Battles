@@ -7,6 +7,7 @@ public class Unit : Damageable
 {
     public Animator animator;
     public string unitName;     //called to show on buttons etc...
+    public int unitClassification;
     //Various Stats each unit has
     public float MoveSpeed; //Speed to travel across the map
     public float Damage;    //Damage done per attacl
@@ -103,6 +104,7 @@ public class Unit : Damageable
     public override void Die() {
         
         General.TroopCount -= TroopSpaces;
+        General.troopCategory[unitClassification]--;
         Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
         Destroy(gameObject);
     }

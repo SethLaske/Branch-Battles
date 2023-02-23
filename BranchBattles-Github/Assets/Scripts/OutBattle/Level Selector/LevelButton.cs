@@ -10,7 +10,7 @@ public class LevelButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(PlayerPrefs.GetInt("CompletedLevels"));
+        //Debug.Log(PlayerPrefs.GetInt("CompletedLevels"));
         //sprite = GetComponent<Image>();
 
         if (PlayerPrefs.GetInt("CompletedLevels") < (ThisLevel - 1))

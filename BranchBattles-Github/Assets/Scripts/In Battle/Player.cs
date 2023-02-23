@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
                 //Debug.Log("Mouse Pressed at " + Worldpos);
                 if (hit)
                 {
-                    Debug.Log("Something Found" + hit.transform.name);
+                    //Debug.Log("Something Found" + hit.transform.name);
                     Gate gate = hit.transform.gameObject.GetComponent<Gate>();
                     if (gate != null) // && gate.team == Peasants.team)  //If its a gate, we want to toggle it
                     {

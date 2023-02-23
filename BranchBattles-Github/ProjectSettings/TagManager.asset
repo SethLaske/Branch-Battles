@@ -11,6 +11,7 @@ TagManager:
   - Gate
   - Gem
   - Exposition Message
+  - Level Manager
   layers:
   - Default
   - TransparentFX

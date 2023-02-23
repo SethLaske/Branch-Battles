@@ -137,21 +137,22 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 20
+  maxHealth: 0.5
   Armor: 0
   animator: {fileID: 4166622894662010841}
   unitName: Miner
-  MoveSpeed: 4
+  unitClassification: 0
+  MoveSpeed: 3
   Damage: 1
   AttackRange: 2
   AgroRange: 0
   AttackCooldown: 1
   AttackTimer: 0
-  Cost: 10
+  Cost: 30
   TroopSpaces: 1
   SpawnTime: 1
   HealthBar: {fileID: 3822985507771200833}
   AppearanceTime: 1.5
-  maxHealth: 0.5
   HealthTimer: 0
   State: 
   Target: {fileID: 0}
@@ -162,7 +163,7 @@ MonoBehaviour:
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   Resource: Mine
   Full: 0
-  BagAmount: 10
+  BagAmount: 15
   dropOff: {fileID: 7331307722458310760}
   pick: {fileID: 2367348665075804681}
 --- !u!61 &1792269021062788890

@@ -749,7 +749,7 @@ GameObject:
   m_Component:
   - component: {fileID: 156631771}
   m_Layer: 5
-  m_Name: Soldiers
+  m_Name: Fighters
   m_TagString: Exposition Message
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1196,54 +1196,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &218635878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 218635880}
-  - component: {fileID: 218635879}
-  m_Layer: 0
-  m_Name: Level Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &218635879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218635878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79415afd3cf5070448b75725b63a81dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  VictoryScreen: {fileID: 832182826}
-  DefeatScreen: {fileID: 447660500}
-  UI: {fileID: 1285071480}
-  currentLevel: 0
---- !u!4 &218635880
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218635878}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1024126, y: 3.1534529, z: -4.781135}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &235680490 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6879395271053396226, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
@@ -1628,6 +1580,10 @@ PrefabInstance:
 
 '
       objectReference: {fileID: 0}
+    - target: {fileID: 3421928896491946520, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_text
+      value: Miner
+      objectReference: {fileID: 0}
     - target: {fileID: 3909957691508754907, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1659,6 +1615,14 @@ PrefabInstance:
     - target: {fileID: 3909957691508754907, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: Unit, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319301408254086685, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_text
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448561273199522330, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9720396
       objectReference: {fileID: 0}
     - target: {fileID: 5595465211865888896, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
@@ -1916,6 +1880,10 @@ PrefabInstance:
       propertyPath: HealthObject
       value: 
       objectReference: {fileID: 667080162}
+    - target: {fileID: 6879395270448112902, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_text
+      value: Fighter
+      objectReference: {fileID: 0}
     - target: {fileID: 6879395270663197482, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: HealthObject
       value: 
@@ -2152,9 +2120,33 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: newTroop
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: EnemyObject
+      value: 
+      objectReference: {fileID: 822466833}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: buttonStart
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: PlayerObject
+      value: 
+      objectReference: {fileID: 1952470767}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: currentLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: currentTroop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8306748550878323877, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
-      value: Archer
+      value: Spear
       objectReference: {fileID: 0}
     - target: {fileID: 9109510945635343111, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
@@ -3230,7 +3222,7 @@ MonoBehaviour:
   maxHealth: 0.5
   Armor: 0
   playercamera: {fileID: 0}
-  levelmanager: {fileID: 218635879}
+  levelmanager: {fileID: 0}
 --- !u!1 &815761957
 GameObject:
   m_ObjectHideFlags: 0
@@ -3337,10 +3329,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: -1
-  Gold: 20
+  Gold: 30
   TroopCount: 0
   TroopMax: 10
   Gems: 0
+  troopCategory: 0000000000000000000000000000000000000000
   SpawnUnits: []
   TroopTimer: 0
   AFKGoldAmount: 10
@@ -3355,6 +3348,12 @@ MonoBehaviour:
   Soldier3: {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
   Soldier4: {fileID: 0}
   Pacifist1: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
+  SpawnableUnits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Opponent: {fileID: 1952470770}
 --- !u!4 &822466836
 Transform:
@@ -3706,7 +3705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1055550220}
   m_Layer: 5
-  m_Name: Archers
+  m_Name: Spears
   m_TagString: Exposition Message
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4475,11 +4474,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1285071480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6879395271291439453, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-  m_PrefabInstance: {fileID: 435359368}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1315320125
 GameObject:
   m_ObjectHideFlags: 0
@@ -4506,7 +4500,7 @@ Transform:
   m_GameObject: {fileID: 1315320125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.5, z: 0}
-  m_LocalScale: {x: 55, y: 10, z: 1}
+  m_LocalScale: {x: 60, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 493740969}
@@ -4694,7 +4688,7 @@ MonoBehaviour:
   maxHealth: 0.5
   Armor: 0
   playercamera: {fileID: 0}
-  levelmanager: {fileID: 218635879}
+  levelmanager: {fileID: 0}
 --- !u!1 &1391326599
 GameObject:
   m_ObjectHideFlags: 0
@@ -5354,7 +5348,7 @@ Transform:
   m_GameObject: {fileID: 1803268989}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -5, z: 0}
-  m_LocalScale: {x: 55, y: 5, z: 1}
+  m_LocalScale: {x: 60, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 493740969}
@@ -5554,7 +5548,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Train archers to attack your enemy from a distance
+  m_text: Train spears to attack your enemy from a distance
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5773,7 +5767,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The Enemy approaches, train two soldiers to defend your base
+  m_text: The Enemy approaches, train two fighters to defend your base
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5900,6 +5894,7 @@ MonoBehaviour:
   TroopCount: 0
   TroopMax: 10
   Gems: 0
+  troopCategory: 0000000000000000000000000000000000000000
   SpawnUnits: []
   TroopTimer: 0
   AFKGoldAmount: 5
@@ -5909,11 +5904,17 @@ MonoBehaviour:
   RallyPoint: 0
   RallyFlag: {fileID: 1204827105}
   Advantage: 1
-  Soldier1: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
-  Soldier2: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+  Soldier1: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  Soldier2: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
   Soldier3: {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
   Soldier4: {fileID: 1116175229595562662, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
   Pacifist1: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
+  SpawnableUnits:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   Opponent: {fileID: 822466835}
 --- !u!114 &1952470772
 MonoBehaviour:

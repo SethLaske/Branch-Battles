@@ -76,9 +76,9 @@ public class Soldier : Unit
             if ((General.RallyPoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
             {
                 State = "Retreat";
-                Debug.Log("Attack -> Retreat");
+                //Debug.Log("Attack -> Retreat");
                 Target = null;
-                Debug.Log("Setting target as null");
+                //Debug.Log("Setting target as null");
             }
         }
 
@@ -158,7 +158,7 @@ public class Soldier : Unit
             if (Target != null && (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange))   //or there is a target, but its beyond the agro range
             {
                 State = "Attack";
-                Debug.Log("Wait > Attack");
+                //Debug.Log("Wait > Attack");
             }
             if (ManAhead == false)
             {
@@ -166,12 +166,12 @@ public class Soldier : Unit
             //fix backup and overshooting
                 if (transform.position.x * Team > General.RallyPoint * Team) {
                     State = "Wait"; //If past rally point
-                    Debug.Log("Wait > Walk");
+                    //Debug.Log("Wait > Walk");
                 }
             }
             else {
                 State = "Wait"; //If theres someone ahead, need to wait
-                Debug.Log("Wait > Walk");
+                //Debug.Log("Wait > Walk");
             }
        
 
@@ -202,13 +202,13 @@ public class Soldier : Unit
             else
             {
                 State = "Walk";
-                Debug.Log("Attack -> Walk");
+                //Debug.Log("Attack -> Walk");
             }
         }
         else
         {
             State = "Wait";
-            Debug.Log("Attack -> Wait");
+            //Debug.Log("Attack -> Wait");
         }
     }
 

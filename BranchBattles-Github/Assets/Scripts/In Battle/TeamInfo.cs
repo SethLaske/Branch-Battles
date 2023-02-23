@@ -15,6 +15,8 @@ public class TeamInfo : MonoBehaviour
     public int TroopMax;
     public int Gems;
 
+    public int[] troopCategory = new int[5]; //To be used for the AI
+
     //A list of all the units that need to be trained
     public List<Unit> SpawnUnits = new List<Unit>();
     public float TroopTimer = 0;
@@ -40,6 +42,8 @@ public class TeamInfo : MonoBehaviour
     public Unit Soldier4;
 
     public Unit Pacifist1;
+
+    public Unit[] SpawnableUnits = new Unit[5];
 
     public TeamInfo Opponent;
 
@@ -99,6 +103,7 @@ public class TeamInfo : MonoBehaviour
         {
             Gold -= newUnit.Cost;
             TroopCount += newUnit.TroopSpaces;
+            troopCategory[newUnit.unitClassification]++;
 
             SpawnUnits.Add(newUnit);
 
@@ -119,7 +124,7 @@ public class TeamInfo : MonoBehaviour
         {
             Gold -= Soldier1.Cost;
             TroopCount += Soldier1.TroopSpaces;
-
+            troopCategory[Soldier1.unitClassification]++;
             SpawnUnits.Add(Soldier1);
 
             //Unit newEnemy = Instantiate(Unit1, new Vector3(Barracks.transform.position.x, -2.25f, 0), Quaternion.identity);
@@ -137,7 +142,7 @@ public class TeamInfo : MonoBehaviour
         {
             Gold -= Soldier2.Cost;
             TroopCount += Soldier2.TroopSpaces;
-
+            troopCategory[Soldier2.unitClassification]++;
             SpawnUnits.Add(Soldier2);
 
             //Unit newEnemy = Instantiate(Unit1, new Vector3(Barracks.transform.position.x, -2.25f, 0), Quaternion.identity);
@@ -155,7 +160,7 @@ public class TeamInfo : MonoBehaviour
         {
             Gold -= Soldier3.Cost;
             TroopCount += Soldier3.TroopSpaces;
-
+            troopCategory[Soldier3.unitClassification]++;
             SpawnUnits.Add(Soldier3);
 
             //Unit newEnemy = Instantiate(Unit1, new Vector3(Barracks.transform.position.x, -2.25f, 0), Quaternion.identity);
@@ -173,7 +178,7 @@ public class TeamInfo : MonoBehaviour
         {
             Gold -= Pacifist1.Cost;
             TroopCount += Pacifist1.TroopSpaces;
-
+            troopCategory[Pacifist1.unitClassification]++;
             SpawnUnits.Add(Pacifist1);
         }
 

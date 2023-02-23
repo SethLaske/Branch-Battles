@@ -15,6 +15,7 @@ public class TeamBase : Building
     {
         maxHealth = HP;
         playercamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControls>();
+        levelmanager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
