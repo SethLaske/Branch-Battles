@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
+    public int CameraDirection = 0;
     public int cameraSpeed = 5;
     private bool border = false;
     public float cameraAcceleration = 0;
@@ -22,6 +23,8 @@ public class CameraControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        CameraDirection = 0;
+
         GameObject mapBorder = new GameObject();
         mapBorder.name = "Map Borders";
 
@@ -55,15 +58,26 @@ public class CameraControls : MonoBehaviour
         
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0)
+        CameraDirection = 0;
+
+        if (Input.GetKey(KeyCode.LeftArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            if (!border || (transform.position.x * Input.GetAxisRaw("Horizontal") < 0))
+            CameraDirection = -1;
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        {
+            CameraDirection = 1;
+        }
+
+        if (CameraDirection != 0)
+        {
+            if (!border || (transform.position.x * CameraDirection < 0))
             {
-                transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * (cameraSpeed + cameraAcceleration) * Time.deltaTime, 0, 0);
+                transform.position += new Vector3(CameraDirection * (cameraSpeed + cameraAcceleration) * Time.deltaTime, 0, 0);
                 if (FrontGround != null) {
-                    FrontGround.transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * ((cameraSpeed + cameraAcceleration) * FGSpeed) * Time.deltaTime, 0, 0);
-                    CBG.transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * ((cameraSpeed + cameraAcceleration) * CBGSpeed) * Time.deltaTime, 0, 0);
-                    DBG.transform.position += new Vector3(Input.GetAxisRaw("Horizontal") * ((cameraSpeed + cameraAcceleration) * DBGSpeed) * Time.deltaTime, 0, 0);
+                    FrontGround.transform.position += new Vector3(CameraDirection * ((cameraSpeed + cameraAcceleration) * FGSpeed) * Time.deltaTime, 0, 0);
+                    CBG.transform.position += new Vector3(CameraDirection * ((cameraSpeed + cameraAcceleration) * CBGSpeed) * Time.deltaTime, 0, 0);
+                    DBG.transform.position += new Vector3(CameraDirection * ((cameraSpeed + cameraAcceleration) * DBGSpeed) * Time.deltaTime, 0, 0);
                 }
                 
 

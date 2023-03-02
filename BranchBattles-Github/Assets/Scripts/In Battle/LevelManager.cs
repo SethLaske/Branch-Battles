@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
     public GameObject BattleUI;
+    public GameObject BattleUIUnits;
 
     public GameObject PlayerObject;
     public GameObject EnemyObject;

@@ -14,7 +14,7 @@ public class TheWorld : Magic
         Crusaders = GameObject.FindGameObjectsWithTag("Unit");
         foreach (GameObject crusader in Crusaders) {
             Unit enemyStand = crusader.GetComponent<Unit>();
-            if (enemyStand != null && Vector3.Distance(this.transform.position, enemyStand.transform.position) > 4) {
+            if (enemyStand != null && Vector3.Distance(this.transform.position, enemyStand.transform.position) < 4) {
                 enemyStand.Stun(TimeStopTime, 1000);
                 //enemyStand.Die();
             }

@@ -245,7 +245,7 @@ public class Soldier : Unit
     //Sets the target as the closest available target
     private void OnTriggerStay2D(Collider2D collision)
     {
-
+       
         Damageable thing = collision.GetComponent<Damageable>();
         if (thing != null)    //Need to change this to a damageable check
         {

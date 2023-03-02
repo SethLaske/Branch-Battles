@@ -9,10 +9,24 @@ public class GodAI : MonoBehaviour
     public int[] minTroops = new int[5];
     public int[] maxTroops = new int[5];
 
+    public int LoadedTroops = 5;
+
     void Start()
     {
         //Currently starts by spawning a miner
         Peasants.spawnUnit(Peasants.SpawnableUnits[0]);
+        if (Peasants.SpawnableUnits[4] == null) { 
+            
+        }
+        int i = 0;
+        foreach (Unit troop in Peasants.SpawnableUnits) {
+            if (troop == null) {
+                LoadedTroops--;
+                minTroops[i] = 0;
+                maxTroops[i] = 0;
+            }
+            i++;
+        }
     }
 
     // Update is called once per frame
@@ -79,7 +93,7 @@ public class GodAI : MonoBehaviour
             }
         }
 
-        Peasants.spawnUnit(Peasants.SpawnableUnits[Random.Range(0,5)]);
+        Peasants.spawnUnit(Peasants.SpawnableUnits[Random.Range(0,LoadedTroops)]);
 
     }
     public void standardAttack() {
