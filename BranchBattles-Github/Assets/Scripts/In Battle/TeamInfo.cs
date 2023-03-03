@@ -80,7 +80,7 @@ public class TeamInfo : MonoBehaviour
                 FreshMeat.name = Team + ": " + FreshMeat.name;
                 FreshMeat.General = this;
                 FreshMeat.Team = Barracks.Team;
-                FreshMeat.MoveSpeed *= Team;
+                //FreshMeat.MoveSpeed *= Team;
 
                 //Appies buffs/debuffs
                 FreshMeat.HP *= Advantage;

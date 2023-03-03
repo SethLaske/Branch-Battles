@@ -14,10 +14,8 @@ public class GodAI : MonoBehaviour
     void Start()
     {
         //Currently starts by spawning a miner
-        Peasants.spawnUnit(Peasants.SpawnableUnits[0]);
-        if (Peasants.SpawnableUnits[4] == null) { 
-            
-        }
+        //Peasants.spawnUnit(Peasants.SpawnableUnits[0]);
+        
         int i = 0;
         foreach (Unit troop in Peasants.SpawnableUnits) {
             if (troop == null) {

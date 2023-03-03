@@ -4,29 +4,25 @@ using UnityEngine;
 
 public class Soldier : Unit
 {
-    
+    public bool Assembled;
 
-    //A series of tests to try and improve the appearance of troops as they move back and forth in a group
-    //private float FrontStoppingDistance = 1;
-    public float AdvanceIndicatorDistance = 1.3f;
-    public float RetreatIndicatorDistance = .85f;
-    //private float BackCheckDistance = -1.2f;
-    //private float FrontCheckDistance = 1;
+    public float Tolerance = 2; //Readding this... for now
 
-    //Lets the unit know what is ahead and behind them
     public bool ManAhead;
     public bool ManBehind;
 
     public AudioSource attackSound;
+
+    public float separationDistance = .5f;
+    public float separationForce = 2f;
+
+    public List<Unit> nearbyUnits = new List<Unit>();
+
+
     // Start is called before the first frame update
     void Start()
     {
-        maxHealth = HP;
-        AttackTimer = AttackCooldown;
-        State = "Walk";
-        if (Team < 0) {
-            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        }
+        StandardStart();
     }
 
     // Update is called once per frame
@@ -65,41 +61,48 @@ public class Soldier : Unit
             ManBehind = false;
         }
 
+
         if (Target == null)
         {
-            if (General.RallyPoint * Team < (transform.position.x * Team) - tolerance)  //If the rally point is behind, we always prioritize that
+            if (General.RallyPoint * Team < (transform.position.x * Team) - Tolerance)  //If the rally point is behind, we always prioritize that
             {
-                State = "Retreat";
+                State = "Walk";
             }
         }
         else {
             if ((General.RallyPoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
             {
-                State = "Retreat";
+                State = "Walk";
                 //Debug.Log("Attack -> Retreat");
                 Target = null;
                 //Debug.Log("Setting target as null");
             }
+            
         }
+
 
         //Performs the various actions per the state it is in
         if (State == "Wait")
         {
+            Debug.Log("State is wait");
             Wait();
             animator.SetBool("Attacking", false);
         }
         else if (State == "Walk")
         {
+            Debug.Log("State is walk");
             Walk();
             animator.SetBool("Attacking", false);
         }
         else if (State == "Attack")
         {
+            Debug.Log("State is attack");
             Attack();
             animator.SetBool("Attacking", true);
         }
         else if (State == "Retreat")
         {
+            Debug.Log("State is retreat");
             Retreat();
             animator.SetBool("Attacking", false);
         }
@@ -109,138 +112,98 @@ public class Soldier : Unit
 
     public override void Wait()
     {
-            if (Target != null) //Transitions for when there is a target
+        if (Target == null && ((General.RallyPoint * Team > (transform.position.x * Team) + Tolerance) ||
+                               (General.RallyPoint * Team < (transform.position.x * Team) - Tolerance)) )
+        {
+            State = "Walk";
+            Debug.Log("Rally point is ahead: Wait > Walk");
+        } else if (Target != null && ((General.RallyPoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)){
+            State = "Walk";
+            Debug.Log("Target is near: Wait > Walk");
+        }
+        else {
+            base.Wait();
+
+            Vector3 separation = Vector3.zero;
+            foreach (Unit unit in nearbyUnits)
             {
-                //Debug.Log(Vector3.Distance(transform.position, Target.transform.position));
+                Vector3 diff = transform.position - unit.transform.position;
+                if (diff.magnitude < separationDistance)
+                {
+                    separation += new Vector3(Random.Range(-1, 1), Mathf.Sign(diff.x) / diff.magnitude, Mathf.Sign(diff.x) / (diff.magnitude*5));
 
-                if (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange)
-                {    //The target is within range
-                    State = "Attack";
-                }
-                else if ((General.RallyPoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)  //Hiding this for now as well && ManAhead == false)
-                {   //We want to reach the target and no one is infront of us
-                    //if man ahead is true its not the enemy
-                    //Debug.Log("Need to advance forward my max target is: " + ((General.RallyPoint + (AgroRange * Team)) * Team) + "And the enemy is at " + Target.transform.position.x);
-                    State = "Walk";
-                    
-                }
-                else {  //If we reach this point, then it has a target it cant reach. If the target is out of range, this covers it. If its falsely removing it, the Collision detector will add it back
-
-                    //Just going to do nothing to see what happens (might need to cover retreating here later)
-                    //State = "Retreat";
-                    Target = null;
-                    
                 }
             }
-            else
-            {
-                /*if (General.RallyPoint * Team < (transform.position.x * Team) - tolerance)  //If the rally point is behind, we always prioritize that
-                {
-                    State = "Retreat";
-                }
-                else*/ if (General.RallyPoint * Team > (transform.position.x * Team) + tolerance && !Physics2D.OverlapCircle(transform.position + new Vector3(AdvanceIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))     //Needs to walk forward and the next guy up has given him room
-                {
-                    State = "Walk";
-                }
-                else if (Physics2D.OverlapCircle(transform.position + new Vector3(RetreatIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))
-                {     //Physics2D.OverlapCircle(transform.position + new Vector3(RetreatIndicatorDistance * Team, 0, 0), .1f, MovementBlockers) will use this to replace it, expecting to bounce back and forth currently
-                    State = "Retreat";  //Moving backwards when someone is too close to us
-                }
-            }
+            separation *= separationForce * Time.deltaTime;
+            //transform.position += separation;
+            this.Move(separation);
+        }
         
-
     }
 
     public override void Walk()
     {
-
-       
-            if (Target != null && (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange))   //or there is a target, but its beyond the agro range
+        if (Target != null) 
+        {
+            if (Vector3.Distance(transform.position, Target.transform.position) <= AttackRange)
             {
                 State = "Attack";
-                //Debug.Log("Wait > Attack");
-            }
-            if (ManAhead == false)
-            {
-                transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
-            //fix backup and overshooting
-                if (transform.position.x * Team > General.RallyPoint * Team) {
-                    State = "Wait"; //If past rally point
-                    //Debug.Log("Wait > Walk");
-                }
+                Debug.Log("Walk > Attack");
             }
             else {
-                State = "Wait"; //If theres someone ahead, need to wait
-                //Debug.Log("Wait > Walk");
+                base.Walk();
             }
-       
-
-    }
-
-    //I think we only want to be in attack if we are actively attacking, otherwise it will be sent to a different state
-    public override void Attack()
-    {
-        
-
-        if (Target != null)
+            
+        } 
+        else if ((General.RallyPoint * Team < (transform.position.x * Team) + Tolerance) &&
+                               (General.RallyPoint * Team > (transform.position.x * Team) - Tolerance))
         {
-            
-            if (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange)
-            {
-                if (AttackTimer > AttackCooldown)
-                {
-                    Target.TakeDamage(Damage);
-                    attackSound.Play();
-                    AttackTimer = 0;
-                }
-                else
-                {
-                    AttackTimer += Time.deltaTime;
-                }
-            }
-            
-            else
-            {
-                State = "Walk";
-                //Debug.Log("Attack -> Walk");
-            }
+            State = "Wait";
+            Debug.Log("Walk > Wait");
         }
         else
         {
-            State = "Wait";
-            //Debug.Log("Attack -> Wait");
+            base.Walk();
         }
+        
+    }
+
+    public override void Attack()
+    {
+
+        if (Target == null)
+        {
+            State = "Wait";
+            Debug.Log("Attack > Wait");
+        }
+        else {
+            if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange)
+            {
+                State = "Walk";
+                Debug.Log("Attack > Walk");
+            }
+            else {
+                Debug.Log("In attack state and trying to attack");
+                base.Attack();
+            }
+            
+        }
+        
     }
 
     public override void Retreat()
     {
-        if (General.RallyPoint * Team > (transform.position.x * Team) && !Physics2D.OverlapCircle(transform.position + new Vector3(RetreatIndicatorDistance * Team, 0, 0), .1f, MovementBlockers))  //If the rally point is ahead we prioritize that to stop retreating
+        if (General.RallyPoint * Team > (transform.position.x * Team) - Tolerance)
         {
             State = "Wait";
+            Debug.Log("Retreat > Wait");
         }
-        else if (Physics2D.OverlapCircle(transform.position + new Vector3(-.65f * Team, 0, 0), .1f, MovementBlockers)) { 
-            //pass
-        }
-        else if (ManBehind == true) //(Physics2D.OverlapCircle(transform.position + new Vector3(BackCheckDistance * Team, 0, 0), .1f, MovementBlockers))  Maybe switch back to it later
-        {
-            transform.position += new Vector3(-MoveSpeed * .5f * Time.deltaTime, 0, 0);
-            //Debug.Log("Backing up slowly");
-            //State = "Wait"; //Allow for recalculating and slowing
-        }
-        else
-        {
-            transform.position += new Vector3(-MoveSpeed * 1.25f * Time.deltaTime, 0, 0);
-
-
-
+        else {
+            base.Retreat();
         }
         
-
     }
 
-    
-
-    
 
     //Sets the target as the closest available target
     private void OnTriggerStay2D(Collider2D collision)
@@ -257,7 +220,7 @@ public class Soldier : Unit
                     //Debug.Log("Adding Target");
                     Target = thing;
                 }
-                else if (Vector3.Distance(transform.position, thing.transform.position) < Vector3.Distance(transform.position, Target.transform.position))
+                else if (Vector3.Distance(transform.position, thing.transform.position) < Vector3.Distance(transform.position, Target.transform.position)/2)
                 {
                     Target = thing;
                 }
@@ -277,6 +240,72 @@ public class Soldier : Unit
             //    State = "Wait";
             //}
         }
+
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Unit nearUnit = collision.GetComponent<Unit>();
+        if (nearUnit != null) {
+            if (nearUnit.Team == Team) {
+                nearbyUnits.Add(nearUnit);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        Unit nearUnit = collision.GetComponent<Unit>();
+        if (nearUnit != null)
+        {
+            if (nearUnit.Team == Team)
+            {
+                nearbyUnits.Remove(nearUnit);
+            }
+        }
+    }
+
+    /*
+     public class TroopController : MonoBehaviour {
+    public float separationDistance = 2f;
+    public float separationForce = 1f;
+
+    private List<GameObject> nearbyTroops;
+
+    void Start () {
+        nearbyTroops = new List<GameObject>();
+    }
+
+    void Update () {
+        // Calculate separation force based on nearby troops
+        Vector3 separation = Vector3.zero;
+        foreach (GameObject troop in nearbyTroops) {
+            Vector3 diff = transform.position - troop.transform.position;
+            if (diff.magnitude < separationDistance) {
+                separation += diff.normalized / diff.magnitude;
+            }
+        }
+        separation *= separationForce;
+
+        // Apply separation force to troop's movement
+        Vector3 movement = Vector3.zero;
+        // ... add other movement behaviors (e.g. alignment, cohesion)
+        movement += separation;
+        transform.position += movement * Time.deltaTime;
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("Troop")) {
+            nearbyTroops.Add(other.gameObject);
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other) {
+        if (other.CompareTag("Troop")) {
+            nearbyTroops.Remove(other.gameObject);
+        }
+    }
+}
+
+    */
 
 }

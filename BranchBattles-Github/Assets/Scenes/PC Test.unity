@@ -890,7 +890,7 @@ BoxCollider2D:
   m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1087,7 +1087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.1, y: 0, z: -10}
+  m_LocalPosition: {x: 22.18, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1332,9 +1332,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: -1
-  Gold: 60
+  Gold: 100
   TroopCount: 0
-  TroopMax: 1
+  TroopMax: 10
   Gems: 0
   troopCategory: 0000000000000000000000000000000000000000
   SpawnUnits: []
@@ -1346,17 +1346,17 @@ MonoBehaviour:
   RallyPoint: 0
   RallyFlag: {fileID: 2128523780}
   Advantage: 1
-  Soldier1: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
-  Soldier2: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+  Soldier1: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  Soldier2: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   Soldier3: {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
   Soldier4: {fileID: 1116175229595562662, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
-  Pacifist1: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+  Pacifist1: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   SpawnableUnits:
-  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
-  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
-  - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
-  - {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
-  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   Opponent: {fileID: 1952470770}
 --- !u!4 &822466836
 Transform:
@@ -1401,7 +1401,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -1450,7 +1450,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!1 &907587413
@@ -1795,7 +1795,7 @@ Transform:
   m_GameObject: {fileID: 1042922422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3, z: 0}
-  m_LocalScale: {x: 70, y: 2, z: 1}
+  m_LocalScale: {x: 70, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1933,6 +1933,8 @@ MonoBehaviour:
   animator: {fileID: 8141524261445655778}
   unitName: General Kenobi
   unitClassification: 0
+  Offense: {fileID: 459917975}
+  Attacking: 0
   MoveSpeed: 8
   Damage: 10
   AttackRange: 0
@@ -1950,12 +1952,8 @@ MonoBehaviour:
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
-  tolerance: 0.25
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   levelmanager: {fileID: 1739354372}
-  Offense: {fileID: 459917975}
-  Attacking: 1
-  Regen: 0
   RegenTime: 1
   RegenTimer: 0
 --- !u!1001 &1142778651
@@ -2597,7 +2595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
-  Gold: 50
+  Gold: 100
   TroopCount: 0
   TroopMax: 10
   Gems: 2
@@ -2611,7 +2609,7 @@ MonoBehaviour:
   RallyPoint: 0
   RallyFlag: {fileID: 1506987852}
   Advantage: 1
-  Soldier1: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+  Soldier1: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   Soldier2: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
   Soldier3: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
   Soldier4: {fileID: 1116175229595562662, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
@@ -2767,7 +2765,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2787,9 +2785,9 @@ GameObject:
   - component: {fileID: 1568962464537845625}
   - component: {fileID: 2245700901382282935}
   - component: {fileID: 5848084364293908901}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: General
-  m_TagString: Unit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2812,7 +2810,7 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!4 &1568962464537845631

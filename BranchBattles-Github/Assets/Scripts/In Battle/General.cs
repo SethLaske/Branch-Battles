@@ -5,8 +5,8 @@ using UnityEngine;
 public class General : Unit
 {
     public LevelManager levelmanager;
-    public WeaponAttack Offense;
-    public bool Attacking = true;
+    //public WeaponAttack Offense;
+    //public bool Attacking = true;
 
     
     public float RegenTime = 1;
@@ -69,7 +69,7 @@ public class General : Unit
             AttackTimer = 0.01f;
             //animator.SetBool("HoldSlice", true);
         }
-        if (Input.GetKeyUp("space") && Attacking)
+        if (Input.GetKeyUp("space") && !Attacking)
         {
             AttackTimer = 0;
             animator.SetBool("Attacking", false);
@@ -78,17 +78,17 @@ public class General : Unit
         if (AttackTimer > 0)
         {
             AttackTimer += Time.deltaTime;
-            if (AttackTimer >= AttackCooldown && Attacking)
+            if (AttackTimer >= AttackCooldown && !Attacking)
             {
                 Offense.Attack();
                 //slice.Play();
-                Attacking = false;
+                Attacking = true;
             }
             if (AttackTimer >= AttackCooldown * 1.25)
             {
                 //animator.SetBool("HoldSlice", false);
                 animator.SetBool("Attacking", false);
-                Attacking = true;
+                Attacking = false;
                 AttackTimer = 0f;
                 if (Input.GetKey("space"))
                 {
@@ -115,6 +115,7 @@ public class General : Unit
     public override void Die()
     {
         base.Die();
+        General.Opponent.TroopMax = 0;
         levelmanager.GameOver(General.Team);
     }
 
