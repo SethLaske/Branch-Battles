@@ -56,6 +56,25 @@ public class Pacifist : Unit
         }
     }
 
+    public override void Walk()
+    {
+        
+        //Walk information
+        if (!Full)
+        {
+            this.Move(new Vector3(MoveSpeed * Team * Time.deltaTime, 0, 0));
+            
+            
+        }
+        else
+        {
+            this.Move(new Vector3(MoveSpeed * -Team * Time.deltaTime, 0, 0));
+
+        }
+
+        
+    }
+
 
     IEnumerator IMine()
     {
@@ -65,9 +84,9 @@ public class Pacifist : Unit
 
         
         
-        State = "Retreat";
+        State = "Walk";
+        transform.Rotate(new Vector3(0, 180, 0));
 
-        
         //Debug.Log("Time ending");
     }
 
@@ -109,8 +128,10 @@ public class Pacifist : Unit
                 }
                 
                 Full = false;
+                transform.Rotate(new Vector3(0, 180, 0));
             }
-            State = "Walk";
+            //State = "Walk";
+           
         }
     }
 

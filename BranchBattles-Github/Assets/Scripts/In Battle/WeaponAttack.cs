@@ -22,7 +22,7 @@ public class WeaponAttack : MonoBehaviour
 
     }
 
-    public void Attack()
+    public virtual void Attack()
     {
         Debug.Log("Starting Attack");
         FinishedAttack = false;

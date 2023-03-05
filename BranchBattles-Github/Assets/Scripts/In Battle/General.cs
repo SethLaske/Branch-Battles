@@ -116,7 +116,9 @@ public class General : Unit
     {
         base.Die();
         General.Opponent.TroopMax = 0;
+        General.Opponent.SpawnUnits.Clear();
         levelmanager.GameOver(General.Team);
+
     }
 
     private void OnTriggerStay2D(Collider2D collider)

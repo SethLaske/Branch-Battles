@@ -30,6 +30,7 @@ public class Unit : Damageable
     public string State;    //Determines what actions they need to pursue
 
     public Damageable Target;   //Targets are always for the enemy
+    public float AssemblePoint;
     public LayerMask MovementBlockers;  //things that block movement forward
 
     //public float tolerance = .25f;  //Handles the tolerance to allow for imperfections
@@ -59,6 +60,7 @@ public class Unit : Damageable
         {
             //transform.position += Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime);
             this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
+            
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
         else {
@@ -83,6 +85,9 @@ public class Unit : Damageable
     }
 
     public virtual void Attack() {
+        if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .25) {
+            Move(new Vector3(0, (Mathf.Sign(Target.transform.position.y - transform.position.y) * MoveSpeed * Time.deltaTime), 0));
+        }
         if (Attacking == false) {
             //Debug.Log("Starting Attack");
             Attacking = true;
@@ -176,7 +181,12 @@ public class Unit : Damageable
         if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
         {
             transform.position = NewPosition;
+            //Debug.Log("Moving to a position");
         }
+        else {
+            //Debug.Log("Cant move, outside of walk");
+        }
+
     }
 
 

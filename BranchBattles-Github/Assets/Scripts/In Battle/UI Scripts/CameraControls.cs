@@ -52,13 +52,33 @@ public class CameraControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1)) {
-            
-            StartCoroutine(ScreenShake(magnitude, duration));
-        
+        if (Input.GetMouseButton(1)) {
+
+            float MouseX = (Input.mousePosition.x - Screen.width / 2) / Screen.width;
+            Debug.Log("Mouse is at: " + MouseX);
+            if (!border || (transform.position.x * MouseX < 0))
+            {
+                float MoveSpeed = MouseX * cameraSpeed;
+                transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
+                if (FrontGround != null)
+                {
+                    FrontGround.transform.position += new Vector3((MoveSpeed * FGSpeed) * Time.deltaTime, 0, 0);
+                    CBG.transform.position += new Vector3((MoveSpeed * CBGSpeed) * Time.deltaTime, 0, 0);
+                    DBG.transform.position += new Vector3((MoveSpeed * DBGSpeed) * Time.deltaTime, 0, 0);
+                }
+
+
+                border = false;
+            }
+            //cameraAcceleration += (10f * Time.deltaTime);
         }
 
+        
+
         CameraDirection = 0;
+
+
+        
 
         if (Input.GetKey(KeyCode.LeftArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {

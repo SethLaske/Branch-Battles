@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1792269021062788901}
   - component: {fileID: 1792269021062788891}
-  - component: {fileID: 1792269021062788890}
+  - component: {fileID: 2420170742448308730}
   - component: {fileID: 1792269021062788902}
   - component: {fileID: 7331307722458310760}
   m_Layer: 0
@@ -142,6 +142,8 @@ MonoBehaviour:
   animator: {fileID: 4166622894662010841}
   unitName: Miner
   unitClassification: 0
+  Offense: {fileID: 0}
+  Attacking: 0
   MoveSpeed: 3
   Damage: 1
   AttackRange: 2
@@ -158,16 +160,15 @@ MonoBehaviour:
   Target: {fileID: 0}
   MovementBlockers:
     serializedVersion: 2
-    m_Bits: 256
-  tolerance: 0.5
+    m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   Resource: Mine
   Full: 0
   BagAmount: 15
   dropOff: {fileID: 7331307722458310760}
   pick: {fileID: 2367348665075804681}
---- !u!61 &1792269021062788890
-BoxCollider2D:
+--- !u!58 &2420170742448308730
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -179,19 +180,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 2}
-    newSize: {x: 1, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 3}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!50 &1792269021062788902
 Rigidbody2D:
   serializedVersion: 4

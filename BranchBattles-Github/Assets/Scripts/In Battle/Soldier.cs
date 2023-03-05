@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Soldier : Unit
 {
-    public bool Assembled;
-
+    //public bool Assembled;
+    public float EmptySpaces;
     public float Tolerance = 2; //Readding this... for now
 
-    public bool ManAhead;
-    public bool ManBehind;
+    //public bool ManAhead;
+    //public bool ManBehind;
 
     public AudioSource attackSound;
 
@@ -44,7 +44,7 @@ public class Soldier : Unit
         //The one can likely be replaced with larger/smaller units sizes to do stuff like that
         //Attack Range must be greater than this check distance
         //Debug.Log("Coords to check ahead are: " + (transform.position + new Vector3(.9f * Team, 0, 0)));
-        if (Physics2D.OverlapCircle(transform.position + new Vector3(.9f * Team, 0, 0), .1f, MovementBlockers))
+        /*if (Physics2D.OverlapCircle(transform.position + new Vector3(.9f * Team, 0, 0), .1f, MovementBlockers))
         { //Checks if there is anything one length ahead
             ManAhead = true;
         }
@@ -59,7 +59,38 @@ public class Soldier : Unit
         else
         {
             ManBehind = false;
+        }*/
+
+
+        EmptySpaces = 0;
+        for (int i = 0; i < unitClassification; i++) {
+            if (General.troopCategory[i] <= 0) { //==0 would be sufficient but I expect problems
+                EmptySpaces++;
+            }
         }
+
+        Vector3 separation = Vector3.zero;
+        foreach (Unit unit in nearbyUnits)
+        {
+            if (unit != null)
+            {
+                Vector3 diff = transform.position - unit.transform.position;
+                if (diff.magnitude < separationDistance)
+                {
+                    separation += new Vector3(Mathf.Sign(diff.x) / (diff.magnitude), Mathf.Sign(diff.x) / diff.magnitude, Mathf.Sign(diff.x) / (diff.magnitude * 5));
+
+                    //Random.Range(-1, 1)
+                }
+            }
+            else {
+                nearbyUnits.Remove(unit);
+            }
+            
+        }
+        separation *= separationForce * Time.deltaTime;
+        //transform.position += separation;
+        this.Move(separation);
+
 
 
         if (Target == null)
@@ -124,19 +155,8 @@ public class Soldier : Unit
         else {
             base.Wait();
 
-            Vector3 separation = Vector3.zero;
-            foreach (Unit unit in nearbyUnits)
-            {
-                Vector3 diff = transform.position - unit.transform.position;
-                if (diff.magnitude < separationDistance)
-                {
-                    separation += new Vector3(Random.Range(-1, 1), Mathf.Sign(diff.x) / diff.magnitude, Mathf.Sign(diff.x) / (diff.magnitude*5));
+            //Seperation applied to update
 
-                }
-            }
-            separation *= separationForce * Time.deltaTime;
-            //transform.position += separation;
-            this.Move(separation);
         }
         
     }
@@ -154,9 +174,12 @@ public class Soldier : Unit
                 base.Walk();
             }
             
-        } 
-        else if ((General.RallyPoint * Team < (transform.position.x * Team) + Tolerance) &&
-                               (General.RallyPoint * Team > (transform.position.x * Team) - Tolerance))
+        }
+
+        //else if ((General.RallyPoint * Team < ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) + Tolerance / 4) &&
+          //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
+        else if ((General.RallyPoint * Team < (transform.position.x * Team) + Tolerance/4) &&
+                               (General.RallyPoint * Team > (transform.position.x * Team) - Tolerance/4))
         {
             State = "Wait";
             Debug.Log("Walk > Wait");

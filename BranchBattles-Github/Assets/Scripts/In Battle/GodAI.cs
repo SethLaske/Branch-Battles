@@ -75,6 +75,7 @@ public class GodAI : MonoBehaviour
     }
 
     public void spawnTroop() {
+        Peasants.setRallyPoint(15);
         for (int i = 0; i < minTroops.Length; i++) {
             if (Peasants.troopCategory[i] < minTroops[i]) {
                 Peasants.spawnUnit(Peasants.SpawnableUnits[i]);
@@ -90,7 +91,7 @@ public class GodAI : MonoBehaviour
                 return;
             }
         }
-
+        Peasants.Charge();
         Peasants.spawnUnit(Peasants.SpawnableUnits[Random.Range(0,LoadedTroops)]);
 
     }
