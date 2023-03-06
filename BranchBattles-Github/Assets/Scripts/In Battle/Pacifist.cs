@@ -28,6 +28,7 @@ public class Pacifist : Unit
     // Update is called once per frame
     void Update()
     {
+        AssemblePoint = General.RallyPoint;
         if (HealthTimer < AppearanceTime)
         {
             HealthTimer += Time.deltaTime;

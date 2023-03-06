@@ -59,7 +59,7 @@ MonoBehaviour:
   Armor: 5
   animator: {fileID: 2161251198339348535}
   unitName: Shield
-  unitClassification: 3
+  unitClassification: 1
   Offense: {fileID: 6059042076321823989}
   Attacking: 0
   MoveSpeed: 3
@@ -76,14 +76,13 @@ MonoBehaviour:
   HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
+  AssemblePoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
-  Assembled: 0
+  EmptySpaces: 0
   Tolerance: 2
-  ManAhead: 0
-  ManBehind: 0
   attackSound: {fileID: 2752445478207036960}
   separationDistance: 0.5
   separationForce: 1

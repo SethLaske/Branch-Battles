@@ -382,7 +382,7 @@ MonoBehaviour:
   Armor: 0
   animator: {fileID: 1026498895368711671}
   unitName: Spear
-  unitClassification: 2
+  unitClassification: 3
   Offense: {fileID: 4280810500101309706}
   Attacking: 0
   MoveSpeed: 5
@@ -399,14 +399,13 @@ MonoBehaviour:
   HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
+  AssemblePoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
-  Assembled: 0
+  EmptySpaces: 0
   Tolerance: 2
-  ManAhead: 0
-  ManBehind: 0
   attackSound: {fileID: 4837877308794750919}
   separationDistance: 0.5
   separationForce: 1

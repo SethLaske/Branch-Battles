@@ -69,6 +69,8 @@ public class Soldier : Unit
             }
         }
 
+        AssemblePoint = General.RallyPoint - Team * 2.5f *(unitClassification - EmptySpaces);
+
         Vector3 separation = Vector3.zero;
         foreach (Unit unit in nearbyUnits)
         {
@@ -95,13 +97,13 @@ public class Soldier : Unit
 
         if (Target == null)
         {
-            if (General.RallyPoint * Team < (transform.position.x * Team) - Tolerance)  //If the rally point is behind, we always prioritize that
+            if (AssemblePoint * Team < (transform.position.x * Team) - Tolerance)  //If the rally point is behind, we always prioritize that
             {
                 State = "Walk";
             }
         }
         else {
-            if ((General.RallyPoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
+            if ((AssemblePoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
             {
                 State = "Walk";
                 //Debug.Log("Attack -> Retreat");
@@ -115,25 +117,25 @@ public class Soldier : Unit
         //Performs the various actions per the state it is in
         if (State == "Wait")
         {
-            Debug.Log("State is wait");
+            //Debug.Log("State is wait");
             Wait();
             animator.SetBool("Attacking", false);
         }
         else if (State == "Walk")
         {
-            Debug.Log("State is walk");
+            //Debug.Log("State is walk");
             Walk();
             animator.SetBool("Attacking", false);
         }
         else if (State == "Attack")
         {
-            Debug.Log("State is attack");
+            //Debug.Log("State is attack");
             Attack();
             animator.SetBool("Attacking", true);
         }
-        else if (State == "Retreat")
+        else if (State == "Retreat")    //Retreat doesnt really exisit anymore
         {
-            Debug.Log("State is retreat");
+            //Debug.Log("State is retreat");
             Retreat();
             animator.SetBool("Attacking", false);
         }
@@ -143,14 +145,14 @@ public class Soldier : Unit
 
     public override void Wait()
     {
-        if (Target == null && ((General.RallyPoint * Team > (transform.position.x * Team) + Tolerance) ||
-                               (General.RallyPoint * Team < (transform.position.x * Team) - Tolerance)) )
+        if (Target == null && ((AssemblePoint * Team > (transform.position.x * Team) + Tolerance) ||
+                               (AssemblePoint * Team < (transform.position.x * Team) - Tolerance)) )
         {
             State = "Walk";
-            Debug.Log("Rally point is ahead: Wait > Walk");
-        } else if (Target != null && ((General.RallyPoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)){
+            //Debug.Log("Rally point is ahead: Wait > Walk");
+        } else if (Target != null && ((AssemblePoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)){
             State = "Walk";
-            Debug.Log("Target is near: Wait > Walk");
+            //Debug.Log("Target is near: Wait > Walk");
         }
         else {
             base.Wait();
@@ -168,7 +170,7 @@ public class Soldier : Unit
             if (Vector3.Distance(transform.position, Target.transform.position) <= AttackRange)
             {
                 State = "Attack";
-                Debug.Log("Walk > Attack");
+                //Debug.Log("Walk > Attack");
             }
             else {
                 base.Walk();
@@ -178,11 +180,11 @@ public class Soldier : Unit
 
         //else if ((General.RallyPoint * Team < ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) + Tolerance / 4) &&
           //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
-        else if ((General.RallyPoint * Team < (transform.position.x * Team) + Tolerance/4) &&
-                               (General.RallyPoint * Team > (transform.position.x * Team) - Tolerance/4))
+        else if ((AssemblePoint * Team < (transform.position.x * Team) + Tolerance/4) &&
+                               (AssemblePoint * Team > (transform.position.x * Team) - Tolerance/4))
         {
             State = "Wait";
-            Debug.Log("Walk > Wait");
+            //Debug.Log("Walk > Wait");
         }
         else
         {
@@ -196,17 +198,17 @@ public class Soldier : Unit
 
         if (Target == null)
         {
-            State = "Wait";
-            Debug.Log("Attack > Wait");
+            State = "Walk";
+            //Debug.Log("Attack > Wait");
         }
         else {
             if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange)
             {
                 State = "Walk";
-                Debug.Log("Attack > Walk");
+                //Debug.Log("Attack > Walk");
             }
             else {
-                Debug.Log("In attack state and trying to attack");
+                //Debug.Log("In attack state and trying to attack");
                 base.Attack();
             }
             
@@ -216,10 +218,10 @@ public class Soldier : Unit
 
     public override void Retreat()
     {
-        if (General.RallyPoint * Team > (transform.position.x * Team) - Tolerance)
+        if (AssemblePoint * Team > (transform.position.x * Team) - Tolerance)
         {
             State = "Wait";
-            Debug.Log("Retreat > Wait");
+            //Debug.Log("Retreat > Wait");
         }
         else {
             base.Retreat();

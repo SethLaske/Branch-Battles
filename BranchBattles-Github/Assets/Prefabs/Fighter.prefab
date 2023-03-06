@@ -435,7 +435,7 @@ MonoBehaviour:
   Armor: 0
   animator: {fileID: 3379056341639472623}
   unitName: Fighter
-  unitClassification: 1
+  unitClassification: 2
   Offense: {fileID: 3707896568646014007}
   Attacking: 0
   MoveSpeed: 6
@@ -452,14 +452,13 @@ MonoBehaviour:
   HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
+  AssemblePoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
-  Assembled: 0
+  EmptySpaces: 0
   Tolerance: 2
-  ManAhead: 0
-  ManBehind: 0
   attackSound: {fileID: 4697823866975201210}
   separationDistance: 0.5
   separationForce: 1

@@ -15,8 +15,12 @@ public class Damageable : MonoBehaviour
     {
         //Debug.Log("Taken Damage: " + damage);
         //Simple stuff
-        if (damage > Armor) {
+        if (damage > Armor)
+        {
             this.HP -= damage;
+        }
+        else {
+            HP -= damage / Armor;
         }
 
         if (HP <= 0)

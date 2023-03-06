@@ -11,6 +11,7 @@ public class GodAI : MonoBehaviour
 
     public int LoadedTroops = 5;
 
+
     void Start()
     {
         //Currently starts by spawning a miner
@@ -35,7 +36,7 @@ public class GodAI : MonoBehaviour
 
             if (Peasants.TroopCount > 6)
             {
-                Peasants.Charge();
+                //Peasants.Charge();
             }
             else if (Peasants.TroopCount < 5)
             {
@@ -78,21 +79,24 @@ public class GodAI : MonoBehaviour
         Peasants.setRallyPoint(15);
         for (int i = 0; i < minTroops.Length; i++) {
             if (Peasants.troopCategory[i] < minTroops[i]) {
+                Debug.Log("adding to min");
                 Peasants.spawnUnit(Peasants.SpawnableUnits[i]);
                 return;
             }
         }
-
+        
         for (int i = 0; i < maxTroops.Length; i++)
         {
             if (Peasants.troopCategory[i] < maxTroops[i])
             {
                 Peasants.spawnUnit(Peasants.SpawnableUnits[i]);
+                Debug.Log("adding to max");
                 return;
             }
         }
+        Debug.Log("Setting charge");
         Peasants.Charge();
-        Peasants.spawnUnit(Peasants.SpawnableUnits[Random.Range(0,LoadedTroops)]);
+        Peasants.spawnUnit(Peasants.SpawnableUnits[Random.Range(1,LoadedTroops)]);
 
     }
     public void standardAttack() {

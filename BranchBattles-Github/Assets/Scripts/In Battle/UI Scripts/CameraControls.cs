@@ -55,7 +55,7 @@ public class CameraControls : MonoBehaviour
         if (Input.GetMouseButton(1)) {
 
             float MouseX = (Input.mousePosition.x - Screen.width / 2) / Screen.width;
-            Debug.Log("Mouse is at: " + MouseX);
+            //Debug.Log("Mouse is at: " + MouseX);
             if (!border || (transform.position.x * MouseX < 0))
             {
                 float MoveSpeed = MouseX * cameraSpeed;
@@ -80,11 +80,11 @@ public class CameraControls : MonoBehaviour
 
         
 
-        if (Input.GetKey(KeyCode.LeftArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
             CameraDirection = -1;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        else if (Input.GetKey(KeyCode.E) || Input.GetKey(KeyCode.RightArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
             CameraDirection = 1;
         }

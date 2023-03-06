@@ -64,7 +64,7 @@ public class Unit : Damageable
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
         else {
-            float distance = (General.RallyPoint - transform.position.x);
+            float distance = (AssemblePoint - transform.position.x);
             //if (distance != 0) {
               //  distance = distance / Mathf.Abs(distance);
             //}

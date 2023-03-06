@@ -59,11 +59,11 @@ MonoBehaviour:
   Armor: 2
   animator: {fileID: 827475495931192477}
   unitName: Rage
-  unitClassification: 3
+  unitClassification: 1
   Offense: {fileID: 5647435537425045194}
   Attacking: 0
   MoveSpeed: 4
-  Damage: 25
+  Damage: 15
   AttackRange: 3
   AgroRange: 1000
   AttackCooldown: 1.4
@@ -76,14 +76,13 @@ MonoBehaviour:
   HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
+  AssemblePoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
-  Assembled: 0
+  EmptySpaces: 0
   Tolerance: 2
-  ManAhead: 0
-  ManBehind: 0
   attackSound: {fileID: -5713061852731161974}
   separationDistance: 0.5
   separationForce: 1
@@ -625,7 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 0
   AttackBox: {fileID: 0}
-  MultiHit: 0
+  MultiHit: 1
   FinishedAttack: 0
   Wielder: {fileID: 0}
 --- !u!1 &7836130919575740402
