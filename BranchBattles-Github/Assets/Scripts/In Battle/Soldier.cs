@@ -11,7 +11,7 @@ public class Soldier : Unit
     //public bool ManAhead;
     //public bool ManBehind;
 
-    public AudioSource attackSound;
+    
 
     public float separationDistance = .5f;
     public float separationForce = 2f;
@@ -62,9 +62,10 @@ public class Soldier : Unit
         }*/
 
 
-        EmptySpaces = 0;
-        for (int i = 0; i < unitClassification; i++) {
-            if (General.troopCategory[i] <= 0) { //==0 would be sufficient but I expect problems
+        EmptySpaces = 1;
+        for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and shouldnt affect troops positioning
+            if (General.troopCategory[i] == 0) { //==0 would be sufficient but I expect problems
+                //Debug.Log(i);
                 EmptySpaces++;
             }
         }

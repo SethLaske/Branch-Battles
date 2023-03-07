@@ -81,7 +81,7 @@ public class General : Unit
             if (AttackTimer >= AttackCooldown && !Attacking)
             {
                 Offense.Attack();
-                //slice.Play();
+                attackSound.Play();
                 Attacking = true;
             }
             if (AttackTimer >= AttackCooldown * 1.25)

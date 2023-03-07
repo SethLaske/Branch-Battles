@@ -327,9 +327,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
+  attackSound: {fileID: -3454249770946355449}
   EmptySpaces: 0
   Tolerance: 2
-  attackSound: {fileID: -3454249770946355449}
   separationDistance: 0.5
   separationForce: 1
   nearbyUnits: []
@@ -383,17 +383,17 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b242d33cfdff7f243a52f69690905c50, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 10
+  MinDistance: 10
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -426,7 +426,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -96,18 +96,18 @@ public class Tutorial : MonoBehaviour
                         gate.gateSelected();
                     }
                     else {
-                        Pacifist pacifist = hit.transform.gameObject.GetComponent<Pacifist>();
-                        if (pacifist != null && !pacifist.Full)
+                        Miner miner = hit.transform.gameObject.GetComponent<Miner>();
+                        if (miner != null && !miner.Full)
                         {
-                            if (pacifist.Resource.Equals("Mine"))
+                            if (miner.Resource.Equals("Mine"))
                             {
-                                pacifist.Resource = "Gem";
-                                pacifist.pick.color = Color.magenta;
+                                miner.Resource = "Gem";
+                                miner.pick.color = Color.magenta;
                             }
-                            else if (pacifist.Resource.Equals("Gem"))
+                            else if (miner.Resource.Equals("Gem"))
                             {
-                                pacifist.Resource = "Mine";
-                                pacifist.pick.color = Color.yellow;
+                                miner.Resource = "Mine";
+                                miner.pick.color = Color.yellow;
 
                             }
                         }

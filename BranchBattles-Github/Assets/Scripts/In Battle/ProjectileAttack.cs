@@ -25,13 +25,16 @@ public class ProjectileAttack : WeaponAttack
         GameObject FiredProjectileObject = Instantiate(Projectile, transform.position + transform.rotation * new Vector3(0.1f, 0, 0), transform.rotation);
         Projectile FiredProjectile = FiredProjectileObject.GetComponent<Projectile>();
         Collider2D ProjectileHitbox = FiredProjectileObject.GetComponent<Collider2D>();
+        Rigidbody2D rb = FiredProjectileObject.GetComponent<Rigidbody2D>();
         FiredProjectile.Speed = Speed;
         FiredProjectile.Damage = Damage;
         FiredProjectile.LifeTime = LifeTime;
         FiredProjectile.Team = Wielder.Team;
         ProjectileHitbox.enabled = true;
-        //FiredProjectile.Launch();
 
+        rb.velocity = transform.rotation * new Vector3(Speed,0,0);
+        Debug.Log(transform.rotation);
+        Debug.Log(rb.velocity);
     }
 
     

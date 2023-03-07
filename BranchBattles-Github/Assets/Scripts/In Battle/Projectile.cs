@@ -10,8 +10,13 @@ public class Projectile : MonoBehaviour
 
     public int Team;
 
+    
+    private void Start()
+    {
+       
+    }
     void Update(){
-        transform.position += transform.rotation * new Vector3(Speed,0 , 0) * Time.deltaTime;
+        //transform.position += transform.rotation * new Vector3(Speed,0 , 0) * Time.deltaTime;     moves but sometimes too fast
         LifeTime -= Time.deltaTime;
         if (LifeTime <= 0) {
             Destroy(gameObject);

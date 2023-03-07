@@ -37,6 +37,7 @@ public class Unit : Damageable
 
     public GameObject corpse;
 
+    public AudioSource attackSound;
 
     //These are just rough plans for units to follow, and are edited in sub classes
     //Ideally edits will be the conditions for switching between states, as that is what is most likely to change
@@ -91,6 +92,7 @@ public class Unit : Damageable
         if (Attacking == false) {
             //Debug.Log("Starting Attack");
             Attacking = true;
+            attackSound.Play();
             StartCoroutine(Attack(AttackCooldown, .05f));
         }
         

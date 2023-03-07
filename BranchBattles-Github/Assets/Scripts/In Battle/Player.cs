@@ -68,10 +68,10 @@ public class Player : MonoBehaviour
                         gate.gateSelected();
                     }
                     else {
-                        Pacifist pacifist = hit.transform.gameObject.GetComponent<Pacifist>();
-                        if (pacifist != null)
+                        Miner miner = hit.transform.gameObject.GetComponent<Miner>();
+                        if (miner != null)
                         {
-                            pacifist.changeResource();
+                            miner.changeResource();
                         }
                     }
                     

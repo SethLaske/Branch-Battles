@@ -63,7 +63,7 @@ MonoBehaviour:
   Attacking: 0
   MoveSpeed: 12
   Damage: 50
-  AttackRange: 15
+  AttackRange: 12
   AgroRange: 25
   AttackCooldown: 0.15
   AttackTimer: 0
@@ -75,15 +75,14 @@ MonoBehaviour:
   HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
+  AssemblePoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
-  Assembled: 0
-  Tolerance: 2
-  ManAhead: 0
-  ManBehind: 0
   attackSound: {fileID: 2825879979393192632}
+  EmptySpaces: 0
+  Tolerance: 2
   separationDistance: 1.25
   separationForce: 1
   nearbyUnits: []
@@ -135,7 +134,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b242d33cfdff7f243a52f69690905c50, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -144,10 +143,10 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
+  MinDistance: 10
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -180,7 +179,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
