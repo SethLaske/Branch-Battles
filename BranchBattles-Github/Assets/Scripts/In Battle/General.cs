@@ -24,7 +24,7 @@ public class General : Unit
     // Update is called once per frame
     void Update()
     {
-
+        
         //Movement Controls
         if (Input.GetKey(KeyCode.A))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
@@ -32,6 +32,7 @@ public class General : Unit
             if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
             {
                 transform.position = NewPosition;
+                transform.rotation = Quaternion.Euler(0, 180, 0);
             }
         }
         if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
@@ -40,6 +41,7 @@ public class General : Unit
             if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
             {
                 transform.position = NewPosition;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
             }
         }
 
@@ -67,6 +69,7 @@ public class General : Unit
         {
             animator.SetBool("Attacking", true);
             AttackTimer = 0.01f;
+            MoveSpeed /= 2;
             //animator.SetBool("HoldSlice", true);
         }
         if (Input.GetKeyUp("space") && !Attacking)
@@ -90,10 +93,12 @@ public class General : Unit
                 animator.SetBool("Attacking", false);
                 Attacking = false;
                 AttackTimer = 0f;
+                MoveSpeed *= 2;
                 if (Input.GetKey("space"))
                 {
                     animator.SetBool("Attacking", true);
                     AttackTimer = 0.01f;
+                    MoveSpeed /= 2;
                 }
             }
         }
@@ -112,6 +117,8 @@ public class General : Unit
         
 
     }
+
+    //Ends the level and stops the enemy from spawning more units
     public override void Die()
     {
         base.Die();
@@ -121,6 +128,7 @@ public class General : Unit
 
     }
 
+    //Heals while in security
     private void OnTriggerStay2D(Collider2D collider)
     {
         
@@ -147,6 +155,7 @@ public class General : Unit
         }
     }
 
+    //Only allows troop training while in the security of the player camp
     private void OnTriggerEnter2D(Collider2D collider)
     {
         

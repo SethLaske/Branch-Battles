@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Enemys equivalent of a general. Might make them reverse and become stronger as units around them die
 public class Commander : Soldier
 {
     // Start is called before the first frame update

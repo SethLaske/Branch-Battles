@@ -88,17 +88,8 @@ public class Player : MonoBehaviour
     {
         PassRally = true;
     }
-    /*
-    public void prepLightningSpell()
-    {
-        UseLightning = true;
-    }
-
-    public void prepTheWorld()
-    {
-        UseTheWorld = true;
-    }*/
-
+    
+    //Using two different preps to deal with the magic spells as they cant be under the same section
     public void prepMagic1() {
         UseMagic1 = true;
     }

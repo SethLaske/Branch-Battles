@@ -13,13 +13,12 @@ public class Damageable : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        //Debug.Log("Taken Damage: " + damage);
-        //Simple stuff
+        
         if (damage > Armor)
         {
             this.HP -= damage;
         }
-        else {
+        else {      //Not sure how I feel about this system. I want to keep it simple, but dont want a single enemy with high defense to never die to a swarm of fighters
             HP -= damage / Armor;
         }
 

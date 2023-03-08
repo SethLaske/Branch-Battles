@@ -29,7 +29,9 @@ public class TeamInfo : MonoBehaviour
     //The building troops will spawn from
     public Building Barracks;
 
-    
+    public General general;
+    public float TotalSpeed;    //total speed of the troops, which will be used to calculate the Generals Speed
+
     public float RallyPoint;    //The point units will move to unless acted upon
     public GameObject RallyFlag;    //Visual representation of where the rally is
 
@@ -43,6 +45,7 @@ public class TeamInfo : MonoBehaviour
 
     public Unit Pacifist1;
 
+    //When Save data is prepared this will replace the individual markings
     public Unit[] SpawnableUnits = new Unit[5];
 
     public TeamInfo Opponent;
@@ -53,12 +56,13 @@ public class TeamInfo : MonoBehaviour
         
         RallyPoint = Barracks.transform.position.x + (Team * 10);
         RallyFlag.transform.position = new Vector3(RallyPoint, RallyFlag.transform.position.y);
+        UpdateGeneral();    //Sets the general speed to a predefined value
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Passive gold timer
+        //Passive gold timer       
         GoldCounter += Time.deltaTime;
         if (GoldCounter >= AFKGoldTime)
         {
@@ -66,6 +70,7 @@ public class TeamInfo : MonoBehaviour
             GoldCounter = 0;
         }
 
+        //Runs a loop while troops are in the list
         if (SpawnUnits.Count > 0) {
             TroopTimer += Time.deltaTime;
             if (TroopTimer >= SpawnUnits[0].SpawnTime)  //Spawns the next unit queued up 
@@ -73,14 +78,14 @@ public class TeamInfo : MonoBehaviour
                 Unit FreshMeat = Instantiate(SpawnUnits[0], new Vector3(Barracks.transform.position.x + (Team * 1f), 0, 0), Quaternion.identity);
                 if (Team < 0)
                 {
-                    FreshMeat.transform.Rotate(new Vector3(0, 180, 0));
+                    FreshMeat.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
                 }
 
                 //Name is set for my use, and team controls the direction
                 FreshMeat.name = Team + ": " + FreshMeat.name;
                 FreshMeat.General = this;
                 FreshMeat.Team = Barracks.Team;
-                //FreshMeat.MoveSpeed *= Team;
+               
 
                 //Appies buffs/debuffs
                 FreshMeat.HP *= Advantage;
@@ -88,6 +93,11 @@ public class TeamInfo : MonoBehaviour
                 FreshMeat.Damage *= Advantage;
                 FreshMeat.AttackCooldown /= Advantage;
 
+                //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
+                TotalSpeed += FreshMeat.MoveSpeed;
+                UpdateGeneral();
+
+                //Resets timer for next spawn
                 SpawnUnits.RemoveAt(0);
                 TroopTimer = 0;
             }
@@ -111,6 +121,16 @@ public class TeamInfo : MonoBehaviour
         }
     }
 
+    //Dev Buttons are fun
+    public void ForceSpawnUnit(Unit newUnit)
+    {
+            Gold -= newUnit.Cost;
+            TroopCount += newUnit.TroopSpaces;
+            troopCategory[newUnit.unitClassification]++;
+
+            SpawnUnits.Add(newUnit);
+    }
+
     public void useMagic(Magic magic, float distance) {
         if (Gems > 0) {
             Instantiate(magic, new Vector3(distance, 10f, 0), Quaternion.Euler(new Vector2(0, 0)));
@@ -126,16 +146,8 @@ public class TeamInfo : MonoBehaviour
             TroopCount += Soldier1.TroopSpaces;
             troopCategory[Soldier1.unitClassification]++;
             SpawnUnits.Add(Soldier1);
-
-            //Unit newEnemy = Instantiate(Unit1, new Vector3(Barracks.transform.position.x, -2.25f, 0), Quaternion.identity);
-
-            //newEnemy.Team = Barracks.Team;
-            //Could turn Team into +/- to also set walk direction for the enemy
         }
-
-
     }
-
     public void spawnSoldier2()
     {
         if (Gold >= Soldier2.Cost && (TroopCount + Soldier2.TroopSpaces <= TroopMax))
@@ -144,16 +156,8 @@ public class TeamInfo : MonoBehaviour
             TroopCount += Soldier2.TroopSpaces;
             troopCategory[Soldier2.unitClassification]++;
             SpawnUnits.Add(Soldier2);
-
-            //Unit newEnemy = Instantiate(Unit1, new Vector3(Barracks.transform.position.x, -2.25f, 0), Quaternion.identity);
-
-            //newEnemy.Team = Barracks.Team;
-            //Could turn Team into +/- to also set walk direction for the enemy
         }
-
-
     }
-
     public void spawnSoldier3()
     {
         if (Gold >= Soldier3.Cost && (TroopCount + Soldier3.TroopSpaces <= TroopMax))
@@ -162,16 +166,8 @@ public class TeamInfo : MonoBehaviour
             TroopCount += Soldier3.TroopSpaces;
             troopCategory[Soldier3.unitClassification]++;
             SpawnUnits.Add(Soldier3);
-
-            //Unit newEnemy = Instantiate(Unit1, new Vector3(Barracks.transform.position.x, -2.25f, 0), Quaternion.identity);
-
-            //newEnemy.Team = Barracks.Team;
-            //Could turn Team into +/- to also set walk direction for the enemy
         }
-
-
     }
-
     public void spawnPacifist1()
     {
         if (Gold >= Pacifist1.Cost && (TroopCount + Pacifist1.TroopSpaces <= TroopMax))
@@ -181,8 +177,6 @@ public class TeamInfo : MonoBehaviour
             troopCategory[Pacifist1.unitClassification]++;
             SpawnUnits.Add(Pacifist1);
         }
-
-
     }
 
     //Sets the rally point and moves the flag
@@ -207,5 +201,20 @@ public class TeamInfo : MonoBehaviour
         Destroy(this);
     }
 
-    
+    //Allows the general to be powered up with larger army sizes. Could change it to be only those near to him, but I prefer the inherent aspect to this
+    public void UpdateGeneral() {
+        if (general != null) {
+            if (TroopCount > 0)
+            {
+                general.MoveSpeed = TotalSpeed / TroopCount;
+            }
+            else
+            {
+                general.MoveSpeed = 5;
+            }
+
+            general.Offense.Damage = general.Damage + TroopCount / 5;
+        }
+        
+    }
 }

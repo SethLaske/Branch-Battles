@@ -57,6 +57,7 @@ public class Miner : Unit
         }
     }
 
+    //Honestly, these guys are pretty simple and just walk back and forth. No need to make them more complicated
     public override void Walk()
     {
         
@@ -64,13 +65,10 @@ public class Miner : Unit
         if (!Full)
         {
             this.Move(new Vector3(MoveSpeed * Team * Time.deltaTime, 0, 0));
-            
-            
         }
         else
         {
             this.Move(new Vector3(MoveSpeed * -Team * Time.deltaTime, 0, 0));
-
         }
 
         

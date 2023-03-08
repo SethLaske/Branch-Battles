@@ -144,7 +144,7 @@ MonoBehaviour:
   unitClassification: 0
   Offense: {fileID: 0}
   Attacking: 0
-  MoveSpeed: 3
+  MoveSpeed: 2
   Damage: 1
   AttackRange: 2
   AgroRange: 0
@@ -163,9 +163,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
+  attackSound: {fileID: 0}
   Resource: Mine
   Full: 0
-  BagAmount: 15
+  BagAmount: 25
   dropOff: {fileID: 7331307722458310760}
   pick: {fileID: 2367348665075804681}
 --- !u!58 &2420170742448308730

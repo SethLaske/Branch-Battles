@@ -78,7 +78,7 @@ public class CameraControls : MonoBehaviour
         CameraDirection = 0;
 
 
-        
+        //I have three different ways to control the camera and dont like any of them
 
         if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {

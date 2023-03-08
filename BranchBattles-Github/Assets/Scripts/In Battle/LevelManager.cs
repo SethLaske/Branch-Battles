@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//Level manager ends up in the UI and deals with managing the level
 public class LevelManager : MonoBehaviour
 {
-    public bool buttonStart;
+    public bool buttonStart;    //Allows me to choose if I want to press a button to start level
 
     
     public GameObject StartScreen;
@@ -17,11 +18,12 @@ public class LevelManager : MonoBehaviour
     public GameObject PlayerObject;
     public GameObject EnemyObject;
 
+    //Used for troop unlocks and level progression on the map
     public int currentLevel;
     public int currentTroop;
 
     //public int newTroopNumber;
-    public Unit newTroop;
+    public Unit newTroop;   //Used to set the new troop to the players party when added immediately
 
     public GameObject[] AllUnits;
 
@@ -43,12 +45,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Can be called from a variety of places, and will deal with changing the states that can be used for animations later
     public void GameOver(int losingTeam) {
         BattleUI.SetActive(false);
 
@@ -71,6 +68,7 @@ public class LevelManager : MonoBehaviour
 
         if (losingTeam == -1) //Activates the correct UI 
         {
+            //Advances the player, and can deal with the rewards as they are needed
             VictoryScreen.SetActive(true);
             if (PlayerPrefs.GetInt("CompletedLevels") < currentLevel) {
                 //Debug.Log("Next level unlocked:" + currentLevel);
@@ -94,6 +92,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    //Generic level stuff below
     public void StartLevel() {
         StartScreen.SetActive(false);
 

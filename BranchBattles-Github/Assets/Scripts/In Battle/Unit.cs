@@ -42,6 +42,7 @@ public class Unit : Damageable
     //These are just rough plans for units to follow, and are edited in sub classes
     //Ideally edits will be the conditions for switching between states, as that is what is most likely to change
 
+    //Makes sure that units face forward when standing around
     public virtual void Wait() {
         if (Team < 0)
         {
@@ -53,6 +54,7 @@ public class Unit : Damageable
         }
     }
 
+    //Either advances towards the target, or straight along the x axis towards their specific assemble point
     public virtual void Walk()
     {
         float x = 0;
@@ -85,9 +87,11 @@ public class Unit : Damageable
 
     }
 
+    //Adjusts slightly to deal with offsets in y positioning while attacking, otherwise just attacks a lot
     public virtual void Attack() {
         if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .25) {
-            Move(new Vector3(0, (Mathf.Sign(Target.transform.position.y - transform.position.y) * MoveSpeed * Time.deltaTime), 0));
+            float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * MoveSpeed * Time.deltaTime);
+            Move(new Vector3(0, YMove, YMove/5));
         }
         if (Attacking == false) {
             //Debug.Log("Starting Attack");
@@ -98,6 +102,7 @@ public class Unit : Damageable
         
     }
 
+    //I believe redundant but Im scared to delete
     public virtual void Retreat()
     {
         //Retreat information
@@ -107,6 +112,7 @@ public class Unit : Damageable
         
     }
 
+    //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
     IEnumerator Attack(float ChargeTime, float RecoverTime)   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
         MoveSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
@@ -122,7 +128,7 @@ public class Unit : Damageable
     //Attack
     //Retreat (move back)
 
-
+    //Typical start script for a unit so I can be lazy
     public virtual void StandardStart() {
         maxHealth = HP;
         AttackTimer = AttackCooldown;
@@ -133,6 +139,7 @@ public class Unit : Damageable
         }
     }
 
+    //Override take damage to allow for the health bar to be displayed
     public override void TakeDamage(float Damage)
     {
         base.TakeDamage(Damage);
@@ -142,10 +149,13 @@ public class Unit : Damageable
         HealthTimer = 0;
     }
 
+    //A lot of things get taken care of for the general and team info
     public override void Die() {
         
         General.TroopCount -= TroopSpaces;
         General.troopCategory[unitClassification]--;
+        General.TotalSpeed -= MoveSpeed;
+        General.UpdateGeneral();
         Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
         Destroy(gameObject);
     }
@@ -177,6 +187,8 @@ public class Unit : Damageable
         AttackCooldown /= Intensity;
     }
 
+    //Essentially the same as transform += vector3, but checks to make sure it can step there.
+    //I could add the logic to deal with the z offset here, and only pass in a Vector2, but that might ruin some other functions
     public void Move(Vector3 movement)
     {
         Vector3 NewPosition = transform.position + movement;
@@ -191,7 +203,7 @@ public class Unit : Damageable
 
     }
 
-
+    //Very similar to Unitys movetowards, but ignores the z
     public Vector3 Advance(Vector3 current, Vector3 target, float maxDistanceDelta)
     {
         // Get the direction from the current position to the target position

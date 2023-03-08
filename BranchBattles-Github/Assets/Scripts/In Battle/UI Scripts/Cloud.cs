@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Again, its a cloud. Go look at better code please
 public class Cloud : MonoBehaviour
 {
     public float speed;

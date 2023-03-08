@@ -10,7 +10,7 @@ public class TeamBase : Building
     public CameraControls playercamera;
     public LevelManager levelmanager;
 
-    // Start is called before the first frame update
+    // Finds the stuff itself so I dont need to drag and drop for every base
     void Start()
     {
         maxHealth = HP;
@@ -18,11 +18,6 @@ public class TeamBase : Building
         levelmanager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     //Could also call it result screen and condense it to one screen per base
     public override void Die()

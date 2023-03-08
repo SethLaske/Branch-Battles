@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+
+    //Speed might be redundant since the projectileattack provides it with velocity
     public float Speed;
     public float Damage;
     public float LifeTime;
 
     public int Team;
 
-    
-    private void Start()
-    {
-       
-    }
     void Update(){
         //transform.position += transform.rotation * new Vector3(Speed,0 , 0) * Time.deltaTime;     moves but sometimes too fast
         LifeTime -= Time.deltaTime;
