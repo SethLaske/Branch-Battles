@@ -7,7 +7,7 @@ public class General : Unit
     public LevelManager levelmanager;
     //public WeaponAttack Offense;
     //public bool Attacking = true;
-
+    public bool waiting = true;
     
     public float RegenTime = 1;
     public float RegenTimer = 0;
@@ -24,7 +24,7 @@ public class General : Unit
     // Update is called once per frame
     void Update()
     {
-        
+        waiting = true;
         //Movement Controls
         if (Input.GetKey(KeyCode.A))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
@@ -34,6 +34,7 @@ public class General : Unit
                 transform.position = NewPosition;
                 transform.rotation = Quaternion.Euler(0, 180, 0);
             }
+            waiting = false;
         }
         if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
@@ -43,25 +44,28 @@ public class General : Unit
                 transform.position = NewPosition;
                 transform.rotation = Quaternion.Euler(0, 0, 0);
             }
+            waiting = false;
         }
 
         if (Input.GetKey(KeyCode.W))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            NewPosition = transform.position + (MoveSpeed * Vector3.up * Time.deltaTime);
+            NewPosition = transform.position + (MoveSpeed * new Vector3(0, 1, .2f) * Time.deltaTime);
             if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
             {
                 transform.position = NewPosition;
                 //transform.position += 2f * Vector3.forward * Time.deltaTime;
             }
+            waiting = false;
         }
         if (Input.GetKey(KeyCode.S))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            NewPosition = transform.position + (MoveSpeed * Vector3.down * Time.deltaTime);
+            NewPosition = transform.position + (MoveSpeed * new Vector3(0, -1, -.2f) * Time.deltaTime);
             if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
             {
                 transform.position = NewPosition;
                 //transform.position += 2f * Vector3.back * Time.deltaTime;
             }
+            waiting = false;
         }
 
         //Attack Controls
@@ -74,12 +78,14 @@ public class General : Unit
         }
         if (Input.GetKeyUp("space") && !Attacking)
         {
+            MoveSpeed *= 2;
             AttackTimer = 0;
             animator.SetBool("Attacking", false);
             //animator.SetBool("HoldSlice", false);
         }
         if (AttackTimer > 0)
         {
+            waiting = false;
             AttackTimer += Time.deltaTime;
             if (AttackTimer >= AttackCooldown && !Attacking)
             {
@@ -114,7 +120,13 @@ public class General : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
-        
+        if (waiting == true)
+        {
+            animator.SetBool("Waiting", true);
+        }
+        else {
+            animator.SetBool("Waiting", false);
+        }
 
     }
 

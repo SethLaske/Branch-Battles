@@ -39,6 +39,8 @@ public class Unit : Damageable
 
     public AudioSource attackSound;
 
+    private float DebuffMult = 1;   //Stores speed multipliers so they can be undone when passed back to the general  
+
     //These are just rough plans for units to follow, and are edited in sub classes
     //Ideally edits will be the conditions for switching between states, as that is what is most likely to change
 
@@ -116,11 +118,13 @@ public class Unit : Damageable
     IEnumerator Attack(float ChargeTime, float RecoverTime)   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
         MoveSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
+        DebuffMult *= 2;
         yield return new WaitForSeconds(ChargeTime);
         Offense.Attack();
         yield return new WaitForSeconds(RecoverTime);
         Attacking = false;
         MoveSpeed *= 2;
+        DebuffMult /= 2;
     }
     //States to be had:
     //wait
@@ -154,7 +158,8 @@ public class Unit : Damageable
         
         General.TroopCount -= TroopSpaces;
         General.troopCategory[unitClassification]--;
-        General.TotalSpeed -= MoveSpeed;
+        General.TotalSpeed -= (MoveSpeed*DebuffMult);
+        General.ActiveCount--;
         General.UpdateGeneral();
         Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
         Destroy(gameObject);
@@ -179,11 +184,13 @@ public class Unit : Damageable
     IEnumerator StunDebuff(float Duration, float Intensity)
     {
         MoveSpeed /= Intensity;
+        DebuffMult *= Intensity;
         AttackCooldown *= Intensity;
 
         yield return new WaitForSeconds(Duration);
 
         MoveSpeed *= Intensity;
+        DebuffMult /= Intensity;
         AttackCooldown /= Intensity;
     }
 

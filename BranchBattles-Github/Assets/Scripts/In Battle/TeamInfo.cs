@@ -31,6 +31,7 @@ public class TeamInfo : MonoBehaviour
 
     public General general;
     public float TotalSpeed;    //total speed of the troops, which will be used to calculate the Generals Speed
+    public int ActiveCount;
 
     public float RallyPoint;    //The point units will move to unless acted upon
     public GameObject RallyFlag;    //Visual representation of where the rally is
@@ -95,6 +96,7 @@ public class TeamInfo : MonoBehaviour
 
                 //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
                 TotalSpeed += FreshMeat.MoveSpeed;
+                ActiveCount++;
                 UpdateGeneral();
 
                 //Resets timer for next spawn
@@ -206,14 +208,14 @@ public class TeamInfo : MonoBehaviour
         if (general != null) {
             if (TroopCount > 0)
             {
-                general.MoveSpeed = TotalSpeed / TroopCount;
+                general.MoveSpeed = TotalSpeed / ActiveCount;
             }
             else
             {
                 general.MoveSpeed = 5;
             }
 
-            general.Offense.Damage = general.Damage + TroopCount / 5;
+            general.Offense.Damage = general.Damage + ActiveCount / 5;
         }
         
     }

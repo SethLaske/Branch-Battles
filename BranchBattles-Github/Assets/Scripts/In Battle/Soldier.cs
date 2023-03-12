@@ -95,18 +95,20 @@ public class Soldier : Unit
         this.Move(separation);
 
 
-
+        
         if (Target == null)
         {
             if (AssemblePoint * Team < (transform.position.x * Team) - Tolerance)  //If the rally point is behind, we always prioritize that
             {
                 State = "Walk";
+                animator.SetBool("Waiting", false);
             }
         }
         else {
             if ((AssemblePoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
             {
                 State = "Walk";
+                animator.SetBool("Waiting", false);
                 //Debug.Log("Attack -> Retreat");
                 Target = null;
                 //Debug.Log("Setting target as null");
@@ -120,12 +122,13 @@ public class Soldier : Unit
         {
             //Debug.Log("State is wait");
             Wait();
-            animator.SetBool("Attacking", false);
+            animator.SetBool("Waiting", true);
         }
         else if (State == "Walk")
         {
             //Debug.Log("State is walk");
             Walk();
+            animator.SetBool("Waiting", false);
             animator.SetBool("Attacking", false);
         }
         else if (State == "Attack")
@@ -138,7 +141,7 @@ public class Soldier : Unit
         {
             //Debug.Log("State is retreat");
             Retreat();
-            animator.SetBool("Attacking", false);
+            //animator.SetBool("Attacking", false);
         }
 
         
@@ -150,9 +153,11 @@ public class Soldier : Unit
                                (AssemblePoint * Team < (transform.position.x * Team) - Tolerance)) )
         {
             State = "Walk";
+            animator.SetBool("Waiting", false);
             //Debug.Log("Rally point is ahead: Wait > Walk");
         } else if (Target != null && ((AssemblePoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)){
             State = "Walk";
+            animator.SetBool("Waiting", false);
             //Debug.Log("Target is near: Wait > Walk");
         }
         else {
@@ -200,12 +205,14 @@ public class Soldier : Unit
         if (Target == null)
         {
             State = "Walk";
+            animator.SetBool("Attacking", false);
             //Debug.Log("Attack > Wait");
         }
         else {
             if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange)
             {
                 State = "Walk";
+                animator.SetBool("Attacking", false);
                 //Debug.Log("Attack > Walk");
             }
             else {
