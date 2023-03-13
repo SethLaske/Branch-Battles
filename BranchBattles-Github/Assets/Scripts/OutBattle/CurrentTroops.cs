@@ -10,13 +10,22 @@ public class CurrentTroops : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerInfo.PlayerTroops[thisTroop] == null)
+        if (PlayerInfo.TroopSpaces < thisTroop)
         {
             gameObject.SetActive(false);
         }
         else {
             setUnit();
         }
+
+        /*
+        if (PlayerInfo.PlayerTroops[thisTroop] == null)
+        {
+            gameObject.SetActive(false);
+        }
+        else {
+            setUnit();
+        }*/
         
     }
 
@@ -27,10 +36,14 @@ public class CurrentTroops : MonoBehaviour
     }
 
     public void setUnit() {
-        if (PlayerInfo.PlayerTroops[thisTroop] != null) {
+        if (PlayerInfo.PlayerTroops[thisTroop] != null)
+        {
             //Debug.Log("previous unit " + thisTroop + " was " + PlayerInfo.PlayerTroops[thisTroop].unitName);
             CurrentTroop.text = PlayerInfo.PlayerTroops[thisTroop].unitName;
             //Debug.Log("Setting unit " + thisTroop + " as " + PlayerInfo.PlayerTroops[thisTroop].unitName);
+        }
+        else {
+            CurrentTroop.text = "NO UNIT ASSIGNED";
         }
         
     }

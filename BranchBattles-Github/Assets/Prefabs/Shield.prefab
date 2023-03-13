@@ -59,6 +59,7 @@ MonoBehaviour:
   Armor: 5
   animator: {fileID: 2161251198339348535}
   unitName: Shield
+  UnitNumber: 3
   unitClassification: 1
   Offense: {fileID: 6059042076321823989}
   Attacking: 0

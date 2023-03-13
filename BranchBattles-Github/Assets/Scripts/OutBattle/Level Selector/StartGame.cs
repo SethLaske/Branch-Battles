@@ -11,8 +11,14 @@ public class StartGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerPrefs.SetInt("CompletedLevels", -1);
-        PlayerPrefs.SetInt("UnlockedTroops", 2);
+        for (int i = -1; i < 11; i++) {
+            PlayerInfo.LevelKeys.Add(i, false);
+            PlayerInfo.TroopKeys.Add(i, false);
+        }
+        PlayerInfo.TroopSpaces = 0;
+
+        //PlayerPrefs.SetInt("CompletedLevels", -1);
+        //PlayerPrefs.SetInt("UnlockedTroops", 2);
     }
 
     // Update is called once per frame
@@ -23,8 +29,8 @@ public class StartGame : MonoBehaviour
 
     public void startGame(string LevelSelect) {
         SceneManager.LoadScene(LevelSelect);
-        PlayerInfo.PlayerTroops[0] = initMiner;
-        PlayerInfo.PlayerTroops[1] = initFighter;
-        PlayerInfo.PlayerTroops[2] = initSpear;
+        //PlayerInfo.PlayerTroops[0] = initMiner;
+        //PlayerInfo.PlayerTroops[1] = initFighter;
+        //PlayerInfo.PlayerTroops[2] = initSpear;
     }
 }

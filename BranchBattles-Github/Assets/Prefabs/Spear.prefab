@@ -382,6 +382,7 @@ MonoBehaviour:
   Armor: 0
   animator: {fileID: 1026498895368711671}
   unitName: Spear
+  UnitNumber: 2
   unitClassification: 3
   Offense: {fileID: 4280810500101309706}
   Attacking: 0

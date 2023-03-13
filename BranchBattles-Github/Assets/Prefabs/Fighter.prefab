@@ -435,6 +435,7 @@ MonoBehaviour:
   Armor: 0
   animator: {fileID: 3379056341639472623}
   unitName: Fighter
+  UnitNumber: 1
   unitClassification: 2
   Offense: {fileID: 3707896568646014007}
   Attacking: 0

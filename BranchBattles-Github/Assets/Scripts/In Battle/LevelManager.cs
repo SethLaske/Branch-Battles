@@ -70,6 +70,9 @@ public class LevelManager : MonoBehaviour
         {
             //Advances the player, and can deal with the rewards as they are needed
             VictoryScreen.SetActive(true);
+
+            PlayerInfo.LevelKeys[currentLevel] = true;
+
             if (PlayerPrefs.GetInt("CompletedLevels") < currentLevel) {
                 //Debug.Log("Next level unlocked:" + currentLevel);
                 PlayerPrefs.SetInt("CompletedLevels", currentLevel);

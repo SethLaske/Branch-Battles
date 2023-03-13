@@ -12,7 +12,25 @@ public class LevelButton : MonoBehaviour
     {
         //Debug.Log(PlayerPrefs.GetInt("CompletedLevels"));
         //sprite = GetComponent<Image>();
+        if (PlayerInfo.LevelKeys.ContainsKey(ThisLevel)) {
+            if (PlayerInfo.LevelKeys[ThisLevel] == true)
+            {
+                gameObject.SetActive(true);
+                sprite.color = Color.green;
+            }
+            else if (PlayerInfo.LevelKeys[ThisLevel - 1] == true)
+            {
+                gameObject.SetActive(true);
+                sprite.color = Color.red;
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        
 
+        /*
         if (PlayerPrefs.GetInt("CompletedLevels") < (ThisLevel - 1))
         {
             gameObject.SetActive(false);
@@ -27,7 +45,7 @@ public class LevelButton : MonoBehaviour
         if (PlayerPrefs.GetInt("CompletedLevels") == (ThisLevel - 1))
         {
             sprite.color = Color.red;
-        }
+        }*/
 
     }
 

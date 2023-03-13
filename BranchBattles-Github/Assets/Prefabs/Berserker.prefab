@@ -59,6 +59,7 @@ MonoBehaviour:
   Armor: 2
   animator: {fileID: 827475495931192477}
   unitName: Rage
+  UnitNumber: 6
   unitClassification: 1
   Offense: {fileID: 5647435537425045194}
   Attacking: 0

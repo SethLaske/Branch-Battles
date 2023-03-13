@@ -305,6 +305,7 @@ MonoBehaviour:
   Armor: 0
   animator: {fileID: 2093407103127303479}
   unitName: Archer
+  UnitNumber: 5
   unitClassification: 3
   Offense: {fileID: 6513884397966661677}
   Attacking: 0

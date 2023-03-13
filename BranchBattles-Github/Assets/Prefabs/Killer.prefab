@@ -58,6 +58,7 @@ MonoBehaviour:
   Armor: 0
   animator: {fileID: 2390069074983376228}
   unitName: Dev
+  UnitNumber: 7
   unitClassification: 4
   Offense: {fileID: 5924349906482882209}
   Attacking: 0

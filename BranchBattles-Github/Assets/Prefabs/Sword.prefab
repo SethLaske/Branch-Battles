@@ -190,6 +190,7 @@ MonoBehaviour:
   Armor: 0
   animator: {fileID: 8141524261004105529}
   unitName: Sword
+  UnitNumber: 4
   unitClassification: 2
   Offense: {fileID: 2779288290286299012}
   Attacking: 0

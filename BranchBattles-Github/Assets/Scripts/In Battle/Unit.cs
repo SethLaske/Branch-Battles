@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//Super class for all units that can be trained, and fight/have utility
+//Super class for all units that can be trained, and fight/have utility  
 public class Unit : Damageable
 {
     public Animator animator;
     public string unitName;     //called to show on buttons etc...
+    public int UnitNumber;  //Used to code the unit for save data. These should each be unique, and will need to be updated in the UnitCoder.
     public int unitClassification;
 
     public WeaponAttack Offense;
