@@ -445,9 +445,9 @@ MonoBehaviour:
   AgroRange: 8
   AttackCooldown: 0.2
   AttackTimer: 0
-  Cost: 25
+  Cost: 30
   TroopSpaces: 1
-  SpawnTime: 1
+  SpawnTime: 2
   HealthBar: {fileID: 7938529937569940851}
   AppearanceTime: 1.5
   HealthTimer: 0.5
@@ -461,8 +461,8 @@ MonoBehaviour:
   attackSound: {fileID: 4697823866975201210}
   EmptySpaces: 0
   Tolerance: 2
-  separationDistance: 0.5
-  separationForce: 1
+  separationDistance: 1
+  separationForce: 2
   nearbyUnits: []
 --- !u!50 &5466881715449489011
 Rigidbody2D:

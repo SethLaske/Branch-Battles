@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2, y: 0}
+  m_Offset: {x: 2.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 1}
+  m_Size: {x: 4.5, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &4280810500101309706
 MonoBehaviour:
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 0
-  HP: 15
+  HP: 20
   maxHealth: 0.5
   Armor: 0
   animator: {fileID: 1026498895368711671}
@@ -386,15 +386,15 @@ MonoBehaviour:
   unitClassification: 3
   Offense: {fileID: 4280810500101309706}
   Attacking: 0
-  MoveSpeed: 5
+  MoveSpeed: 4
   Damage: 7
-  AttackRange: 4
+  AttackRange: 5
   AgroRange: 9
   AttackCooldown: 1
   AttackTimer: 0
-  Cost: 35
+  Cost: 45
   TroopSpaces: 1
-  SpawnTime: 1
+  SpawnTime: 2.5
   HealthBar: {fileID: 5300005156802094862}
   AppearanceTime: 1.5
   HealthTimer: 0.5

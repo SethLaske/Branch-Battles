@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 0
-  HP: 30
+  HP: 35
   maxHealth: 0.5
   Armor: 0
   animator: {fileID: 8141524261004105529}
@@ -200,9 +200,9 @@ MonoBehaviour:
   AgroRange: 8
   AttackCooldown: 0.6
   AttackTimer: 0
-  Cost: 45
-  TroopSpaces: 2
-  SpawnTime: 2
+  Cost: 55
+  TroopSpaces: 1
+  SpawnTime: 4
   HealthBar: {fileID: 3473122022346028965}
   AppearanceTime: 1.5
   HealthTimer: 0.5

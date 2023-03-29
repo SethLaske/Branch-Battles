@@ -63,15 +63,15 @@ MonoBehaviour:
   unitClassification: 1
   Offense: {fileID: 6059042076321823989}
   Attacking: 0
-  MoveSpeed: 3
+  MoveSpeed: 3.5
   Damage: 5
   AttackRange: 1.1
-  AgroRange: 5
-  AttackCooldown: 1.2
+  AgroRange: 16
+  AttackCooldown: 1
   AttackTimer: 0
   Cost: 60
-  TroopSpaces: 3
-  SpawnTime: 3
+  TroopSpaces: 2
+  SpawnTime: 6
   HealthBar: {fileID: 4752767468309713435}
   AppearanceTime: 1.5
   HealthTimer: 0.5

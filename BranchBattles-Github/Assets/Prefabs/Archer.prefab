@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 3194577094383344462}
   - component: {fileID: 3194577094383344457}
   - component: {fileID: -3454249770946355449}
+  - component: {fileID: 488878995040745134}
   m_Layer: 6
   m_Name: Archer
   m_TagString: Unit
@@ -310,14 +311,14 @@ MonoBehaviour:
   Offense: {fileID: 6513884397966661677}
   Attacking: 0
   MoveSpeed: 6
-  Damage: 3
-  AttackRange: 15
+  Damage: 2
+  AttackRange: 16
   AgroRange: 20
   AttackCooldown: 0.75
   AttackTimer: 0
-  Cost: 50
+  Cost: 70
   TroopSpaces: 2
-  SpawnTime: 3
+  SpawnTime: 6
   HealthBar: {fileID: 6538940209353703374}
   AppearanceTime: 1.5
   HealthTimer: 0.5
@@ -362,7 +363,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3194577094383344461}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -467,6 +468,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &488878995040745134
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194577094383344461}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &6538940209353703374
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +594,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9191945828181456498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.952, y: 0.069, z: 0.08572285}
+  m_LocalPosition: {x: 0.952, y: 0.069, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []

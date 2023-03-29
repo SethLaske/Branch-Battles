@@ -11,6 +11,7 @@ public class Damageable : MonoBehaviour
     public float HP;
     public float maxHealth = .5f;
     public float Armor = 0; //can be used either to stop attacks that do little damage or reduce damage from all attacks
+    private bool IsDead = false;
 
     public virtual void TakeDamage(float damage)
     {
@@ -20,11 +21,12 @@ public class Damageable : MonoBehaviour
             this.HP -= damage;
         }
         else {      //Not sure how I feel about this system. I want to keep it simple, but dont want a single enemy with high defense to never die to a swarm of fighters
-            HP -= damage / Armor;
+            HP -= damage / 3;
         }
 
-        if (HP <= 0)
+        if (HP <= 0 && !IsDead)
         {
+            IsDead = true;
             Die();
         }
     }

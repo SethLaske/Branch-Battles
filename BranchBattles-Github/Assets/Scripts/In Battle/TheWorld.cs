@@ -9,7 +9,7 @@ public class TheWorld : Magic
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, -1.1f, 0);
+        transform.position = new Vector3(transform.position.x, 0f, 0);
         StartCoroutine(StopTime());
         Crusaders = GameObject.FindGameObjectsWithTag("Unit");
         foreach (GameObject crusader in Crusaders) {

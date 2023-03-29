@@ -92,15 +92,26 @@ public class Unit : Damageable
 
     //Adjusts slightly to deal with offsets in y positioning while attacking, otherwise just attacks a lot
     public virtual void Attack() {
-        if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .25) {
+        if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
             float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * MoveSpeed * Time.deltaTime);
-            Move(new Vector3(0, YMove, YMove/5));
+            //Move(new Vector3(0, YMove, YMove/5));
+            transform.position += new Vector3(0, YMove, YMove / 5); //Ignoring the proper checks when moving in the Y to hit an enemy
         }
         if (Attacking == false) {
             //Debug.Log("Starting Attack");
             Attacking = true;
             attackSound.Play();
             StartCoroutine(Attack(AttackCooldown, .05f));
+        }
+
+        if (Target != null) {
+            if (Target.transform.position.x - transform.position.x > 0)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            else {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
         }
         
     }
@@ -197,16 +208,21 @@ public class Unit : Damageable
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
     //I could add the logic to deal with the z offset here, and only pass in a Vector2, but that might ruin some other functions
-    public void Move(Vector3 movement)
+    public void Move(Vector2 movement)
     {
-        Vector3 NewPosition = transform.position + movement;
+        Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) + transform.position;
         if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
         {
             transform.position = NewPosition;
             //Debug.Log("Moving to a position");
         }
-        else {
+        else if (movement.x * transform.position.x < 0)
+        { //If they are spawned outside of lines they can walk linearly in the direction towards 0. hopefully
+            transform.position += Vector3.right * movement.x;
             //Debug.Log("Cant move, outside of walk");
+        }
+        else {
+            Debug.Log("Cant move " + movement);
         }
 
     }

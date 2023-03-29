@@ -36,6 +36,13 @@ public class PlayerConnector : MonoBehaviour
     void Start()
     {
         if (autoInitiate) {
+
+            if (PlayerInfo.PlayerTroops[0] == null)
+            {
+                levelManager.Saver.LoadPlayer();
+                Debug.Log("Player has this many troops " + PlayerInfo.TroopSpaces);
+            }
+
             GameObject PlayerTag = GameObject.FindGameObjectWithTag("Player");  //finds the player
             player = PlayerTag.GetComponent<Player>();
             playerTeam = player.Peasants;
@@ -54,21 +61,21 @@ public class PlayerConnector : MonoBehaviour
 
             counters.player = playerTeam;
 
-
+            /*
             initButton(pacifist1, playerTeam.Pacifist1);
             initButton(soldier1, playerTeam.Soldier1);
             initButton(soldier2, playerTeam.Soldier2);
             initButton(soldier3, playerTeam.Soldier3);
             initButton(soldier4, playerTeam.Soldier4);
-            
+            */
 
             //This is the good way for when the troops are slowly added and memory works properly. Until then the bad way must be used
-            /*initButton(pacifist1, PlayerInfo.PlayerTroops[0]);
+            initButton(pacifist1, PlayerInfo.PlayerTroops[0]);
             initButton(soldier1, PlayerInfo.PlayerTroops[1]);
             initButton(soldier2, PlayerInfo.PlayerTroops[2]);
             initButton(soldier3, PlayerInfo.PlayerTroops[3]);
             initButton(soldier4, PlayerInfo.PlayerTroops[4]);
-            */
+            
 
             //soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
             //soldier2.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier2));
@@ -100,6 +107,7 @@ public class PlayerConnector : MonoBehaviour
     public void initButton(Button button, Unit unit) {
         if (unit == null)
         {
+            Debug.Log("Was null");
             button.gameObject.SetActive(false);
         }
         else {

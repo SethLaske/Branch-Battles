@@ -5,6 +5,7 @@ using UnityEngine;
 public class General : Unit
 {
     public LevelManager levelmanager;
+    public float baseSpeed = 4;
     //public WeaponAttack Offense;
     //public bool Attacking = true;
     public bool waiting = true;
@@ -18,7 +19,8 @@ public class General : Unit
     {
         maxHealth = HP;
         AttackTimer = 0;
-
+        MoveSpeed = baseSpeed;
+        General.generalSpeed = baseSpeed;
     }
 
     // Update is called once per frame
@@ -73,16 +75,32 @@ public class General : Unit
         {
             animator.SetBool("Attacking", true);
             AttackTimer = 0.01f;
-            MoveSpeed /= 2;
+            MoveSpeed = 2;
             //animator.SetBool("HoldSlice", true);
         }
-        if (Input.GetKeyUp("space") && !Attacking)
+
+        if (Input.GetMouseButtonDown(1))    //Should check right click
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2);
+            foreach (Collider2D collider in colliders)
+            {
+                Debug.Log("The generals collider is overlapping with " + collider.gameObject.name);
+                Miner miner = collider.GetComponent<Miner>();
+                if (miner != null)
+                {
+                    miner.changeResource();
+                }
+            }
+        }
+
+        //People want to spam the button, so I guess Ill just allow it
+        /*if (Input.GetKeyUp("space") && !Attacking)
         {
             MoveSpeed *= 2;
             AttackTimer = 0;
             animator.SetBool("Attacking", false);
             //animator.SetBool("HoldSlice", false);
-        }
+        }*/
         if (AttackTimer > 0)
         {
             waiting = false;
@@ -99,12 +117,12 @@ public class General : Unit
                 animator.SetBool("Attacking", false);
                 Attacking = false;
                 AttackTimer = 0f;
-                MoveSpeed *= 2;
+                MoveSpeed = baseSpeed;
                 if (Input.GetKey("space"))
                 {
                     animator.SetBool("Attacking", true);
                     AttackTimer = 0.01f;
-                    MoveSpeed /= 2;
+                    MoveSpeed = 2;
                 }
             }
         }
@@ -173,7 +191,8 @@ public class General : Unit
         
         if (collider.gameObject.CompareTag("PlayerCamp"))
         {
-            
+            Damage += 3;
+            Offense.Damage += 3;
             levelmanager.BattleUIUnits.SetActive(true);
             
         }
@@ -184,7 +203,8 @@ public class General : Unit
         
         if (collider.gameObject.CompareTag("PlayerCamp"))
         {
-            
+            Damage -= 3;
+            Offense.Damage -= 3;
             levelmanager.BattleUIUnits.SetActive(false);
             
         }

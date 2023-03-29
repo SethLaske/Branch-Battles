@@ -1176,7 +1176,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 925929814}
         m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
-        m_MethodName: UnFuckYou
+        m_MethodName: LoadPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3302,6 +3302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisLevel: 2
+  RequiredLevel: 1
   sprite: {fileID: 1506431351}
 --- !u!224 &1272646649
 RectTransform:
@@ -3511,6 +3512,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisLevel: 0
+  RequiredLevel: 0
   sprite: {fileID: 1298335359}
 --- !u!1 &1351960886
 GameObject:
@@ -3833,6 +3835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ThisLevel: 1
+  RequiredLevel: 0
   sprite: {fileID: 1476897146}
 --- !u!1 &1476897143
 GameObject:
@@ -4980,7 +4983,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 925929814}
         m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
-        m_MethodName: Fuckyou
+        m_MethodName: SavePlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

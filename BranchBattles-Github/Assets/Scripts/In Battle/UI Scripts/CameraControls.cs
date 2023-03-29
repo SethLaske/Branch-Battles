@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
+    public Transform PlayerGeneral;
+
     public int CameraDirection = 0;
     public int cameraSpeed = 5;
     private bool border = false;
@@ -52,35 +54,28 @@ public class CameraControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(1)) {
+        CameraDirection = 0;
+
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space)) && PlayerGeneral!=null) {
+            MoveCamera((PlayerGeneral.position.x - transform.position.x) * 3 * Time.deltaTime);
+        }
+
+        else if (Input.GetMouseButton(1)) {
 
             float MouseX = (Input.mousePosition.x - Screen.width / 2) / Screen.width;
             //Debug.Log("Mouse is at: " + MouseX);
-            if (!border || (transform.position.x * MouseX < 0))
-            {
-                float MoveSpeed = MouseX * cameraSpeed;
-                transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
-                if (FrontGround != null)
-                {
-                    FrontGround.transform.position += new Vector3((MoveSpeed * FGSpeed) * Time.deltaTime, 0, 0);
-                    CBG.transform.position += new Vector3((MoveSpeed * CBGSpeed) * Time.deltaTime, 0, 0);
-                    DBG.transform.position += new Vector3((MoveSpeed * DBGSpeed) * Time.deltaTime, 0, 0);
-                }
-
-
-                border = false;
-            }
-            //cameraAcceleration += (10f * Time.deltaTime);
+            MoveCamera(MouseX * cameraSpeed * Time.deltaTime);
+            
         }
 
         
 
-        CameraDirection = 0;
+        
 
 
         //I have three different ways to control the camera and dont like any of them
 
-        if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        else if (Input.GetKey(KeyCode.Q) || Input.GetKey(KeyCode.LeftArrow))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
             CameraDirection = -1;
         }
@@ -91,18 +86,8 @@ public class CameraControls : MonoBehaviour
 
         if (CameraDirection != 0)
         {
-            if (!border || (transform.position.x * CameraDirection < 0))
-            {
-                transform.position += new Vector3(CameraDirection * (cameraSpeed + cameraAcceleration) * Time.deltaTime, 0, 0);
-                if (FrontGround != null) {
-                    FrontGround.transform.position += new Vector3(CameraDirection * ((cameraSpeed + cameraAcceleration) * FGSpeed) * Time.deltaTime, 0, 0);
-                    CBG.transform.position += new Vector3(CameraDirection * ((cameraSpeed + cameraAcceleration) * CBGSpeed) * Time.deltaTime, 0, 0);
-                    DBG.transform.position += new Vector3(CameraDirection * ((cameraSpeed + cameraAcceleration) * DBGSpeed) * Time.deltaTime, 0, 0);
-                }
-                
-
-                border = false;
-            }
+            MoveCamera(CameraDirection * (cameraSpeed + cameraAcceleration) * Time.deltaTime);
+           
             cameraAcceleration += (10f * Time.deltaTime); 
         }
         else {
@@ -115,6 +100,22 @@ public class CameraControls : MonoBehaviour
         if (collider.gameObject.CompareTag("Border")) {
             border = true;
             //Debug.Log("Touched border");
+        }
+    }
+
+    public void MoveCamera(float X) {
+        if (!border || (transform.position.x * X < 0))
+        {
+            transform.position += new Vector3(X, 0, 0);
+            if (FrontGround != null)
+            {
+                FrontGround.transform.position += new Vector3((X * FGSpeed), 0, 0);
+                CBG.transform.position += new Vector3((X * CBGSpeed), 0, 0);
+                DBG.transform.position += new Vector3((X * DBGSpeed), 0, 0);
+            }
+
+
+            border = false;
         }
     }
 

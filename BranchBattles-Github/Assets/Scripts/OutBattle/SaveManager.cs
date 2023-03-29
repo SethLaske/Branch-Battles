@@ -34,7 +34,7 @@ public class SaveManager : MonoBehaviour
     }
 
     // Save the game data to disk
-    public void SaveGame(GameData data)
+    private void SaveGame(GameData data)
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream stream = new FileStream(saveFilePath, FileMode.Create);
@@ -44,7 +44,7 @@ public class SaveManager : MonoBehaviour
     }
 
     // Load the game data from disk
-    public GameData LoadGame()
+    private GameData LoadGame()
     {
         if (File.Exists(saveFilePath))
         {
@@ -63,7 +63,7 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    public void Fuckyou() {
+    public void SavePlayer() {
         GameData SaveFile = new GameData();
 
         //Saves most of the data directly from the static player info script
@@ -90,7 +90,7 @@ public class SaveManager : MonoBehaviour
     }
 
 
-    public void UnFuckYou() {
+    public void LoadPlayer() {
         //Pulls the data out
         GameData SaveFile = LoadGame();
 

@@ -86,7 +86,7 @@ public class Soldier : Unit
                 }
             }
             else {
-                nearbyUnits.Remove(unit);
+                //nearbyUnits.Remove(unit);
             }
             
         }

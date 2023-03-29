@@ -24,7 +24,7 @@ public class CloudGenerator : MonoBehaviour
         float delay = Random.Range(0, MaxInterval);
         yield return new WaitForSeconds(delay);
 
-        Debug.Log("Spawning Cloud");
+        //Debug.Log("Spawning Cloud");
         GameObject NewCloud = Instantiate(clouds, new Vector3(transform.position.x, transform.position.y + Random.Range(-1, 1), transform.position.z), Quaternion.identity, transform);
         
 

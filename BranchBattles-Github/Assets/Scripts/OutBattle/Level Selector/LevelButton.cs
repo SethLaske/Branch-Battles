@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelButton : MonoBehaviour
 {
     public int ThisLevel;
+    public int RequiredLevel;
     public Image sprite;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +19,7 @@ public class LevelButton : MonoBehaviour
                 gameObject.SetActive(true);
                 sprite.color = Color.green;
             }
-            else if (PlayerInfo.LevelKeys[ThisLevel - 1] == true)
+            else if (PlayerInfo.LevelKeys[RequiredLevel] == true)
             {
                 gameObject.SetActive(true);
                 sprite.color = Color.red;

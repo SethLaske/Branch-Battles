@@ -136,11 +136,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 0
-  HP: 20
+  HP: 35
   maxHealth: 0.5
   Armor: 0
   animator: {fileID: 4166622894662010841}
   unitName: Miner
+  UnitNumber: 0
   unitClassification: 0
   Offense: {fileID: 0}
   Attacking: 0

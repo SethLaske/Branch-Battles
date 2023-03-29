@@ -2207,6 +2207,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4528230631484193851}
   - component: {fileID: 7135179701743287231}
+  - component: {fileID: 2932719819369804761}
   m_Layer: 0
   m_Name: Level Manager
   m_TagString: Level Manager
@@ -2249,10 +2250,34 @@ MonoBehaviour:
   BattleUIUnits: {fileID: 727249121373222018}
   PlayerObject: {fileID: 0}
   EnemyObject: {fileID: 0}
+  Saver: {fileID: 2932719819369804761}
   currentLevel: 2
   currentTroop: 0
   newTroop: {fileID: 0}
   AllUnits: []
+--- !u!114 &2932719819369804761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867035553263183690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee845cccedcee9b4eafd34c9fb59095d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitCoder:
+  - {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+  - {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+  - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+  - {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
+  - {fileID: 1116175229595562662, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
+  counter: 0
+  unit: {fileID: 0}
 --- !u!1 &3163482158824115487
 GameObject:
   m_ObjectHideFlags: 0
@@ -4642,10 +4667,10 @@ RectTransform:
   m_Father: {fileID: 6879395271291439449}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: -1974, y: -980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6811587016611586180
 GameObject:

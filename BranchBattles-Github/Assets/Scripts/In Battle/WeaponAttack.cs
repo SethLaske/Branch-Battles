@@ -24,7 +24,7 @@ public class WeaponAttack : MonoBehaviour
 
     public virtual void Attack()
     {
-        Debug.Log("Starting Attack");
+        //Debug.Log("Starting Attack");
         FinishedAttack = false;
         AttackBox.enabled = true;
         Wielder.Move(Wielder.transform.rotation * new Vector3(-1 * Damage * Time.deltaTime, 0, 0)); //Added kickback, not sure how I feel about it
@@ -39,7 +39,7 @@ public class WeaponAttack : MonoBehaviour
         {
             uc.TakeDamage(Damage);
             if (!MultiHit) {
-                Debug.Log("A single target has been hit so this will stop hitting other things");
+                //Debug.Log("A single target has been hit so this will stop hitting other things");
                 AttackBox.enabled = false;
                 FinishedAttack = true;
             }

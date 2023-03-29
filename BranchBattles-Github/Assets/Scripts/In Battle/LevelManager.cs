@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
     public GameObject PlayerObject;
     public GameObject EnemyObject;
 
+    public SaveManager Saver;
+
     //Used for troop unlocks and level progression on the map
     public int currentLevel;
     public int currentTroop;
@@ -30,6 +32,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         if (buttonStart)
         {
             BattleUI.SetActive(false);

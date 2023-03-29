@@ -8,12 +8,13 @@ public class Lightning : Magic
 {
     public GameObject Bolt;
     public Collider2D AOE;
+    public float duration;
     public float dropSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, .5f, 0);
+        transform.position = new Vector3(transform.position.x, 4f, 0);
         StartCoroutine(LightningBolt());
         //Instantiate(Bolt, transform.position, Quaternion.Euler(new Vector2(0, 0)));
         //Instantiate(Bolt, transform.position, Quaternion.Euler(new Vector2(0, 180)));
@@ -48,7 +49,7 @@ public class Lightning : Magic
     IEnumerator LightningBolt()
     {
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(duration);
         Destroy(gameObject);
     }
 }

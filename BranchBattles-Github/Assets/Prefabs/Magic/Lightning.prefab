@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1169858046625495191}
   - component: {fileID: 3098053328963865687}
   - component: {fileID: 2421140077324994775}
+  - component: {fileID: 8875801213403357683}
   m_Layer: 0
   m_Name: Lightning
   m_TagString: Untagged
@@ -129,7 +130,8 @@ MonoBehaviour:
   magicSound: {fileID: 3098053328963865687}
   Bolt: {fileID: 194598016232562218, guid: 720540578f7d9cf43bd088af39ed1b29, type: 3}
   AOE: {fileID: 2421140077324994775}
-  dropSpeed: 10
+  duration: 2.1
+  dropSpeed: 5
 --- !u!82 &3098053328963865687
 AudioSource:
   m_ObjectHideFlags: 0
@@ -254,3 +256,23 @@ PolygonCollider2D:
     - - {x: 0, y: 0}
       - {x: 0.25, y: 3}
       - {x: -0.25, y: 3}
+--- !u!95 &8875801213403357683
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 272214254648096260}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e4792d2fa9d7b1d4794893cbc0eb7e0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

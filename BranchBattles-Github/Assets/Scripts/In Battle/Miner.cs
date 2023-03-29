@@ -75,11 +75,11 @@ public class Miner : Unit
     }
 
 
-    IEnumerator IMine()
+    IEnumerator IMine(float duration)
     {
         Full = true;
         //Debug.Log("Time Starting");
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(duration);
 
         
         
@@ -108,10 +108,12 @@ public class Miner : Unit
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject.CompareTag(Resource))        
         {
+            Mine mine = collision.GetComponent<Mine>();
             State = "Mining";   //Being in the mining State should mean that it does nothing
-            StartCoroutine(IMine());
+            StartCoroutine(IMine(mine.Time));
         }
 
         if (collision.gameObject.CompareTag("Building"))         //Will be compared to barracks/team base eventually

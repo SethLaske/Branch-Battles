@@ -29,7 +29,9 @@ public class TeamInfo : MonoBehaviour
     //The building troops will spawn from
     public Building Barracks;
 
+    [Header ("General's Info")]
     public General general;
+    public float generalSpeed;
     public float TotalSpeed;    //total speed of the troops, which will be used to calculate the Generals Speed
     public int ActiveCount;
 
@@ -38,6 +40,8 @@ public class TeamInfo : MonoBehaviour
 
     public float Advantage = 1; //Buff or Debuff a team
 
+    //All of this can be removed. The player will have their list be maintained in Player info and get pulled by the buttons
+    //The enemy can have a list in the AI section
     //Available units
     public Unit Soldier1;
     public Unit Soldier2;
@@ -48,6 +52,8 @@ public class TeamInfo : MonoBehaviour
 
     //When Save data is prepared this will replace the individual markings
     public Unit[] SpawnableUnits = new Unit[5];
+    public List<Unit> Reinforcements = new List<Unit>();
+    public bool Reinforced = false;
 
     public TeamInfo Opponent;
 
@@ -90,9 +96,9 @@ public class TeamInfo : MonoBehaviour
 
                 //Appies buffs/debuffs
                 FreshMeat.HP *= Advantage;
-                FreshMeat.MoveSpeed *= Advantage;
+                //FreshMeat.MoveSpeed *= Advantage;
                 FreshMeat.Damage *= Advantage;
-                FreshMeat.AttackCooldown /= Advantage;
+                //FreshMeat.AttackCooldown /= Advantage;
 
                 //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
                 TotalSpeed += FreshMeat.MoveSpeed;
@@ -123,6 +129,41 @@ public class TeamInfo : MonoBehaviour
         }
     }
 
+    public void spawnReinforcements() {
+        if (Reinforced == false) {
+            Reinforced = true;
+            foreach (Unit reinforcement in Reinforcements) {
+                Unit FreshMeat = Instantiate(reinforcement, new Vector3(Barracks.transform.position.x - (Team * Random.Range(8,12)), 0, 0), Quaternion.identity);
+                if (Team < 0)
+                {
+                    FreshMeat.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
+                }
+
+                TroopCount += FreshMeat.TroopSpaces;
+                troopCategory[FreshMeat.unitClassification]++;
+
+                //Name is set for my use, and team controls the direction
+                FreshMeat.name = Team + ": " + FreshMeat.name;
+                FreshMeat.General = this;
+                FreshMeat.Team = Barracks.Team;
+
+
+                //Appies buffs/debuffs
+                FreshMeat.HP *= Advantage;
+                //FreshMeat.MoveSpeed *= Advantage;
+                FreshMeat.Damage *= Advantage;
+                //FreshMeat.AttackCooldown /= Advantage;
+
+                //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
+                TotalSpeed += FreshMeat.MoveSpeed;
+                ActiveCount++;
+                UpdateGeneral();
+            }
+        
+        }
+    }
+
+
     //Dev Buttons are fun
     public void ForceSpawnUnit(Unit newUnit)
     {
@@ -135,7 +176,7 @@ public class TeamInfo : MonoBehaviour
 
     public void useMagic(Magic magic, float distance) {
         if (Gems > 0) {
-            Instantiate(magic, new Vector3(distance, 10f, 0), Quaternion.Euler(new Vector2(0, 0)));
+            Instantiate(magic, new Vector3(distance, 0, 0), Quaternion.Euler(new Vector2(0, 0)));
             Gems--;
         } 
     }
@@ -206,13 +247,16 @@ public class TeamInfo : MonoBehaviour
     //Allows the general to be powered up with larger army sizes. Could change it to be only those near to him, but I prefer the inherent aspect to this
     public void UpdateGeneral() {
         if (general != null) {
-            if (TroopCount > 0)
+            if (ActiveCount > 10)
             {
-                general.MoveSpeed = TotalSpeed / ActiveCount;
+                general.baseSpeed = TotalSpeed / ActiveCount;
             }
-            else
+            else if (ActiveCount > 0)
             {
-                general.MoveSpeed = 5;
+                general.baseSpeed = ((TotalSpeed / ActiveCount) - generalSpeed) * ActiveCount/ 10 + generalSpeed;
+            }
+            else {
+                general.baseSpeed = generalSpeed;
             }
 
             general.Offense.Damage = general.Damage + ActiveCount / 5;
