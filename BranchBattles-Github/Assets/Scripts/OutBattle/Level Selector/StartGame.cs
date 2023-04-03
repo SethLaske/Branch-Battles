@@ -15,6 +15,7 @@ public class StartGame : MonoBehaviour
             PlayerInfo.LevelKeys.Add(i, false);
             PlayerInfo.TroopKeys.Add(i, false);
         }
+        //PlayerInfo.LevelKeys[-1] = true;
         PlayerInfo.TroopSpaces = 0;
 
         //PlayerPrefs.SetInt("CompletedLevels", -1);

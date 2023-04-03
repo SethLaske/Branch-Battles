@@ -9,6 +9,7 @@ public class TutorialExplanation : MonoBehaviour
     public bool Read = false;
 
     public GameObject Explanation;
+    public GameObject Arrow;
     public GameObject UIRevealed;
 
     public GameObject NextTutorial;
@@ -20,7 +21,11 @@ public class TutorialExplanation : MonoBehaviour
         if (UIRevealed != null) {
             UIRevealed.SetActive(true);
         }
-        
+        if (Arrow != null)
+        {
+            Arrow.SetActive(true);
+        }
+
     }
 
     // Update is called once per frame
@@ -37,6 +42,10 @@ public class TutorialExplanation : MonoBehaviour
         yield return new WaitForSeconds(ReadBuffer);
         Explanation.SetActive(false);
         yield return new WaitForSeconds(UseTime);
+        if (Arrow != null)
+        {
+            Arrow.SetActive(false);
+        }
         if (NextTutorial != null) {
             NextTutorial.SetActive(true);
         }

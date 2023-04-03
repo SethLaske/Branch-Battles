@@ -16,6 +16,8 @@ public class GodAI : MonoBehaviour
 {
     public TeamInfo Peasants;
     public List<Unit> StartSequence = new List<Unit>();
+    public int maxGoldThreshold = 75;
+    public int attackDifferential;
     public int[] minTroops = new int[5];
     public int[] maxTroops = new int[5];
     public CategorySpawns[] SpawnableUnits;
@@ -36,15 +38,6 @@ public class GodAI : MonoBehaviour
     {
         if (Peasants.Barracks != null && Peasants.Opponent.Barracks != null && (Peasants.TroopCount < Peasants.TroopMax)) {
             spawnTroop();
-
-            if (Peasants.TroopCount > 6)
-            {
-                //Peasants.Charge();
-            }
-            else if (Peasants.TroopCount < 5)
-            {
-                //Peasants.setRallyPoint(15);
-            }
             positionTroops();
         }
         if (Peasants.Barracks.HP < 75) {
@@ -56,7 +49,7 @@ public class GodAI : MonoBehaviour
         int MySoldiers = Peasants.TroopCount - Peasants.troopCategory[0];
         int EnemySoldiers = Peasants.Opponent.TroopCount - Peasants.Opponent.troopCategory[0];
 
-        if (MySoldiers - EnemySoldiers > 3) {
+        if (MySoldiers - EnemySoldiers > attackDifferential) {
             Peasants.Charge();
         } else if (EnemySoldiers > MySoldiers) {
             Peasants.setRallyPoint(10);
@@ -84,7 +77,10 @@ public class GodAI : MonoBehaviour
             }
         }
 
-        
+
+        if (Peasants.Gold < maxGoldThreshold) {
+            return;
+        }
 
         for (int i = 0; i < maxTroops.Length; i++)
         {

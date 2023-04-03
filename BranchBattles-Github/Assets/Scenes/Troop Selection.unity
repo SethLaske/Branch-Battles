@@ -4374,7 +4374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99cd4e1e730687940a1c9f882284cc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  troopNumber: 0
+  troopNumber: 7
 --- !u!1 &1447470449
 GameObject:
   m_ObjectHideFlags: 0

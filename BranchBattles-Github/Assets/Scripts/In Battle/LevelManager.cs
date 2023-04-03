@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
 
     //Used for troop unlocks and level progression on the map
     public int currentLevel;
-    public int currentTroop;
+    public int maxPlayerTroops;
 
     //public int newTroopNumber;
     public Unit newTroop;   //Used to set the new troop to the players party when added immediately
@@ -76,19 +76,14 @@ public class LevelManager : MonoBehaviour
 
             PlayerInfo.LevelKeys[currentLevel] = true;
 
-            if (PlayerPrefs.GetInt("CompletedLevels") < currentLevel) {
-                //Debug.Log("Next level unlocked:" + currentLevel);
-                PlayerPrefs.SetInt("CompletedLevels", currentLevel);
+            if (newTroop != null) {
+                PlayerInfo.TroopKeys[newTroop.UnitNumber] = true;
             }
 
-            if (PlayerPrefs.GetInt("UnlockedTroops") < currentTroop)
-            {
-                //Debug.Log("Adding new troop");
-                PlayerPrefs.SetInt("UnlockedTroops", currentTroop);
-                if (currentTroop < 5) {
-                    PlayerInfo.PlayerTroops[currentTroop] = newTroop; 
-                }
+            if (maxPlayerTroops > PlayerInfo.TroopSpaces) {
+                PlayerInfo.TroopSpaces = maxPlayerTroops;
             }
+            
 
         }
         else if (losingTeam == 1)

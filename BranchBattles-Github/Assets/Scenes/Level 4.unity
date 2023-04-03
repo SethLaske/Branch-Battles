@@ -813,6 +813,10 @@ PrefabInstance:
       value: For Honor
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: newTroop
+      value: 
+      objectReference: {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: EnemyObject
       value: 
       objectReference: {fileID: 822466833}
@@ -820,6 +824,10 @@ PrefabInstance:
       propertyPath: PlayerObject
       value: 
       objectReference: {fileID: 1952470767}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: currentLevel
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8801217308692902379, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
       value: Welcome to the testing level. If you were invited here, you should be
@@ -3042,6 +3050,8 @@ MonoBehaviour:
   StartSequence:
   - {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
   - {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
+  maxGoldThreshold: 75
+  attackDifferential: 0
   minTroops: 0300000000000000020000000300000000000000
   maxTroops: 0400000002000000020000000300000000000000
   SpawnableUnits:

@@ -133,7 +133,7 @@ public class TeamInfo : MonoBehaviour
         if (Reinforced == false) {
             Reinforced = true;
             foreach (Unit reinforcement in Reinforcements) {
-                Unit FreshMeat = Instantiate(reinforcement, new Vector3(Barracks.transform.position.x - (Team * Random.Range(8,12)), 0, 0), Quaternion.identity);
+                Unit FreshMeat = Instantiate(reinforcement, new Vector3(Barracks.transform.position.x - (Team * Random.Range(2,10)), 0, 0), Quaternion.identity);
                 if (Team < 0)
                 {
                     FreshMeat.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
@@ -246,7 +246,7 @@ public class TeamInfo : MonoBehaviour
 
     //Allows the general to be powered up with larger army sizes. Could change it to be only those near to him, but I prefer the inherent aspect to this
     public void UpdateGeneral() {
-        if (general != null) {
+        if (generalSpeed > 0) {
             if (ActiveCount > 10)
             {
                 general.baseSpeed = TotalSpeed / ActiveCount;

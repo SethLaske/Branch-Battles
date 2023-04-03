@@ -30,43 +30,33 @@ public class General : Unit
         //Movement Controls
         if (Input.GetKey(KeyCode.A))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            NewPosition = transform.position + (MoveSpeed * Vector3.left * Time.deltaTime);
+            
+            Move(new Vector2(MoveSpeed * -1 * Time.deltaTime, 0));
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            /*NewPosition = transform.position + (MoveSpeed * Vector3.left * Time.deltaTime);   saving the original just in case
             if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
             {
+                Debug.Log("Moving left from " + transform.position + " to " + NewPosition);
                 transform.position = NewPosition;
                 transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
+            }*/
             waiting = false;
         }
         if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            NewPosition = transform.position + (MoveSpeed * Vector3.right * Time.deltaTime);
-            if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
-            {
-                transform.position = NewPosition;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
+            Move(new Vector2(MoveSpeed * 1 * Time.deltaTime, 0));
+            transform.rotation = Quaternion.Euler(0, 0, 0);
             waiting = false;
         }
 
         if (Input.GetKey(KeyCode.W))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            NewPosition = transform.position + (MoveSpeed * new Vector3(0, 1, .2f) * Time.deltaTime);
-            if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
-            {
-                transform.position = NewPosition;
-                //transform.position += 2f * Vector3.forward * Time.deltaTime;
-            }
+            Move(new Vector2(0, MoveSpeed * 1 * Time.deltaTime));
             waiting = false;
         }
         if (Input.GetKey(KeyCode.S))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            NewPosition = transform.position + (MoveSpeed * new Vector3(0, -1, -.2f) * Time.deltaTime);
-            if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
-            {
-                transform.position = NewPosition;
-                //transform.position += 2f * Vector3.back * Time.deltaTime;
-            }
+            Move(new Vector2(0, MoveSpeed * -1 * Time.deltaTime));
             waiting = false;
         }
 
@@ -79,7 +69,7 @@ public class General : Unit
             //animator.SetBool("HoldSlice", true);
         }
 
-        if (Input.GetMouseButtonDown(1))    //Should check right click
+        if (Input.GetKeyDown(KeyCode.R))    
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2);
             foreach (Collider2D collider in colliders)
@@ -125,6 +115,9 @@ public class General : Unit
                     MoveSpeed = 2;
                 }
             }
+        }
+        else {
+            MoveSpeed = baseSpeed;
         }
 
         //Health bar clearing

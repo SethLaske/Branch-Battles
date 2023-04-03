@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 //Handles a lot of the player specific interface to TeamInfo. The buttons bypass the player for spawning, but the rest is done here
 public class Tutorial : MonoBehaviour
 {
+    public GameObject UI;
+
     public TeamInfo Peasants;
     public TeamInfo Barbarians;
 
@@ -33,13 +35,30 @@ public class Tutorial : MonoBehaviour
         PlayerInfo.PlayerTroops[0] = miner;
         PlayerInfo.PlayerTroops[1] = fighter;
         PlayerInfo.PlayerTroops[2] = spear;
+
+        PlayerInfo.TroopKeys[0] = true;
+        PlayerInfo.TroopKeys[1] = true;
+        PlayerInfo.TroopKeys[2] = true;
+
+        PlayerInfo.TroopSpaces = 2;
+
+        UI.SetActive(true);
+
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(spear);
+        Barbarians.ForceSpawnUnit(spear);
+        Barbarians.ForceSpawnUnit(spear);
+        Barbarians.ForceSpawnUnit(spear);
     }
 
-
-    void Update()
+    private void Update()
     {
-        
+        if (Peasants.Gems > 0) {
+            Barbarians.setRallyPoint(0);
+        }
     }
-
-    
 }

@@ -813,6 +813,10 @@ PrefabInstance:
       value: For Honor
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: newTroop
+      value: 
+      objectReference: {fileID: 1116175229595562662, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: EnemyObject
       value: 
       objectReference: {fileID: 822466833}
@@ -820,6 +824,10 @@ PrefabInstance:
       propertyPath: PlayerObject
       value: 
       objectReference: {fileID: 1952470767}
+    - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: currentLevel
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8801217308692902379, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
       value: Welcome to the testing level. If you were invited here, you should be
@@ -3040,11 +3048,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Peasants: {fileID: 822466835}
   StartSequence:
-  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   - {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
-  attackDifferential: -1
-  minTroops: 0200000000000000010000000100000000000000
-  maxTroops: 0300000001000000020000000200000000000000
+  - {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
+  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+  - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+  maxGoldThreshold: 100
+  attackDifferential: 0
+  minTroops: 0300000001000000020000000200000000000000
+  maxTroops: 0500000002000000040000000500000000000000
   SpawnableUnits:
   - Category: 0
     PotentialSpawns:
@@ -3052,12 +3063,19 @@ MonoBehaviour:
   - Category: 1
     PotentialSpawns:
     - {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+    - {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
   - Category: 2
     PotentialSpawns:
     - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+    - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+    - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+    - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
   - Category: 3
     PotentialSpawns:
     - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+    - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+    - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+    - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
 --- !u!114 &822466835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3071,9 +3089,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: -1
-  Gold: 100
+  Gold: 200
   TroopCount: 0
-  TroopMax: 20
+  TroopMax: 25
   Gems: 0
   troopCategory: 0000000000000000000000000000000000000000
   SpawnUnits: []
@@ -3088,7 +3106,7 @@ MonoBehaviour:
   ActiveCount: 0
   RallyPoint: 0
   RallyFlag: {fileID: 955064819}
-  Advantage: 0.9
+  Advantage: 1
   Soldier1: {fileID: 0}
   Soldier2: {fileID: 0}
   Soldier3: {fileID: 0}
@@ -3100,7 +3118,12 @@ MonoBehaviour:
   - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
   - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
   - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
-  Reinforcements: []
+  Reinforcements:
+  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+  - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+  - {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+  - {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
   Reinforced: 0
   Opponent: {fileID: 1952470770}
 --- !u!4 &822466836
