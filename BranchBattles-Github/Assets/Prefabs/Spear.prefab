@@ -249,7 +249,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4568610540820579215}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4568610540671966794
 SpriteRenderer:
@@ -355,8 +355,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4568610540671966795}
   - {fileID: 7408728339638786787}
+  - {fileID: 4568610540671966795}
   - {fileID: 1320285840383768615}
   - {fileID: 6071407785676077898}
   - {fileID: 1583512691121975181}
@@ -377,7 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 0
-  HP: 20
+  HP: 15
   maxHealth: 0.5
   Armor: 0
   animator: {fileID: 1026498895368711671}
@@ -658,7 +658,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4568610540820579215}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!212 &2299813961673273712
 SpriteRenderer:

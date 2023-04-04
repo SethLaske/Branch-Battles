@@ -14,6 +14,7 @@ public class TeamInfo : MonoBehaviour
     public int TroopCount;
     public int TroopMax;
     public int Gems;
+    public int Souls;
 
     public int[] troopCategory = new int[5]; //To be used for the AI
 
@@ -175,10 +176,15 @@ public class TeamInfo : MonoBehaviour
     }
 
     public void useMagic(Magic magic, float distance) {
-        if (Gems > 0) {
+        /*if (Gems > 0) {
             Instantiate(magic, new Vector3(distance, 0, 0), Quaternion.Euler(new Vector2(0, 0)));
             Gems--;
-        } 
+        }*/
+
+        if (Souls > magic.SoulCost) {
+            Instantiate(magic, new Vector3(distance, 0, 0), Quaternion.Euler(new Vector2(0, 0)));
+            Souls-= magic.SoulCost;
+        }
     }
 
     public void spawnSoldier1()

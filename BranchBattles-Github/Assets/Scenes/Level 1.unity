@@ -640,10 +640,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 727249121373222018, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 806623312568354418, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -655,10 +651,6 @@ PrefabInstance:
     - target: {fileID: 2867035553263183690, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_TagString
       value: Level Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3842601180672011752, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5357595884900248922, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text

@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TroopSelector : MonoBehaviour
 {
     public GameObject selectedTroopUI;
     public Unit selectedTroop;
+
+    public Image troopSprite;
+    public TextMeshProUGUI stats;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,11 +29,15 @@ public class TroopSelector : MonoBehaviour
         selectedTroopUI = newUI;
         
 
-        selectedTroopUI.SetActive(true);
+        //selectedTroopUI.SetActive(true);
     }
 
-    public void selectTroop(Unit newUnit) {
+    public void selectTroop(GameObject newUnitObject) {
+        Unit newUnit = newUnitObject.GetComponent<Unit>();
         selectedTroop = newUnit;
+        troopSprite.sprite = newUnitObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+        string text = string.Format("{0}\n\nDamage:  {1}\nCooldown:  {2}\nSpeed:  {3}\nArmor:  {4}", newUnit.unitName, newUnit.Damage, newUnit.AttackCooldown, newUnit.MoveSpeed, newUnit.Armor);
+        stats.SetText(text); 
     }
     
 

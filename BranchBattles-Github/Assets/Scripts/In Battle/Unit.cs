@@ -172,6 +172,7 @@ public class Unit : Damageable
         General.troopCategory[unitClassification]--;
         General.TotalSpeed -= (MoveSpeed*DebuffMult);
         General.ActiveCount--;
+        General.Souls++;
         General.UpdateGeneral();
         Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
         Destroy(gameObject);

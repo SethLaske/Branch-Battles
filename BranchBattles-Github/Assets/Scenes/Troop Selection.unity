@@ -213,19 +213,7 @@ MonoBehaviour:
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 343233673}
+          m_ObjectArgument: {fileID: 4568610540820579213, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -370,23 +358,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1824025185}
         m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 933665151}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
+          m_ObjectArgument: {fileID: 1792269021062788889, guid: 74bd2791572702644a27db7511b89017, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -778,19 +754,7 @@ MonoBehaviour:
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 370268003}
+          m_ObjectArgument: {fileID: 5466881715449489008, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1357,19 +1321,7 @@ MonoBehaviour:
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1588861402}
+          m_ObjectArgument: {fileID: 1568962464096031910, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -1725,6 +1677,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 468123620}
   m_CullTransparentMesh: 1
+--- !u!1 &473931399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 473931400}
+  - component: {fileID: 473931401}
+  - component: {fileID: 473931402}
+  m_Layer: 5
+  m_Name: Troop Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &473931400
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473931399}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1247761273}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -516}
+  m_SizeDelta: {x: 300, y: 300}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &473931401
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473931399}
+  m_CullTransparentMesh: 1
+--- !u!114 &473931402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473931399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &557103144
 GameObject:
   m_ObjectHideFlags: 0
@@ -2087,19 +2115,7 @@ MonoBehaviour:
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1447470449}
+          m_ObjectArgument: {fileID: 582674381905752979, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -3809,6 +3825,148 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186555968}
   m_CullTransparentMesh: 1
+--- !u!1 &1214460972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1214460975}
+  - component: {fileID: 1214460974}
+  - component: {fileID: 1214460973}
+  m_Layer: 5
+  m_Name: Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1214460973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214460972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 'Miner
+
+
+    Attack:   1
+
+    Cooldown:   1
+
+    Speed:   1'
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 50
+  m_fontSizeBase: 50
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1214460974
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214460972}
+  m_CullTransparentMesh: 1
+--- !u!224 &1214460975
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214460972}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1247761273}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -158}
+  m_SizeDelta: {x: 500, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1247761272
 GameObject:
   m_ObjectHideFlags: 0
@@ -3845,6 +4003,8 @@ RectTransform:
   - {fileID: 1567867637}
   - {fileID: 1930028239}
   - {fileID: 588465760}
+  - {fileID: 473931400}
+  - {fileID: 1214460975}
   m_Father: {fileID: 1824025184}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3943,19 +4103,7 @@ MonoBehaviour:
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1567867636}
+          m_ObjectArgument: {fileID: 3194577094383344461, guid: ce011568387938540bd1409974d64e52, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4305,19 +4453,7 @@ MonoBehaviour:
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1116175229595562662, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 588465759}
+          m_ObjectArgument: {fileID: 1116175229595562663, guid: 12c891c698883f441b90a182ca7f5c15, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -4735,19 +4871,7 @@ MonoBehaviour:
         m_MethodName: selectTroop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
-          m_ObjectArgumentAssemblyTypeName: Unit, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1824025185}
-        m_TargetAssemblyTypeName: TroopSelector, Assembly-CSharp
-        m_MethodName: showTroop
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1930028238}
+          m_ObjectArgument: {fileID: 2203268833559490361, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -5511,6 +5635,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedTroopUI: {fileID: 933665151}
   selectedTroop: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
+  troopSprite: {fileID: 473931402}
+  stats: {fileID: 1214460973}
 --- !u!1 &1911593777
 GameObject:
   m_ObjectHideFlags: 0

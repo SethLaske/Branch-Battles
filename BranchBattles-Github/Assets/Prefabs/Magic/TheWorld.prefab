@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acfa19a5d3266564fa271af64f82e0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magicSound: {fileID: 0}
+  SoulCost: 5
   TimeStopTime: 3
   Crusaders: []
 --- !u!1 &3779921328601385658

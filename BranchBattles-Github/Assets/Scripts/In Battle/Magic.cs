@@ -5,6 +5,7 @@ using UnityEngine;
 public class Magic : MonoBehaviour
 {
     public AudioSource magicSound;
+    public int SoulCost;
     // Start is called before the first frame update
     void Start()
     {

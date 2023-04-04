@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magicSound: {fileID: 3098053328963865687}
+  SoulCost: 10
   Bolt: {fileID: 194598016232562218, guid: 720540578f7d9cf43bd088af39ed1b29, type: 3}
   AOE: {fileID: 2421140077324994775}
   duration: 2.1
