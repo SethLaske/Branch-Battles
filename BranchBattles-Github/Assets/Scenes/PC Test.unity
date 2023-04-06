@@ -3074,8 +3074,9 @@ MonoBehaviour:
   Team: -1
   Gold: 100
   TroopCount: 0
-  TroopMax: 20
+  TroopMax: 0
   Gems: 0
+  Souls: 0
   troopCategory: 0000000000000000000000000000000000000000
   SpawnUnits: []
   TroopTimer: 0
@@ -5553,6 +5554,7 @@ MonoBehaviour:
   TroopCount: 0
   TroopMax: 20
   Gems: 0
+  Souls: 0
   troopCategory: 0000000000000000000000000000000000000000
   SpawnUnits: []
   TroopTimer: 0

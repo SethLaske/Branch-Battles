@@ -39,40 +39,36 @@ public class Soldier : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
-        //Checks if anything is ahead or behind it
-
-        //The one can likely be replaced with larger/smaller units sizes to do stuff like that
-        //Attack Range must be greater than this check distance
-        //Debug.Log("Coords to check ahead are: " + (transform.position + new Vector3(.9f * Team, 0, 0)));
-        /*if (Physics2D.OverlapCircle(transform.position + new Vector3(.9f * Team, 0, 0), .1f, MovementBlockers))
-        { //Checks if there is anything one length ahead
-            ManAhead = true;
-        }
-        else {
-            ManAhead = false;
-        }
-
-        if (Physics2D.OverlapCircle(transform.position + new Vector3(-1.1f * Team, 0, 0), .1f, MovementBlockers))
-        { //Checks if there is anything one length behind
-            ManBehind = true;
-        }
-        else
-        {
-            ManBehind = false;
-        }*/
-
-
         EmptySpaces = 1;
         for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and shouldnt affect troops positioning
             if (General.troopCategory[i] == 0) { //==0 would be sufficient but I expect problems
-                //Debug.Log(i);
+                Debug.Log(i);
                 EmptySpaces++;
             }
+            //EmptySpaces += Mathf.CeilToInt(General.troopCategory[i]/5);
         }
 
         AssemblePoint = General.RallyPoint - Team * 2.5f *(unitClassification - EmptySpaces);
 
         Vector3 separation = Vector3.zero;
+
+        /*Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 3);
+        foreach (Collider2D collider in colliders)
+        {
+            Unit unit = collider.GetComponent<Unit>();
+            if (collider.gameObject != this.gameObject && unit != null) {
+                Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
+
+                Vector3 diff = transform.position - collider.transform.position;
+                if (diff.magnitude < separationDistance)
+                {
+                    separation += new Vector3(Mathf.Sign(diff.x) / (diff.magnitude), Mathf.Sign(diff.x) / diff.magnitude, Mathf.Sign(diff.x) / (diff.magnitude * 5));
+
+
+                }
+            }
+            
+        }*/
         foreach (Unit unit in nearbyUnits)
         {
             if (unit != null)

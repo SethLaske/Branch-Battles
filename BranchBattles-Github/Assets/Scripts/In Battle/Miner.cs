@@ -17,6 +17,8 @@ public class Miner : Unit
     void Start()
     {
         AttackTimer = AttackCooldown;
+        animator.SetTrigger("Walking");
+        animator.ResetTrigger("Walking");
         State = "Walk";
         maxHealth = HP;
         if (Team < 0)
@@ -81,8 +83,8 @@ public class Miner : Unit
         //Debug.Log("Time Starting");
         yield return new WaitForSeconds(duration);
 
-        
-        
+
+        animator.SetTrigger("Walking");
         State = "Walk";
         transform.Rotate(new Vector3(0, 180, 0));
 
@@ -112,6 +114,8 @@ public class Miner : Unit
         if (collision.gameObject.CompareTag(Resource))        
         {
             Mine mine = collision.GetComponent<Mine>();
+            animator.SetTrigger("Mining");
+            //animator.ResetTrigger("Mining");
             State = "Mining";   //Being in the mining State should mean that it does nothing
             StartCoroutine(IMine(mine.Time));
         }

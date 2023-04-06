@@ -38,6 +38,7 @@ public class TeamInfo : MonoBehaviour
 
     public float RallyPoint;    //The point units will move to unless acted upon
     public GameObject RallyFlag;    //Visual representation of where the rally is
+    public float Spacing = 2f;
 
     public float Advantage = 1; //Buff or Debuff a team
 
