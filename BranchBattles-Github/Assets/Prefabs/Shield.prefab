@@ -83,9 +83,10 @@ MonoBehaviour:
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 2752445478207036960}
-  EmptySpaces: 0
+  FullSpaces: 0
   Tolerance: 2
-  separationDistance: 0.5
+  RearPoint: 0
+  separationDistance: 0.75
   separationForce: 1
   nearbyUnits: []
 --- !u!50 &582674381905752976

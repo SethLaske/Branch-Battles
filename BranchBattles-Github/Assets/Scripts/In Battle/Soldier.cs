@@ -5,8 +5,9 @@ using UnityEngine;
 public class Soldier : Unit
 {
     //public bool Assembled;
-    public float EmptySpaces;
+    public float FullSpaces;
     public float Tolerance = 2; //Readding this... for now
+    public float RearPoint;
 
     //public bool ManAhead;
     //public bool ManBehind;
@@ -39,16 +40,18 @@ public class Soldier : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
-        EmptySpaces = 1;
+        FullSpaces = 0;
         for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and shouldnt affect troops positioning
-            if (General.troopCategory[i] == 0) { //==0 would be sufficient but I expect problems
+            /*if (General.troopCategory[i] == 0) { //==0 would be sufficient but I expect problems
                 Debug.Log(i);
                 EmptySpaces++;
-            }
-            //EmptySpaces += Mathf.CeilToInt(General.troopCategory[i]/5);
+            }*/
+            FullSpaces += Mathf.CeilToInt((float)General.troopCategory[i]/5);
+            //Debug.Log(General.troopCategory[i] + " Becomes" + Mathf.CeilToInt((float)General.troopCategory[i] / 5));
         }
 
-        AssemblePoint = General.RallyPoint - Team * 2.5f *(unitClassification - EmptySpaces);
+        AssemblePoint = General.RallyPoint - Team * General.Spacing *(FullSpaces);
+        RearPoint = AssemblePoint - General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5);
 
         Vector3 separation = Vector3.zero;
 
@@ -76,7 +79,7 @@ public class Soldier : Unit
                 Vector3 diff = transform.position - unit.transform.position;
                 if (diff.magnitude < separationDistance)
                 {
-                    separation += new Vector3(Mathf.Sign(diff.x) / (diff.magnitude), Mathf.Sign(diff.x) / diff.magnitude, Mathf.Sign(diff.x) / (diff.magnitude * 5));
+                    separation += new Vector3(Mathf.Sign(diff.x), Mathf.Sign(diff.y), Mathf.Sign(diff.y) / ( 5));
 
                     //Random.Range(-1, 1)
                 }
@@ -94,7 +97,7 @@ public class Soldier : Unit
         
         if (Target == null)
         {
-            if (AssemblePoint * Team < (transform.position.x * Team) - Tolerance)  //If the rally point is behind, we always prioritize that
+            if (AssemblePoint * Team < (transform.position.x * Team))  //If the rally point is behind, we always prioritize that
             {
                 State = "Walk";
                 animator.SetBool("Waiting", false);
@@ -145,8 +148,8 @@ public class Soldier : Unit
 
     public override void Wait()
     {
-        if (Target == null && ((AssemblePoint * Team > (transform.position.x * Team) + Tolerance) ||
-                               (AssemblePoint * Team < (transform.position.x * Team) - Tolerance)) )
+        if (Target == null && ((RearPoint * Team > (transform.position.x * Team)) ||
+                               (AssemblePoint * Team < (transform.position.x * Team) )) )
         {
             State = "Walk";
             animator.SetBool("Waiting", false);
@@ -182,8 +185,8 @@ public class Soldier : Unit
 
         //else if ((General.RallyPoint * Team < ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) + Tolerance / 4) &&
           //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
-        else if ((AssemblePoint * Team < (transform.position.x * Team) + Tolerance/4) &&
-                               (AssemblePoint * Team > (transform.position.x * Team) - Tolerance/4))
+        else if ((RearPoint * Team < (transform.position.x * Team) ) &&
+                               (AssemblePoint * Team > (transform.position.x * Team) ))
         {
             State = "Wait";
             //Debug.Log("Walk > Wait");
@@ -222,7 +225,7 @@ public class Soldier : Unit
 
     public override void Retreat()
     {
-        if (AssemblePoint * Team > (transform.position.x * Team) - Tolerance)
+        if (AssemblePoint * Team > (transform.position.x * Team))
         {
             State = "Wait";
             //Debug.Log("Retreat > Wait");

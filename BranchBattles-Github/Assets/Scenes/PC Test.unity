@@ -3090,6 +3090,7 @@ MonoBehaviour:
   ActiveCount: 0
   RallyPoint: 0
   RallyFlag: {fileID: 955064819}
+  Spacing: 2
   Advantage: 0.9
   Soldier1: {fileID: 0}
   Soldier2: {fileID: 0}
@@ -5550,7 +5551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
-  Gold: 100
+  Gold: 1000
   TroopCount: 0
   TroopMax: 20
   Gems: 0
@@ -5568,6 +5569,7 @@ MonoBehaviour:
   ActiveCount: 0
   RallyPoint: 0
   RallyFlag: {fileID: 363478757}
+  Spacing: 2
   Advantage: 1
   Soldier1: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   Soldier2: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}

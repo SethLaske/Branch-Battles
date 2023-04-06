@@ -223,7 +223,7 @@ public class Unit : Damageable
             //Debug.Log("Cant move, outside of walk");
         }
         else {
-            Debug.Log("Cant move " + movement);
+            //Debug.Log("Cant move " + movement);
         }
 
     }

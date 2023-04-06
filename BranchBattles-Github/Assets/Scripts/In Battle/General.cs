@@ -74,7 +74,7 @@ public class General : Unit
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2);
             foreach (Collider2D collider in colliders)
             {
-                Debug.Log("The generals collider is overlapping with " + collider.gameObject.name);
+                //Debug.Log("The generals collider is overlapping with " + collider.gameObject.name);
                 Miner miner = collider.GetComponent<Miner>();
                 if (miner != null)
                 {
