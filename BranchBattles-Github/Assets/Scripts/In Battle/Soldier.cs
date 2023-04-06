@@ -7,12 +7,14 @@ public class Soldier : Unit
     //public bool Assembled;
     public float FullSpaces;
     public float Tolerance = 2; //Readding this... for now
-    public float RearPoint;
+
 
     //public bool ManAhead;
     //public bool ManBehind;
 
-    
+    private float DistanceFromMiddlePoint;
+    private float MaxDistanceFromMiddlePoint;
+
 
     public float separationDistance = .5f;
     public float separationForce = 2f;
@@ -42,10 +44,7 @@ public class Soldier : Unit
 
         FullSpaces = 0;
         for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and shouldnt affect troops positioning
-            /*if (General.troopCategory[i] == 0) { //==0 would be sufficient but I expect problems
-                Debug.Log(i);
-                EmptySpaces++;
-            }*/
+            
             FullSpaces += Mathf.CeilToInt((float)General.troopCategory[i]/5);
             //Debug.Log(General.troopCategory[i] + " Becomes" + Mathf.CeilToInt((float)General.troopCategory[i] / 5));
         }
@@ -53,68 +52,10 @@ public class Soldier : Unit
         AssemblePoint = General.RallyPoint - Team * General.Spacing *(FullSpaces);
         RearPoint = AssemblePoint - General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5);
 
-        Vector3 separation = Vector3.zero;
+        DistanceFromMiddlePoint = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
+        MaxDistanceFromMiddlePoint = Mathf.Abs((AssemblePoint - RearPoint) / 2);
 
-        /*Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 3);
-        foreach (Collider2D collider in colliders)
-        {
-            Unit unit = collider.GetComponent<Unit>();
-            if (collider.gameObject != this.gameObject && unit != null) {
-                Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
-
-                Vector3 diff = transform.position - collider.transform.position;
-                if (diff.magnitude < separationDistance)
-                {
-                    separation += new Vector3(Mathf.Sign(diff.x) / (diff.magnitude), Mathf.Sign(diff.x) / diff.magnitude, Mathf.Sign(diff.x) / (diff.magnitude * 5));
-
-
-                }
-            }
-            
-        }*/
-        foreach (Unit unit in nearbyUnits)
-        {
-            if (unit != null)
-            {
-                Vector3 diff = transform.position - unit.transform.position;
-                if (diff.magnitude < separationDistance)
-                {
-                    separation += new Vector3(Mathf.Sign(diff.x), Mathf.Sign(diff.y), Mathf.Sign(diff.y) / ( 5));
-
-                    //Random.Range(-1, 1)
-                }
-            }
-            else {
-                //nearbyUnits.Remove(unit);
-            }
-            
-        }
-        separation *= separationForce * Time.deltaTime;
-        //transform.position += separation;
-        this.Move(separation);
-
-
-        
-        if (Target == null)
-        {
-            if (AssemblePoint * Team < (transform.position.x * Team))  //If the rally point is behind, we always prioritize that
-            {
-                State = "Walk";
-                animator.SetBool("Waiting", false);
-            }
-        }
-        else {
-            if ((AssemblePoint + (AgroRange * Team)) * Team < Target.transform.position.x * Team)  //If the rally point is behind, we always prioritize that
-            {
-                State = "Walk";
-                animator.SetBool("Waiting", false);
-                //Debug.Log("Attack -> Retreat");
-                Target = null;
-                //Debug.Log("Setting target as null");
-            }
-            
-        }
-
+        SpreadOut();
 
         //Performs the various actions per the state it is in
         if (State == "Wait")
@@ -160,6 +101,40 @@ public class Soldier : Unit
             //Debug.Log("Target is near: Wait > Walk");
         }
         else {
+            if (Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint) > .3f)
+            {
+                bool behind = false;
+                bool front = false;
+
+                Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + Team * Vector3.right, new Vector2(separationDistance * 2f, .5f), 0);
+                foreach (Collider2D collider in colliders)
+                {
+                    Unit unit = collider.GetComponent<Unit>();
+                    if (collider.gameObject != this.gameObject && unit != null)
+                    {
+                        if (unit.transform.position.x * Team > transform.position.x * Team)
+                        {
+                            Debug.Log("Something is in front of me");
+                            front = true;
+                        }
+                        else if (unit.transform.position.x * Team < transform.position.x * Team)
+                        {
+                            Debug.Log("Something is behind me");
+                            behind = true;
+                        }
+                    }
+
+                }
+
+                if (front == false)
+                {
+                    //this.Move(new Vector3(1 * Team * MoveSpeed * Time.deltaTime, 0, 0));
+                }
+                else if (behind == false)
+                {
+                    //this.Move(new Vector3(-1 * Team * MoveSpeed * Time.deltaTime, 0, 0));
+                }
+            }
             base.Wait();
 
             //Seperation applied to update
@@ -185,8 +160,8 @@ public class Soldier : Unit
 
         //else if ((General.RallyPoint * Team < ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) + Tolerance / 4) &&
           //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
-        else if ((RearPoint * Team < (transform.position.x * Team) ) &&
-                               (AssemblePoint * Team > (transform.position.x * Team) ))
+        else if (((RearPoint + MaxDistanceFromMiddlePoint) * Team < (transform.position.x * Team) ) &&
+                               ((AssemblePoint - MaxDistanceFromMiddlePoint / 3) * Team > (transform.position.x * Team) ))
         {
             State = "Wait";
             //Debug.Log("Walk > Wait");
@@ -296,48 +271,44 @@ public class Soldier : Unit
         }
     }
 
-    /*
-     public class TroopController : MonoBehaviour {
-    public float separationDistance = 2f;
-    public float separationForce = 1f;
+    private void SpreadOut() {
 
-    private List<GameObject> nearbyTroops;
-
-    void Start () {
-        nearbyTroops = new List<GameObject>();
-    }
-
-    void Update () {
-        // Calculate separation force based on nearby troops
         Vector3 separation = Vector3.zero;
-        foreach (GameObject troop in nearbyTroops) {
-            Vector3 diff = transform.position - troop.transform.position;
-            if (diff.magnitude < separationDistance) {
-                separation += diff.normalized / diff.magnitude;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, separationDistance);
+        foreach (Collider2D collider in colliders)
+        {
+            Unit unit = collider.GetComponent<Unit>();
+            if (collider.gameObject != this.gameObject && unit != null)
+            {
+                Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
+
+                Vector3 diff = transform.position - collider.transform.position;
+                if (diff.magnitude < separationDistance)
+                {
+                    separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5));
+                }
             }
+
         }
-        separation *= separationForce;
+        
+        //Debug.Log("Dist from mid point: " + DistanceFromMiddlePoint);
+        //Debug.Log("Max Dist from mid point: " + MaxDistanceFromMiddlePoint);
+        Debug.Log("Percent from end point: " + Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint));
 
-        // Apply separation force to troop's movement
-        Vector3 movement = Vector3.zero;
-        // ... add other movement behaviors (e.g. alignment, cohesion)
-        movement += separation;
-        transform.position += movement * Time.deltaTime;
-    }
-
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.CompareTag("Troop")) {
-            nearbyTroops.Add(other.gameObject);
+        if (Mathf.Sign(separation.x) != Mathf.Sign(DistanceFromMiddlePoint))
+        { //If the seperation is the same direction as the distance then we want to apply the weaker force in that direction
+            separation.x *= Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint);
+            //Debug.Log("Weakening the force");
         }
-    }
 
-    void OnTriggerExit2D(Collider2D other) {
-        if (other.CompareTag("Troop")) {
-            nearbyTroops.Remove(other.gameObject);
+        separation *= separationForce * Time.deltaTime;
+        if (nearbyUnits.Count > 5)
+        {
+            separation *= 5;
         }
+        //transform.position += separation;
+        this.Move(separation);
     }
-}
-
-    */
 
 }

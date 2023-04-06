@@ -32,6 +32,7 @@ public class Unit : Damageable
 
     public Damageable Target;   //Targets are always for the enemy
     public float AssemblePoint;
+    public float RearPoint;
     public LayerMask MovementBlockers;  //things that block movement forward
 
     //public float tolerance = .25f;  //Handles the tolerance to allow for imperfections
@@ -70,7 +71,7 @@ public class Unit : Damageable
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
         else {
-            float distance = (AssemblePoint - transform.position.x);
+            float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
             //if (distance != 0) {
               //  distance = distance / Mathf.Abs(distance);
             //}

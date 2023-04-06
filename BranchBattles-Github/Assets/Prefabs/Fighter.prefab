@@ -447,22 +447,23 @@ MonoBehaviour:
   AttackTimer: 0
   Cost: 30
   TroopSpaces: 1
-  SpawnTime: 2
+  SpawnTime: 0.5
   HealthBar: {fileID: 7938529937569940851}
   AppearanceTime: 1.5
   HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
   AssemblePoint: 0
+  RearPoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 4697823866975201210}
-  EmptySpaces: 0
+  FullSpaces: 0
   Tolerance: 2
-  separationDistance: 1.5
-  separationForce: 2
+  separationDistance: 1
+  separationForce: 0.5
   nearbyUnits: []
 --- !u!50 &5466881715449489011
 Rigidbody2D:
