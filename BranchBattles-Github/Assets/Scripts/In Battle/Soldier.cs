@@ -18,6 +18,7 @@ public class Soldier : Unit
 
     public float separationDistance = .5f;
     public float separationForce = 2f;
+    public float minimumForce;
 
     public List<Unit> nearbyUnits = new List<Unit>();
 
@@ -26,6 +27,7 @@ public class Soldier : Unit
     void Start()
     {
         StandardStart();
+        StartCoroutine(SpreadStart(.3f, Random.Range(-3f, 3f)));
     }
 
     // Update is called once per frame
@@ -103,37 +105,75 @@ public class Soldier : Unit
         else {
             if (Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint) > .3f)
             {
-                bool behind = false;
+                Debug.Log("Waiting but shiftable");
+                //bool behind = false;
                 bool front = false;
+                bool up = false;
+                bool down = false;
 
-                Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + Team * Vector3.right, new Vector2(separationDistance * 2f, .5f), 0);
+                bool FUp = false;
+                bool FDown = false;
+
+                Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(separationDistance, separationDistance), 0);
                 foreach (Collider2D collider in colliders)
                 {
                     Unit unit = collider.GetComponent<Unit>();
                     if (collider.gameObject != this.gameObject && unit != null)
                     {
-                        if (unit.transform.position.x * Team > transform.position.x * Team)
+                        Vector3 diff = unit.transform.position - transform.position;
+
+                        if (diff.y > 0 && diff.x * Team > 0) {
+                            FUp = true;
+                        }
+
+                        if (diff.y < 0 && diff.x * Team > 0)
                         {
-                            Debug.Log("Something is in front of me");
+                            FDown = true;
+                        }
+
+                        if ((diff.x * Team) - Mathf.Abs(diff.y/2) > 0)
+                        {
+                            //Debug.Log("Something is in front of me");
                             front = true;
                         }
-                        else if (unit.transform.position.x * Team < transform.position.x * Team)
+                        else if ((diff.y) - Mathf.Abs(diff.x) > 0)
                         {
-                            Debug.Log("Something is behind me");
-                            behind = true;
+                            
+                            up = true;
+                        }
+                        else if ((diff.y < 0) && (diff.x * Team > 0))
+                        {
+
+                            down = true;
                         }
                     }
 
                 }
 
+                if (!FUp && !FDown)
+                {
+                    Debug.Log("Both, forward");
+                    this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
+                }
+                else if (!FUp) {
+                    Debug.Log("Up");
+                    this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0));
+                }
+                else if (!FDown)
+                {
+                    Debug.Log("Down");
+                    this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
+                }
+
                 if (front == false)
                 {
-                    //this.Move(new Vector3(1 * Team * MoveSpeed * Time.deltaTime, 0, 0));
-                }
-                else if (behind == false)
+                    //this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
+                } else if (up == false)
                 {
-                    //this.Move(new Vector3(-1 * Team * MoveSpeed * Time.deltaTime, 0, 0));
+                    //this.Move(new Vector3(0, .5f * Team * MoveSpeed * Time.deltaTime, 0));
                 }
+                
+
             }
             base.Wait();
 
@@ -211,6 +251,16 @@ public class Soldier : Unit
         
     }
 
+    public IEnumerator SpreadStart(float duration, float spread) {
+
+        while (duration > 0) {
+            yield return new WaitForSeconds(Time.deltaTime);
+            duration -= Time.deltaTime;
+
+            Move(Vector2.up * spread * Time.deltaTime);
+        
+        }
+    }
 
     //Sets the target as the closest available target
     private void OnTriggerStay2D(Collider2D collision)
@@ -281,12 +331,12 @@ public class Soldier : Unit
             Unit unit = collider.GetComponent<Unit>();
             if (collider.gameObject != this.gameObject && unit != null)
             {
-                Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
+                //Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
 
                 Vector3 diff = transform.position - collider.transform.position;
                 if (diff.magnitude < separationDistance)
                 {
-                    separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5));
+                    separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5))/(diff.magnitude * 2);
                 }
             }
 
@@ -294,21 +344,21 @@ public class Soldier : Unit
         
         //Debug.Log("Dist from mid point: " + DistanceFromMiddlePoint);
         //Debug.Log("Max Dist from mid point: " + MaxDistanceFromMiddlePoint);
-        Debug.Log("Percent from end point: " + Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint));
+        //Debug.Log("Percent from end point: " + Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint));
 
         if (Mathf.Sign(separation.x) != Mathf.Sign(DistanceFromMiddlePoint))
         { //If the seperation is the same direction as the distance then we want to apply the weaker force in that direction
             separation.x *= Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint);
             //Debug.Log("Weakening the force");
         }
-
-        separation *= separationForce * Time.deltaTime;
-        if (nearbyUnits.Count > 5)
-        {
-            separation *= 5;
+        //Debug.Log("Seperation Magnitude: " + separation.magnitude);
+       
+        //.1 seems to be a really good value
+        if (separation.magnitude > minimumForce) {
+            separation *= separationForce * Time.deltaTime;
+            this.Move(separation);
         }
-        //transform.position += separation;
-        this.Move(separation);
+        
     }
 
 }

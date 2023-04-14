@@ -454,15 +454,17 @@ MonoBehaviour:
   State: 
   Target: {fileID: 0}
   AssemblePoint: 0
+  RearPoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 4837877308794750919}
-  EmptySpaces: 0
+  FullSpaces: 0
   Tolerance: 2
-  separationDistance: 0.5
-  separationForce: 1
+  separationDistance: 1
+  separationForce: 0.5
+  minimumForce: 0.1
   nearbyUnits: []
 --- !u!50 &4568610540820579214
 Rigidbody2D:

@@ -447,7 +447,7 @@ MonoBehaviour:
   AttackTimer: 0
   Cost: 30
   TroopSpaces: 1
-  SpawnTime: 0.5
+  SpawnTime: 1.5
   HealthBar: {fileID: 7938529937569940851}
   AppearanceTime: 1.5
   HealthTimer: 0.5
@@ -464,6 +464,7 @@ MonoBehaviour:
   Tolerance: 2
   separationDistance: 1
   separationForce: 0.5
+  minimumForce: 0.1
   nearbyUnits: []
 --- !u!50 &5466881715449489011
 Rigidbody2D:
