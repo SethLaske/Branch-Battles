@@ -138,6 +138,44 @@ public class Unit : Damageable
         
     }
 
+    protected bool IsWithinAssemble() {
+        if (RearPoint * Team > transform.position.x * Team) {
+            return false;
+        }
+        if (AssemblePoint * Team < transform.position.x * Team) {
+            return false;
+        }
+
+        return true;
+    }
+    protected bool IsTargetAttackable() {
+        if (Target == null) {
+            return false;
+        }
+
+        if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected bool IsTargetAggroable()
+    {
+        if (Target == null)
+        {
+            return false;
+        }
+
+        if ((Target.transform.position.x - AssemblePoint) * Team > AgroRange)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
     IEnumerator Attack(float ChargeTime, float RecoverTime)   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
