@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 1
-  HP: 200
+  HP: 300
   maxHealth: 0.5
   Armor: 0
   playercamera: {fileID: 0}

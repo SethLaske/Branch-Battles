@@ -20,14 +20,19 @@ public class Soldier : Unit
     public float separationForce = 2f;
     public float minimumForce;
 
+    public GameObject RedAura;
+    //public bool Highlited = false;
     public List<Unit> nearbyUnits = new List<Unit>();
-
+    
 
     // Start is called before the first frame update
     void Start()
     {
         StandardStart();
         StartCoroutine(SpreadStart(.3f, Random.Range(-3f, 3f)));
+        if (general == null) {
+            RedAura.SetActive(false);
+        }
     }
 
     // Update is called once per frame
@@ -44,6 +49,19 @@ public class Soldier : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
+        
+        if (general != null)
+        {
+            if (general.SelectedSoldier == this) {
+                RedAura.SetActive(true);
+            }
+            else
+            {
+                RedAura.SetActive(false);
+            }
+        }
+        
+
         FullSpaces = 0;
         for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and shouldnt affect troops positioning
             
@@ -52,7 +70,7 @@ public class Soldier : Unit
         }
 
         AssemblePoint = General.RallyPoint - Team * General.Spacing *(FullSpaces);
-        RearPoint = AssemblePoint - General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5);
+        RearPoint = AssemblePoint - Team * General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5);
 
         DistanceFromMiddlePoint = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
         MaxDistanceFromMiddlePoint = Mathf.Abs((AssemblePoint - RearPoint) / 2);
@@ -77,7 +95,7 @@ public class Soldier : Unit
         {
             //Debug.Log("State is attack");
             Attack();
-            animator.SetBool("Attacking", true);
+            //animator.SetBool("Attacking", true);
         }
         else if (State == "Retreat")    //Retreat doesnt really exisit anymore
         {
@@ -85,8 +103,14 @@ public class Soldier : Unit
             Retreat();
             //animator.SetBool("Attacking", false);
         }
+        else if (State == "GeneralCharge")    //Retreat doesnt really exisit anymore
+        {
+            Debug.Log("State is to die by command of the king");
+            GeneralCharge();
+            //animator.SetBool("Attacking", false);
+        }
 
-        
+
     }
 
     public override void Wait()
@@ -96,7 +120,7 @@ public class Soldier : Unit
         {
             State = "Walk";
             animator.SetBool("Waiting", false);
-            //Debug.Log("Rally point is ahead: Wait > Walk");
+            Debug.Log("Rally point is ahead: Wait > Walk");
         } else if (Target != null && ((AssemblePoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)){
             State = "Walk";
             animator.SetBool("Waiting", false);
@@ -107,9 +131,9 @@ public class Soldier : Unit
             {
                 Debug.Log("Waiting but shiftable");
                 //bool behind = false;
-                bool front = false;
-                bool up = false;
-                bool down = false;
+                //bool front = false;
+                //bool up = false;
+                //bool down = false;
 
                 bool FUp = false;
                 bool FDown = false;
@@ -134,17 +158,17 @@ public class Soldier : Unit
                         if ((diff.x * Team) - Mathf.Abs(diff.y/2) > 0)
                         {
                             //Debug.Log("Something is in front of me");
-                            front = true;
+                            //front = true;
                         }
                         else if ((diff.y) - Mathf.Abs(diff.x) > 0)
                         {
                             
-                            up = true;
+                            //up = true;
                         }
                         else if ((diff.y < 0) && (diff.x * Team > 0))
                         {
 
-                            down = true;
+                            //down = true;
                         }
                     }
 
@@ -165,13 +189,13 @@ public class Soldier : Unit
                     this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
                 }
 
-                if (front == false)
+                /*if (front == false)
                 {
                     //this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
                 } else if (up == false)
                 {
                     //this.Move(new Vector3(0, .5f * Team * MoveSpeed * Time.deltaTime, 0));
-                }
+                }*/
                 
 
             }
@@ -187,6 +211,10 @@ public class Soldier : Unit
     {
         if (Target != null) 
         {
+            if ((Target.transform.position.x - AssemblePoint) * Team > AgroRange)
+            {
+                base.Walk();
+            }
             if (Vector3.Distance(transform.position, Target.transform.position) <= AttackRange)
             {
                 State = "Attack";
@@ -200,8 +228,8 @@ public class Soldier : Unit
 
         //else if ((General.RallyPoint * Team < ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) + Tolerance / 4) &&
           //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
-        else if (((RearPoint + MaxDistanceFromMiddlePoint) * Team < (transform.position.x * Team) ) &&
-                               ((AssemblePoint - MaxDistanceFromMiddlePoint / 3) * Team > (transform.position.x * Team) ))
+        else if (((RearPoint + MaxDistanceFromMiddlePoint * Team) * Team < (transform.position.x * Team) ) &&
+                               ((AssemblePoint - MaxDistanceFromMiddlePoint * Team/ 3) * Team > (transform.position.x * Team) ))
         {
             State = "Wait";
             //Debug.Log("Walk > Wait");
@@ -222,18 +250,25 @@ public class Soldier : Unit
             animator.SetBool("Attacking", false);
             //Debug.Log("Attack > Wait");
         }
-        else {
+        else if ((Target.transform.position.x - AssemblePoint) * Team > AgroRange) {
+            State = "Walk";
+            animator.SetBool("Attacking", false);
+        }
+        else
+        {
             if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange)
             {
                 State = "Walk";
                 animator.SetBool("Attacking", false);
                 //Debug.Log("Attack > Walk");
             }
-            else {
+            else
+            {
                 //Debug.Log("In attack state and trying to attack");
                 base.Attack();
+                animator.SetBool("Attacking", true);
             }
-            
+
         }
         
     }
@@ -251,6 +286,21 @@ public class Soldier : Unit
         
     }
 
+    public void GeneralCharge() {
+        if (Target == null)
+        {
+            this.Move(new Vector3(Mathf.Sign(Team) * MoveSpeed * Time.deltaTime, 0, 0));
+        }
+        else if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange) {
+            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
+        }
+        else
+        { //kill
+            base.Attack();
+            animator.SetBool("Attacking", true);
+        }
+    
+    }
     public IEnumerator SpreadStart(float duration, float spread) {
 
         while (duration > 0) {
@@ -356,6 +406,9 @@ public class Soldier : Unit
         //.1 seems to be a really good value
         if (separation.magnitude > minimumForce) {
             separation *= separationForce * Time.deltaTime;
+            if (State == "Walk") {
+                separation /= 4;
+            }
             this.Move(separation);
         }
         

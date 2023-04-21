@@ -38,6 +38,7 @@ public class Unit : Damageable
     //public float tolerance = .25f;  //Handles the tolerance to allow for imperfections
 
     public GameObject corpse;
+    protected General general;
 
     public AudioSource attackSound;
 
@@ -65,10 +66,20 @@ public class Unit : Damageable
         //Walk information
         if (Target != null)
         {
-            //transform.position += Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime);
-            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
-            
-            x = Mathf.Sign(Target.transform.position.x - transform.position.x);
+            if ((Target.transform.position.x - AssemblePoint) * Team > AgroRange)
+            {
+                float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
+                this.Move(new Vector3(Mathf.Sign(distance) * MoveSpeed * Time.deltaTime, 0, 0));
+                x = Mathf.Sign(distance);
+
+            }
+            else
+            {
+                //transform.position += Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime);
+                this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
+
+                x = Mathf.Sign(Target.transform.position.x - transform.position.x);
+            }
         }
         else {
             float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
@@ -154,6 +165,7 @@ public class Unit : Damageable
         {
             HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
         }
+        general = General.general;
     }
 
     //Override take damage to allow for the health bar to be displayed

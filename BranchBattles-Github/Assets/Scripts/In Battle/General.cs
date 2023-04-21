@@ -15,6 +15,8 @@ public class General : Unit
 
     private Vector3 NewPosition;
 
+    public Soldier SelectedSoldier;
+    public GameObject HealingAura;
     void Start()
     {
         maxHealth = HP;
@@ -83,6 +85,18 @@ public class General : Unit
             }
         }
 
+        if (Input.GetKey(KeyCode.C)) {
+            OneUnitCharge();
+        }
+        if (Input.GetKeyUp(KeyCode.C))
+        {
+            if (SelectedSoldier != null) {
+                SelectedSoldier.State = "GeneralCharge";
+                SelectedSoldier.animator.SetBool("Waiting", false);
+            }
+                
+        }
+        //SelectedSoldier = null;
         //People want to spam the button, so I guess Ill just allow it
         /*if (Input.GetKeyUp("space") && !Attacking)
         {
@@ -151,15 +165,36 @@ public class General : Unit
 
     }
 
+    public void OneUnitCharge() {
+        SelectedSoldier = null;
+        Vector3 TargetedPoint = transform.position + (transform.rotation * (Vector3.right * 2));
+        Debug.Log("The Targeted point is: " + TargetedPoint);
+        float ClosestDistance = 100;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(TargetedPoint, .75f);
+        foreach (Collider2D collider in colliders)
+        {
+            Soldier soldier = collider.GetComponent<Soldier>();
+            if (soldier != null)
+            {
+                float UnitDistance = (soldier.transform.position - TargetedPoint).magnitude;
+                if (UnitDistance < ClosestDistance) {
+                    ClosestDistance = UnitDistance;
+                    SelectedSoldier = soldier;
+                }
+            }
+
+        }
+    }
     //Heals while in security
     private void OnTriggerStay2D(Collider2D collider)
     {
         
         if (collider.gameObject.CompareTag("PlayerCamp"))
         {
-            
+
             if (maxHealth > HP)
             {
+                HealingAura.SetActive(true);
                 //Debug.Log("Healing");
                 if (RegenTimer < RegenTime)
                 {
@@ -173,6 +208,9 @@ public class General : Unit
                     HealthBar.SetActive(true);
                     HealthTimer = 0;
                 }
+            }
+            else {
+                HealingAura.SetActive(false);
             }
             
         }

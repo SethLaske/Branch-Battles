@@ -3074,7 +3074,7 @@ MonoBehaviour:
   Team: -1
   Gold: 100
   TroopCount: 0
-  TroopMax: 0
+  TroopMax: 20
   Gems: 0
   Souls: 0
   troopCategory: 0000000000000000000000000000000000000000
@@ -3259,7 +3259,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 892504253}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -4275,10 +4275,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1742798023100717529, guid: dbd5004695eeb7e47b411abdddb4d3aa, type: 3}
-      propertyPath: HP
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 1742798023100717529, guid: dbd5004695eeb7e47b411abdddb4d3aa, type: 3}
       propertyPath: General
       value: 
       objectReference: {fileID: 1952470770}
@@ -4354,10 +4350,6 @@ PrefabInstance:
     - target: {fileID: 1742798021733213301, guid: dbd5004695eeb7e47b411abdddb4d3aa, type: 3}
       propertyPath: m_SortingOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1742798023100717529, guid: dbd5004695eeb7e47b411abdddb4d3aa, type: 3}
-      propertyPath: HP
-      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 1742798023100717529, guid: dbd5004695eeb7e47b411abdddb4d3aa, type: 3}
       propertyPath: Team
@@ -5551,7 +5543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
-  Gold: 1000
+  Gold: 100
   TroopCount: 0
   TroopMax: 20
   Gems: 0
@@ -6115,6 +6107,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 712338341447871682, guid: b0c0921e826420c4bbbbb2d24db10868, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4616502362155424749, guid: b0c0921e826420c4bbbbb2d24db10868, type: 3}
       propertyPath: m_Name
       value: General
