@@ -77,7 +77,7 @@ public class SaveManager : MonoBehaviour
             if (PlayerInfo.PlayerTroops[i] != null)
             {
                 CodedRoster[i] = PlayerInfo.PlayerTroops[i].UnitNumber;
-                Debug.Log("Coded Roster is " + CodedRoster[i]);
+                //Debug.Log("Coded Roster is " + CodedRoster[i]);
             }
             else {
                 CodedRoster[i] = -1;
@@ -102,7 +102,7 @@ public class SaveManager : MonoBehaviour
         //I am using a list since it was easy to edit in the inspector but decodes the troops to the player for their use
         for (int i = 0; i < PlayerInfo.PlayerTroops.Length; i++)
         {
-            Debug.Log("Coded Roster is " + SaveFile.ActiveRoster[i]);
+            //Debug.Log("Coded Roster is " + SaveFile.ActiveRoster[i]);
             if (SaveFile.ActiveRoster[i] >= 0)
             {
                 PlayerInfo.PlayerTroops[i] = UnitCoder[SaveFile.ActiveRoster[i]];
@@ -123,8 +123,8 @@ public class SaveManager : MonoBehaviour
         counter++;
         if (counter <= 4) {
             PlayerInfo.TroopSpaces = counter;
-            Debug.Log("Counter at " + counter);
+            //Debug.Log("Counter at " + counter);
         }
-        Debug.Log("Counter at " + counter);
+        //Debug.Log("Counter at " + counter);
     }
 }

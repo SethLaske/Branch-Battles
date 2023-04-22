@@ -66,7 +66,7 @@ public class Unit : Damageable
         //Walk information
         if (Target != null)
         {
-            if ((Target.transform.position.x - AssemblePoint) * Team > AgroRange)
+            if (IsTargetAggroable() == false)
             {
                 float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
                 this.Move(new Vector3(Mathf.Sign(distance) * MoveSpeed * Time.deltaTime, 0, 0));

@@ -3074,7 +3074,7 @@ MonoBehaviour:
   Team: -1
   Gold: 100
   TroopCount: 0
-  TroopMax: 20
+  TroopMax: 0
   Gems: 0
   Souls: 0
   troopCategory: 0000000000000000000000000000000000000000
@@ -5543,7 +5543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
-  Gold: 100
+  Gold: 1000
   TroopCount: 0
   TroopMax: 20
   Gems: 0

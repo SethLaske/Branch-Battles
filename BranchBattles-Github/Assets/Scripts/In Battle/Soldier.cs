@@ -105,7 +105,7 @@ public class Soldier : Unit
         }
         else if (State == "GeneralCharge")    //Retreat doesnt really exisit anymore
         {
-            Debug.Log("State is to die by command of the king");
+            //Debug.Log("State is to die by command of the king");
             GeneralCharge();
             //animator.SetBool("Attacking", false);
         }
@@ -115,13 +115,12 @@ public class Soldier : Unit
 
     public override void Wait()
     {
-        if (Target == null && ((RearPoint * Team > (transform.position.x * Team)) ||
-                               (AssemblePoint * Team < (transform.position.x * Team) )) )
+        if (Target == null && IsWithinAssemble() == false)
         {
             State = "Walk";
             animator.SetBool("Waiting", false);
-            Debug.Log("Rally point is ahead: Wait > Walk");
-        } else if (Target != null && ((AssemblePoint + (AgroRange * Team)) * Team > Target.transform.position.x * Team)){
+            //Debug.Log("Rally point is ahead: Wait > Walk");
+        } else if (IsTargetAggroable() == true){
             State = "Walk";
             animator.SetBool("Waiting", false);
             //Debug.Log("Target is near: Wait > Walk");
@@ -129,7 +128,7 @@ public class Soldier : Unit
         else {
             if (Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint) > .3f)
             {
-                Debug.Log("Waiting but shiftable");
+                //Debug.Log("Waiting but shiftable");
                 //bool behind = false;
                 //bool front = false;
                 //bool up = false;
@@ -180,12 +179,12 @@ public class Soldier : Unit
                     this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
                 }
                 else if (!FUp) {
-                    Debug.Log("Up");
+                    //Debug.Log("Up");
                     this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0));
                 }
                 else if (!FDown)
                 {
-                    Debug.Log("Down");
+                    //Debug.Log("Down");
                     this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
                 }
 
@@ -211,15 +210,11 @@ public class Soldier : Unit
     {
         if (Target != null) 
         {
-            if ((Target.transform.position.x - AssemblePoint) * Team > AgroRange)
-            {
-                base.Walk();
-            }
-            if (Vector3.Distance(transform.position, Target.transform.position) <= AttackRange)
+            if (IsTargetAggroable() == true && IsTargetAttackable() == true)
             {
                 State = "Attack";
-                //Debug.Log("Walk > Attack");
             }
+            
             else {
                 base.Walk();
             }
@@ -230,9 +225,10 @@ public class Soldier : Unit
           //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
         else if (((RearPoint + MaxDistanceFromMiddlePoint * Team) * Team < (transform.position.x * Team) ) &&
                                ((AssemblePoint - MaxDistanceFromMiddlePoint * Team/ 3) * Team > (transform.position.x * Team) ))
+        
         {
             State = "Wait";
-            //Debug.Log("Walk > Wait");
+            Debug.Log("Walk > Wait at X coord: " + transform.position.x);
         }
         else
         {
@@ -250,13 +246,13 @@ public class Soldier : Unit
             animator.SetBool("Attacking", false);
             //Debug.Log("Attack > Wait");
         }
-        else if ((Target.transform.position.x - AssemblePoint) * Team > AgroRange) {
+        else if (IsTargetAggroable() == false) {
             State = "Walk";
             animator.SetBool("Attacking", false);
         }
         else
         {
-            if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange)
+            if (IsTargetAttackable() == false)
             {
                 State = "Walk";
                 animator.SetBool("Attacking", false);
