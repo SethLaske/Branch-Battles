@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class Soldier : Unit
 {
-    //public bool Assembled;
     public float FullSpaces;
     public float Tolerance = 2; //Readding this... for now
-
-
-    //public bool ManAhead;
-    //public bool ManBehind;
 
     private float DistanceFromMiddlePoint;
     private float MaxDistanceFromMiddlePoint;
@@ -22,14 +17,15 @@ public class Soldier : Unit
 
     public GameObject RedAura;
     //public bool Highlited = false;
-    public List<Unit> nearbyUnits = new List<Unit>();
+    //public List<Unit> nearbyUnits = new List<Unit>();
     
 
     // Start is called before the first frame update
     void Start()
     {
         StandardStart();
-        StartCoroutine(SpreadStart(.3f, Random.Range(-3f, 3f)));
+        StartCoroutine(SpreadStart(.3f, Random.Range(-3f, 3f)));    //Provides some organic movement away from the tent, thx Hudson
+
         if (general == null) {
             RedAura.SetActive(false);
         }
@@ -49,7 +45,7 @@ public class Soldier : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
-        
+        //TODO, remove from update
         if (general != null)
         {
             if (general.SelectedSoldier == this) {
@@ -61,21 +57,19 @@ public class Soldier : Unit
             }
         }
         
-
+        //Fun Stuff Below
         FullSpaces = 0;
-        for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and shouldnt affect troops positioning
-            
-            FullSpaces += Mathf.CeilToInt((float)General.troopCategory[i]/5);
-            //Debug.Log(General.troopCategory[i] + " Becomes" + Mathf.CeilToInt((float)General.troopCategory[i] / 5));
+        for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and dont affect troops positioning
+            FullSpaces += Mathf.CeilToInt((float)General.troopCategory[i]/5);   //Standard, each troop will get 5 units to a spacing
         }
 
-        AssemblePoint = General.RallyPoint - Team * General.Spacing *(FullSpaces);
-        RearPoint = AssemblePoint - Team * General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5);
+        AssemblePoint = General.RallyPoint - Team * General.Spacing *(FullSpaces);  //Moves it back to account for troops further up
+        RearPoint = AssemblePoint - Team * General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5); // Allocated the back room by its own classification
 
-        DistanceFromMiddlePoint = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
-        MaxDistanceFromMiddlePoint = Mathf.Abs((AssemblePoint - RearPoint) / 2);
+        DistanceFromMiddlePoint = ((AssemblePoint + RearPoint) / 2 - transform.position.x); //takes average, which is the middle and subtracts its position (positive value implies its to the left)
+        MaxDistanceFromMiddlePoint = Mathf.Abs((AssemblePoint - RearPoint) / 2);    //needed for ratios later, could be calculated with classifications but this is easier
 
-        SpreadOut();
+        SpreadOut();    //Performs flocking mechanics every update, regardless of state
 
         //Performs the various actions per the state it is in
         if (State == "Wait")
@@ -97,13 +91,13 @@ public class Soldier : Unit
             Attack();
             //animator.SetBool("Attacking", true);
         }
-        else if (State == "Retreat")    //Retreat doesnt really exisit anymore
+        else if (State == "Retreat")    //Retreat doesnt really exisit anymore but Im not removing it yet
         {
             //Debug.Log("State is retreat");
             Retreat();
             //animator.SetBool("Attacking", false);
         }
-        else if (State == "GeneralCharge")    //Retreat doesnt really exisit anymore
+        else if (State == "GeneralCharge")    //Only can be given by the king
         {
             //Debug.Log("State is to die by command of the king");
             GeneralCharge();
@@ -113,102 +107,151 @@ public class Soldier : Unit
 
     }
 
+   //General structure for states to follow
+    //Conditions to change out of state
+    //Base State
+    //Additional requirements
+
     public override void Wait()
     {
-        if (Target == null && IsWithinAssemble() == false)
+        if (Target == null && IsWithinAssemble() == false)  //No target and needs to walk
         {
             State = "Walk";
             animator.SetBool("Waiting", false);
-            //Debug.Log("Rally point is ahead: Wait > Walk");
-        } else if (IsTargetAggroable() == true){
+            return;
+
+        } else if (IsTargetAggroable() == true){    //There is a target, and we can reach them
             State = "Walk";
             animator.SetBool("Waiting", false);
             //Debug.Log("Target is near: Wait > Walk");
-        }
-        else {
-            if (Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint) > .3f)
-            {
-                //Debug.Log("Waiting but shiftable");
-                //bool behind = false;
-                //bool front = false;
-                //bool up = false;
-                //bool down = false;
-
-                bool FUp = false;
-                bool FDown = false;
-
-                Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(separationDistance, separationDistance), 0);
-                foreach (Collider2D collider in colliders)
-                {
-                    Unit unit = collider.GetComponent<Unit>();
-                    if (collider.gameObject != this.gameObject && unit != null)
-                    {
-                        Vector3 diff = unit.transform.position - transform.position;
-
-                        if (diff.y > 0 && diff.x * Team > 0) {
-                            FUp = true;
-                        }
-
-                        if (diff.y < 0 && diff.x * Team > 0)
-                        {
-                            FDown = true;
-                        }
-
-                        if ((diff.x * Team) - Mathf.Abs(diff.y/2) > 0)
-                        {
-                            //Debug.Log("Something is in front of me");
-                            //front = true;
-                        }
-                        else if ((diff.y) - Mathf.Abs(diff.x) > 0)
-                        {
-                            
-                            //up = true;
-                        }
-                        else if ((diff.y < 0) && (diff.x * Team > 0))
-                        {
-
-                            //down = true;
-                        }
-                    }
-
-                }
-
-                if (!FUp && !FDown)
-                {
-                    Debug.Log("Both, forward");
-                    this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
-                }
-                else if (!FUp) {
-                    //Debug.Log("Up");
-                    this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0));
-                }
-                else if (!FDown)
-                {
-                    //Debug.Log("Down");
-                    this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
-                }
-
-                /*if (front == false)
-                {
-                    //this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
-                } else if (up == false)
-                {
-                    //this.Move(new Vector3(0, .5f * Team * MoveSpeed * Time.deltaTime, 0));
-                }*/
-                
-
-            }
-            base.Wait();
-
-            //Seperation applied to update
-
+            return;
         }
         
+            
+        base.Wait();
+
+        //Attempting to move things forward so they are at the front of their zone, rather than the middle. Might allow for smaller spacing, and looks far better for front row
+        //I also want them to spread spaces above and below them if they cant move forward to allow for a good looking army, but ideally not completely grid like
+
+        if ((AssemblePoint * Team) - .3f > (transform.position.x * Team))
+        {
+            bool FUp = true;
+            bool FDown = true;
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + new Vector3(.4f * Team/2, 0, 0), .75f);
+            foreach (Collider2D collider in colliders)
+            {
+                Unit unit = collider.GetComponent<Unit>();
+                if (collider.gameObject != this.gameObject && unit != null)
+                {
+                    Vector3 diff = unit.transform.position - transform.position;
+
+                    if (diff.y > 0 && (diff.x * Team > 0))
+                    {
+                        FUp = false;
+                    }
+
+                    if (diff.y < 0 && (diff.x * Team > 0))
+                    {
+                        FDown = false;
+                    }
+                }
+            }
+
+            if (FUp && FDown) //Nothing in front of its box
+            {
+                Debug.Log("Both, forward");
+                this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
+            }
+            else if (FUp)  //Nothing above and forward
+            {
+                Debug.Log("Up");
+                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0));
+            }
+            else if (FDown)    //Nothing below and forward
+            {
+                Debug.Log("Down");
+                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
+            }
+        }
+
+        /*if((AssemblePoint * Team) - .3f > (transform.position.x * Team) )   //Going to try just comparing to .3 from the front
+        //if (Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint) > .3f)    //Checks proportionate from 
+        {
+            //Debug.Log("Waiting but shiftable");
+            //bool behind = false;
+            //bool front = false;
+            //bool up = false;
+            //bool down = false;
+
+            bool FUp = false;
+            bool FDown = false;
+
+            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + new Vector3(separationDistance/3, 0, 0), new Vector2(separationDistance/4, separationDistance/2), 0);
+            foreach (Collider2D collider in colliders)
+            {
+                Unit unit = collider.GetComponent<Unit>();
+                if (collider.gameObject != this.gameObject && unit != null)
+                {
+                    Vector3 diff = unit.transform.position - transform.position;
+
+                    if (diff.y > 0 && diff.x * Team > 0)
+                    {
+                        FUp = true;
+                    }
+
+                    if (diff.y < 0 && diff.x * Team > 0)
+                    {
+                        FDown = true;
+                    }
+
+                    //Trying a more splintered approach didn't perform as well
+                    if ((diff.x * Team) - Mathf.Abs(diff.y / 2) > 0)
+                    {
+                        //Debug.Log("Something is in front of me");
+                        //front = true;
+                    }
+                    else if ((diff.y) - Mathf.Abs(diff.x) > 0)
+                    {
+
+                        //up = true;
+                    }
+                    else if ((diff.y < 0) && (diff.x * Team > 0))
+                    {
+
+                        //down = true;
+                    }
+                }
+
+            }
+
+            if (!FUp && !FDown) //Nothing in front of its box
+            {
+                //Debug.Log("Both, forward");
+                this.Move(new Vector3(1f * Team * MoveSpeed * Time.deltaTime, 0, 0));
+            }
+            else if (!FUp)  //Nothing above and forward
+            {
+                //Debug.Log("Up");
+                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0));
+            }
+            else if (!FDown)    //Nothing below and forward
+            {
+                //Debug.Log("Down");
+                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
+            }
+
+
+        }*/
+
+
+
     }
+
 
     public override void Walk()
     {
-        if (Target != null) 
+        if (Target != null) //If it has a target it can either Attack it or walk, and base walk will handle if it needs to walk away or towards
         {
             if (IsTargetAggroable() == true && IsTargetAttackable() == true)
             {
@@ -221,6 +264,7 @@ public class Soldier : Unit
             
         }
 
+        //Trying to get them comfortably within the bounds, rather than forming a hard line as soon as they touch it
         //else if ((General.RallyPoint * Team < ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) + Tolerance / 4) &&
           //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
         else if (((RearPoint + MaxDistanceFromMiddlePoint * Team) * Team < (transform.position.x * Team) ) &&
@@ -228,7 +272,7 @@ public class Soldier : Unit
         
         {
             State = "Wait";
-            Debug.Log("Walk > Wait at X coord: " + transform.position.x);
+            Debug.Log("Walk > Wait at X coord: " + transform.position.x.ToString("0.0"));
         }
         else
         {
@@ -240,7 +284,7 @@ public class Soldier : Unit
     public override void Attack()
     {
 
-        if (Target == null)
+        if (Target == null) 
         {
             State = "Walk";
             animator.SetBool("Attacking", false);
@@ -250,25 +294,22 @@ public class Soldier : Unit
             State = "Walk";
             animator.SetBool("Attacking", false);
         }
+        else if (IsTargetAttackable() == false)     //Both are needed to ensure the troop will not get ahead on accident
+        {
+            State = "Walk";
+            animator.SetBool("Attacking", false);
+            //Debug.Log("Attack > Walk");
+        }
         else
         {
-            if (IsTargetAttackable() == false)
-            {
-                State = "Walk";
-                animator.SetBool("Attacking", false);
-                //Debug.Log("Attack > Walk");
-            }
-            else
-            {
-                //Debug.Log("In attack state and trying to attack");
-                base.Attack();
-                animator.SetBool("Attacking", true);
-            }
-
+            //Debug.Log("In attack state and trying to attack");
+            base.Attack();
+            animator.SetBool("Attacking", true);
         }
         
     }
 
+    //Muda
     public override void Retreat()
     {
         if (AssemblePoint * Team > (transform.position.x * Team))
@@ -282,6 +323,7 @@ public class Soldier : Unit
         
     }
 
+    //Cant use the base functions, once in general it either walks forward, walks at, or attacks. No way to change its state from here
     public void GeneralCharge() {
         if (Target == null)
         {
@@ -297,6 +339,7 @@ public class Soldier : Unit
         }
     
     }
+
     public IEnumerator SpreadStart(float duration, float spread) {
 
         while (duration > 0) {
@@ -338,14 +381,11 @@ public class Soldier : Unit
                 //}
             }
 
-            //else
-            //{
-            //    State = "Wait";
-            //}
+            
         }
 
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         Unit nearUnit = collision.GetComponent<Unit>();
         if (nearUnit != null) {
@@ -365,13 +405,16 @@ public class Soldier : Unit
                 nearbyUnits.Remove(nearUnit);
             }
         }
-    }
+    }*/
 
     private void SpreadOut() {
 
         Vector3 separation = Vector3.zero;
 
+        //This is more consistent than the list of troops that need to be accounted for (but less efficient)
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, separationDistance);
+
+
         foreach (Collider2D collider in colliders)
         {
             Unit unit = collider.GetComponent<Unit>();
@@ -380,7 +423,7 @@ public class Soldier : Unit
                 //Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
 
                 Vector3 diff = transform.position - collider.transform.position;
-                if (diff.magnitude < separationDistance)
+                if (diff.magnitude < separationDistance)    //Checks if close enough to count
                 {
                     separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5))/(diff.magnitude * 2);
                 }
@@ -393,17 +436,18 @@ public class Soldier : Unit
         //Debug.Log("Percent from end point: " + Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint));
 
         if (Mathf.Sign(separation.x) != Mathf.Sign(DistanceFromMiddlePoint))
-        { //If the seperation is the same direction as the distance then we want to apply the weaker force in that direction
-            separation.x *= Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint);
+        { //If the seperation is the same direction as the distance then we want to apply the weaker force in that direction (want to push things inward rather than outward)
+            separation.x *= Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint);  //Gradual scaling back, a unit cant be pushed out
             //Debug.Log("Weakening the force");
         }
         //Debug.Log("Seperation Magnitude: " + separation.magnitude);
        
-        //.1 seems to be a really good value
+
+        //.1 seems to be a really good value to avoid shaking in place
         if (separation.magnitude > minimumForce) {
             separation *= separationForce * Time.deltaTime;
             if (State == "Walk") {
-                separation /= 4;
+                separation /= 4;    //Cuts seperation while walking
             }
             this.Move(separation);
         }

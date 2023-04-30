@@ -5,14 +5,15 @@ using UnityEngine;
 //Super class for all units that can be trained, and fight/have utility  
 public class Unit : Damageable
 {
+    [Header("Unique Identifiers")]
     public Animator animator;
     public string unitName;     //called to show on buttons etc...
     public int UnitNumber;  //Used to code the unit for save data. These should each be unique, and will need to be updated in the UnitCoder.
     public int unitClassification;
-
     public WeaponAttack Offense;
     public bool Attacking = false;
     //Various Stats each unit has
+    [Header("Stats")]
     public float MoveSpeed; //Speed to travel across the map
     public float Damage;    //Damage done per attack
     public float AttackRange;   //Distance from enemy to deal damage
@@ -23,6 +24,7 @@ public class Unit : Damageable
     public int TroopSpaces;     //Troop spaces the unit takes up in the army
     public float SpawnTime;     //Time the unit needs to spawn
 
+    [Header("Misc")]
     public GameObject HealthBar;    //Health bar is currently handled here... probably shouldnt
     public float AppearanceTime = 1.5f;
     
@@ -44,10 +46,9 @@ public class Unit : Damageable
 
     private float DebuffMult = 1;   //Stores speed multipliers so they can be undone when passed back to the general  
 
-    //These are just rough plans for units to follow, and are edited in sub classes
-    //Ideally edits will be the conditions for switching between states, as that is what is most likely to change
+    
 
-    //Makes sure that units face forward when standing around
+    //Makes sure that units face forward when standing around 
     public virtual void Wait() {
         if (Team < 0)
         {
@@ -63,30 +64,14 @@ public class Unit : Damageable
     public virtual void Walk()
     {
         float x = 0;
-        //Walk information
-        if (Target != null)
+        
+        if (Target != null && IsTargetAggroable() == true)
         {
-            if (IsTargetAggroable() == false)
-            {
-                float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
-                this.Move(new Vector3(Mathf.Sign(distance) * MoveSpeed * Time.deltaTime, 0, 0));
-                x = Mathf.Sign(distance);
-
-            }
-            else
-            {
-                //transform.position += Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime);
-                this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
-
-                x = Mathf.Sign(Target.transform.position.x - transform.position.x);
-            }
+            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
+            x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
-        else {
+        else {  
             float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
-            //if (distance != 0) {
-              //  distance = distance / Mathf.Abs(distance);
-            //}
-            //transform.position += new Vector3(Mathf.Sign(distance) * MoveSpeed * Time.deltaTime, 0, 0);
             this.Move(new Vector3(Mathf.Sign(distance) * MoveSpeed * Time.deltaTime, 0, 0));
             x = Mathf.Sign(distance);
         }
@@ -102,20 +87,21 @@ public class Unit : Damageable
 
     }
 
-    //Adjusts slightly to deal with offsets in y positioning while attacking, otherwise just attacks a lot
     public virtual void Attack() {
+
+        //Moves in the Y to ensure the target stays within the hit area
         if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
             float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * MoveSpeed * Time.deltaTime);
-            //Move(new Vector3(0, YMove, YMove/5));
-            transform.position += new Vector3(0, YMove, YMove / 5); //Ignoring the proper checks when moving in the Y to hit an enemy
+            transform.position += new Vector3(0, YMove, YMove / 5); 
         }
+
         if (Attacking == false) {
-            //Debug.Log("Starting Attack");
             Attacking = true;
             attackSound.Play();
             StartCoroutine(Attack(AttackCooldown, .05f));
         }
 
+        //Redundant
         if (Target != null) {
             if (Target.transform.position.x - transform.position.x > 0)
             {
@@ -134,11 +120,13 @@ public class Unit : Damageable
         //Retreat information
         //transform.position += new Vector3(-MoveSpeed * 1.25f * Time.deltaTime, 0, 0);
         this.Move(new Vector3(-MoveSpeed * 1.25f * Time.deltaTime, 0, 0));
+        Debug.Log("No Retreat");
         //Checks for whether to change state
         
     }
 
-    protected bool IsWithinAssemble() {
+    //New methods to make this not painful
+    protected bool IsWithinAssemble() { //Solely checks if it is within the rear and assemble
         if (RearPoint * Team > transform.position.x * Team) {
             return false;
         }
@@ -148,7 +136,7 @@ public class Unit : Damageable
 
         return true;
     }
-    protected bool IsTargetAttackable() {
+    protected bool IsTargetAttackable() {   //Checks attack range
         if (Target == null) {
             return false;
         }
@@ -161,7 +149,7 @@ public class Unit : Damageable
         return true;
     }
 
-    protected bool IsTargetAggroable()
+    protected bool IsTargetAggroable()  //Checks if the enemy is close enough for the troop to walk forward
     {
         if (Target == null)
         {
@@ -188,11 +176,7 @@ public class Unit : Damageable
         MoveSpeed *= 2;
         DebuffMult /= 2;
     }
-    //States to be had:
-    //wait
-    //walk forward
-    //Attack
-    //Retreat (move back)
+    
 
     //Typical start script for a unit so I can be lazy
     public virtual void StandardStart() {
@@ -259,7 +243,6 @@ public class Unit : Damageable
     }
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
-    //I could add the logic to deal with the z offset here, and only pass in a Vector2, but that might ruin some other functions
     public void Move(Vector2 movement)
     {
         Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) + transform.position;
@@ -279,7 +262,7 @@ public class Unit : Damageable
 
     }
 
-    //Very similar to Unitys movetowards, but ignores the z
+    //Very similar to Unitys movetowards, but ignores the z in favor of my method
     public Vector3 Advance(Vector3 current, Vector3 target, float maxDistanceDelta)
     {
         // Get the direction from the current position to the target position
