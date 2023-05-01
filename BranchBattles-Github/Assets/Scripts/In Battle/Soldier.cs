@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Soldier : Unit
 {
+    public bool assembled;
+
     public float FullSpaces;
     public float Tolerance = 2; //Readding this... for now
 
@@ -133,25 +135,29 @@ public class Soldier : Unit
         //Attempting to move things forward so they are at the front of their zone, rather than the middle. Might allow for smaller spacing, and looks far better for front row
         //I also want them to spread spaces above and below them if they cant move forward to allow for a good looking army, but ideally not completely grid like
 
+        if (assembled == true) {
+            return;
+        }
+
         if ((AssemblePoint * Team) - .3f > (transform.position.x * Team))
         {
             bool FUp = true;
             bool FDown = true;
 
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + new Vector3(.4f * Team/2, 0, 0), .75f);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, .75f);
             foreach (Collider2D collider in colliders)
             {
-                Unit unit = collider.GetComponent<Unit>();
-                if (collider.gameObject != this.gameObject && unit != null)
+                Soldier soldier = collider.GetComponent<Soldier>();
+                if (collider.gameObject != this.gameObject && soldier != null && soldier.assembled == true)
                 {
-                    Vector3 diff = unit.transform.position - transform.position;
+                    Vector3 diff = soldier.transform.position - transform.position;
 
-                    if (diff.y > 0 && (diff.x * Team > 0))
+                    if (diff.y > 0 && (diff.x * Team > .1f))
                     {
                         FUp = false;
                     }
 
-                    if (diff.y < 0 && (diff.x * Team > 0))
+                    if (diff.y < 0 && (diff.x * Team > .1f))
                     {
                         FDown = false;
                     }
@@ -161,89 +167,32 @@ public class Soldier : Unit
             if (FUp && FDown) //Nothing in front of its box
             {
                 Debug.Log("Both, forward");
-                this.Move(new Vector3(.8f * Team * MoveSpeed * Time.deltaTime, 0, 0));
+                this.Move(new Vector3(1 * Team * MoveSpeed * Time.deltaTime, 0, 0));
             }
             else if (FUp)  //Nothing above and forward
             {
                 Debug.Log("Up");
-                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0));
+                if (this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0)) == false) {
+                    assembled = true;
+                }
             }
             else if (FDown)    //Nothing below and forward
             {
                 Debug.Log("Down");
-                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
+                if (this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0)) == false) {
+                    assembled = true;
+                }
+            }
+            else
+            {
+                assembled = true;
             }
         }
+        else {
+            assembled = true;
+        }
 
-        /*if((AssemblePoint * Team) - .3f > (transform.position.x * Team) )   //Going to try just comparing to .3 from the front
-        //if (Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint) > .3f)    //Checks proportionate from 
-        {
-            //Debug.Log("Waiting but shiftable");
-            //bool behind = false;
-            //bool front = false;
-            //bool up = false;
-            //bool down = false;
-
-            bool FUp = false;
-            bool FDown = false;
-
-            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + new Vector3(separationDistance/3, 0, 0), new Vector2(separationDistance/4, separationDistance/2), 0);
-            foreach (Collider2D collider in colliders)
-            {
-                Unit unit = collider.GetComponent<Unit>();
-                if (collider.gameObject != this.gameObject && unit != null)
-                {
-                    Vector3 diff = unit.transform.position - transform.position;
-
-                    if (diff.y > 0 && diff.x * Team > 0)
-                    {
-                        FUp = true;
-                    }
-
-                    if (diff.y < 0 && diff.x * Team > 0)
-                    {
-                        FDown = true;
-                    }
-
-                    //Trying a more splintered approach didn't perform as well
-                    if ((diff.x * Team) - Mathf.Abs(diff.y / 2) > 0)
-                    {
-                        //Debug.Log("Something is in front of me");
-                        //front = true;
-                    }
-                    else if ((diff.y) - Mathf.Abs(diff.x) > 0)
-                    {
-
-                        //up = true;
-                    }
-                    else if ((diff.y < 0) && (diff.x * Team > 0))
-                    {
-
-                        //down = true;
-                    }
-                }
-
-            }
-
-            if (!FUp && !FDown) //Nothing in front of its box
-            {
-                //Debug.Log("Both, forward");
-                this.Move(new Vector3(1f * Team * MoveSpeed * Time.deltaTime, 0, 0));
-            }
-            else if (!FUp)  //Nothing above and forward
-            {
-                //Debug.Log("Up");
-                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0));
-            }
-            else if (!FDown)    //Nothing below and forward
-            {
-                //Debug.Log("Down");
-                this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0));
-            }
-
-
-        }*/
-
+        
 
 
     }
@@ -265,13 +214,12 @@ public class Soldier : Unit
         }
 
         //Trying to get them comfortably within the bounds, rather than forming a hard line as soon as they touch it
-        //else if ((General.RallyPoint * Team < ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) + Tolerance / 4) &&
-          //                     (General.RallyPoint * Team > ((transform.position.x + (2 * (unitClassification - EmptySpaces))) * Team) - Tolerance / 4))
-        else if (((RearPoint + MaxDistanceFromMiddlePoint * Team) * Team < (transform.position.x * Team) ) &&
-                               ((AssemblePoint - MaxDistanceFromMiddlePoint * Team/ 3) * Team > (transform.position.x * Team) ))
-        
+      
+        else if(IsWithinAssemble() == true)
+       
         {
             State = "Wait";
+            assembled = false;
             Debug.Log("Walk > Wait at X coord: " + transform.position.x.ToString("0.0"));
         }
         else
@@ -315,6 +263,7 @@ public class Soldier : Unit
         if (AssemblePoint * Team > (transform.position.x * Team))
         {
             State = "Wait";
+            assembled = false;
             //Debug.Log("Retreat > Wait");
         }
         else {
@@ -447,7 +396,7 @@ public class Soldier : Unit
         if (separation.magnitude > minimumForce) {
             separation *= separationForce * Time.deltaTime;
             if (State == "Walk") {
-                separation /= 4;    //Cuts seperation while walking
+                separation *= 2f;    //Cuts seperation while walking
             }
             this.Move(separation);
         }

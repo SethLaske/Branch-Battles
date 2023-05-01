@@ -243,20 +243,23 @@ public class Unit : Damageable
     }
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
-    public void Move(Vector2 movement)
+    public bool Move(Vector2 movement)
     {
         Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) + transform.position;
         if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
         {
             transform.position = NewPosition;
+            return true;
             //Debug.Log("Moving to a position");
         }
         else if (movement.x * transform.position.x < 0)
         { //If they are spawned outside of lines they can walk linearly in the direction towards 0. hopefully
             transform.position += Vector3.right * movement.x;
+            return false;
             //Debug.Log("Cant move, outside of walk");
         }
         else {
+            return false;
             //Debug.Log("Cant move " + movement);
         }
 
