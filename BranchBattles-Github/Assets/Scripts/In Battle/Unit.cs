@@ -5,6 +5,8 @@ using UnityEngine;
 //Super class for all units that can be trained, and fight/have utility  
 public class Unit : Damageable
 {
+    public float minfollow = 1;
+    public float maxfollow = 2;
     [Header("Unique Identifiers")]
     public Animator animator;
     public string unitName;     //called to show on buttons etc...
@@ -15,6 +17,7 @@ public class Unit : Damageable
     //Various Stats each unit has
     [Header("Stats")]
     public float MoveSpeed; //Speed to travel across the map
+    protected float currentspeed;
     public float Damage;    //Damage done per attack
     public float AttackRange;   //Distance from enemy to deal damage
     public float AgroRange;     //The max distance from the rally point a troop will pursue their target
@@ -46,7 +49,7 @@ public class Unit : Damageable
 
     private float DebuffMult = 1;   //Stores speed multipliers so they can be undone when passed back to the general  
 
-    
+    public Soldier humanshield;
 
     //Makes sure that units face forward when standing around 
     public virtual void Wait() {
@@ -64,15 +67,35 @@ public class Unit : Damageable
     public virtual void Walk()
     {
         float x = 0;
-        
+
+        if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
+            if (.5f > (humanshield.transform.position.x - transform.position.x) * Team) 
+            {
+                Debug.Log("Waiting for shield");
+                return;
+            }
+            else if (1.5f > (humanshield.transform.position.x - transform.position.x) * Team)
+            {
+                Debug.Log("Walking with shield");
+                currentspeed = humanshield.currentspeed;
+                float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
+                this.Move(new Vector3(Mathf.Sign(distance) * humanshield.currentspeed * Time.deltaTime, 0, 0));
+                return;
+            }
+        }
+
+        currentspeed = MoveSpeed / DebuffMult;
+
         if (Target != null && IsTargetAggroable() == true)
         {
-            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
+            Debug.Log("Walking at enemy");
+            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentspeed) * Time.deltaTime));
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
-        else {  
+        else {
+            Debug.Log("Walking at rally");
             float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
-            this.Move(new Vector3(Mathf.Sign(distance) * MoveSpeed * Time.deltaTime, 0, 0));
+            this.Move(new Vector3(Mathf.Sign(distance) * currentspeed * Time.deltaTime, 0, 0));
             x = Mathf.Sign(distance);
         }
 
@@ -91,7 +114,7 @@ public class Unit : Damageable
 
         //Moves in the Y to ensure the target stays within the hit area
         if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
-            float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * MoveSpeed * Time.deltaTime);
+            float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentspeed * Time.deltaTime);
             transform.position += new Vector3(0, YMove, YMove / 5); 
         }
 
@@ -119,7 +142,7 @@ public class Unit : Damageable
     {
         //Retreat information
         //transform.position += new Vector3(-MoveSpeed * 1.25f * Time.deltaTime, 0, 0);
-        this.Move(new Vector3(-MoveSpeed * 1.25f * Time.deltaTime, 0, 0));
+        this.Move(new Vector3(-currentspeed * 1.25f * Time.deltaTime, 0, 0));
         Debug.Log("No Retreat");
         //Checks for whether to change state
         
@@ -167,13 +190,13 @@ public class Unit : Damageable
     //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
     IEnumerator Attack(float ChargeTime, float RecoverTime)   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
-        MoveSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
+        currentspeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
         DebuffMult *= 2;
         yield return new WaitForSeconds(ChargeTime);
         Offense.Attack();
         yield return new WaitForSeconds(RecoverTime);
         Attacking = false;
-        MoveSpeed *= 2;
+        currentspeed *= 2;
         DebuffMult /= 2;
     }
     
@@ -181,6 +204,7 @@ public class Unit : Damageable
     //Typical start script for a unit so I can be lazy
     public virtual void StandardStart() {
         maxHealth = HP;
+        currentspeed = MoveSpeed;
         AttackTimer = AttackCooldown;
         State = "Walk";
         if (Team < 0)
@@ -205,7 +229,7 @@ public class Unit : Damageable
         
         General.TroopCount -= TroopSpaces;
         General.troopCategory[unitClassification]--;
-        General.TotalSpeed -= (MoveSpeed*DebuffMult);
+        General.TotalSpeed -= (MoveSpeed);
         General.ActiveCount--;
         General.Souls++;
         General.UpdateGeneral();
@@ -231,13 +255,13 @@ public class Unit : Damageable
     //Implementing it as such will allow the effects to stack, for better or worse
     IEnumerator StunDebuff(float Duration, float Intensity)
     {
-        MoveSpeed /= Intensity;
+        currentspeed /= Intensity;
         DebuffMult *= Intensity;
         AttackCooldown *= Intensity;
 
         yield return new WaitForSeconds(Duration);
 
-        MoveSpeed *= Intensity;
+        currentspeed *= Intensity;
         DebuffMult /= Intensity;
         AttackCooldown /= Intensity;
     }

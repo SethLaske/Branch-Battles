@@ -18,6 +18,8 @@ public class Soldier : Unit
     public float minimumForce;
 
     public GameObject RedAura;
+
+    
     //public bool Highlited = false;
     //public List<Unit> nearbyUnits = new List<Unit>();
     
@@ -65,7 +67,11 @@ public class Soldier : Unit
             FullSpaces += Mathf.CeilToInt((float)General.troopCategory[i]/5);   //Standard, each troop will get 5 units to a spacing
         }
 
-        AssemblePoint = General.RallyPoint - Team * General.Spacing *(FullSpaces);  //Moves it back to account for troops further up
+        float temp = General.RallyPoint - Team * General.Spacing * (FullSpaces);
+        if (AssemblePoint != temp) {
+            assembled = false;
+        }
+        AssemblePoint = temp;  //Moves it back to account for troops further up
         RearPoint = AssemblePoint - Team * General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5); // Allocated the back room by its own classification
 
         DistanceFromMiddlePoint = ((AssemblePoint + RearPoint) / 2 - transform.position.x); //takes average, which is the middle and subtracts its position (positive value implies its to the left)
@@ -119,11 +125,13 @@ public class Soldier : Unit
         if (Target == null && IsWithinAssemble() == false)  //No target and needs to walk
         {
             State = "Walk";
+            assembled = false;
             animator.SetBool("Waiting", false);
             return;
 
         } else if (IsTargetAggroable() == true){    //There is a target, and we can reach them
             State = "Walk";
+            assembled = false;
             animator.SetBool("Waiting", false);
             //Debug.Log("Target is near: Wait > Walk");
             return;
@@ -167,19 +175,19 @@ public class Soldier : Unit
             if (FUp && FDown) //Nothing in front of its box
             {
                 Debug.Log("Both, forward");
-                this.Move(new Vector3(1 * Team * MoveSpeed * Time.deltaTime, 0, 0));
+                this.Move(new Vector3(1 * Team * currentspeed * Time.deltaTime, 0, 0));
             }
             else if (FUp)  //Nothing above and forward
             {
                 Debug.Log("Up");
-                if (this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, .5f * MoveSpeed * Time.deltaTime, 0)) == false) {
+                if (this.Move(new Vector3(.5f * Team * currentspeed * Time.deltaTime, .5f * currentspeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
             }
             else if (FDown)    //Nothing below and forward
             {
                 Debug.Log("Down");
-                if (this.Move(new Vector3(.5f * Team * MoveSpeed * Time.deltaTime, -.5f * MoveSpeed * Time.deltaTime, 0)) == false) {
+                if (this.Move(new Vector3(.5f * Team * currentspeed * Time.deltaTime, -.5f * currentspeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
             }
@@ -200,32 +208,33 @@ public class Soldier : Unit
 
     public override void Walk()
     {
-        if (Target != null) //If it has a target it can either Attack it or walk, and base walk will handle if it needs to walk away or towards
+       
+        if (IsTargetAggroable() == true && IsTargetAttackable() == true)
         {
-            if (IsTargetAggroable() == true && IsTargetAttackable() == true)
-            {
-                State = "Attack";
-            }
-            
-            else {
-                base.Walk();
-            }
-            
+            State = "Attack";
+            return;
         }
+
+            
+           
+            
+
+        
 
         //Trying to get them comfortably within the bounds, rather than forming a hard line as soon as they touch it
       
-        else if(IsWithinAssemble() == true)
+        if(IsWithinAssemble() == true )
        
         {
+            Debug.Log("Reached assemble");
             State = "Wait";
             assembled = false;
-            Debug.Log("Walk > Wait at X coord: " + transform.position.x.ToString("0.0"));
+            //Debug.Log("Walk > Wait at X coord: " + transform.position.x.ToString("0.0"));
+            return;
         }
-        else
-        {
-            base.Walk();
-        }
+       
+        base.Walk();
+        
         
     }
 
@@ -276,10 +285,10 @@ public class Soldier : Unit
     public void GeneralCharge() {
         if (Target == null)
         {
-            this.Move(new Vector3(Mathf.Sign(Team) * MoveSpeed * Time.deltaTime, 0, 0));
+            this.Move(new Vector3(Mathf.Sign(Team) * currentspeed * Time.deltaTime, 0, 0));
         }
         else if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange) {
-            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(MoveSpeed) * Time.deltaTime));
+            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentspeed) * Time.deltaTime));
         }
         else
         { //kill
@@ -334,27 +343,53 @@ public class Soldier : Unit
         }
 
     }
-    /*private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Unit nearUnit = collision.GetComponent<Unit>();
-        if (nearUnit != null) {
-            if (nearUnit.Team == Team) {
-                nearbyUnits.Add(nearUnit);
+        Soldier soldier = collision.GetComponent<Soldier>();
+        if (soldier != null) //It is a soldier and this soldier wants to stay behind it
+        {
+            if (CheckShieldConditions(soldier) == true) {
+                humanshield = soldier;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Unit nearUnit = collision.GetComponent<Unit>();
-        if (nearUnit != null)
+        Soldier soldier = collision.GetComponent<Soldier>();
+        if (soldier != null) //It is a soldier and this soldier wants to stay behind it
         {
-            if (nearUnit.Team == Team)
+            if (humanshield == soldier)
             {
-                nearbyUnits.Remove(nearUnit);
+                humanshield = null;
             }
         }
-    }*/
+    }
+
+    public bool CheckShieldConditions(Soldier soldier) {
+        if (soldier == null) {  //This better be redundant
+            return false;
+        }
+        if (soldier.unitClassification >= unitClassification) //Something we actually want to stay behind
+        {
+            return false;
+        }
+        if (humanshield == null)    //Is the shield currently empty
+        {
+            return true;
+        }
+        //Now there are some decisions
+        //Should it fall behind the closest in class, for now I will say yes
+        if (humanshield.unitClassification > soldier.unitClassification) {
+            return false;
+        }
+        //Will we follow the closest? I say yes
+        if (Vector3.Distance(transform.position, humanshield.transform.position) < Vector3.Distance(transform.position, soldier.transform.position)) {
+            return false;
+        }
+
+        return true;
+    }
 
     private void SpreadOut() {
 
@@ -396,7 +431,7 @@ public class Soldier : Unit
         if (separation.magnitude > minimumForce) {
             separation *= separationForce * Time.deltaTime;
             if (State == "Walk") {
-                separation *= 2f;    //Cuts seperation while walking
+                separation /= 4f;    //Cuts seperation while walking
             }
             this.Move(separation);
         }

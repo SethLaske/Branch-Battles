@@ -519,6 +519,8 @@ MonoBehaviour:
   HP: 20
   maxHealth: 0.5
   Armor: 0
+  minfollow: 0.5
+  maxfollow: 1.5
   animator: {fileID: 3379056341639472623}
   unitName: Fighter
   UnitNumber: 1
@@ -546,6 +548,7 @@ MonoBehaviour:
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 4697823866975201210}
+  humanshield: {fileID: 0}
   assembled: 0
   FullSpaces: 0
   Tolerance: 2

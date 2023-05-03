@@ -14,6 +14,52 @@ public class TargetDetection : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Soldier soldier = collision.GetComponent<Soldier>();
+        if (soldier != null) //It is a soldier and this soldier wants to stay behind it
+        {
+            if (CheckShieldConditions(soldier) == true)
+            {
+                Wielder.humanshield = soldier;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //null for now?
+        //Could add a quick on and off to check if anything is within range or closer whenever something leaves (more likely dies)
+    }
+
+    public bool CheckShieldConditions(Soldier soldier)
+    {
+        if (soldier == null)
+        {  //This better be redundant
+            return false;
+        }
+        if (soldier.unitClassification >= Wielder.unitClassification) //Something we actually want to stay behind
+        {
+            return false;
+        }
+        if (Wielder.humanshield == null)    //Is the shield currently empty
+        {
+            return true;
+        }
+        //Now there are some decisions
+        //Should it fall behind the closest in class, for now I will say yes
+        if (Wielder.humanshield.unitClassification > soldier.unitClassification)
+        {
+            return false;
+        }
+        //Will we follow the closest? I say yes
+        if (Vector3.Distance(transform.position, Wielder.humanshield.transform.position) < Vector3.Distance(transform.position, soldier.transform.position))
+        {
+            return false;
+        }
+
+        return true;
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
 
