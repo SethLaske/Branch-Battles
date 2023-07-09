@@ -28,8 +28,15 @@ public class TargetDetection : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //null for now?
-        //Could add a quick on and off to check if anything is within range or closer whenever something leaves (more likely dies)
+        Soldier soldier = collision.GetComponent<Soldier>();
+        if (soldier != null) //It is a soldier and this soldier wants to stay behind it
+        {
+            if (Wielder.humanshield == soldier)
+            {
+                Wielder.humanshield = null;
+            }
+        }
+        Wielder.GetComponent<Soldier>().PulseUpdate();
     }
 
     public bool CheckShieldConditions(Soldier soldier)

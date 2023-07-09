@@ -364,6 +364,22 @@ public class Soldier : Unit
                 humanshield = null;
             }
         }
+        PulseUpdate();
+    }
+
+    //Experimental to start getting some stuff out of update. Could contain the rally updates, shield updates, and maybe even some of the normal behavior
+    public void PulseUpdate() {
+
+        //Checks for shield
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + Team * Vector3.right, new Vector2(5, 5), 0);
+        foreach (Collider2D collider in colliders)
+        {
+            Soldier soldier = collider.GetComponent<Soldier>();
+            if (CheckShieldConditions(soldier) == true)
+            {
+                humanshield = soldier;
+            }
+        }
     }
 
     public bool CheckShieldConditions(Soldier soldier) {

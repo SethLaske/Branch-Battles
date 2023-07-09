@@ -233,6 +233,8 @@ public class TeamInfo : MonoBehaviour
     public void setRallyPoint(float Rally) {
         RallyPoint = Rally;
         RallyFlag.transform.position = new Vector3(RallyPoint, RallyFlag.transform.position.y);
+        //Play flag noise or smth
+        RallyFlag.GetComponent<Animator>().SetTrigger("Drop");
     }
 
     //Immediately goes for the enemy base
