@@ -5,6 +5,7 @@ using UnityEngine;
 public class General : Unit
 {
     public LevelManager levelmanager;
+    public BattleUI battleUI;
     public float baseSpeed = 4;
     //public WeaponAttack Offense;
     //public bool Attacking = true;
@@ -224,8 +225,8 @@ public class General : Unit
         {
             Damage += 3;
             Offense.Damage += 3;
-            levelmanager.BattleUIUnits.SetActive(true);
-            
+            //levelmanager.BattleUIUnits.SetActive(true);
+            battleUI.EnableTroops();
         }
     }
 
@@ -236,8 +237,8 @@ public class General : Unit
         {
             Damage -= 3;
             Offense.Damage -= 3;
-            levelmanager.BattleUIUnits.SetActive(false);
-            
+            //levelmanager.BattleUIUnits.SetActive(false);
+            battleUI.DisableTroops();
         }
     }
 

@@ -106,6 +106,7 @@ public class SaveManager : MonoBehaviour
             if (SaveFile.ActiveRoster[i] >= 0)
             {
                 PlayerInfo.PlayerTroops[i] = UnitCoder[SaveFile.ActiveRoster[i]];
+                //For robustness a loop could be added to check each entry to ensure they have the same Unit classification number
             }
             else
             {

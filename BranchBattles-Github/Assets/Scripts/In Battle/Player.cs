@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 //Handles a lot of the player specific interface to TeamInfo. The buttons bypass the player for spawning, but the rest is done here
 public class Player : MonoBehaviour
 {
+    public BattleUI battleUI; //Used to be able to access UI elements as needed
+
     public TeamInfo Peasants;
 
     public bool PassRally;
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour
             {
                 Peasants.setRallyPoint(Worldpos.x);
                 PassRally = false;
+                battleUI.rally.interactable = true;
             }
             else if (UseMagic1 == true)  //Sets the rally point if rally was already selected
             {
@@ -87,6 +90,7 @@ public class Player : MonoBehaviour
     public void prepRallyPoint()
     {
         PassRally = true;
+        
     }
     
     //Using two different preps to deal with the magic spells as they cant be under the same section

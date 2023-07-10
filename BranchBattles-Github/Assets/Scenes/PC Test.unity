@@ -796,6 +796,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6879395271291439450, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6879395271291439453, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1324,6 +1328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cd6ad406c11e94c83c14affa5922b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisButton: {fileID: 0}
   UnitName: {fileID: 521780656}
   UnitCost: {fileID: 128966189}
 --- !u!114 &296984707
@@ -2620,6 +2625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cd6ad406c11e94c83c14affa5922b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisButton: {fileID: 0}
   UnitName: {fileID: 742511802}
   UnitCost: {fileID: 2111072503}
 --- !u!114 &545860890
@@ -3355,6 +3361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cd6ad406c11e94c83c14affa5922b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisButton: {fileID: 0}
   UnitName: {fileID: 305365753}
   UnitCost: {fileID: 25372095}
 --- !u!114 &905387658
@@ -3743,6 +3750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cd6ad406c11e94c83c14affa5922b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisButton: {fileID: 0}
   UnitName: {fileID: 1704614959}
   UnitCost: {fileID: 482187033}
 --- !u!114 &935098880
@@ -5077,6 +5085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cd6ad406c11e94c83c14affa5922b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisButton: {fileID: 0}
   UnitName: {fileID: 1246602701}
   UnitCost: {fileID: 335606912}
 --- !u!114 &1753959473
@@ -5504,6 +5513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d842ef2b796c4a4f9baaf367dcaf334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battleUI: {fileID: 0}
   Peasants: {fileID: 1952470770}
   PassRally: 0
   UseMagic1: 0
@@ -5710,6 +5720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1cd6ad406c11e94c83c14affa5922b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisButton: {fileID: 0}
   UnitName: {fileID: 239091873}
   UnitCost: {fileID: 309884802}
 --- !u!114 &2042212491
