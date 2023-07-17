@@ -169,6 +169,7 @@ public class Unit : Damageable
             return false;
         }
 
+        Debug.Log("Target is attackable");
         return true;
     }
 
@@ -184,6 +185,7 @@ public class Unit : Damageable
             return false;
         }
 
+        Debug.Log("Target is agroable");
         return true;
     }
 

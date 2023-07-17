@@ -19,10 +19,6 @@ public class Soldier : Unit
 
     public GameObject RedAura;
 
-    
-    //public bool Highlited = false;
-    //public List<Unit> nearbyUnits = new List<Unit>();
-    
 
     // Start is called before the first frame update
     void Start()
@@ -122,7 +118,7 @@ public class Soldier : Unit
 
     public override void Wait()
     {
-        if (Target == null && IsWithinAssemble() == false)  //No target and needs to walk
+        if (IsWithinAssemble() == false)  //No target and needs to walk
         {
             State = "Walk";
             assembled = false;
@@ -215,15 +211,10 @@ public class Soldier : Unit
             return;
         }
 
-            
-           
-            
-
-        
 
         //Trying to get them comfortably within the bounds, rather than forming a hard line as soon as they touch it
       
-        if(IsWithinAssemble() == true )
+        if(IsWithinAssemble() == true && IsTargetAggroable() == false)
        
         {
             Debug.Log("Reached assemble");
@@ -240,6 +231,9 @@ public class Soldier : Unit
 
     public override void Attack()
     {
+        if (Attacking == true) {
+            return;
+        }
 
         if (Target == null) 
         {
@@ -255,7 +249,7 @@ public class Soldier : Unit
         {
             State = "Walk";
             animator.SetBool("Attacking", false);
-            //Debug.Log("Attack > Walk");
+            Debug.Log("Attack > Walk");
         }
         else
         {
