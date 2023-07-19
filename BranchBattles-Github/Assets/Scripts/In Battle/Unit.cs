@@ -51,7 +51,9 @@ public class Unit : Damageable
 
     public Soldier humanshield;
 
-    //Makes sure that units face forward when standing around 
+    /// <summary>
+    /// The Unit is roughly in position, and will face towards the enemy base
+    /// </summary>
     public virtual void Wait() {
         if (Team < 0)
         {
@@ -63,7 +65,9 @@ public class Unit : Damageable
         }
     }
 
-    //Either advances towards the target, or straight along the x axis towards their specific assemble point
+    /// <summary>
+    /// The Unit needs to walk. Will either approach a target to attack, or move in the direction of the teams rally point. 
+    /// </summary>
     public virtual void Walk()
     {
         float x = 0;
@@ -110,6 +114,9 @@ public class Unit : Damageable
 
     }
 
+    /// <summary>
+    /// The Unit is within range of attacking a target and will continue to do so while the target is alive and in agro range
+    /// </summary>
     public virtual void Attack() {
 
         //Moves in the Y to ensure the target stays within the hit area
@@ -137,18 +144,11 @@ public class Unit : Damageable
         
     }
 
-    //I believe redundant but Im scared to delete
-    public virtual void Retreat()
-    {
-        //Retreat information
-        //transform.position += new Vector3(-MoveSpeed * 1.25f * Time.deltaTime, 0, 0);
-        this.Move(new Vector3(-currentspeed * 1.25f * Time.deltaTime, 0, 0));
-        Debug.Log("No Retreat");
-        //Checks for whether to change state
-        
-    }
+   
 
-    //New methods to make this not painful
+    /// <summary>
+    /// Checking if the unit is within an acceptable range from the teams rally point, using RearPoint and AssemblePoint
+    /// </summary>
     protected bool IsWithinAssemble() { //Solely checks if it is within the rear and assemble
         if (RearPoint * Team > transform.position.x * Team) {
             return false;
@@ -159,7 +159,11 @@ public class Unit : Damageable
 
         return true;
     }
-    protected bool IsTargetAttackable() {   //Checks attack range
+
+    /// <summary>
+    /// Returns true if the unit has a target, and the distance to that target is less than its attack range
+    /// </summary>
+    protected bool IsTargetAttackable() {
         if (Target == null) {
             return false;
         }
@@ -169,11 +173,13 @@ public class Unit : Damageable
             return false;
         }
 
-        Debug.Log("Target is attackable");
         return true;
     }
 
-    protected bool IsTargetAggroable()  //Checks if the enemy is close enough for the troop to walk forward
+    /// <summary>
+    /// Returns true if the unit has a target, and the distance to that target from the units assemble point is less than its agro range
+    /// </summary>
+    protected bool IsTargetAggroable()
     {
         if (Target == null)
         {
@@ -203,7 +209,9 @@ public class Unit : Damageable
     }
     
 
-    //Typical start script for a unit so I can be lazy
+    /// <summary>
+    /// Initializes the typical start script for the different unit classes, including setting max health, speeds, attack timer, state, sprite color, and assigning its general
+    /// </summary>
     public virtual void StandardStart() {
         maxHealth = HP;
         currentspeed = MoveSpeed;
@@ -249,6 +257,9 @@ public class Unit : Damageable
         State = "Defeat";
     }
 
+    /// <summary>
+    /// Slows down the units move speed and attack speed by a factor of the intensity for the length of the duration
+    /// </summary>
     public void Stun(float Duration, float Intensity)
     {
         StartCoroutine(StunDebuff(Duration, Intensity));

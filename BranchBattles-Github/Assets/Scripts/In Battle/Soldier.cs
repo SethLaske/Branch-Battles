@@ -45,17 +45,6 @@ public class Soldier : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
-        //TODO, remove from update
-        if (general != null)
-        {
-            if (general.SelectedSoldier == this) {
-                RedAura.SetActive(true);
-            }
-            else
-            {
-                RedAura.SetActive(false);
-            }
-        }
         
         //Fun Stuff Below
         FullSpaces = 0;
@@ -95,16 +84,10 @@ public class Soldier : Unit
             Attack();
             //animator.SetBool("Attacking", true);
         }
-        else if (State == "Retreat")    //Retreat doesnt really exisit anymore but Im not removing it yet
-        {
-            //Debug.Log("State is retreat");
-            Retreat();
-            //animator.SetBool("Attacking", false);
-        }
         else if (State == "GeneralCharge")    //Only can be given by the king
         {
             //Debug.Log("State is to die by command of the king");
-            GeneralCharge();
+            Charge();
             //animator.SetBool("Attacking", false);
         }
 
@@ -260,23 +243,10 @@ public class Soldier : Unit
         
     }
 
-    //Muda
-    public override void Retreat()
-    {
-        if (AssemblePoint * Team > (transform.position.x * Team))
-        {
-            State = "Wait";
-            assembled = false;
-            //Debug.Log("Retreat > Wait");
-        }
-        else {
-            base.Retreat();
-        }
-        
-    }
+    
 
     //Cant use the base functions, once in general it either walks forward, walks at, or attacks. No way to change its state from here
-    public void GeneralCharge() {
+    public void Charge() {
         if (Target == null)
         {
             this.Move(new Vector3(Mathf.Sign(Team) * currentspeed * Time.deltaTime, 0, 0));
@@ -301,6 +271,17 @@ public class Soldier : Unit
             Move(Vector2.up * spread * Time.deltaTime);
         
         }
+    }
+
+    /// <summary>
+    /// Unit becomes unaffected by player orders, and only moves forward and attacks all enemies
+    /// </summary>
+    public void ReceiveGeneralOrders() {
+        //Change state to Charge
+        //Apply visual affects and animation
+        State = "GeneralCharge";
+        animator.SetBool("Waiting", false);
+        RedAura.SetActive(true);
     }
 
     //Sets the target as the closest available target

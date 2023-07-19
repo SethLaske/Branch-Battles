@@ -91,11 +91,7 @@ public class General : Unit
         }
         if (Input.GetKeyUp(KeyCode.C))
         {
-            if (SelectedSoldier != null) {
-                SelectedSoldier.State = "GeneralCharge";
-                SelectedSoldier.animator.SetBool("Waiting", false);
-            }
-                
+            SelectedSoldier?.ReceiveGeneralOrders();    
         }
         //SelectedSoldier = null;
         //People want to spam the button, so I guess Ill just allow it
