@@ -5,15 +5,15 @@ using UnityEngine;
 //Super class for all units that can be trained, and fight/have utility  
 public class Unit : Damageable
 {
-    public float minfollow = 1;
-    public float maxfollow = 2;
+    //public float minfollow = 1;
+    //public float maxfollow = 2;
     [Header("Unique Identifiers")]
     public Animator animator;
     public string unitName;     //called to show on buttons etc...
     public int UnitNumber;  //Used to code the unit for save data. These should each be unique, and will need to be updated in the UnitCoder.
     public int unitClassification;
     public WeaponAttack Offense;
-    public bool Attacking = false;
+    protected bool Attacking = false;
     //Various Stats each unit has
     [Header("Stats")]
     public float MoveSpeed; //Speed to travel across the map
@@ -22,7 +22,7 @@ public class Unit : Damageable
     public float AttackRange;   //Distance from enemy to deal damage
     public float AgroRange;     //The max distance from the rally point a troop will pursue their target
     public float AttackCooldown;    //Time between attacks
-    public float AttackTimer;   
+    protected float AttackTimer;   
     public int Cost;        //Gold required to train the unit
     public int TroopSpaces;     //Troop spaces the unit takes up in the army
     public float SpawnTime;     //Time the unit needs to spawn
@@ -30,14 +30,14 @@ public class Unit : Damageable
     [Header("Misc")]
     public GameObject HealthBar;    //Health bar is currently handled here... probably shouldnt
     public float AppearanceTime = 1.5f;
-    
-    public float HealthTimer = 0;
+
+    protected float HealthTimer = 0;
 
     public string State;    //Determines what actions they need to pursue
 
-    public Damageable Target;   //Targets are always for the enemy
-    public float AssemblePoint;
-    public float RearPoint;
+    public Damageable Target;   //Targets are always for the enemy      //Could go private 
+    public float AssemblePoint;         //Could go private 
+    public float RearPoint;             //Could go private 
     public LayerMask MovementBlockers;  //things that block movement forward
 
     //public float tolerance = .25f;  //Handles the tolerance to allow for imperfections

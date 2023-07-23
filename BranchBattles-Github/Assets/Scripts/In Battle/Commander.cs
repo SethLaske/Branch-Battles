@@ -58,11 +58,6 @@ public class Commander : Soldier
             Attack();
             animator.SetBool("Attacking", true);
         }
-        else if (State == "Retreat")
-        {
-            Retreat();
-            animator.SetBool("Attacking", false);
-        }
     }
 
     public override void Walk()

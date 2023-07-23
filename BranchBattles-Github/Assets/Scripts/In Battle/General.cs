@@ -9,15 +9,14 @@ public class General : Unit
     public float baseSpeed = 4;
     //public WeaponAttack Offense;
     //public bool Attacking = true;
-    public bool waiting = true;
+    private bool waiting = true;
     
-    public float RegenTime = 1;
-    public float RegenTimer = 0;
+    private float RegenTime = .25f;
+    private float RegenTimer = 0;
 
-    private Vector3 NewPosition;
-
-    public Soldier SelectedSoldier;
+    private Soldier SelectedSoldier;
     public GameObject HealingAura;
+    public GameObject troopselector;
     void Start()
     {
         maxHealth = HP;
@@ -36,13 +35,6 @@ public class General : Unit
             
             Move(new Vector2(MoveSpeed * -1 * Time.deltaTime, 0));
             transform.rotation = Quaternion.Euler(0, 180, 0);
-            /*NewPosition = transform.position + (MoveSpeed * Vector3.left * Time.deltaTime);   saving the original just in case
-            if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
-            {
-                Debug.Log("Moving left from " + transform.position + " to " + NewPosition);
-                transform.position = NewPosition;
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }*/
             waiting = false;
         }
         if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
@@ -61,6 +53,13 @@ public class General : Unit
         {
             Move(new Vector2(0, MoveSpeed * -1 * Time.deltaTime));
             waiting = false;
+        }
+
+        //Taunt
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            animator.SetTrigger("Taunt");
+            
         }
 
         //Attack Controls
@@ -91,9 +90,10 @@ public class General : Unit
         }
         if (Input.GetKeyUp(KeyCode.C))
         {
+            troopselector.SetActive(false);
             SelectedSoldier?.ReceiveGeneralOrders();    
         }
-        //SelectedSoldier = null;
+       
         //People want to spam the button, so I guess Ill just allow it
         /*if (Input.GetKeyUp("space") && !Attacking)
         {
@@ -181,6 +181,12 @@ public class General : Unit
             }
 
         }
+        if (SelectedSoldier == null) {
+            troopselector.SetActive(false);
+            return;
+        }
+        troopselector.transform.position = SelectedSoldier.transform.position;
+        troopselector.SetActive(true);
     }
     //Heals while in security
     private void OnTriggerStay2D(Collider2D collider)

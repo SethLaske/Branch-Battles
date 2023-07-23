@@ -26,9 +26,9 @@ public class Soldier : Unit
         StandardStart();
         StartCoroutine(SpreadStart(.3f, Random.Range(-3f, 3f)));    //Provides some organic movement away from the tent, thx Hudson
 
-        if (general == null) {
-            RedAura.SetActive(false);
-        }
+        
+        RedAura.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -84,7 +84,7 @@ public class Soldier : Unit
             Attack();
             //animator.SetBool("Attacking", true);
         }
-        else if (State == "GeneralCharge")    //Only can be given by the king
+        else if (State == "Charge")    //Only can be given by the king
         {
             //Debug.Log("State is to die by command of the king");
             Charge();
@@ -279,7 +279,7 @@ public class Soldier : Unit
     public void ReceiveGeneralOrders() {
         //Change state to Charge
         //Apply visual affects and animation
-        State = "GeneralCharge";
+        State = "Charge";
         animator.SetBool("Waiting", false);
         RedAura.SetActive(true);
     }

@@ -53,10 +53,6 @@ public class Miner : Unit
         {
             Attack();
         }
-        else if (State == "Retreat")
-        {
-            Retreat();
-        }
     }
 
     //Honestly, these guys are pretty simple and just walk back and forth. No need to make them more complicated

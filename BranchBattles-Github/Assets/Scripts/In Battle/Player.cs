@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
             {
                 Peasants.setRallyPoint(Worldpos.x);
                 PassRally = false;
-                battleUI.rally.interactable = true;
+                battleUI.DelayRallyButton();
             }
             else if (UseMagic1 == true)  //Sets the rally point if rally was already selected
             {

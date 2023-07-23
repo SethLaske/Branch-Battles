@@ -58,6 +58,15 @@ public class BattleUI : MonoBehaviour
         soldier4.interactable = false;
     }
 
+    public void DelayRallyButton() { 
+        StartCoroutine(ToggleButtonDelayed(rally, .25f, true));
+    }
+
+    IEnumerator ToggleButtonDelayed(Button button, float duration, bool toggle) {
+        yield return new WaitForSeconds(duration);
+        button.interactable = toggle;
+    }
+
 
 
     
