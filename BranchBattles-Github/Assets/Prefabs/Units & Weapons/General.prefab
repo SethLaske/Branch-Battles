@@ -94,8 +94,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6634009494865559899}
   - component: {fileID: 2155544169984700200}
-  - component: {fileID: 6185429638716345862}
   - component: {fileID: 6185429638716345863}
+  - component: {fileID: 8160923041936685213}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -111,8 +111,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3620065794534304550}
   m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 1.25, y: 0.2, z: -0.1}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 1.3424, y: 0.2588, z: -0.1}
+  m_LocalScale: {x: 1.9524, y: 2.214, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4616502362155424751}
@@ -170,14 +170,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6185429638716345862
-BoxCollider2D:
+--- !u!114 &6185429638716345863
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3620065794534304550}
-  m_Enabled: 0
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa17ad83e07f8949bad20d01560baf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  MultiHit: 1
+--- !u!60 &8160923041936685213
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3620065794534304550}
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -193,26 +207,12 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!114 &6185429638716345863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3620065794534304550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aa17ad83e07f8949bad20d01560baf5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 0
-  AttackBox: {fileID: 0}
-  MultiHit: 1
-  FinishedAttack: 0
-  Wielder: {fileID: 0}
+  m_Points:
+    m_Paths:
+    - - {x: -1.1635312, y: 0.10812378}
+      - {x: 0.28528047, y: -0.7308308}
+      - {x: 1.060045, y: -0.07054635}
+      - {x: -0.017432451, y: 0.6127316}
 --- !u!1 &4616502362155424749
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
   Damage: 5
   AttackRange: 0
   AgroRange: 0
-  AttackCooldown: 0.75
+  attackHitTime: 0.8
   Cost: 0
   TroopSpaces: 0
   SpawnTime: 0
@@ -295,6 +295,7 @@ MonoBehaviour:
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 5403574557600635431}
   humanshield: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: e34ca22d0ac5b834b979f8d06f329ad7, type: 2}
   levelmanager: {fileID: 0}
   battleUI: {fileID: 0}
   baseSpeed: 4

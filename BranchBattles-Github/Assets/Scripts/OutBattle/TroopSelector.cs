@@ -36,7 +36,7 @@ public class TroopSelector : MonoBehaviour
         Unit newUnit = newUnitObject.GetComponent<Unit>();
         selectedTroop = newUnit;
         troopSprite.sprite = newUnitObject.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
-        string text = string.Format("{0}\n\nDamage:  {1}\nCooldown:  {2}\nSpeed:  {3}\nArmor:  {4}", newUnit.unitName, newUnit.Damage, newUnit.AttackCooldown, newUnit.MoveSpeed, newUnit.Armor);
+        string text = string.Format("{0}\n\nDamage:  {1}\nCooldown:  {2}\nSpeed:  {3}\nArmor:  {4}", newUnit.unitName, newUnit.Damage, newUnit.attackAnimation.length, newUnit.MoveSpeed, newUnit.Armor);
         stats.SetText(text); 
     }
     

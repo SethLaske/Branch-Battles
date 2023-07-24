@@ -46,21 +46,8 @@ public class Soldier : Unit
         }
 
         
-        //Fun Stuff Below
-        FullSpaces = 0;
-        for (int i = 1; i < unitClassification; i++) {  //Skip 0. The Pacifists will all be at 0, and dont affect troops positioning
-            FullSpaces += Mathf.CeilToInt((float)General.troopCategory[i]/5);   //Standard, each troop will get 5 units to a spacing
-        }
-
-        float temp = General.RallyPoint - Team * General.Spacing * (FullSpaces);
-        if (AssemblePoint != temp) {
-            assembled = false;
-        }
-        AssemblePoint = temp;  //Moves it back to account for troops further up
-        RearPoint = AssemblePoint - Team * General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5); // Allocated the back room by its own classification
-
-        DistanceFromMiddlePoint = ((AssemblePoint + RearPoint) / 2 - transform.position.x); //takes average, which is the middle and subtracts its position (positive value implies its to the left)
-        MaxDistanceFromMiddlePoint = Mathf.Abs((AssemblePoint - RearPoint) / 2);    //needed for ratios later, could be calculated with classifications but this is easier
+        
+        CalculateAssemblePoints();
 
         SpreadOut();    //Performs flocking mechanics every update, regardless of state
 
@@ -380,6 +367,26 @@ public class Soldier : Unit
         }
 
         return true;
+    }
+
+    public void CalculateAssemblePoints() {
+        //Fun Stuff Below
+        FullSpaces = 0;
+        for (int i = 1; i < unitClassification; i++)
+        {  //Skip 0. The Pacifists will all be at 0, and dont affect troops positioning
+            FullSpaces += Mathf.CeilToInt((float)General.troopCategory[i] / 5);   //Standard, each troop will get 5 units to a spacing
+        }
+
+        float temp = General.RallyPoint - Team * General.Spacing * (FullSpaces);
+        if (AssemblePoint != temp)
+        {
+            assembled = false;
+        }
+        AssemblePoint = temp;  //Moves it back to account for troops further up
+        RearPoint = AssemblePoint - Team * General.Spacing * Mathf.CeilToInt((float)General.troopCategory[unitClassification] / 5); // Allocated the back room by its own classification
+
+        DistanceFromMiddlePoint = ((AssemblePoint + RearPoint) / 2 - transform.position.x); //takes average, which is the middle and subtracts its position (positive value implies its to the left)
+        MaxDistanceFromMiddlePoint = Mathf.Abs((AssemblePoint - RearPoint) / 2);    //needed for ratios later, could be calculated with classifications but this is easier
     }
 
     private void SpreadOut() {

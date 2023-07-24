@@ -21,8 +21,8 @@ public class Unit : Damageable
     public float Damage;    //Damage done per attack
     public float AttackRange;   //Distance from enemy to deal damage
     public float AgroRange;     //The max distance from the rally point a troop will pursue their target
-    public float AttackCooldown;    //Time between attacks
-    protected float AttackTimer;   
+    public float attackHitTime;    //Time from animation start to activating hitbox
+    //protected float AttackTimer;   
     public int Cost;        //Gold required to train the unit
     public int TroopSpaces;     //Troop spaces the unit takes up in the army
     public float SpawnTime;     //Time the unit needs to spawn
@@ -50,6 +50,8 @@ public class Unit : Damageable
     private float DebuffMult = 1;   //Stores speed multipliers so they can be undone when passed back to the general  
 
     public Soldier humanshield;
+
+    public AnimationClip attackAnimation;
 
     /// <summary>
     /// The Unit is roughly in position, and will face towards the enemy base
@@ -127,8 +129,7 @@ public class Unit : Damageable
 
         if (Attacking == false) {
             Attacking = true;
-            attackSound.Play();
-            StartCoroutine(Attack(AttackCooldown, .05f));
+            StartCoroutine(PlayAttack());
         }
 
         //Redundant
@@ -196,13 +197,14 @@ public class Unit : Damageable
     }
 
     //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
-    IEnumerator Attack(float ChargeTime, float RecoverTime)   //Might need recover to deal with animations, otherwise easy fix to remove it
+    IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
         currentspeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
         DebuffMult *= 2;
-        yield return new WaitForSeconds(ChargeTime);
+        yield return new WaitForSeconds(attackHitTime);
+        attackSound?.Play();
         Offense.Attack();
-        yield return new WaitForSeconds(RecoverTime);
+        yield return new WaitForSeconds(attackAnimation.length-attackHitTime);
         Attacking = false;
         currentspeed *= 2;
         DebuffMult /= 2;
@@ -215,7 +217,7 @@ public class Unit : Damageable
     public virtual void StandardStart() {
         maxHealth = HP;
         currentspeed = MoveSpeed;
-        AttackTimer = AttackCooldown;
+        //AttackTimer = attackAnimation;
         State = "Walk";
         if (Team < 0)
         {
@@ -270,13 +272,13 @@ public class Unit : Damageable
     {
         currentspeed /= Intensity;
         DebuffMult *= Intensity;
-        AttackCooldown *= Intensity;
+        //AttackCooldown *= Intensity;
 
         yield return new WaitForSeconds(Duration);
 
         currentspeed *= Intensity;
         DebuffMult /= Intensity;
-        AttackCooldown /= Intensity;
+        //AttackCooldown /= Intensity;
     }
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.

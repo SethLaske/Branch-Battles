@@ -20,7 +20,6 @@ public class General : Unit
     void Start()
     {
         maxHealth = HP;
-        AttackTimer = 0;
         MoveSpeed = baseSpeed;
         General.generalSpeed = baseSpeed;
     }
@@ -63,11 +62,12 @@ public class General : Unit
         }
 
         //Attack Controls
-        if (Input.GetKeyDown("space") && AttackTimer == 0f)
+        if (Input.GetKey("space") && Attacking == false)
         {
             animator.SetBool("Attacking", true);
-            AttackTimer = 0.01f;
+            Attacking = true;
             MoveSpeed = 2;
+            StartCoroutine(PlayAttack());
             //animator.SetBool("HoldSlice", true);
         }
 
@@ -94,42 +94,8 @@ public class General : Unit
             SelectedSoldier?.ReceiveGeneralOrders();    
         }
        
-        //People want to spam the button, so I guess Ill just allow it
-        /*if (Input.GetKeyUp("space") && !Attacking)
-        {
-            MoveSpeed *= 2;
-            AttackTimer = 0;
-            animator.SetBool("Attacking", false);
-            //animator.SetBool("HoldSlice", false);
-        }*/
-        if (AttackTimer > 0)
-        {
-            waiting = false;
-            AttackTimer += Time.deltaTime;
-            if (AttackTimer >= AttackCooldown && !Attacking)
-            {
-                Offense.Attack();
-                attackSound.Play();
-                Attacking = true;
-            }
-            if (AttackTimer >= AttackCooldown * 1.25)
-            {
-                //animator.SetBool("HoldSlice", false);
-                animator.SetBool("Attacking", false);
-                Attacking = false;
-                AttackTimer = 0f;
-                MoveSpeed = baseSpeed;
-                if (Input.GetKey("space"))
-                {
-                    animator.SetBool("Attacking", true);
-                    AttackTimer = 0.01f;
-                    MoveSpeed = 2;
-                }
-            }
-        }
-        else {
-            MoveSpeed = baseSpeed;
-        }
+    
+       
 
         //Health bar clearing
         if (HealthTimer < AppearanceTime)
@@ -142,7 +108,7 @@ public class General : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
-        if (waiting == true)
+        if (waiting == true && Attacking == false)
         {
             animator.SetBool("Waiting", true);
         }
@@ -160,6 +126,17 @@ public class General : Unit
         General.Opponent.SpawnUnits.Clear();
         levelmanager.GameOver(General.Team);
 
+    }
+
+    IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
+    {
+        yield return new WaitForSeconds(attackHitTime);
+        attackSound.Play();
+        Offense.Attack();
+        yield return new WaitForSeconds(attackAnimation.length - attackHitTime);
+        animator.SetBool("Attacking", false);
+        Attacking = false;
+        MoveSpeed = baseSpeed;
     }
 
     public void OneUnitCharge() {

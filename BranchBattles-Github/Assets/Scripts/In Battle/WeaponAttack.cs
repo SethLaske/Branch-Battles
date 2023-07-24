@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour
 {
-    public float Damage;
-    public Collider2D AttackBox;
+    [HideInInspector] public float Damage;
+    private Collider2D AttackBox;
     public bool MultiHit;
 
-    public bool FinishedAttack;
+    private bool FinishedAttack;
 
-    public Unit Wielder;
+    protected Unit Wielder;
 
 
     private void Start()

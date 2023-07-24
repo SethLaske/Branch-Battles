@@ -138,34 +138,33 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 35
-  maxHealth: 0.5
   Armor: 0
   animator: {fileID: 4166622894662010841}
   unitName: Miner
   UnitNumber: 0
   unitClassification: 0
   Offense: {fileID: 0}
-  Attacking: 0
   MoveSpeed: 2
   Damage: 1
   AttackRange: 2
   AgroRange: 0
-  AttackCooldown: 1
-  AttackTimer: 0
+  attackHitTime: 0
   Cost: 30
   TroopSpaces: 1
   SpawnTime: 1
   HealthBar: {fileID: 3822985507771200833}
   AppearanceTime: 1.5
-  HealthTimer: 0
   State: 
   Target: {fileID: 0}
   AssemblePoint: 0
+  RearPoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 0}
+  humanshield: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: 2bd8a471796ed6c49ac1a5af433a1a01, type: 2}
   Resource: Mine
   Full: 0
   BagAmount: 25
@@ -306,7 +305,7 @@ AudioSource:
     m_RotationOrder: 4
 --- !u!95 &8764945033135616000
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -323,7 +322,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1994363355713803944
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,7 +410,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &4166622894662010841
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -428,7 +427,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &3822985507771200833
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Commander : Soldier
         transform.Rotate(new Vector3(0, 180, 0));
 
         maxHealth = HP;
-        AttackTimer = AttackCooldown;
+        
         State = "Walk";
         if (Team < 0)
         {
@@ -90,16 +90,7 @@ public class Commander : Soldier
 
             if (Mathf.Abs(transform.position.x - Target.transform.position.x) < AttackRange)
             {
-                if (AttackTimer > AttackCooldown)
-                {
-                    Target.TakeDamage(Damage);
-                    attackSound.Play();
-                    AttackTimer = 0;
-                }
-                else
-                {
-                    AttackTimer += Time.deltaTime;
-                }
+                //Not gonna deal with this right now
             }
 
             else

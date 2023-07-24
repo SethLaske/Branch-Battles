@@ -6093,6 +6093,10 @@ PrefabInstance:
       propertyPath: levelmanager
       value: 
       objectReference: {fileID: 1739354372}
+    - target: {fileID: 6185429639910905451, guid: b0c0921e826420c4bbbbb2d24db10868, type: 3}
+      propertyPath: AttackCooldown
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0c0921e826420c4bbbbb2d24db10868, type: 3}
 --- !u!1001 &8459818095626793635

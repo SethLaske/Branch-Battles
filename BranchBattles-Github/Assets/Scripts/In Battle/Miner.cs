@@ -16,15 +16,9 @@ public class Miner : Unit
     // Start is called before the first frame update
     void Start()
     {
-        AttackTimer = AttackCooldown;
+        StandardStart();
         animator.SetTrigger("Walking");
         animator.ResetTrigger("Walking");
-        State = "Walk";
-        maxHealth = HP;
-        if (Team < 0)
-        {
-            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        }
     }
 
     // Update is called once per frame
@@ -73,11 +67,11 @@ public class Miner : Unit
     }
 
 
-    IEnumerator IMine(float duration)
+    IEnumerator IMine()
     {
         Full = true;
         //Debug.Log("Time Starting");
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(attackAnimation.length);
 
 
         animator.SetTrigger("Walking");
@@ -113,7 +107,7 @@ public class Miner : Unit
             animator.SetTrigger("Mining");
             //animator.ResetTrigger("Mining");
             State = "Mining";   //Being in the mining State should mean that it does nothing
-            StartCoroutine(IMine(mine.Time));
+            StartCoroutine(IMine());
         }
 
         if (collision.gameObject.CompareTag("Building"))         //Will be compared to barracks/team base eventually
