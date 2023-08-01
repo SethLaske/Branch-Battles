@@ -56,26 +56,22 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 75
-  maxHealth: 0.5
   Armor: 2
   animator: {fileID: 827475495931192477}
   unitName: Rage
   UnitNumber: 6
   unitClassification: 1
   Offense: {fileID: 5647435537425045194}
-  Attacking: 0
   MoveSpeed: 4
   Damage: 15
   AttackRange: 3
   AgroRange: 1000
-  AttackCooldown: 1.4
-  AttackTimer: 0
+  attackHitTime: 0.5
   Cost: 100
   TroopSpaces: 3
   SpawnTime: 9
   HealthBar: {fileID: 6300745623428976305}
   AppearanceTime: 1.5
-  HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
   AssemblePoint: 0
@@ -85,14 +81,15 @@ MonoBehaviour:
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: -5713061852731161974}
+  humanshield: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: b89678cd91ccdd547b93dd460d30a2f5, type: 2}
+  assembled: 0
   FullSpaces: 0
   Tolerance: 2
   separationDistance: 1
   separationForce: 0.5
   minimumForce: 0.1
   RedAura: {fileID: 3588384708236169323}
-  Highlited: 0
-  nearbyUnits: []
 --- !u!50 &2203268833559490362
 Rigidbody2D:
   serializedVersion: 4
@@ -252,8 +249,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2203268833717547772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.08572285}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0.38, y: 0.57, z: 0.08572285}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2203268833559490363}
@@ -300,7 +297,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ff76df57021694048a16f3ce3e1c7f57, type: 3}
+  m_Sprite: {fileID: 305599966, guid: 64fdbd535f2226448b8e990262e72ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -313,7 +310,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &827475495931192477
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -321,7 +318,7 @@ Animator:
   m_GameObject: {fileID: 2203268833717547772}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ebce436cc721a014a88e4293883d7b3d, type: 2}
+  m_Controller: {fileID: 9100000, guid: fb247fcf969711c409049380c331f70f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -330,7 +327,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &4895578739083404965
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,7 +469,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c65f8b287ae8e408bea38e54ff77d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wielder: {fileID: 0}
 --- !u!1 &6300745623428976305
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,8 +580,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6507976882364174856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.25, y: 0, z: -0.1}
-  m_LocalScale: {x: 3, y: 2, z: 1}
+  m_LocalPosition: {x: 1.0301, y: 0, z: -0.1}
+  m_LocalScale: {x: 2.5, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2203268833559490363}
@@ -630,10 +626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
-  AttackBox: {fileID: 0}
   MultiHit: 1
-  FinishedAttack: 0
-  Wielder: {fileID: 0}
 --- !u!212 &3905287080616909502
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -702,7 +695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &185269188661736847
 Transform:
   m_ObjectHideFlags: 0
@@ -725,7 +718,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7836130919575740402}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1

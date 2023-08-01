@@ -77,12 +77,12 @@ public class Unit : Damageable
         if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
             if (.5f > (humanshield.transform.position.x - transform.position.x) * Team) 
             {
-                Debug.Log("Waiting for shield");
+                //Debug.Log("Waiting for shield");
                 return;
             }
             else if (1.5f > (humanshield.transform.position.x - transform.position.x) * Team)
             {
-                Debug.Log("Walking with shield");
+                //Debug.Log("Walking with shield");
                 currentspeed = humanshield.currentspeed;
                 float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
                 this.Move(new Vector3(Mathf.Sign(distance) * humanshield.currentspeed * Time.deltaTime, 0, 0));
@@ -94,12 +94,12 @@ public class Unit : Damageable
 
         if (Target != null && IsTargetAggroable() == true)
         {
-            Debug.Log("Walking at enemy");
+            //Debug.Log("Walking at enemy");
             this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentspeed) * Time.deltaTime));
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
         else {
-            Debug.Log("Walking at rally");
+            //Debug.Log("Walking at rally");
             float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
             this.Move(new Vector3(Mathf.Sign(distance) * currentspeed * Time.deltaTime, 0, 0));
             x = Mathf.Sign(distance);
@@ -124,6 +124,7 @@ public class Unit : Damageable
         //Moves in the Y to ensure the target stays within the hit area
         if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
             float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentspeed * Time.deltaTime);
+            Debug.Log("Current Speed" + currentspeed);
             transform.position += new Vector3(0, YMove, YMove / 5); 
         }
 
@@ -192,7 +193,7 @@ public class Unit : Damageable
             return false;
         }
 
-        Debug.Log("Target is agroable");
+        //Debug.Log("Target is agroable");
         return true;
     }
 

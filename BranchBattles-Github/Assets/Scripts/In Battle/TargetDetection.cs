@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetDetection : MonoBehaviour
 {
     
-    public Unit Wielder;
+    private Unit Wielder;
 
 
     private void Start()

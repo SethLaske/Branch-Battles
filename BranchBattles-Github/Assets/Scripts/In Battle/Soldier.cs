@@ -140,19 +140,19 @@ public class Soldier : Unit
 
             if (FUp && FDown) //Nothing in front of its box
             {
-                Debug.Log("Both, forward");
+                //Debug.Log("Both, forward");
                 this.Move(new Vector3(1 * Team * currentspeed * Time.deltaTime, 0, 0));
             }
             else if (FUp)  //Nothing above and forward
             {
-                Debug.Log("Up");
+                //Debug.Log("Up");
                 if (this.Move(new Vector3(.5f * Team * currentspeed * Time.deltaTime, .5f * currentspeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
             }
             else if (FDown)    //Nothing below and forward
             {
-                Debug.Log("Down");
+                //Debug.Log("Down");
                 if (this.Move(new Vector3(.5f * Team * currentspeed * Time.deltaTime, -.5f * currentspeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
@@ -187,7 +187,7 @@ public class Soldier : Unit
         if(IsWithinAssemble() == true && IsTargetAggroable() == false)
        
         {
-            Debug.Log("Reached assemble");
+            //Debug.Log("Reached assemble");
             State = "Wait";
             assembled = false;
             //Debug.Log("Walk > Wait at X coord: " + transform.position.x.ToString("0.0"));
@@ -202,6 +202,7 @@ public class Soldier : Unit
     public override void Attack()
     {
         if (Attacking == true) {
+            base.Attack();
             return;
         }
 
@@ -219,7 +220,7 @@ public class Soldier : Unit
         {
             State = "Walk";
             animator.SetBool("Attacking", false);
-            Debug.Log("Attack > Walk");
+            //Debug.Log("Attack > Walk");
         }
         else
         {

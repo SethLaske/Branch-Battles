@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4568610540820579215}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4312585271430621189
 BoxCollider2D:
@@ -73,10 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Damage: 0
-  AttackBox: {fileID: 0}
   MultiHit: 0
-  FinishedAttack: 0
-  Wielder: {fileID: 0}
 --- !u!212 &5671218002724638560
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -163,7 +160,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4568610540820579215}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &4549439440957608466
 BoxCollider2D:
@@ -270,7 +267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c65f8b287ae8e408bea38e54ff77d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wielder: {fileID: 0}
 --- !u!1 &4568610540671966792
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,12 +293,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4568610540671966792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.08572285}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 0.43, y: 0.55, z: 0.08572285}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 7408728339638786787}
   m_Father: {fileID: 4568610540820579215}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4568610540671966794
 SpriteRenderer:
@@ -345,7 +342,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: ff76df57021694048a16f3ce3e1c7f57, type: 3}
+  m_Sprite: {fileID: 1620972617, guid: 1dd5fcbbaed14f145b5838bc9ebcb07d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -358,7 +355,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &1026498895368711671
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -366,7 +363,7 @@ Animator:
   m_GameObject: {fileID: 4568610540671966792}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ebce436cc721a014a88e4293883d7b3d, type: 2}
+  m_Controller: {fileID: 9100000, guid: df1fac412f399a14f9ef4439252aaba4, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -375,7 +372,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &4568610540820579213
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +405,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7408728339638786787}
   - {fileID: 4568610540671966795}
   - {fileID: 1320285840383768615}
   - {fileID: 6071407785676077898}
@@ -432,26 +428,22 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 15
-  maxHealth: 0.5
   Armor: 0
   animator: {fileID: 1026498895368711671}
   unitName: Spear
   UnitNumber: 2
   unitClassification: 3
   Offense: {fileID: 4280810500101309706}
-  Attacking: 0
   MoveSpeed: 4
   Damage: 7
   AttackRange: 5
   AgroRange: 9
-  AttackCooldown: 1
-  AttackTimer: 0
+  attackHitTime: 1.05
   Cost: 45
   TroopSpaces: 1
   SpawnTime: 2.5
   HealthBar: {fileID: 5300005156802094862}
   AppearanceTime: 1.5
-  HealthTimer: 0.5
   State: 
   Target: {fileID: 0}
   AssemblePoint: 0
@@ -461,14 +453,15 @@ MonoBehaviour:
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 4837877308794750919}
+  humanshield: {fileID: 0}
+  attackAnimation: {fileID: 7400000, guid: 4c76b6948e6c9174eb92d516c676ddcf, type: 2}
+  assembled: 0
   FullSpaces: 0
   Tolerance: 2
   separationDistance: 1
   separationForce: 0.5
   minimumForce: 0.1
   RedAura: {fileID: 4454954212053217908}
-  Highlited: 0
-  nearbyUnits: []
 --- !u!50 &4568610540820579214
 Rigidbody2D:
   serializedVersion: 4
@@ -632,7 +625,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4568610540820579215}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8975800594403889605
 SpriteRenderer:
@@ -710,14 +703,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7828320352379170482}
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: 0.66, y: -0.15, z: 0.08572285}
-  m_LocalScale: {x: 4, y: 4, z: 4}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: -0, y: -0, z: -0.5099444, w: 0.8602074}
+  m_LocalPosition: {x: 0.1, y: -0.148, z: -0.042861424}
+  m_LocalScale: {x: 0.8, y: 2.5, z: 2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4568610540820579215}
+  m_Father: {fileID: 4568610540671966795}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -61.32}
 --- !u!212 &2299813961673273712
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -779,7 +772,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3883005122976764053, guid: 76d5cc15f614b8d4a9df9ccd733878f8, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3883005122976764053, guid: 76d5cc15f614b8d4a9df9ccd733878f8, type: 3}
       propertyPath: m_LocalPosition.x

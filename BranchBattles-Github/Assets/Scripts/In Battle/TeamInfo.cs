@@ -230,8 +230,11 @@ public class TeamInfo : MonoBehaviour
     }
 
     //Sets the rally point and moves the flag
-    public void setRallyPoint(float Rally) {
-        RallyPoint = Rally;
+    public void setRallyPoint(float rally) {
+        if (RallyPoint == rally) {
+            return;
+        }
+        RallyPoint = rally;
         RallyFlag.transform.position = new Vector3(RallyPoint, RallyFlag.transform.position.y);
         //Play flag noise or smth
         RallyFlag.GetComponent<Animator>().SetTrigger("Drop");

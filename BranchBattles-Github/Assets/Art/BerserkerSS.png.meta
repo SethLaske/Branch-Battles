@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1303d5463708e664eaa38b6be1fc4910
+guid: 64fdbd535f2226448b8e990262e72ee4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,7 +67,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Terrible Archer_0
+      name: BerserkerSS_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd18e2a497fbdee4c9852a0ab05b4537
-      internalID: 1190826285
+      spriteID: 8400cb74b3ee24445ab1e03ef136cd03
+      internalID: 402689333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_1
+      name: BerserkerSS_1
       rect:
         serializedVersion: 2
         x: 96
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53b119370bab8de4aab94d1612178612
-      internalID: 173551578
+      spriteID: 492f544bd6a7d254183aec10a189ef7a
+      internalID: 305599966
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_2
+      name: BerserkerSS_2
       rect:
         serializedVersion: 2
         x: 192
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e7f05c7af98d444aa35e08aed02a990
-      internalID: 1412901871
+      spriteID: 003343a749ed89942981808013e32747
+      internalID: -606174673
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_3
+      name: BerserkerSS_3
       rect:
         serializedVersion: 2
         x: 288
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b069ce82f3bf9be4c99f6cca2bf83d70
-      internalID: -1321109682
+      spriteID: a6bca1faed510a849b7db4b92c0ee091
+      internalID: -48643853
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_4
+      name: BerserkerSS_4
       rect:
         serializedVersion: 2
         x: 384
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7de49a99e489621419ea7420ef5280f7
-      internalID: -1483515954
+      spriteID: fa162616954dd0a4a85f33c3f72e7421
+      internalID: 1908497511
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_5
+      name: BerserkerSS_5
       rect:
         serializedVersion: 2
         x: 480
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c48010db5bc74f46a792cdeb195e109
-      internalID: -19097200
+      spriteID: 175360f2f5a67714c8ebcf803b55eb14
+      internalID: -102210483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_6
+      name: BerserkerSS_6
       rect:
         serializedVersion: 2
         x: 576
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17e80259f93bdb240b0747224be3a1b8
-      internalID: 1579242934
+      spriteID: 3bed5d1a4a02b7f40b9a39d7ebfd2200
+      internalID: 1168384581
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_7
+      name: BerserkerSS_7
       rect:
         serializedVersion: 2
         x: 672
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f8d223cd52edea4fa20ed56ec5c2693
-      internalID: 1030651808
+      spriteID: 27b4315e8991fa84b887b4db9f25933d
+      internalID: -522741676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_8
+      name: BerserkerSS_8
       rect:
         serializedVersion: 2
         x: 768
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80a21d88aa01a084b97fa9e4f30458aa
-      internalID: -264894990
+      spriteID: 5d3ca0527b654d247afe850579673954
+      internalID: -668021918
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_9
+      name: BerserkerSS_9
       rect:
         serializedVersion: 2
         x: 864
@@ -308,14 +308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fb04bf4e38fc744c843f779cfe65848
-      internalID: 1716246286
+      spriteID: e79db24660a305f47ae3d4f49821f928
+      internalID: -1557242734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_10
+      name: BerserkerSS_10
       rect:
         serializedVersion: 2
         x: 960
@@ -329,14 +329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c55a9032af8d4f4ea5796a5575171c3
-      internalID: 205652639
+      spriteID: c8a6e800570948a41971ab59082b3c42
+      internalID: 1143129588
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_11
+      name: BerserkerSS_11
       rect:
         serializedVersion: 2
         x: 1056
@@ -350,14 +350,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d122bbfa7cb97b64c949d35526aeeed2
-      internalID: -810384624
+      spriteID: 7266bad7ad47bb9428c2a435ca0233d1
+      internalID: 1275649871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_12
+      name: BerserkerSS_12
       rect:
         serializedVersion: 2
         x: 1152
@@ -371,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0bf80f3649f0ec148a155e8f337c32ec
-      internalID: -818280769
+      spriteID: 1b0ca78cd13a5254da38205ede526aac
+      internalID: 2038137988
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_13
+      name: BerserkerSS_13
       rect:
         serializedVersion: 2
         x: 1248
@@ -392,14 +392,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6728e00c292d26440b25c6016083a454
-      internalID: -2039706790
+      spriteID: 3ee3e838b267dd24faebfb1341c5c911
+      internalID: -1808565789
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_14
+      name: BerserkerSS_14
       rect:
         serializedVersion: 2
         x: 1344
@@ -413,14 +413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e630623df77df6f42bec9687a49aca2c
-      internalID: -387243407
+      spriteID: 2c6f5d8616527a8488013ecd015bcb24
+      internalID: -381638245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_15
+      name: BerserkerSS_15
       rect:
         serializedVersion: 2
         x: 1440
@@ -434,14 +434,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 74190e7f78f9a0340bdd22bb813eb369
-      internalID: -47696460
+      spriteID: 997c82009de47d444b5a68fc676f5f56
+      internalID: 494332942
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_16
+      name: BerserkerSS_16
       rect:
         serializedVersion: 2
         x: 1536
@@ -455,14 +455,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2210d27451de2634d990266ec861abf2
-      internalID: 2003891562
+      spriteID: bc36fd2aeba11ff4dbb0c46c5c4a4a60
+      internalID: 1369662277
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_17
+      name: BerserkerSS_17
       rect:
         serializedVersion: 2
         x: 1632
@@ -476,14 +476,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05b3430c1ef5ec44ea71a0febc7c3976
-      internalID: 373662908
+      spriteID: d4ada16ec7d2c4c499946252201a28fe
+      internalID: 977011818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_18
+      name: BerserkerSS_18
       rect:
         serializedVersion: 2
         x: 1728
@@ -497,14 +497,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c137918d7b290647a55ae058aac2d44
-      internalID: 1661510296
+      spriteID: 675ea3ba5838f2e47914d560542784ce
+      internalID: -545761459
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Terrible Archer_19
+      name: BerserkerSS_19
       rect:
         serializedVersion: 2
         x: 1824
@@ -518,8 +518,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 24d9f3a88073f024bb70919534654e2a
-      internalID: -174295394
+      spriteID: e664446e86f2bf046b6668f0998e75bc
+      internalID: 694898313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BerserkerSS_20
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e7d9e9b7cb2c5140ba869c2f7c02818
+      internalID: -836394731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BerserkerSS_21
+      rect:
+        serializedVersion: 2
+        x: 2016
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c519f533165d6214482112166a3564d7
+      internalID: 748697007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BerserkerSS_22
+      rect:
+        serializedVersion: 2
+        x: 2112
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 814730c138e4a4643a717331203ec93b
+      internalID: 807329454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BerserkerSS_23
+      rect:
+        serializedVersion: 2
+        x: 2208
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32a8a2fed187cb041923664dc47e6417
+      internalID: -1715876117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BerserkerSS_24
+      rect:
+        serializedVersion: 2
+        x: 2304
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55c4ddf0c1b6f1647940b18f8e1ad3b9
+      internalID: 306726286
       vertices: []
       indices: 
       edges: []
@@ -535,26 +640,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Terrible Archer_0: 1190826285
-      Terrible Archer_1: 173551578
-      Terrible Archer_10: 205652639
-      Terrible Archer_11: -810384624
-      Terrible Archer_12: -818280769
-      Terrible Archer_13: -2039706790
-      Terrible Archer_14: -387243407
-      Terrible Archer_15: -47696460
-      Terrible Archer_16: 2003891562
-      Terrible Archer_17: 373662908
-      Terrible Archer_18: 1661510296
-      Terrible Archer_19: -174295394
-      Terrible Archer_2: 1412901871
-      Terrible Archer_3: -1321109682
-      Terrible Archer_4: -1483515954
-      Terrible Archer_5: -19097200
-      Terrible Archer_6: 1579242934
-      Terrible Archer_7: 1030651808
-      Terrible Archer_8: -264894990
-      Terrible Archer_9: 1716246286
+      BerserkerSS_0: 402689333
+      BerserkerSS_1: 305599966
+      BerserkerSS_10: 1143129588
+      BerserkerSS_11: 1275649871
+      BerserkerSS_12: 2038137988
+      BerserkerSS_13: -1808565789
+      BerserkerSS_14: -381638245
+      BerserkerSS_15: 494332942
+      BerserkerSS_16: 1369662277
+      BerserkerSS_17: 977011818
+      BerserkerSS_18: -545761459
+      BerserkerSS_19: 694898313
+      BerserkerSS_2: -606174673
+      BerserkerSS_20: -836394731
+      BerserkerSS_21: 748697007
+      BerserkerSS_22: 807329454
+      BerserkerSS_23: -1715876117
+      BerserkerSS_24: 306726286
+      BerserkerSS_3: -48643853
+      BerserkerSS_4: 1908497511
+      BerserkerSS_5: -102210483
+      BerserkerSS_6: 1168384581
+      BerserkerSS_7: -522741676
+      BerserkerSS_8: -668021918
+      BerserkerSS_9: -1557242734
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
