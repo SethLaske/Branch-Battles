@@ -17,8 +17,6 @@ public class SaveManager : MonoBehaviour
 {
     public List<Unit> UnitCoder = new List<Unit>();
 
-    public int counter = 0;
-    public Unit unit;
     private string saveFilePath;
 
     /*[SerializeField]
@@ -115,17 +113,5 @@ public class SaveManager : MonoBehaviour
         }
     }
 
-    //Dev tester
-    public void CounterPlus() {
-
-        
-        PlayerInfo.LevelKeys[counter] = true;
-        PlayerInfo.TroopKeys[counter] = true;
-        counter++;
-        if (counter <= 4) {
-            PlayerInfo.TroopSpaces = counter;
-            //Debug.Log("Counter at " + counter);
-        }
-        //Debug.Log("Counter at " + counter);
-    }
+    
 }

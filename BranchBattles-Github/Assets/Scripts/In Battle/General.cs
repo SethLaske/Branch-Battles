@@ -122,8 +122,6 @@ public class General : Unit
     public override void Die()
     {
         base.Die();
-        General.Opponent.TroopMax = 0;
-        General.Opponent.SpawnUnits.Clear();
         levelmanager.GameOver(General.Team);
 
     }
@@ -142,7 +140,7 @@ public class General : Unit
     public void OneUnitCharge() {
         SelectedSoldier = null;
         Vector3 TargetedPoint = transform.position + (transform.rotation * (Vector3.right * 2));
-        Debug.Log("The Targeted point is: " + TargetedPoint);
+        //Debug.Log("The Targeted point is: " + TargetedPoint);
         float ClosestDistance = 100;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(TargetedPoint, .75f);
         foreach (Collider2D collider in colliders)

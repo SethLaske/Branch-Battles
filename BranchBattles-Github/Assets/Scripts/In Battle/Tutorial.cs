@@ -57,8 +57,8 @@ public class Tutorial : MonoBehaviour
 
     private void Update()
     {
-        if (Peasants.Gems > 0) {
+        /*if (Peasants.Gems > 0) {
             Barbarians.setRallyPoint(0);
-        }
+        }*/
     }
 }

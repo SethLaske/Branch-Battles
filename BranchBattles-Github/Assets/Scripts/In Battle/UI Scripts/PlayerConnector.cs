@@ -7,27 +7,8 @@ using UnityEngine.UI;
 public class PlayerConnector : MonoBehaviour
 {
     public bool autoInitiate = true;
-    public Player player;
-    public TeamInfo playerTeam;
-
-    /*public BaseHealthBar playerBase;    //set in prefab
-    public BaseHealthBar enemyBase;     //set in prefab
-
-    public Button Rally;
-    public Button Charge;
-
-    public GoldCounter counters;
-
-    public Button pacifist1;
-    //public Button pacifist2;
-
-    public Button soldier1;
-    public Button soldier2;
-    public Button soldier3;
-    public Button soldier4;
-
-    public Button magicPrep1;
-    public Button magicPrep2;*/
+    private Player player;
+    private TeamInfo playerTeam;
 
     public BattleUI battleUI;
 
@@ -48,23 +29,23 @@ public class PlayerConnector : MonoBehaviour
             GameObject PlayerTag = GameObject.FindGameObjectWithTag("Player");  //finds the player
             player = PlayerTag.GetComponent<Player>();
             playerTeam = player.Peasants;
-            player.battleUI = battleUI;
-            battleUI.player = player;
+            player.SetBattleUI(battleUI);
+            battleUI.SetPlayer(player);
             playerTeam.general.battleUI = battleUI;
 
             //levelManager.PlayerObject = player.gameObject;
             //levelManager.EnemyObject = playerTeam.Opponent.gameObject;
 
-            battleUI.playerBase.HealthObject = playerTeam.Barracks;
-            battleUI.playerBase.slider.maxValue = playerTeam.Barracks.HP;
+            battleUI.playerBase.HealthObject = playerTeam.barracks;
+            battleUI.playerBase.slider.maxValue = playerTeam.barracks.HP;
             //Debug.Log("Setting up enemy health bar");
-            battleUI.enemyBase.HealthObject = playerTeam.Opponent.Barracks;
-            battleUI.enemyBase.slider.maxValue = playerTeam.Opponent.Barracks.HP;
+            battleUI.enemyBase.HealthObject = playerTeam.Opponent.barracks;
+            battleUI.enemyBase.slider.maxValue = playerTeam.Opponent.barracks.HP;
 
             //battleUI.rally.onClick.AddListener(player.prepRallyPoint);
             //battleUI.charge.onClick.AddListener(playerTeam.Charge);
 
-            battleUI.counters.player = playerTeam;
+            battleUI.counters.SetTeamInfo(playerTeam);
 
             /*
             initButton(pacifist1, playerTeam.Pacifist1);
@@ -87,16 +68,16 @@ public class PlayerConnector : MonoBehaviour
             //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
             //soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
 
-            battleUI.magicPrep1.onClick.AddListener(player.prepMagic1);
-            battleUI.magicPrep2.onClick.AddListener(player.prepMagic2);
+            battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
+            battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
 
 
             
 
-            TeamBase playerbase = playerTeam.Barracks.GetComponent<TeamBase>();
+            TeamBase playerbase = playerTeam.barracks.GetComponent<TeamBase>();
             playerbase.levelmanager = levelManager;
 
-            TeamBase enemybase = playerTeam.Barracks.GetComponent<TeamBase>();
+            TeamBase enemybase = playerTeam.barracks.GetComponent<TeamBase>();
             enemybase.levelmanager = levelManager;
         }
         else    //Specific for tutorial
@@ -116,7 +97,7 @@ public class PlayerConnector : MonoBehaviour
             button.gameObject.SetActive(false);
         }
         else {
-            button.onClick.AddListener(() => playerTeam.spawnUnit(unit));
+            button.onClick.AddListener(() => playerTeam.SpawnUnit(unit));
             UnitButtons script = button.GetComponent<UnitButtons>();
             script.SetUnitType(unit);
         }

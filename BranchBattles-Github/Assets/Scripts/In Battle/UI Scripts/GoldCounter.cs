@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GoldCounter : MonoBehaviour
 {
-    public TeamInfo player;
+    private TeamInfo player;
     public TextMeshProUGUI Gold;
     public TextMeshProUGUI Troops;
     public TextMeshProUGUI Souls;
@@ -16,11 +16,15 @@ public class GoldCounter : MonoBehaviour
         
     }
 
+    public void SetTeamInfo(TeamInfo info) {
+        player = info;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        Gold.text = "Gold: " + player.Gold;
-        Troops.text = "Troops: " + player.TroopCount + "/" + player.TroopMax;
-        Souls.text = "Souls: " + player.Souls;
+        Gold.text = "Gold: " + player.gold;
+        Troops.text = "Troops: " + player.troopCount + "/" + player.maxTroopCount;
+        Souls.text = "Souls: " + player.souls;
     }
 }

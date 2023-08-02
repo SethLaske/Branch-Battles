@@ -22,6 +22,6 @@ public class CommanderOuthouse : Building
         base.Die();
         resident.enabled = true;
         resident.gameObject.SetActive(true);
-        General.TroopMax = 0;
+        General.maxTroopCount = 0;
     }
 }

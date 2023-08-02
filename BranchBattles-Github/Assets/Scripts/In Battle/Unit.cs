@@ -240,11 +240,11 @@ public class Unit : Damageable
     //A lot of things get taken care of for the general and team info
     public override void Die() {
         
-        General.TroopCount -= TroopSpaces;
+        General.troopCount -= TroopSpaces;
         General.troopCategory[unitClassification]--;
-        General.TotalSpeed -= (MoveSpeed);
-        General.ActiveCount--;
-        General.Souls++;
+        General.totalSpeed -= (MoveSpeed);
+        General.activeCount--;
+        General.souls++;
         General.UpdateGeneral();
         Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
         Destroy(gameObject);

@@ -146,6 +146,6 @@ public class Commander : Soldier
     public override void Die()
     {
         base.Die();
-        General.Barracks.Die();
+        General.barracks.Die();
     }
 }

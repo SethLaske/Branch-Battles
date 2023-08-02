@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 //Handles a lot of the player specific interface to TeamInfo. The buttons bypass the player for spawning, but the rest is done here
 public class Player : MonoBehaviour
 {
-    public BattleUI battleUI; //Used to be able to access UI elements as needed
+
+    private BattleUI battleUI; //Used to be able to access UI elements as needed
 
     public TeamInfo Peasants;
 
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
             Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
-            Peasants.RallyFlag.transform.position = new Vector3(Worldpos.x, Peasants.RallyFlag.transform.position.y, 0);
+            Peasants.rallyFlag.transform.position = new Vector3(Worldpos.x, Peasants.rallyFlag.transform.position.y, 0);
         }
         if (Input.GetMouseButtonDown(0))    //All of the various options for what a player can press (excluding UI buttons)
         {
@@ -43,18 +44,18 @@ public class Player : MonoBehaviour
 
             if (PassRally == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.setRallyPoint(Worldpos.x);
+                Peasants.SetRallyPoint(Worldpos.x);
                 PassRally = false;
                 battleUI.DelayRallyButton();
             }
             else if (UseMagic1 == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.useMagic(Lightning, Worldpos.x);
+                Peasants.UseMagic(Lightning, Worldpos.x);
                 UseMagic1 = false;
             }
             else if (UseMagic2 == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.useMagic(TheWorld, Worldpos.x);
+                Peasants.UseMagic(TheWorld, Worldpos.x);
                 UseMagic2 = false;
             }
             else {  //Checks to see what the player pressed
@@ -87,18 +88,18 @@ public class Player : MonoBehaviour
     }
 
     //Triggered when the Rally Button is pressed
-    public void prepRallyPoint()
+    public void PrepRallyPoint()
     {
         PassRally = true;
         
     }
     
     //Using two different preps to deal with the magic spells as they cant be under the same section
-    public void prepMagic1() {
+    public void PrepMagic1() {
         UseMagic1 = true;
     }
 
-    public void prepMagic2()
+    public void PrepMagic2()
     {
         UseMagic2 = true;
     }
@@ -113,5 +114,9 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Returning to the map");
         SceneManager.LoadScene("LevelSelect");
+    }
+
+    public void SetBattleUI(BattleUI UI) {
+        battleUI = UI;
     }
 }

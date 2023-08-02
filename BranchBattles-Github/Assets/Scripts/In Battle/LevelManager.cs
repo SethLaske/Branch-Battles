@@ -8,7 +8,8 @@ public class LevelManager : MonoBehaviour
 {
     public bool buttonStart;    //Allows me to choose if I want to press a button to start level
 
-    
+    //public static bool paused = true;   //Could also switch it to semaphore interpretation. Going to hold off for now, but makes sense to have a static variable controlling paused or not
+
     public GameObject StartScreen;
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
@@ -96,10 +97,6 @@ public class LevelManager : MonoBehaviour
     //Generic level stuff below
     public void StartLevel() {
         StartScreen.SetActive(false);
-
-        //if (newTroop != null) {
-          //  PlayerInfo.PlayerTroops[newTroopNumber] = newTroop;
-        //}
 
         PlayerObject.SetActive(true);
         EnemyObject.SetActive(true);

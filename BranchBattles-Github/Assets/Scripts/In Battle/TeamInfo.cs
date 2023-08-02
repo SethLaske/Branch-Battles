@@ -10,52 +10,53 @@ public class TeamInfo : MonoBehaviour
                      //Makes it really easy to control directions and friend/foe
 
     //Generic info
-    public int Gold;
-    public int TroopCount;
-    public int TroopMax;
-    public int Gems;
-    public int Souls;
+    [Header("Stats")]
+    public int gold;
+    public int troopCount;
+    public int maxTroopCount;
+    //public int gems;
+    public int souls;
 
     public int[] troopCategory = new int[5]; //To be used for the AI
 
     //A list of all the units that need to be trained
-    public List<Unit> SpawnUnits = new List<Unit>();
-    public float TroopTimer = 0;
+    private List<Unit> spawnUnits = new List<Unit>();
+    private float troopTimer = 0;
 
     //Passive gold quantities
     public int AFKGoldAmount;
     public float AFKGoldTime;
-    public float GoldCounter = 0;
+    private float goldCounter = 0;
 
     //The building troops will spawn from
-    public Building Barracks;
+    public Building barracks;
 
     [Header ("General's Info")]
     public General general;
     public float generalSpeed;
-    public float TotalSpeed;    //total speed of the troops, which will be used to calculate the Generals Speed
-    public int ActiveCount;
+    public float totalSpeed;    //total speed of the troops, which will be used to calculate the Generals Speed
+    public int activeCount;
 
-    public float RallyPoint;    //The point units will move to unless acted upon
-    public GameObject RallyFlag;    //Visual representation of where the rally is
-    public float Spacing = 2f;
+    public float rallyPoint;    //The point units will move to unless acted upon
+    public GameObject rallyFlag;    //Visual representation of where the rally is
+    public float spacing = 2f;
 
-    public float Advantage = 1; //Buff or Debuff a team
+    public float advantage = 1; //Buff or Debuff a team
 
     //All of this can be removed. The player will have their list be maintained in Player info and get pulled by the buttons
     //The enemy can have a list in the AI section
     //Available units
-    public Unit Soldier1;
+    /*public Unit Soldier1;
     public Unit Soldier2;
     public Unit Soldier3;
     public Unit Soldier4;
 
-    public Unit Pacifist1;
+    public Unit Pacifist1;*/
 
     //When Save data is prepared this will replace the individual markings
-    public Unit[] SpawnableUnits = new Unit[5];
-    public List<Unit> Reinforcements = new List<Unit>();
-    public bool Reinforced = false;
+    //public Unit[] SpawnableUnits = new Unit[5];
+    public List<Unit> reinforcements = new List<Unit>();
+    public bool reinforced = false;
 
     public TeamInfo Opponent;
 
@@ -63,8 +64,8 @@ public class TeamInfo : MonoBehaviour
     void Start()
     {
         
-        RallyPoint = Barracks.transform.position.x + (Team * 10);
-        RallyFlag.transform.position = new Vector3(RallyPoint, RallyFlag.transform.position.y);
+        rallyPoint = barracks.transform.position.x + (Team * 10);
+        rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y);
         UpdateGeneral();    //Sets the general speed to a predefined value
     }
 
@@ -72,19 +73,19 @@ public class TeamInfo : MonoBehaviour
     void Update()
     {
         //Passive gold timer       
-        GoldCounter += Time.deltaTime;
-        if (GoldCounter >= AFKGoldTime)
+        goldCounter += Time.deltaTime;
+        if (goldCounter >= AFKGoldTime)
         {
-            Gold += AFKGoldAmount;
-            GoldCounter = 0;
+            gold += AFKGoldAmount;
+            goldCounter = 0;
         }
 
         //Runs a loop while troops are in the list
-        if (SpawnUnits.Count > 0) {
-            TroopTimer += Time.deltaTime;
-            if (TroopTimer >= SpawnUnits[0].SpawnTime)  //Spawns the next unit queued up 
+        if (spawnUnits.Count > 0) {
+            troopTimer += Time.deltaTime;
+            if (troopTimer >= spawnUnits[0].SpawnTime)  //Spawns the next unit queued up 
             {
-                Unit FreshMeat = Instantiate(SpawnUnits[0], new Vector3(Barracks.transform.position.x + (Team * 1f), 0, 0), Quaternion.identity);
+                Unit FreshMeat = Instantiate(spawnUnits[0], new Vector3(barracks.transform.position.x + (Team * 1f), 0, 0), Quaternion.identity);
                 if (Team < 0)
                 {
                     FreshMeat.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
@@ -93,23 +94,23 @@ public class TeamInfo : MonoBehaviour
                 //Name is set for my use, and team controls the direction
                 FreshMeat.name = Team + ": " + FreshMeat.name;
                 FreshMeat.General = this;
-                FreshMeat.Team = Barracks.Team;
+                FreshMeat.Team = barracks.Team;
                
 
                 //Appies buffs/debuffs
-                FreshMeat.HP *= Advantage;
-                //FreshMeat.MoveSpeed *= Advantage;
-                FreshMeat.Damage *= Advantage;
-                //FreshMeat.AttackCooldown /= Advantage;
+                FreshMeat.HP *= advantage;
+                //FreshMeat.MoveSpeed *= advantage;
+                FreshMeat.Damage *= advantage;
+                //FreshMeat.AttackCooldown /= advantage;
 
                 //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
-                TotalSpeed += FreshMeat.MoveSpeed;
-                ActiveCount++;
+                totalSpeed += FreshMeat.MoveSpeed;
+                activeCount++;
                 UpdateGeneral();
 
                 //Resets timer for next spawn
-                SpawnUnits.RemoveAt(0);
-                TroopTimer = 0;
+                spawnUnits.RemoveAt(0);
+                troopTimer = 0;
             }
 
         }
@@ -118,47 +119,47 @@ public class TeamInfo : MonoBehaviour
     }
 
     //I just need to switch to this, but the previous set ones might be easier to initialize and edit from the map
-    public void spawnUnit(Unit newUnit) {
-        if (Gold >= newUnit.Cost && (TroopCount + newUnit.TroopSpaces <= TroopMax))
+    public void SpawnUnit(Unit newUnit) {
+        if (gold >= newUnit.Cost && (troopCount + newUnit.TroopSpaces <= maxTroopCount))
         {
-            Gold -= newUnit.Cost;
-            TroopCount += newUnit.TroopSpaces;
+            gold -= newUnit.Cost;
+            troopCount += newUnit.TroopSpaces;
             troopCategory[newUnit.unitClassification]++;
 
-            SpawnUnits.Add(newUnit);
+            spawnUnits.Add(newUnit);
 
             
         }
     }
 
-    public void spawnReinforcements() {
-        if (Reinforced == false) {
-            Reinforced = true;
-            foreach (Unit reinforcement in Reinforcements) {
-                Unit FreshMeat = Instantiate(reinforcement, new Vector3(Barracks.transform.position.x - (Team * Random.Range(2,10)), 0, 0), Quaternion.identity);
+    public void SpawnReinforcements() {
+        if (reinforced == false) {
+            reinforced = true;
+            foreach (Unit reinforcement in reinforcements) {
+                Unit FreshMeat = Instantiate(reinforcement, new Vector3(barracks.transform.position.x - (Team * Random.Range(2,10)), 0, 0), Quaternion.identity);
                 if (Team < 0)
                 {
                     FreshMeat.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
                 }
 
-                TroopCount += FreshMeat.TroopSpaces;
+                troopCount += FreshMeat.TroopSpaces;
                 troopCategory[FreshMeat.unitClassification]++;
 
                 //Name is set for my use, and team controls the direction
                 FreshMeat.name = Team + ": " + FreshMeat.name;
                 FreshMeat.General = this;
-                FreshMeat.Team = Barracks.Team;
+                FreshMeat.Team = barracks.Team;
 
 
                 //Appies buffs/debuffs
-                FreshMeat.HP *= Advantage;
-                //FreshMeat.MoveSpeed *= Advantage;
-                FreshMeat.Damage *= Advantage;
-                //FreshMeat.AttackCooldown /= Advantage;
+                FreshMeat.HP *= advantage;
+                //FreshMeat.MoveSpeed *= advantage;
+                FreshMeat.Damage *= advantage;
+                //FreshMeat.AttackCooldown /= advantage;
 
                 //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
-                TotalSpeed += FreshMeat.MoveSpeed;
-                ActiveCount++;
+                totalSpeed += FreshMeat.MoveSpeed;
+                activeCount++;
                 UpdateGeneral();
             }
         
@@ -169,28 +170,23 @@ public class TeamInfo : MonoBehaviour
     //Dev Buttons are fun
     public void ForceSpawnUnit(Unit newUnit)
     {
-            Gold -= newUnit.Cost;
-            TroopCount += newUnit.TroopSpaces;
+            gold -= newUnit.Cost;
+            troopCount += newUnit.TroopSpaces;
             troopCategory[newUnit.unitClassification]++;
 
-            SpawnUnits.Add(newUnit);
+            spawnUnits.Add(newUnit);
     }
 
-    public void useMagic(Magic magic, float distance) {
-        /*if (Gems > 0) {
+    public void UseMagic(Magic magic, float distance) {
+        if (souls > magic.SoulCost) {
             Instantiate(magic, new Vector3(distance, 0, 0), Quaternion.Euler(new Vector2(0, 0)));
-            Gems--;
-        }*/
-
-        if (Souls > magic.SoulCost) {
-            Instantiate(magic, new Vector3(distance, 0, 0), Quaternion.Euler(new Vector2(0, 0)));
-            Souls-= magic.SoulCost;
+            souls-= magic.SoulCost;
         }
     }
 
-    public void spawnSoldier1()
+   /* public void spawnSoldier1()
     {
-        if (Gold >= Soldier1.Cost && (TroopCount + Soldier1.TroopSpaces <= TroopMax))
+        if (gold >= Soldier1.Cost && (TroopCount + Soldier1.TroopSpaces <= maxTroopCount))
         {
             Gold -= Soldier1.Cost;
             TroopCount += Soldier1.TroopSpaces;
@@ -200,7 +196,7 @@ public class TeamInfo : MonoBehaviour
     }
     public void spawnSoldier2()
     {
-        if (Gold >= Soldier2.Cost && (TroopCount + Soldier2.TroopSpaces <= TroopMax))
+        if (Gold >= Soldier2.Cost && (TroopCount + Soldier2.TroopSpaces <= maxTroopCount))
         {
             Gold -= Soldier2.Cost;
             TroopCount += Soldier2.TroopSpaces;
@@ -210,7 +206,7 @@ public class TeamInfo : MonoBehaviour
     }
     public void spawnSoldier3()
     {
-        if (Gold >= Soldier3.Cost && (TroopCount + Soldier3.TroopSpaces <= TroopMax))
+        if (Gold >= Soldier3.Cost && (TroopCount + Soldier3.TroopSpaces <= maxTroopCount))
         {
             Gold -= Soldier3.Cost;
             TroopCount += Soldier3.TroopSpaces;
@@ -220,29 +216,29 @@ public class TeamInfo : MonoBehaviour
     }
     public void spawnPacifist1()
     {
-        if (Gold >= Pacifist1.Cost && (TroopCount + Pacifist1.TroopSpaces <= TroopMax))
+        if (Gold >= Pacifist1.Cost && (TroopCount + Pacifist1.TroopSpaces <= maxTroopCount))
         {
             Gold -= Pacifist1.Cost;
             TroopCount += Pacifist1.TroopSpaces;
             troopCategory[Pacifist1.unitClassification]++;
             SpawnUnits.Add(Pacifist1);
         }
-    }
+    }*/
 
     //Sets the rally point and moves the flag
-    public void setRallyPoint(float rally) {
-        if (RallyPoint == rally) {
+    public void SetRallyPoint(float rally) {
+        if (rallyPoint == rally) {
             return;
         }
-        RallyPoint = rally;
-        RallyFlag.transform.position = new Vector3(RallyPoint, RallyFlag.transform.position.y);
+        rallyPoint = rally;
+        rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y);
         //Play flag noise or smth
-        RallyFlag.GetComponent<Animator>().SetTrigger("Drop");
+        rallyFlag.GetComponent<Animator>().SetTrigger("Drop");
     }
 
     //Immediately goes for the enemy base
     public void Charge() {
-        setRallyPoint(Opponent.Barracks.transform.position.x);
+        SetRallyPoint(Opponent.barracks.transform.position.x);
     }
 
     //I think I need to send a command to all units after the battle is over declaring either victory or defeat. Then the units can just die, stop, or play an animation depending on how lazy I am.
@@ -252,26 +248,28 @@ public class TeamInfo : MonoBehaviour
 
     public void Defeat()
     {
-        Destroy(RallyFlag);
+        maxTroopCount = 0;
+        spawnUnits.Clear();
+        Destroy(rallyFlag);
         Destroy(this);
     }
 
     //Allows the general to be powered up with larger army sizes. Could change it to be only those near to him, but I prefer the inherent aspect to this
     public void UpdateGeneral() {
         if (generalSpeed > 0) {
-            if (ActiveCount > 10)
+            if (activeCount > 10)
             {
-                general.baseSpeed = TotalSpeed / ActiveCount;
+                general.baseSpeed = totalSpeed / activeCount;
             }
-            else if (ActiveCount > 0)
+            else if (activeCount > 0)
             {
-                general.baseSpeed = ((TotalSpeed / ActiveCount) - generalSpeed) * ActiveCount/ 10 + generalSpeed;
+                general.baseSpeed = ((totalSpeed / activeCount) - generalSpeed) * activeCount/ 10 + generalSpeed;
             }
             else {
                 general.baseSpeed = generalSpeed;
             }
 
-            general.Offense.Damage = general.Damage + ActiveCount / 5;
+            general.Offense.Damage = general.Damage + activeCount / 5;
         }
         
     }

@@ -24,7 +24,7 @@ public class Miner : Unit
     // Update is called once per frame
     void Update()
     {
-        AssemblePoint = General.RallyPoint;
+        AssemblePoint = General.rallyPoint;
         if (HealthTimer < AppearanceTime)
         {
             HealthTimer += Time.deltaTime;
@@ -116,11 +116,11 @@ public class Miner : Unit
                 dropOff.Play();
                 if (Resource.Equals("Mine"))
                 {
-                    General.Gold += BagAmount;
+                    General.gold += BagAmount;
                 }
-                else if (Resource.Equals("Gem") && General.Gems < 2) {
+                /*else if (Resource.Equals("Gem") && General.gems < 2) {
                     General.Gems++;
-                }
+                }*/
                 
                 Full = false;
                 transform.Rotate(new Vector3(0, 180, 0));

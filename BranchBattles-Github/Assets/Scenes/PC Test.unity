@@ -640,9 +640,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565616530511078214, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 806623312568354418, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1565784862818499384, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723421230898684177, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2582395410413635428, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
@@ -660,6 +672,22 @@ PrefabInstance:
       propertyPath: m_text
       value: Testing
       objectReference: {fileID: 0}
+    - target: {fileID: 5482285040536731555, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5752317567045467037, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1952470771}
+    - target: {fileID: 5752317567045467037, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: playerTeam
+      value: 
+      objectReference: {fileID: 1952470770}
+    - target: {fileID: 6601642145523288174, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1952470771}
     - target: {fileID: 6690825056452972210, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -3074,39 +3102,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: -1
-  Gold: 10000
-  TroopCount: 0
-  TroopMax: 10
-  Gems: 0
-  Souls: 0
+  gold: 1000
+  troopCount: 0
+  maxTroopCount: 20
+  souls: 0
   troopCategory: 0000000000000000000000000000000000000000
-  SpawnUnits: []
-  TroopTimer: 0
   AFKGoldAmount: 10
   AFKGoldTime: 6
-  GoldCounter: 0
-  Barracks: {fileID: 1003458319}
+  barracks: {fileID: 1003458319}
   general: {fileID: 0}
   generalSpeed: 0
-  TotalSpeed: 0
-  ActiveCount: 0
-  RallyPoint: 0
-  RallyFlag: {fileID: 955064819}
-  Spacing: 2
-  Advantage: 0.9
-  Soldier1: {fileID: 0}
-  Soldier2: {fileID: 0}
-  Soldier3: {fileID: 0}
-  Soldier4: {fileID: 0}
-  Pacifist1: {fileID: 0}
-  SpawnableUnits:
-  - {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
-  - {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
-  - {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
-  - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
-  - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
-  Reinforcements: []
-  Reinforced: 0
+  totalSpeed: 0
+  activeCount: 0
+  rallyPoint: 0
+  rallyFlag: {fileID: 955064819}
+  spacing: 2
+  advantage: 1
+  reinforcements: []
+  reinforced: 0
   Opponent: {fileID: 1952470770}
 --- !u!4 &822466836
 Transform:
@@ -4084,7 +4097,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042922422}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -5467,39 +5480,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Team: 1
-  Gold: 1000
-  TroopCount: 0
-  TroopMax: 20
-  Gems: 0
-  Souls: 0
+  gold: 1000
+  troopCount: 0
+  maxTroopCount: 20
+  souls: 0
   troopCategory: 0000000000000000000000000000000000000000
-  SpawnUnits: []
-  TroopTimer: 0
   AFKGoldAmount: 5
   AFKGoldTime: 6
-  GoldCounter: 0
-  Barracks: {fileID: 1984560613}
+  barracks: {fileID: 1984560613}
   general: {fileID: 1136284411}
   generalSpeed: 0
-  TotalSpeed: 0
-  ActiveCount: 0
-  RallyPoint: 0
-  RallyFlag: {fileID: 363478757}
-  Spacing: 2
-  Advantage: 1
-  Soldier1: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
-  Soldier2: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
-  Soldier3: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
-  Soldier4: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
-  Pacifist1: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
-  SpawnableUnits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  Reinforcements: []
-  Reinforced: 0
+  totalSpeed: 0
+  activeCount: 0
+  rallyPoint: 0
+  rallyFlag: {fileID: 363478757}
+  spacing: 2
+  advantage: 1
+  reinforcements: []
+  reinforced: 0
   Opponent: {fileID: 822466835}
 --- !u!114 &1952470771
 MonoBehaviour:
@@ -5513,7 +5511,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d842ef2b796c4a4f9baaf367dcaf334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleUI: {fileID: 0}
   Peasants: {fileID: 1952470770}
   PassRally: 0
   UseMagic1: 0

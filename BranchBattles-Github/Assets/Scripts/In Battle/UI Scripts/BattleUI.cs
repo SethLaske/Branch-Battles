@@ -7,7 +7,7 @@ public class BattleUI : MonoBehaviour
 {
     public int activeButtons = 0;
 
-    public Player player;
+    private Player player;
 
     public BaseHealthBar playerBase;    //set in prefab
     public BaseHealthBar enemyBase;     //set in prefab
@@ -28,10 +28,12 @@ public class BattleUI : MonoBehaviour
     public Button magicPrep1;
     public Button magicPrep2;
 
-
+    public void SetPlayer(Player player) {
+        this.player = player;
+    }
 
     public void PlayerRally() {
-        player.prepRallyPoint();
+        player.PrepRallyPoint();
         rally.interactable = false;
         charge.interactable = true;
     }
