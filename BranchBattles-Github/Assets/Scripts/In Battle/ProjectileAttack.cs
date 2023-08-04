@@ -15,7 +15,7 @@ public class ProjectileAttack : WeaponAttack
         //AttackBox = GetComponent<Collider2D>();
 
         Wielder = gameObject.GetComponentInParent<Unit>();
-        Damage = Wielder.Damage;
+        
 
 
     }
@@ -27,7 +27,7 @@ public class ProjectileAttack : WeaponAttack
         Collider2D ProjectileHitbox = FiredProjectileObject.GetComponent<Collider2D>();
         Rigidbody2D rb = FiredProjectileObject.GetComponent<Rigidbody2D>();
         FiredProjectile.Speed = Speed;
-        FiredProjectile.Damage = Damage;
+        FiredProjectile.Damage = Wielder.Damage;
         FiredProjectile.LifeTime = LifeTime;
         FiredProjectile.Team = Wielder.Team;
         ProjectileHitbox.enabled = true;

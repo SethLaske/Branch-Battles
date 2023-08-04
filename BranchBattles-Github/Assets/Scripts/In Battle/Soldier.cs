@@ -7,7 +7,6 @@ public class Soldier : Unit
     public bool assembled;
 
     public float FullSpaces;
-    public float Tolerance = 2; //Readding this... for now
 
     private float DistanceFromMiddlePoint;
     private float MaxDistanceFromMiddlePoint;
@@ -141,19 +140,19 @@ public class Soldier : Unit
             if (FUp && FDown) //Nothing in front of its box
             {
                 //Debug.Log("Both, forward");
-                this.Move(new Vector3(1 * Team * currentspeed * Time.deltaTime, 0, 0));
+                this.Move(new Vector3(1 * Team * currentSpeed * Time.deltaTime, 0, 0));
             }
             else if (FUp)  //Nothing above and forward
             {
                 //Debug.Log("Up");
-                if (this.Move(new Vector3(.5f * Team * currentspeed * Time.deltaTime, .5f * currentspeed * Time.deltaTime, 0)) == false) {
+                if (this.Move(new Vector3(.5f * Team * currentSpeed * Time.deltaTime, .5f * currentSpeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
             }
             else if (FDown)    //Nothing below and forward
             {
                 //Debug.Log("Down");
-                if (this.Move(new Vector3(.5f * Team * currentspeed * Time.deltaTime, -.5f * currentspeed * Time.deltaTime, 0)) == false) {
+                if (this.Move(new Vector3(.5f * Team * currentSpeed * Time.deltaTime, -.5f * currentSpeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
             }
@@ -237,10 +236,10 @@ public class Soldier : Unit
     public void Charge() {
         if (Target == null)
         {
-            this.Move(new Vector3(Mathf.Sign(Team) * currentspeed * Time.deltaTime, 0, 0));
+            this.Move(new Vector3(Mathf.Sign(Team) * currentSpeed * Time.deltaTime, 0, 0));
         }
         else if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange) {
-            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentspeed) * Time.deltaTime));
+            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
         }
         else
         { //kill
@@ -406,6 +405,9 @@ public class Soldier : Unit
                 //Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
 
                 Vector3 diff = transform.position - collider.transform.position;
+
+                if (diff == Vector3.zero) continue;     //Infinity breaks things
+
                 if (diff.magnitude < separationDistance)    //Checks if close enough to count
                 {
                     separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5))/(diff.magnitude * 2);

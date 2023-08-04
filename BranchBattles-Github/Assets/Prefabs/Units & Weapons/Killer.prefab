@@ -61,7 +61,7 @@ MonoBehaviour:
   UnitNumber: 7
   unitClassification: 4
   Offense: {fileID: 5924349906482882209}
-  MoveSpeed: 7
+  baseSpeed: 10
   Damage: 25
   AttackRange: 12
   AgroRange: 25
@@ -424,7 +424,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d61fa6a0aa9e06489f6a47190ad1321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
   MultiHit: 0
   Projectile: {fileID: 8150950200113799366, guid: e81382784704fa248837ae7dbbc626c6, type: 3}
   Speed: 75
@@ -570,7 +569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c65f8b287ae8e408bea38e54ff77d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wielder: {fileID: 0}
 --- !u!1 &8761439705502324260
 GameObject:
   m_ObjectHideFlags: 0

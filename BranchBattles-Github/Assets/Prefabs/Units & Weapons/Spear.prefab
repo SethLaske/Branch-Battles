@@ -72,7 +72,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa17ad83e07f8949bad20d01560baf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
   MultiHit: 0
 --- !u!212 &5671218002724638560
 SpriteRenderer:
@@ -434,7 +433,7 @@ MonoBehaviour:
   UnitNumber: 2
   unitClassification: 3
   Offense: {fileID: 4280810500101309706}
-  MoveSpeed: 4
+  baseSpeed: 4
   Damage: 7
   AttackRange: 5
   AgroRange: 9

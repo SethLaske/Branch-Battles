@@ -15,7 +15,8 @@ public class TheWorld : Magic
         foreach (GameObject crusader in Crusaders) {
             Unit enemyStand = crusader.GetComponent<Unit>();
             if (enemyStand != null && Vector3.Distance(this.transform.position, enemyStand.transform.position) < 4) {
-                enemyStand.Stun(TimeStopTime, 1000);
+                //enemyStand.Stun(TimeStopTime, 1000);
+                Debug.Log("REMOVED STUN");
                 //enemyStand.Die();
             }
         }

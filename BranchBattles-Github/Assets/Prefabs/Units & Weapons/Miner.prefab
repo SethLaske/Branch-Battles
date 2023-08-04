@@ -144,7 +144,7 @@ MonoBehaviour:
   UnitNumber: 0
   unitClassification: 0
   Offense: {fileID: 0}
-  MoveSpeed: 2
+  baseSpeed: 3
   Damage: 1
   AttackRange: 2
   AgroRange: 0

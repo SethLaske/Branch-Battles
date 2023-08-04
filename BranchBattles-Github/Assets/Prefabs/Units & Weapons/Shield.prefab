@@ -62,7 +62,7 @@ MonoBehaviour:
   UnitNumber: 3
   unitClassification: 1
   Offense: {fileID: 6059042076321823989}
-  MoveSpeed: 3.5
+  baseSpeed: 3
   Damage: 5
   AttackRange: 1
   AgroRange: 16
@@ -452,7 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa17ad83e07f8949bad20d01560baf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
   MultiHit: 0
 --- !u!1 &2423331061357706712
 GameObject:

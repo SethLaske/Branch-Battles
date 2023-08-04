@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponAttack : MonoBehaviour
 {
-    [HideInInspector] public float Damage;
+    //[HideInInspector] public float Damage;
     private Collider2D AttackBox;
     public bool MultiHit;
 
@@ -18,7 +18,7 @@ public class WeaponAttack : MonoBehaviour
         AttackBox = GetComponent<Collider2D>();
 
         Wielder = gameObject.GetComponentInParent<Unit>();
-        Damage = Wielder.Damage;
+        //Damage = Wielder.Damage;
 
     }
 
@@ -37,7 +37,7 @@ public class WeaponAttack : MonoBehaviour
         Damageable uc = other.GetComponent<Damageable>();
         if (uc != null && uc.Team != Wielder.Team && !FinishedAttack)
         {
-            uc.TakeDamage(Damage);
+            uc.TakeDamage(Wielder.Damage);
             if (!MultiHit) {
                 //Debug.Log("A single target has been hit so this will stop hitting other things");
                 AttackBox.enabled = false;

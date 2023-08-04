@@ -56,11 +56,11 @@ public class Miner : Unit
         //Walk information
         if (!Full)
         {
-            this.Move(new Vector3(MoveSpeed * Team * Time.deltaTime, 0, 0));
+            this.Move(new Vector3(currentSpeed * Team * Time.deltaTime, 0, 0));
         }
         else
         {
-            this.Move(new Vector3(MoveSpeed * -Team * Time.deltaTime, 0, 0));
+            this.Move(new Vector3(currentSpeed * -Team * Time.deltaTime, 0, 0));
         }
 
         

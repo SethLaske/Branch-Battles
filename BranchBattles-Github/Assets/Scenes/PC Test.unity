@@ -3104,16 +3104,13 @@ MonoBehaviour:
   Team: -1
   gold: 1000
   troopCount: 0
-  maxTroopCount: 20
+  maxTroopCount: 5
   souls: 0
   troopCategory: 0000000000000000000000000000000000000000
   AFKGoldAmount: 10
   AFKGoldTime: 6
   barracks: {fileID: 1003458319}
   general: {fileID: 0}
-  generalSpeed: 0
-  totalSpeed: 0
-  activeCount: 0
   rallyPoint: 0
   rallyFlag: {fileID: 955064819}
   spacing: 2
@@ -5489,9 +5486,6 @@ MonoBehaviour:
   AFKGoldTime: 6
   barracks: {fileID: 1984560613}
   general: {fileID: 1136284411}
-  generalSpeed: 0
-  totalSpeed: 0
-  activeCount: 0
   rallyPoint: 0
   rallyFlag: {fileID: 363478757}
   spacing: 2

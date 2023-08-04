@@ -33,9 +33,9 @@ public class TeamInfo : MonoBehaviour
 
     [Header ("General's Info")]
     public General general;
-    public float generalSpeed;
-    public float totalSpeed;    //total speed of the troops, which will be used to calculate the Generals Speed
-    public int activeCount;
+    //public float generalSpeed;
+    //public float totalSpeed;    //total speed of the troops, which will be used to calculate the Generals Speed
+    //public int activeCount;
 
     public float rallyPoint;    //The point units will move to unless acted upon
     public GameObject rallyFlag;    //Visual representation of where the rally is
@@ -43,15 +43,7 @@ public class TeamInfo : MonoBehaviour
 
     public float advantage = 1; //Buff or Debuff a team
 
-    //All of this can be removed. The player will have their list be maintained in Player info and get pulled by the buttons
-    //The enemy can have a list in the AI section
-    //Available units
-    /*public Unit Soldier1;
-    public Unit Soldier2;
-    public Unit Soldier3;
-    public Unit Soldier4;
-
-    public Unit Pacifist1;*/
+ 
 
     //When Save data is prepared this will replace the individual markings
     //public Unit[] SpawnableUnits = new Unit[5];
@@ -104,8 +96,8 @@ public class TeamInfo : MonoBehaviour
                 //FreshMeat.AttackCooldown /= advantage;
 
                 //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
-                totalSpeed += FreshMeat.MoveSpeed;
-                activeCount++;
+                //totalSpeed += FreshMeat.MoveSpeed;
+                //activeCount++;
                 UpdateGeneral();
 
                 //Resets timer for next spawn
@@ -158,8 +150,8 @@ public class TeamInfo : MonoBehaviour
                 //FreshMeat.AttackCooldown /= advantage;
 
                 //The disjoint between adding the troops to the counter and and their speeds to the group is potentially allowing the general to move at sonic speeds
-                totalSpeed += FreshMeat.MoveSpeed;
-                activeCount++;
+                //totalSpeed += FreshMeat.MoveSpeed;
+                //activeCount++;
                 UpdateGeneral();
             }
         
@@ -183,47 +175,6 @@ public class TeamInfo : MonoBehaviour
             souls-= magic.SoulCost;
         }
     }
-
-   /* public void spawnSoldier1()
-    {
-        if (gold >= Soldier1.Cost && (TroopCount + Soldier1.TroopSpaces <= maxTroopCount))
-        {
-            Gold -= Soldier1.Cost;
-            TroopCount += Soldier1.TroopSpaces;
-            troopCategory[Soldier1.unitClassification]++;
-            SpawnUnits.Add(Soldier1);
-        }
-    }
-    public void spawnSoldier2()
-    {
-        if (Gold >= Soldier2.Cost && (TroopCount + Soldier2.TroopSpaces <= maxTroopCount))
-        {
-            Gold -= Soldier2.Cost;
-            TroopCount += Soldier2.TroopSpaces;
-            troopCategory[Soldier2.unitClassification]++;
-            SpawnUnits.Add(Soldier2);
-        }
-    }
-    public void spawnSoldier3()
-    {
-        if (Gold >= Soldier3.Cost && (TroopCount + Soldier3.TroopSpaces <= maxTroopCount))
-        {
-            Gold -= Soldier3.Cost;
-            TroopCount += Soldier3.TroopSpaces;
-            troopCategory[Soldier3.unitClassification]++;
-            SpawnUnits.Add(Soldier3);
-        }
-    }
-    public void spawnPacifist1()
-    {
-        if (Gold >= Pacifist1.Cost && (TroopCount + Pacifist1.TroopSpaces <= maxTroopCount))
-        {
-            Gold -= Pacifist1.Cost;
-            TroopCount += Pacifist1.TroopSpaces;
-            troopCategory[Pacifist1.unitClassification]++;
-            SpawnUnits.Add(Pacifist1);
-        }
-    }*/
 
     //Sets the rally point and moves the flag
     public void SetRallyPoint(float rally) {
@@ -256,21 +207,11 @@ public class TeamInfo : MonoBehaviour
 
     //Allows the general to be powered up with larger army sizes. Could change it to be only those near to him, but I prefer the inherent aspect to this
     public void UpdateGeneral() {
-        if (generalSpeed > 0) {
-            if (activeCount > 10)
-            {
-                general.baseSpeed = totalSpeed / activeCount;
-            }
-            else if (activeCount > 0)
-            {
-                general.baseSpeed = ((totalSpeed / activeCount) - generalSpeed) * activeCount/ 10 + generalSpeed;
-            }
-            else {
-                general.baseSpeed = generalSpeed;
-            }
-
-            general.Offense.Damage = general.Damage + activeCount / 5;
+        if (general == null)
+        {
+            return;
         }
-        
+        //Changing this to be implemented inside the general script, and to be based off of 
+        general.CalculateArmyBuffs();
     }
 }

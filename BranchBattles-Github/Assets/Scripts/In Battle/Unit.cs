@@ -16,8 +16,8 @@ public class Unit : Damageable
     protected bool Attacking = false;
     //Various Stats each unit has
     [Header("Stats")]
-    public float MoveSpeed; //Speed to travel across the map
-    protected float currentspeed;
+    public float baseSpeed; //Speed to travel across the map
+    protected float currentSpeed;
     public float Damage;    //Damage done per attack
     public float AttackRange;   //Distance from enemy to deal damage
     public float AgroRange;     //The max distance from the rally point a troop will pursue their target
@@ -36,8 +36,8 @@ public class Unit : Damageable
     public string State;    //Determines what actions they need to pursue
 
     public Damageable Target;   //Targets are always for the enemy      //Could go private 
-    public float AssemblePoint;         //Could go private 
-    public float RearPoint;             //Could go private 
+    protected float AssemblePoint;         //Could go private 
+    protected float RearPoint;             //Could go private 
     public LayerMask MovementBlockers;  //things that block movement forward
 
     //public float tolerance = .25f;  //Handles the tolerance to allow for imperfections
@@ -83,25 +83,25 @@ public class Unit : Damageable
             else if (1.5f > (humanshield.transform.position.x - transform.position.x) * Team)
             {
                 //Debug.Log("Walking with shield");
-                currentspeed = humanshield.currentspeed;
+                currentSpeed = humanshield.currentSpeed;
                 float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
-                this.Move(new Vector3(Mathf.Sign(distance) * humanshield.currentspeed * Time.deltaTime, 0, 0));
+                this.Move(new Vector3(Mathf.Sign(distance) * humanshield.currentSpeed * Time.deltaTime, 0, 0));
                 return;
             }
         }
 
-        currentspeed = MoveSpeed / DebuffMult;
+        currentSpeed = baseSpeed / DebuffMult;
 
         if (Target != null && IsTargetAggroable() == true)
         {
             //Debug.Log("Walking at enemy");
-            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentspeed) * Time.deltaTime));
+            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
         else {
             //Debug.Log("Walking at rally");
             float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
-            this.Move(new Vector3(Mathf.Sign(distance) * currentspeed * Time.deltaTime, 0, 0));
+            this.Move(new Vector3(Mathf.Sign(distance) * currentSpeed * Time.deltaTime, 0, 0));
             x = Mathf.Sign(distance);
         }
 
@@ -123,8 +123,8 @@ public class Unit : Damageable
 
         //Moves in the Y to ensure the target stays within the hit area
         if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
-            float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentspeed * Time.deltaTime);
-            Debug.Log("Current Speed" + currentspeed);
+            float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentSpeed * Time.deltaTime);
+            Debug.Log("Current Speed" + currentSpeed);
             transform.position += new Vector3(0, YMove, YMove / 5); 
         }
 
@@ -200,14 +200,14 @@ public class Unit : Damageable
     //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
     IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
-        currentspeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
+        currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
         DebuffMult *= 2;
         yield return new WaitForSeconds(attackHitTime);
         attackSound?.Play();
         Offense.Attack();
         yield return new WaitForSeconds(attackAnimation.length-attackHitTime);
         Attacking = false;
-        currentspeed *= 2;
+        currentSpeed *= 2;
         DebuffMult /= 2;
     }
     
@@ -217,7 +217,7 @@ public class Unit : Damageable
     /// </summary>
     public virtual void StandardStart() {
         maxHealth = HP;
-        currentspeed = MoveSpeed;
+        currentSpeed = baseSpeed;
         //AttackTimer = attackAnimation;
         State = "Walk";
         if (Team < 0)
@@ -242,8 +242,8 @@ public class Unit : Damageable
         
         General.troopCount -= TroopSpaces;
         General.troopCategory[unitClassification]--;
-        General.totalSpeed -= (MoveSpeed);
-        General.activeCount--;
+        //General.totalSpeed -= (baseSpeed);
+        //General.activeCount--;
         General.souls++;
         General.UpdateGeneral();
         Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
@@ -263,7 +263,7 @@ public class Unit : Damageable
     /// <summary>
     /// Slows down the units move speed and attack speed by a factor of the intensity for the length of the duration
     /// </summary>
-    public void Stun(float Duration, float Intensity)
+    /*public void Stun(float Duration, float Intensity)
     {
         StartCoroutine(StunDebuff(Duration, Intensity));
     }
@@ -271,16 +271,16 @@ public class Unit : Damageable
     //Implementing it as such will allow the effects to stack, for better or worse
     IEnumerator StunDebuff(float Duration, float Intensity)
     {
-        currentspeed /= Intensity;
+        currentSpeed /= Intensity;
         DebuffMult *= Intensity;
         //AttackCooldown *= Intensity;
 
         yield return new WaitForSeconds(Duration);
 
-        currentspeed *= Intensity;
+        currentSpeed *= Intensity;
         DebuffMult /= Intensity;
         //AttackCooldown /= Intensity;
-    }
+    }*/
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
     public bool Move(Vector2 movement)

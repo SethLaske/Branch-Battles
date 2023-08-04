@@ -71,7 +71,7 @@ public class Commander : Soldier
         }
         else
         {
-            transform.position += new Vector3(MoveSpeed * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(currentSpeed * Time.deltaTime, 0, 0);
             //fix backup and overshooting
             
         }

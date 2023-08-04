@@ -141,7 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c65f8b287ae8e408bea38e54ff77d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Wielder: {fileID: 0}
 --- !u!1 &3194577094231017096
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,7 +308,7 @@ MonoBehaviour:
   UnitNumber: 5
   unitClassification: 3
   Offense: {fileID: 6513884397966661677}
-  MoveSpeed: 6
+  baseSpeed: 4
   Damage: 2
   AttackRange: 16
   AgroRange: 20
@@ -667,7 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d61fa6a0aa9e06489f6a47190ad1321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
   MultiHit: 0
   Projectile: {fileID: 8150950200113799366, guid: 4e7069eba06cb734a968411a8aade1ab, type: 3}
   Speed: 12

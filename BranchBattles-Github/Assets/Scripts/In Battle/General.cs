@@ -6,7 +6,7 @@ public class General : Unit
 {
     public LevelManager levelmanager;
     public BattleUI battleUI;
-    public float baseSpeed = 4;
+    //public float baseSpeed = 4;
     //public WeaponAttack Offense;
     //public bool Attacking = true;
     private bool waiting = true;
@@ -17,40 +17,63 @@ public class General : Unit
     private Soldier SelectedSoldier;
     public GameObject HealingAura;
     public GameObject troopselector;
+
+    private float baseHP;
+    private float baseArmor;
+    private float baseDamage;
+
     void Start()
     {
         maxHealth = HP;
-        MoveSpeed = baseSpeed;
-        General.generalSpeed = baseSpeed;
+        baseHP = HP;
+        baseArmor = Armor;
+        baseDamage = Damage;
+        currentSpeed = baseSpeed;
+        //MoveSpeed = baseSpeed;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Health bar clearing
+        if (HealthTimer < AppearanceTime)
+        {
+            HealthTimer += Time.deltaTime;
+        }
+        else if (HealthTimer > AppearanceTime)
+        {
+            HealthBar.SetActive(false);
+            HealthTimer = AppearanceTime; //Stops the timer from continuing to add
+        }
+
+
+        if (Attacking) return;      //Gonna just turn off movement while attacking for a bit, see how I like it
+
         waiting = true;
         //Movement Controls
         if (Input.GetKey(KeyCode.A))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
             
-            Move(new Vector2(MoveSpeed * -1 * Time.deltaTime, 0));
+            Move(new Vector2(currentSpeed * -1 * Time.deltaTime, 0));
             transform.rotation = Quaternion.Euler(0, 180, 0);
             waiting = false;
         }
         if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            Move(new Vector2(MoveSpeed * 1 * Time.deltaTime, 0));
+            Move(new Vector2(currentSpeed * 1 * Time.deltaTime, 0));
             transform.rotation = Quaternion.Euler(0, 0, 0);
             waiting = false;
         }
 
         if (Input.GetKey(KeyCode.W))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            Move(new Vector2(0, MoveSpeed * 1 * Time.deltaTime));
+            Move(new Vector2(0, currentSpeed * 1 * Time.deltaTime));
             waiting = false;
         }
         if (Input.GetKey(KeyCode.S))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            Move(new Vector2(0, MoveSpeed * -1 * Time.deltaTime));
+            Move(new Vector2(0, currentSpeed * -1 * Time.deltaTime));
             waiting = false;
         }
 
@@ -66,7 +89,7 @@ public class General : Unit
         {
             animator.SetBool("Attacking", true);
             Attacking = true;
-            MoveSpeed = 2;
+            //currentSpeed = 2;
             StartCoroutine(PlayAttack());
             //animator.SetBool("HoldSlice", true);
         }
@@ -94,19 +117,6 @@ public class General : Unit
             SelectedSoldier?.ReceiveGeneralOrders();    
         }
        
-    
-       
-
-        //Health bar clearing
-        if (HealthTimer < AppearanceTime)
-        {
-            HealthTimer += Time.deltaTime;
-        }
-        else if (HealthTimer > AppearanceTime)
-        {
-            HealthBar.SetActive(false);
-            HealthTimer = AppearanceTime; //Stops the timer from continuing to add
-        }
 
         if (waiting == true && Attacking == false)
         {
@@ -134,7 +144,7 @@ public class General : Unit
         yield return new WaitForSeconds(attackAnimation.length - attackHitTime);
         animator.SetBool("Attacking", false);
         Attacking = false;
-        MoveSpeed = baseSpeed;
+        //currentSpeed = baseSpeed;
     }
 
     public void OneUnitCharge() {
@@ -201,7 +211,7 @@ public class General : Unit
         if (collider.gameObject.CompareTag("PlayerCamp"))
         {
             Damage += 3;
-            Offense.Damage += 3;
+            baseDamage += 3;
             //levelmanager.BattleUIUnits.SetActive(true);
             battleUI.EnableTroops();
         }
@@ -213,10 +223,25 @@ public class General : Unit
         if (collider.gameObject.CompareTag("PlayerCamp"))
         {
             Damage -= 3;
-            Offense.Damage -= 3;
+            baseDamage -= 3;
             //levelmanager.BattleUIUnits.SetActive(false);
             battleUI.DisableTroops();
         }
     }
 
+
+    public void CalculateArmyBuffs() {
+        //HP is increased by class 0 count- 1 unit = +5% HP
+        float oldMaxHP = maxHealth;
+        maxHealth = baseHP + (General.troopCategory[0] * .05f * baseHP);
+        HP = HP * maxHealth / oldMaxHP;
+
+        //Armor is increased by class 1 count- 3units = +1 Armor
+        Armor = baseArmor + (General.troopCategory[1]/3);
+        //Damage is increased by class 2 count- 1 unit = +1 Damage
+        Damage = baseDamage + General.troopCategory[2];
+
+        //Speed is increased by class 3 count- 2 units = +1 speed
+        currentSpeed = baseSpeed + (General.troopCategory[3] / 2);
+    }
 }
