@@ -52,6 +52,7 @@ public class Unit : Damageable
     public Soldier humanshield;
 
     public AnimationClip attackAnimation;
+    public Sprite identifierSprite;
 
     /// <summary>
     /// The Unit is roughly in position, and will face towards the enemy base

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UnitSelectionActiveButton : MonoBehaviour
 {
+    public Button button;
     public int armyIndex;
     public TextMeshProUGUI currentTroopText;
     // Start is called before the first frame update

@@ -4,53 +4,45 @@ using UnityEngine;
 
 public class TutorialExplanation : MonoBehaviour
 {
-    public float ReadBuffer = 2;
-    public float UseTime = 5;
-    public bool Read = false;
+    public Tutorial tutorialManager;
 
-    public GameObject Explanation;
+    public float ReadBuffer = 2;
+    public float timeToNextStep = 5;
+
+    public GameObject explanation;
     public GameObject Arrow;
     public GameObject UIRevealed;
 
-    public GameObject NextTutorial;
-    
     // Start is called before the first frame update
-    void Start()
-    {
-        Explanation.SetActive(true);
-        if (UIRevealed != null) {
-            UIRevealed.SetActive(true);
-        }
-        if (Arrow != null)
-        {
-            Arrow.SetActive(true);
-        }
 
+    public void DisableStep() {
+        explanation.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EnableStep()
     {
-        if (Input.GetMouseButtonDown(0) && Read == false) {
-            StartCoroutine(TimerRoutine());
-            Read = true;
-        }
+        Time.timeScale = 0;
+        explanation?.SetActive(true);
+        UIRevealed?.SetActive(true);
+        Arrow?.SetActive(true);
+    }
+
+    public void ReadStep() {
+        StartCoroutine(TimerRoutine());
     }
 
     IEnumerator TimerRoutine()
     {
         yield return new WaitForSeconds(ReadBuffer);
-        Explanation.SetActive(false);
-        yield return new WaitForSeconds(UseTime);
-        if (Arrow != null)
-        {
-            Arrow.SetActive(false);
-        }
-        if (NextTutorial != null) {
-            NextTutorial.SetActive(true);
-        }
+        explanation?.SetActive(false);
+        Time.timeScale = 1;
+
+
+        yield return new WaitForSeconds(timeToNextStep);
         
-        Destroy(gameObject);
+        Arrow?.SetActive(false);
+
+        tutorialManager.NextTutorialStep();
     }
 
 

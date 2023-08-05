@@ -15,6 +15,9 @@ public class Tutorial : MonoBehaviour
     public Unit fighter;
     public Unit spear;
 
+    public List<TutorialExplanation> allTutorialScreens;
+    public int tutorialStepIndex = 0;
+
     /*
     [Header ("Tutorial Explanation Screens")]
     public GameObject CameraScreen;
@@ -42,23 +45,59 @@ public class Tutorial : MonoBehaviour
 
         PlayerInfo.TroopSpaces = 2;
 
+        
+
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(fighter);
+        Barbarians.ForceSpawnUnit(spear);
+        Barbarians.ForceSpawnUnit(spear);
+        Barbarians.ForceSpawnUnit(spear);
+        Barbarians.ForceSpawnUnit(spear);
+
+        foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
+        {
+            tutorialScreen.DisableStep();
+            if (tutorialScreen.UIRevealed != null) {
+                tutorialScreen.UIRevealed.SetActive(false);
+            }
+            
+        }
+    }
+
+    public void StartTutorial() {
         UI.SetActive(true);
 
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(spear);
-        Barbarians.ForceSpawnUnit(spear);
-        Barbarians.ForceSpawnUnit(spear);
-        Barbarians.ForceSpawnUnit(spear);
+        allTutorialScreens[0].EnableStep();
+        tutorialStepIndex = 0;
     }
 
-    private void Update()
-    {
-        /*if (Peasants.Gems > 0) {
-            Barbarians.setRallyPoint(0);
-        }*/
+    public void NextTutorialStep() {
+        allTutorialScreens[tutorialStepIndex].DisableStep();
+        tutorialStepIndex++;
+
+        if (tutorialStepIndex == allTutorialScreens.Count) {
+            EndTutorial();
+            return;
+        }
+
+        allTutorialScreens[tutorialStepIndex].EnableStep();
     }
+
+    public void EndTutorial() {
+        UI.SetActive(true);
+        foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
+        {
+            if (tutorialScreen.UIRevealed != null)
+            {
+                tutorialScreen.UIRevealed.SetActive(true);
+            }
+        }
+
+        this.gameObject.SetActive(false);
+    }
+
+    
 }

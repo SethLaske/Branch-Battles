@@ -182,7 +182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa17ad83e07f8949bad20d01560baf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 0
   MultiHit: 1
 --- !u!60 &8160923041936685213
 PolygonCollider2D:
@@ -275,7 +274,7 @@ MonoBehaviour:
   UnitNumber: 0
   unitClassification: 0
   Offense: {fileID: 6185429638716345863}
-  MoveSpeed: 4
+  baseSpeed: 4
   Damage: 5
   AttackRange: 0
   AgroRange: 0
@@ -287,8 +286,6 @@ MonoBehaviour:
   AppearanceTime: 1.5
   State: 
   Target: {fileID: 0}
-  AssemblePoint: 0
-  RearPoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
@@ -296,9 +293,9 @@ MonoBehaviour:
   attackSound: {fileID: 5403574557600635431}
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: e34ca22d0ac5b834b979f8d06f329ad7, type: 2}
+  identifierSprite: {fileID: 889348375, guid: e9452931878e2974d937af184522250c, type: 3}
   levelmanager: {fileID: 0}
   battleUI: {fileID: 0}
-  baseSpeed: 4
   HealingAura: {fileID: 712338341447871682}
   troopselector: {fileID: 9001168858411564027}
 --- !u!58 &5403574557600635432

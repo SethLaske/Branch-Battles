@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 462ceadfc28d6e74f9786c66c3a2c61b
+guid: c41c4cc7633b80f418b1e77bef76abcd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flag SS_0
+      name: Miner Animation_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d9f33485ffe7694ea0e42185721b218
-      internalID: -662153071
+      spriteID: e567a2d9dec54b2468d33f6b76ca93cc
+      internalID: -1391910926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_1
+      name: Miner Animation_1
       rect:
         serializedVersion: 2
         x: 96
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd1ae2fd075dc4542a2d8f90aa995388
-      internalID: 149890817
+      spriteID: c3f62d4c7a19f4f4c8d4729db27e90db
+      internalID: -1747497748
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_2
+      name: Miner Animation_2
       rect:
         serializedVersion: 2
         x: 192
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 76a87689d15cfc34e8617bf560fb999f
-      internalID: 1506721126
+      spriteID: 1caa1e3bc17cacb4aaadd673c319900d
+      internalID: 110438263
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_3
+      name: Miner Animation_3
       rect:
         serializedVersion: 2
         x: 288
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc4551e254ec0e94794ad8d811180559
-      internalID: 677404672
+      spriteID: 2b3fb4bb385b9fa4499798608f8e5907
+      internalID: -1640330475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_4
+      name: Miner Animation_4
       rect:
         serializedVersion: 2
         x: 384
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fcf71dc29a32bdc43875895e47432969
-      internalID: 300245081
+      spriteID: 3e589dcfa16e1e54f88b8877d39c9908
+      internalID: 422502595
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_5
+      name: Miner Animation_5
       rect:
         serializedVersion: 2
         x: 480
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38aa2f9c86120d04eb807b0c14ff5cb2
-      internalID: 1363729368
+      spriteID: 57c563409dce67f40813749e3c96dc74
+      internalID: -198733397
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_6
+      name: Miner Animation_6
       rect:
         serializedVersion: 2
         x: 576
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b16c05968c2606045b6f10c238a67ffc
-      internalID: 421863941
+      spriteID: 037e0d2ad3df8db429fb8b9c317440ba
+      internalID: -1395150292
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_7
+      name: Miner Animation_7
       rect:
         serializedVersion: 2
         x: 672
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 364c0078c8da1ab46b1cd6b206805113
-      internalID: -1541355899
+      spriteID: fe821746a6c64624f8ffde4bcdb106d9
+      internalID: 1948639278
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_8
+      name: Miner Animation_8
       rect:
         serializedVersion: 2
         x: 768
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3b7a96824f3a1a64b8fdd6694cda4fd5
-      internalID: 1319966808
+      spriteID: b2357fb583065d84a9efb7151765b10e
+      internalID: -1890354932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_9
+      name: Miner Animation_9
       rect:
         serializedVersion: 2
         x: 864
@@ -308,14 +308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94ccb3284cc526442a2276e5dbb7339d
-      internalID: 413047726
+      spriteID: 98ab126a5daf98e4d93c2c7a183de021
+      internalID: 1917227928
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Flag SS_10
+      name: Miner Animation_10
       rect:
         serializedVersion: 2
         x: 960
@@ -329,8 +329,113 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0b0a9ca56a97ca946918f7a88e35519b
-      internalID: 601220800
+      spriteID: 2d09872ee80f8c144ae5e966f11e74a3
+      internalID: -813851985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miner Animation_11
+      rect:
+        serializedVersion: 2
+        x: 1056
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9993cffb5b7da7748aa25ba9b5324447
+      internalID: 40263139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miner Animation_12
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118350b3e8da1fd4bac22526f6aceb7e
+      internalID: 2102781315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miner Animation_13
+      rect:
+        serializedVersion: 2
+        x: 1248
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 918c397483e411e488251660c087e007
+      internalID: 163655185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miner Animation_14
+      rect:
+        serializedVersion: 2
+        x: 1344
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2dcf2f70683bc9941960cfdd68c755fc
+      internalID: -38709041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Miner Animation_15
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 96
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42817b25920fa5344b2a7a2079ade9a0
+      internalID: -1457025506
       vertices: []
       indices: 
       edges: []
@@ -346,17 +451,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Flag SS_2: 1506721126
-      Flag SS_7: -1541355899
-      Flag SS_6: 421863941
-      Flag SS_1: 149890817
-      Flag SS_4: 300245081
-      Flag SS_0: -662153071
-      Flag SS_3: 677404672
-      Flag SS_9: 413047726
-      Flag SS_10: 601220800
-      Flag SS_5: 1363729368
-      Flag SS_8: 1319966808
+      Miner Animation_0: -1391910926
+      Miner Animation_1: -1747497748
+      Miner Animation_10: -813851985
+      Miner Animation_11: 40263139
+      Miner Animation_12: 2102781315
+      Miner Animation_13: 163655185
+      Miner Animation_14: -38709041
+      Miner Animation_15: -1457025506
+      Miner Animation_2: 110438263
+      Miner Animation_3: -1640330475
+      Miner Animation_4: 422502595
+      Miner Animation_5: -198733397
+      Miner Animation_6: -1395150292
+      Miner Animation_7: 1948639278
+      Miner Animation_8: -1890354932
+      Miner Animation_9: 1917227928
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

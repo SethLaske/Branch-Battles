@@ -156,8 +156,6 @@ MonoBehaviour:
   AppearanceTime: 1.5
   State: 
   Target: {fileID: 0}
-  AssemblePoint: 0
-  RearPoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
@@ -165,6 +163,7 @@ MonoBehaviour:
   attackSound: {fileID: 0}
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 2bd8a471796ed6c49ac1a5af433a1a01, type: 2}
+  identifierSprite: {fileID: -1395150292, guid: c41c4cc7633b80f418b1e77bef76abcd, type: 3}
   Resource: Mine
   Full: 0
   BagAmount: 25

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a5e5ec03d8d43424b9dbe927adb66da6
+guid: cd0afa6a37148a14999a71cc6181e0d8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_0
+      name: Gray Man Sprites_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c77cb3ee8d4c8ee4e890c8fdd135da71
-      internalID: -1438703713
+      spriteID: a0932698aad9389469f2b3ec4c544a52
+      internalID: -1801861950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_1
+      name: Gray Man Sprites_1
       rect:
         serializedVersion: 2
         x: 64
@@ -140,14 +140,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 06c7c10183744e04aa4db88702ac3092
-      internalID: 736965130
+      spriteID: 5d0783c6bf8f21b4ca282cda0bce0a85
+      internalID: -1155649530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_2
+      name: Gray Man Sprites_2
       rect:
         serializedVersion: 2
         x: 128
@@ -161,14 +161,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bc332b99c67ffcc4195bcda6df1b433e
-      internalID: 1516890531
+      spriteID: e41de64f3257fab49b1d5702f2935392
+      internalID: -1993531417
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_3
+      name: Gray Man Sprites_3
       rect:
         serializedVersion: 2
         x: 192
@@ -182,14 +182,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee1bf17fe0f246d4ea8ec431da2998f5
-      internalID: 1546463283
+      spriteID: 54ee6af1c6302ab4bbcb084264d0d89b
+      internalID: 1247709772
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_4
+      name: Gray Man Sprites_4
       rect:
         serializedVersion: 2
         x: 256
@@ -203,14 +203,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e94f9b253e7ffee49ac8a629f04c4ad6
-      internalID: -204126233
+      spriteID: 77b769a4c72ac9a45aac8a804ae4248c
+      internalID: 1876627826
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_5
+      name: Gray Man Sprites_5
       rect:
         serializedVersion: 2
         x: 320
@@ -224,14 +224,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1aa4c67def7e8074f9e49d83c86be1fa
-      internalID: -837710204
+      spriteID: 748d461a67a7f6e48872c0b3ab298e0e
+      internalID: -290799433
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_6
+      name: Gray Man Sprites_6
       rect:
         serializedVersion: 2
         x: 384
@@ -245,14 +245,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aabd2aee33d1563429c8bdc88f1cc710
-      internalID: 1077932155
+      spriteID: be21bea605e991844a83aa288044cc55
+      internalID: 1096279203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_7
+      name: Gray Man Sprites_7
       rect:
         serializedVersion: 2
         x: 448
@@ -266,14 +266,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f36c9b94cd60754387a577fcb5884b2
-      internalID: 500282975
+      spriteID: cdc3273cd7900b34c8fb277ebdce474d
+      internalID: -350707578
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_8
+      name: Gray Man Sprites_8
       rect:
         serializedVersion: 2
         x: 512
@@ -287,14 +287,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5729a5edbf368864a987dc30c4f4429f
-      internalID: -86822156
+      spriteID: 0feff5356d8ec8e4fb638fcc9fcdeaea
+      internalID: 1888308900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_9
+      name: Gray Man Sprites_9
       rect:
         serializedVersion: 2
         x: 576
@@ -308,14 +308,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbd69a0edab720f4197778fa92e621b1
-      internalID: -1318748458
+      spriteID: d8c4d2910a9da8c48bde52f339275b32
+      internalID: -371571974
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_10
+      name: Gray Man Sprites_10
       rect:
         serializedVersion: 2
         x: 640
@@ -329,14 +329,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09a667d7583d0324e838e83b56bc7ce6
-      internalID: 1969057718
+      spriteID: 290f87854de12694caa4e11e150c8b3f
+      internalID: -169723949
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_11
+      name: Gray Man Sprites_11
       rect:
         serializedVersion: 2
         x: 704
@@ -350,14 +350,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a9a53f6181c64b47925d220f6b210cc
-      internalID: -482336867
+      spriteID: 7f7fafa6c41d6cf428d3605f23ed0ef3
+      internalID: -1258552457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_12
+      name: Gray Man Sprites_12
       rect:
         serializedVersion: 2
         x: 768
@@ -371,14 +371,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed59e63ed068e3848b393c798c98810e
-      internalID: 1533459139
+      spriteID: c803b6b473a0a584693dd62780b383db
+      internalID: -606260883
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_13
+      name: Gray Man Sprites_13
       rect:
         serializedVersion: 2
         x: 832
@@ -392,14 +392,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 652b6c080da31d34a81691969333c6c1
-      internalID: -274191179
+      spriteID: 63218a0c47d854240a34fbe1297b31bc
+      internalID: 1609988072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_14
+      name: Gray Man Sprites_14
       rect:
         serializedVersion: 2
         x: 896
@@ -413,14 +413,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4ae04732e7a64074a86d49b84e894837
-      internalID: -1734067860
+      spriteID: 644b018afebee784c8d323ff4b12e28f
+      internalID: 407799129
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_15
+      name: Gray Man Sprites_15
       rect:
         serializedVersion: 2
         x: 960
@@ -434,14 +434,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2136695170ef65542818db4cf38545b8
-      internalID: -2038777040
+      spriteID: 32eac1cee445a9c4eb1c4a8117eccac5
+      internalID: 1575560766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Gray Man Sprites Updated_16
+      name: Gray Man Sprites_16
       rect:
         serializedVersion: 2
         x: 1024
@@ -455,113 +455,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6786ab0170156e479cf336da6a71644
-      internalID: -370509453
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gray Man Sprites Updated_17
-      rect:
-        serializedVersion: 2
-        x: 1088
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fbe4e692e6c597a459d91a554aa6b5b9
-      internalID: 80805656
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gray Man Sprites Updated_18
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd8e5c4a9b3d3fb4385e4e4cdff7569b
-      internalID: 212080858
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gray Man Sprites Updated_19
-      rect:
-        serializedVersion: 2
-        x: 1216
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 19641c961edbb1645825f22dbca4e2eb
-      internalID: 1492953278
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gray Man Sprites Updated_20
-      rect:
-        serializedVersion: 2
-        x: 1280
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 523565f51e0d4c84b827e3cabdebcb32
-      internalID: -953308204
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Gray Man Sprites Updated_21
-      rect:
-        serializedVersion: 2
-        x: 1344
-        y: 0
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b3d152e63234e840982cc508a338795
-      internalID: -1886787737
+      spriteID: 12d15cb1cc4535845893dead5a88dc2c
+      internalID: -481262867
       vertices: []
       indices: 
       edges: []
@@ -577,28 +472,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Gray Man Sprites Updated_3: 1546463283
-      Gray Man Sprites Updated_0: -1438703713
-      Gray Man Sprites Updated_5: -837710204
-      Gray Man Sprites Updated_1: 736965130
-      Gray Man Sprites Updated_4: -204126233
-      Gray Man Sprites Updated_8: -86822156
-      Gray Man Sprites Updated_10: 1969057718
-      Gray Man Sprites Updated_9: -1318748458
-      Gray Man Sprites Updated_11: -482336867
-      Gray Man Sprites Updated_2: 1516890531
-      Gray Man Sprites Updated_12: 1533459139
-      Gray Man Sprites Updated_14: -1734067860
-      Gray Man Sprites Updated_21: -1886787737
-      Gray Man Sprites Updated_17: 80805656
-      Gray Man Sprites Updated_20: -953308204
-      Gray Man Sprites Updated_15: -2038777040
-      Gray Man Sprites Updated_7: 500282975
-      Gray Man Sprites Updated_18: 212080858
-      Gray Man Sprites Updated_16: -370509453
-      Gray Man Sprites Updated_19: 1492953278
-      Gray Man Sprites Updated_13: -274191179
-      Gray Man Sprites Updated_6: 1077932155
+      Gray Man Sprites_0: -1801861950
+      Gray Man Sprites_1: -1155649530
+      Gray Man Sprites_10: -169723949
+      Gray Man Sprites_11: -1258552457
+      Gray Man Sprites_12: -606260883
+      Gray Man Sprites_13: 1609988072
+      Gray Man Sprites_14: 407799129
+      Gray Man Sprites_15: 1575560766
+      Gray Man Sprites_16: -481262867
+      Gray Man Sprites_2: -1993531417
+      Gray Man Sprites_3: 1247709772
+      Gray Man Sprites_4: 1876627826
+      Gray Man Sprites_5: -290799433
+      Gray Man Sprites_6: 1096279203
+      Gray Man Sprites_7: -350707578
+      Gray Man Sprites_8: 1888308900
+      Gray Man Sprites_9: -371571974
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

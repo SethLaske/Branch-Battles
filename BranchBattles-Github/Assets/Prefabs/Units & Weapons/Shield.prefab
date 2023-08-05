@@ -74,8 +74,6 @@ MonoBehaviour:
   AppearanceTime: 1.5
   State: 
   Target: {fileID: 0}
-  AssemblePoint: 0
-  RearPoint: 0
   MovementBlockers:
     serializedVersion: 2
     m_Bits: 512
@@ -83,9 +81,9 @@ MonoBehaviour:
   attackSound: {fileID: 2752445478207036960}
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: b1e3519cd32950e4aad4d5b9ba4b19b0, type: 2}
+  identifierSprite: {fileID: -184651273, guid: 9445952736d8ccf4899bdbcbf6eac47e, type: 3}
   assembled: 0
   FullSpaces: 0
-  Tolerance: 2
   separationDistance: 1
   separationForce: 0.5
   minimumForce: 0.1
