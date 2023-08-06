@@ -452,7 +452,7 @@ MonoBehaviour:
   attackSound: {fileID: 4837877308794750919}
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 4c76b6948e6c9174eb92d516c676ddcf, type: 2}
-  identifierSprite: {fileID: 21300000, guid: 3bd6da4af77317f469f7cf99b98b13d8, type: 3}
+  identifierSprite: {fileID: 21300000, guid: d41e58dcc9c710a4fbefffba27d0729d, type: 3}
   assembled: 0
   FullSpaces: 0
   separationDistance: 1

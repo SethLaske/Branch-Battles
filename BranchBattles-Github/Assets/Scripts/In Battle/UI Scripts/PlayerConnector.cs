@@ -7,97 +7,69 @@ using UnityEngine.UI;
 public class PlayerConnector : MonoBehaviour
 {
     public bool autoInitiate = true;
-    private Player player;
+    public Player player;       //MANUALLY ASSIGN THIS
     private TeamInfo playerTeam;
 
+    [Header("Assign in Prefab")]
     public BattleUI battleUI;
-
     public LevelManager levelManager;
 
 
-    //Auto
-    void Start()
+    //This script is responsible for filling all of the other scripts with their proper values;
+    public void InitializeUI()
     {
-        if (autoInitiate) {
+        playerTeam = player.Peasants;
+        player.SetBattleUI(battleUI);
+        battleUI.SetPlayer(player);
+        playerTeam.general.SetBattleUI(battleUI);
+        playerTeam.general.SetLevelManager(levelManager);
 
-            if (PlayerInfo.PlayerTroops[0] == null)
-            {
-                levelManager.Saver.LoadPlayer();
-                Debug.Log("Player has this many troops " + PlayerInfo.TroopSpaces);
-            }
+           
 
-            GameObject PlayerTag = GameObject.FindGameObjectWithTag("Player");  //finds the player
-            player = PlayerTag.GetComponent<Player>();
-            playerTeam = player.Peasants;
-            player.SetBattleUI(battleUI);
-            battleUI.SetPlayer(player);
-            playerTeam.general.battleUI = battleUI;
+        playerTeam.barracks.SetHealthBar(battleUI.playerBaseHealth);
+        playerTeam.Opponent.barracks.SetHealthBar(battleUI.enemyBaseHealth);
 
-            //levelManager.PlayerObject = player.gameObject;
-            //levelManager.EnemyObject = playerTeam.Opponent.gameObject;
+        battleUI.counters.SetTeamInfo(playerTeam);
 
-            battleUI.playerBase.HealthObject = playerTeam.barracks;
-            battleUI.playerBase.slider.maxValue = playerTeam.barracks.HP;
-            //Debug.Log("Setting up enemy health bar");
-            battleUI.enemyBase.HealthObject = playerTeam.Opponent.barracks;
-            battleUI.enemyBase.slider.maxValue = playerTeam.Opponent.barracks.HP;
+            
 
-            //battleUI.rally.onClick.AddListener(player.prepRallyPoint);
-            //battleUI.charge.onClick.AddListener(playerTeam.Charge);
-
-            battleUI.counters.SetTeamInfo(playerTeam);
-
-            /*
-            initButton(pacifist1, playerTeam.Pacifist1);
-            initButton(soldier1, playerTeam.Soldier1);
-            initButton(soldier2, playerTeam.Soldier2);
-            initButton(soldier3, playerTeam.Soldier3);
-            initButton(soldier4, playerTeam.Soldier4);
-            */
-
-            //This is the good way for when the troops are slowly added and memory works properly. Until then the bad way must be used
-            initButton(battleUI.pacifist1, PlayerInfo.PlayerTroops[0]);
-            initButton(battleUI.soldier1, PlayerInfo.PlayerTroops[1]);
-            initButton(battleUI.soldier2, PlayerInfo.PlayerTroops[2]);
-            initButton(battleUI.soldier3, PlayerInfo.PlayerTroops[3]);
-            initButton(battleUI.soldier4, PlayerInfo.PlayerTroops[4]);
+        //This is the good way for when the troops are slowly added and memory works properly. Until then the bad way must be used
+        initButton(battleUI.pacifist1, PlayerInfo.PlayerTroops[0]);
+        initButton(battleUI.soldier1, PlayerInfo.PlayerTroops[1]);
+        initButton(battleUI.soldier2, PlayerInfo.PlayerTroops[2]);
+        initButton(battleUI.soldier3, PlayerInfo.PlayerTroops[3]);
+        initButton(battleUI.soldier4, PlayerInfo.PlayerTroops[4]);
 
 
-            //soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
-            //soldier2.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier2));
-            //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
-            //soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
+        //soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
+        //soldier2.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier2));
+        //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
+        //soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
 
-            battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
-            battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
+        battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
+        battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
 
 
             
 
-            TeamBase playerbase = playerTeam.barracks.GetComponent<TeamBase>();
-            playerbase.levelmanager = levelManager;
+        /*TeamBase playerbase = playerTeam.barracks.GetComponent<TeamBase>();
+        playerbase.levelmanager = levelManager;
 
-            TeamBase enemybase = playerTeam.barracks.GetComponent<TeamBase>();
-            enemybase.levelmanager = levelManager;
-        }
-        else    //Specific for tutorial
-        {
-            battleUI.playerBase.slider.maxValue = battleUI.playerBase.HealthObject.HP;
-            battleUI.enemyBase.slider.maxValue = battleUI.enemyBase.HealthObject.HP;
-
-
-        }
-
+        TeamBase enemybase = playerTeam.barracks.GetComponent<TeamBase>();
+        enemybase.levelmanager = levelManager;*/
+       
+        /*battleUI.playerBase.slider.maxValue = battleUI.playerBase.HealthObject.HP;
+        battleUI.enemyBase.slider.maxValue = battleUI.enemyBase.HealthObject.HP;*/
     }
 
-    public void initButton(Button button, Unit unit) {
+    private void initButton(Button button, Unit unit) {
         if (unit == null)
         {
             Debug.Log("Was null");
             button.gameObject.SetActive(false);
         }
         else {
-            button.onClick.AddListener(() => playerTeam.SpawnUnit(unit));
+            button.onClick.AddListener(() => playerTeam.TrainUnit(unit));
             UnitButtons script = button.GetComponent<UnitButtons>();
             script.SetUnitType(unit);
         }

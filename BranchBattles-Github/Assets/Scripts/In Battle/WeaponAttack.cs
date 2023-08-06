@@ -27,7 +27,7 @@ public class WeaponAttack : MonoBehaviour
         //Debug.Log("Starting Attack");
         FinishedAttack = false;
         AttackBox.enabled = true;
-        Wielder.Move(Wielder.transform.rotation * new Vector3(-4 * Time.deltaTime, 0, 0)); //Added kickback, not sure how I feel about it
+        //Wielder.Move(Wielder.transform.rotation * new Vector3(-4 * Time.deltaTime, 0, 0)); //Added kickback, not sure how I feel about it
         StartCoroutine(EndAttack());
     }
 

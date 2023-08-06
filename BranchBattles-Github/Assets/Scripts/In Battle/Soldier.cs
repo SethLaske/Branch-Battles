@@ -55,14 +55,12 @@ public class Soldier : Unit
         {
             //Debug.Log("State is wait");
             Wait();
-            animator.SetBool("Waiting", true);
+            //animator.SetBool("Waiting", true);
         }
         else if (State == "Walk")
         {
             //Debug.Log("State is walk");
             Walk();
-            animator.SetBool("Waiting", false);
-            animator.SetBool("Attacking", false);
         }
         else if (State == "Attack")
         {
@@ -77,7 +75,13 @@ public class Soldier : Unit
             //animator.SetBool("Attacking", false);
         }
 
-
+        /*if (Attacking == false&& State != "Attacking") {
+            animator.SetBool("Attacking", false);
+            Debug.Log("Why is attack off");
+        }*/
+        if (assembled == false) {
+            animator.SetBool("Waiting", false);
+        }
     }
 
    //General structure for states to follow
@@ -91,13 +95,13 @@ public class Soldier : Unit
         {
             State = "Walk";
             assembled = false;
-            animator.SetBool("Waiting", false);
+            
             return;
 
         } else if (IsTargetAggroable() == true){    //There is a target, and we can reach them
             State = "Walk";
             assembled = false;
-            animator.SetBool("Waiting", false);
+           
             //Debug.Log("Target is near: Wait > Walk");
             return;
         }
@@ -109,6 +113,7 @@ public class Soldier : Unit
         //I also want them to spread spaces above and below them if they cant move forward to allow for a good looking army, but ideally not completely grid like
 
         if (assembled == true) {
+            animator.SetBool("Waiting", true);
             return;
         }
 
@@ -209,16 +214,18 @@ public class Soldier : Unit
         {
             State = "Walk";
             animator.SetBool("Attacking", false);
-            //Debug.Log("Attack > Wait");
+            //Debug.Log("Target null");
         }
         else if (IsTargetAggroable() == false) {
             State = "Walk";
             animator.SetBool("Attacking", false);
+            //Debug.Log("Target not aggroable");
         }
         else if (IsTargetAttackable() == false)     //Both are needed to ensure the troop will not get ahead on accident
         {
             State = "Walk";
             animator.SetBool("Attacking", false);
+            //Debug.Log("Target not attackable");
             //Debug.Log("Attack > Walk");
         }
         else
@@ -234,12 +241,14 @@ public class Soldier : Unit
 
     //Cant use the base functions, once in general it either walks forward, walks at, or attacks. No way to change its state from here
     public void Charge() {
+        if (Attacking) return;
         if (Target == null)
         {
             this.Move(new Vector3(Mathf.Sign(Team) * currentSpeed * Time.deltaTime, 0, 0));
         }
         else if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange) {
             this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
+            animator.SetBool("Attacking", false);
         }
         else
         { //kill
@@ -268,6 +277,7 @@ public class Soldier : Unit
         //Apply visual affects and animation
         State = "Charge";
         animator.SetBool("Waiting", false);
+        animator.SetBool("Attacking", false);
         RedAura.SetActive(true);
     }
 
@@ -333,7 +343,8 @@ public class Soldier : Unit
     public void PulseUpdate() {
 
         //Checks for shield
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + Team * Vector3.right, new Vector2(5, 5), 0);
+        humanshield = null;
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + Team * 2 * Vector3.right, new Vector2(5, 5), 0);
         foreach (Collider2D collider in colliders)
         {
             Soldier soldier = collider.GetComponent<Soldier>();
@@ -400,7 +411,7 @@ public class Soldier : Unit
         foreach (Collider2D collider in colliders)
         {
             Unit unit = collider.GetComponent<Unit>();
-            if (collider.gameObject != this.gameObject && unit != null)
+            if (collider.gameObject != this.gameObject && unit != null && unit.Team == Team && unit.unitClassification <= unitClassification)
             {
                 //Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
 

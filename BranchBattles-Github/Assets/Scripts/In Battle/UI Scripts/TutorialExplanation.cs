@@ -21,10 +21,11 @@ public class TutorialExplanation : MonoBehaviour
 
     public void EnableStep()
     {
-        Time.timeScale = 0;
-        explanation?.SetActive(true);
-        UIRevealed?.SetActive(true);
-        Arrow?.SetActive(true);
+        //Time.timeScale = 0;
+
+        if(explanation != null) explanation.SetActive(true);
+        if(UIRevealed != null) UIRevealed.SetActive(true);
+        if (Arrow != null) Arrow.SetActive(true);
     }
 
     public void ReadStep() {
@@ -33,14 +34,15 @@ public class TutorialExplanation : MonoBehaviour
 
     IEnumerator TimerRoutine()
     {
-        yield return new WaitForSeconds(ReadBuffer);
-        explanation?.SetActive(false);
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
+        yield return new WaitForSeconds(0);
+        if (explanation != null) explanation.SetActive(false);
+        
 
 
         yield return new WaitForSeconds(timeToNextStep);
-        
-        Arrow?.SetActive(false);
+
+        if (Arrow != null) Arrow.SetActive(false);
 
         tutorialManager.NextTutorialStep();
     }

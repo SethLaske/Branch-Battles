@@ -73,25 +73,41 @@ public class Unit : Damageable
     /// </summary>
     public virtual void Walk()
     {
-        float x = 0;
 
         if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
+            Debug.Log("Need to consider shield");
+            if (Target != null && humanshield.State == "Attack") {
+                
+                
+                
+                Debug.Log("Moving to an enemy to attack");
+                
+                return;
+            }
+            
             if (.5f > (humanshield.transform.position.x - transform.position.x) * Team) 
             {
-                //Debug.Log("Waiting for shield");
+                Debug.Log("Waiting for shield");
                 return;
             }
             else if (1.5f > (humanshield.transform.position.x - transform.position.x) * Team)
             {
-                //Debug.Log("Walking with shield");
-                currentSpeed = humanshield.currentSpeed;
+                Debug.Log("Walking with shield");
+
+                //Need to be using the speed of the furthest forward shield.
+                Soldier frontHumanSheild = humanshield;
+                while (frontHumanSheild.humanshield != null) {
+                    frontHumanSheild = frontHumanSheild.humanshield;
+                }
+
                 float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
-                this.Move(new Vector3(Mathf.Sign(distance) * humanshield.currentSpeed * Time.deltaTime, 0, 0));
+                this.Move(new Vector3(Mathf.Sign(distance) * frontHumanSheild.currentSpeed * Time.deltaTime, 0, 0));
                 return;
             }
         }
 
-        currentSpeed = baseSpeed / DebuffMult;
+        
+        float x = 0;
 
         if (Target != null && IsTargetAggroable() == true)
         {
@@ -121,33 +137,60 @@ public class Unit : Damageable
     /// The Unit is within range of attacking a target and will continue to do so while the target is alive and in agro range
     /// </summary>
     public virtual void Attack() {
-
-        //Moves in the Y to ensure the target stays within the hit area
-        if (Target != null && Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
-            float YMove = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentSpeed * Time.deltaTime);
-            Debug.Log("Current Speed" + currentSpeed);
-            transform.position += new Vector3(0, YMove, YMove / 5); 
-        }
+        if (Target == null) return;     //Should never be triggered
 
         if (Attacking == false) {
-            Attacking = true;
+            
             StartCoroutine(PlayAttack());
         }
 
-        //Redundant
-        if (Target != null) {
-            if (Target.transform.position.x - transform.position.x > 0)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
-            else {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-            }
+        
+        //Making slight adjustments to keep enemies cleanly within the attack range
+        Vector2 adjustments = new Vector2();
+        if (Mathf.Abs(Target.transform.position.x - transform.position.x) > AttackRange * .95f)   
+        {
+            adjustments.x = (Mathf.Sign(Target.transform.position.x - transform.position.x) * currentSpeed * Time.deltaTime);
+            
+            //transform.position += new Vector3(XMove, 0, 0);
+            //Debug.Log("XMove: " + Mathf.Sign(XMove));
         }
+        if (Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
+            adjustments.y = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentSpeed * Time.deltaTime);
+
+            //transform.position += new Vector3(0, YMove, YMove / 5);
+            //Debug.Log("YMove: " + Mathf.Sign(YMove));
+        }
+        Move(adjustments);
+
+
+        //Redundant
+        
+        if (Target.transform.position.x - transform.position.x > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+        
         
     }
 
-   
+    //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
+    IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
+    {
+        Attacking = true;
+        currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
+        DebuffMult *= 2;
+        yield return new WaitForSeconds(attackHitTime);
+        attackSound?.Play();
+        Offense.Attack();
+        yield return new WaitForSeconds(attackAnimation.length - attackHitTime);
+        Attacking = false;
+        currentSpeed *= 2;
+        DebuffMult /= 2;
+    }
+
 
     /// <summary>
     /// Checking if the unit is within an acceptable range from the teams rally point, using RearPoint and AssemblePoint
@@ -198,19 +241,7 @@ public class Unit : Damageable
         return true;
     }
 
-    //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
-    IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
-    {
-        currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
-        DebuffMult *= 2;
-        yield return new WaitForSeconds(attackHitTime);
-        attackSound?.Play();
-        Offense.Attack();
-        yield return new WaitForSeconds(attackAnimation.length-attackHitTime);
-        Attacking = false;
-        currentSpeed *= 2;
-        DebuffMult /= 2;
-    }
+    
     
 
     /// <summary>

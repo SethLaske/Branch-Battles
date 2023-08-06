@@ -22,9 +22,9 @@ public class Player : MonoBehaviour
     public Magic Lightning;
     public Magic TheWorld;
 
-    void Start()
+    void Awake()
     {
-        
+       
     }
 
     
@@ -119,4 +119,5 @@ public class Player : MonoBehaviour
     public void SetBattleUI(BattleUI UI) {
         battleUI = UI;
     }
+
 }

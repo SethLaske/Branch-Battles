@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class General : Unit
 {
-    public LevelManager levelmanager;
-    public BattleUI battleUI;
-    //public float baseSpeed = 4;
-    //public WeaponAttack Offense;
-    //public bool Attacking = true;
+    private LevelManager levelmanager;
+    private BattleUI battleUI;
+    
     private bool waiting = true;
     
-    private float RegenTime = .25f;
-    private float RegenTimer = 0;
+    public float regenTime = .25f;
+    private float regenTimer = 0;
 
     private Soldier SelectedSoldier;
     public GameObject HealingAura;
@@ -22,7 +20,7 @@ public class General : Unit
     private float baseArmor;
     private float baseDamage;
 
-    void Start()
+    void Awake()
     {
         maxHealth = HP;
         baseHP = HP;
@@ -91,7 +89,6 @@ public class General : Unit
             Attacking = true;
             //currentSpeed = 2;
             StartCoroutine(PlayAttack());
-            //animator.SetBool("HoldSlice", true);
         }
 
         if (Input.GetKeyDown(KeyCode.R))    
@@ -116,9 +113,9 @@ public class General : Unit
             troopselector.SetActive(false);
             SelectedSoldier?.ReceiveGeneralOrders();    
         }
-       
 
-        if (waiting == true && Attacking == false)
+
+        if (waiting == true)
         {
             animator.SetBool("Waiting", true);
         }
@@ -142,8 +139,15 @@ public class General : Unit
         attackSound.Play();
         Offense.Attack();
         yield return new WaitForSeconds(attackAnimation.length - attackHitTime);
-        animator.SetBool("Attacking", false);
-        Attacking = false;
+        if (Input.GetKey("space") == false)
+        {
+            animator.SetBool("Attacking", false);
+            Attacking = false;
+        }
+        else {
+            StartCoroutine(PlayAttack());
+        }
+        
         //currentSpeed = baseSpeed;
     }
 
@@ -156,7 +160,7 @@ public class General : Unit
         foreach (Collider2D collider in colliders)
         {
             Soldier soldier = collider.GetComponent<Soldier>();
-            if (soldier != null)
+            if (soldier != null  && soldier.Team == Team)
             {
                 float UnitDistance = (soldier.transform.position - TargetedPoint).magnitude;
                 if (UnitDistance < ClosestDistance) {
@@ -184,13 +188,13 @@ public class General : Unit
             {
                 HealingAura.SetActive(true);
                 //Debug.Log("Healing");
-                if (RegenTimer < RegenTime)
+                if (regenTimer < regenTime)
                 {
-                    RegenTimer += Time.deltaTime;
+                    regenTimer += Time.deltaTime;
                 }
                 else
                 {
-                    RegenTimer = 0;
+                    regenTimer = 0;
                     HP++;
                     HealthBar.transform.localScale = new Vector3(HP / maxHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
                     HealthBar.SetActive(true);
@@ -226,6 +230,7 @@ public class General : Unit
             baseDamage -= 3;
             //levelmanager.BattleUIUnits.SetActive(false);
             battleUI.DisableTroops();
+            HealingAura.SetActive(false);
         }
     }
 
@@ -243,5 +248,13 @@ public class General : Unit
 
         //Speed is increased by class 3 count- 2 units = +1 speed
         currentSpeed = baseSpeed + (General.troopCategory[3] / 2);
+    }
+
+    public void SetLevelManager(LevelManager levelManager) {
+        this.levelmanager = levelManager;
+    }
+    public void SetBattleUI(BattleUI ui)
+    {
+        battleUI = ui;
     }
 }

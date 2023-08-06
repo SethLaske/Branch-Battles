@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class BattleUI : MonoBehaviour
 {
-    public int activeButtons = 0;
 
     private Player player;
 
-    public BaseHealthBar playerBase;    //set in prefab
-    public BaseHealthBar enemyBase;     //set in prefab
+    [Header("Assign in Prefab")]
+    //public int activeButtons = 0;
+    public Slider playerBaseHealth;    //set in prefab
+    public Slider enemyBaseHealth;     //set in prefab
 
     public Button rally;
     public Button charge;

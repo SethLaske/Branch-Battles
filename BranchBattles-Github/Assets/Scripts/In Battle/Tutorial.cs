@@ -47,15 +47,15 @@ public class Tutorial : MonoBehaviour
 
         
 
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(fighter);
-        Barbarians.ForceSpawnUnit(spear);
-        Barbarians.ForceSpawnUnit(spear);
-        Barbarians.ForceSpawnUnit(spear);
-        Barbarians.ForceSpawnUnit(spear);
+        Barbarians.SpawnUnit(fighter);
+        Barbarians.SpawnUnit(fighter);
+        Barbarians.SpawnUnit(fighter);
+        Barbarians.SpawnUnit(fighter);
+        Barbarians.SpawnUnit(fighter);
+        Barbarians.SpawnUnit(spear);
+        Barbarians.SpawnUnit(spear);
+        Barbarians.SpawnUnit(spear);
+        Barbarians.SpawnUnit(spear);
 
         foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
         {

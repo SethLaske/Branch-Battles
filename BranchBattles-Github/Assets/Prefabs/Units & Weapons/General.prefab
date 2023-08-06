@@ -190,7 +190,7 @@ PolygonCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3620065794534304550}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -278,7 +278,7 @@ MonoBehaviour:
   Damage: 5
   AttackRange: 0
   AgroRange: 0
-  attackHitTime: 0.8
+  attackHitTime: 1
   Cost: 0
   TroopSpaces: 0
   SpawnTime: 0
@@ -294,8 +294,7 @@ MonoBehaviour:
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: e34ca22d0ac5b834b979f8d06f329ad7, type: 2}
   identifierSprite: {fileID: 889348375, guid: e9452931878e2974d937af184522250c, type: 3}
-  levelmanager: {fileID: 0}
-  battleUI: {fileID: 0}
+  regenTime: 0.25
   HealingAura: {fileID: 712338341447871682}
   troopselector: {fileID: 9001168858411564027}
 --- !u!58 &5403574557600635432
