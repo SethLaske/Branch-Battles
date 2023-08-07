@@ -1,50 +1,87 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TutorialExplanation : MonoBehaviour
 {
-    public Tutorial tutorialManager;
+    //public Tutorial tutorialManager;
 
-    public float ReadBuffer = 2;
+    public float readBuffer = .25f;
     public float timeToNextStep = 5;
 
-    public GameObject explanation;
-    public GameObject Arrow;
-    public GameObject UIRevealed;
+    public GameObject blocker;
 
+    public List<GameObject> elementsToDisplay;  //
+
+    public GameObject UIRevealed;
+   
+
+    public TextMeshProUGUI explanationTextObject;
+    private string explanationText;
+    private float characterSpeed = .05f;
+
+    private bool textOnScreen = false;
     // Start is called before the first frame update
 
+    private void Awake()
+    {
+        DisableStep();
+        explanationText = explanationTextObject.text;
+        explanationTextObject.text = "";
+    }
+
     public void DisableStep() {
-        explanation.SetActive(false);
+        foreach (GameObject displayedElement in elementsToDisplay)
+        {
+            displayedElement.SetActive(false);
+        }
+
+        this.gameObject.SetActive(false);
     }
 
     public void EnableStep()
     {
+        this.gameObject.SetActive(true);
         //Time.timeScale = 0;
-
-        if(explanation != null) explanation.SetActive(true);
+        foreach (GameObject displayedElement in elementsToDisplay) {
+            displayedElement.SetActive(true);
+        }
+        
         if(UIRevealed != null) UIRevealed.SetActive(true);
-        if (Arrow != null) Arrow.SetActive(true);
-    }
 
-    public void ReadStep() {
-        StartCoroutine(TimerRoutine());
-    }
-
-    IEnumerator TimerRoutine()
-    {
-        //Time.timeScale = 1;
-        yield return new WaitForSeconds(0);
-        if (explanation != null) explanation.SetActive(false);
         
 
+        Invoke("TextDelay", .25f);
+    }
 
-        yield return new WaitForSeconds(timeToNextStep);
+    public bool CheckIfTextIsDone() {
+        blocker.SetActive(false);   //Always turns it off once the player clicked
+        if (textOnScreen == false) {
+            //characterSpeed /= 10;     Might change it from auto finishing to just speeding up by 10x
+            explanationTextObject.text = explanationText;
+            textOnScreen = true;
+            return false;
+        }
 
-        if (Arrow != null) Arrow.SetActive(false);
+        return true;
+    }
 
-        tutorialManager.NextTutorialStep();
+    private void TextDelay() {
+        
+        StartCoroutine(ShowExplanationText());
+    }
+
+    IEnumerator ShowExplanationText() {
+        textOnScreen = false;
+
+        foreach (char c in explanationText.ToCharArray()) {
+            if (textOnScreen == true)   break;      
+            explanationTextObject.text += c;
+            yield return new WaitForSeconds(characterSpeed);
+        }
+
+        textOnScreen = true;
     }
 
 

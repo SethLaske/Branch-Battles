@@ -29,6 +29,8 @@ public class BattleUI : MonoBehaviour
     public Button magicPrep1;
     public Button magicPrep2;
 
+    public GameObject UIShadow;
+
     public void SetPlayer(Player player) {
         this.player = player;
     }
@@ -69,8 +71,6 @@ public class BattleUI : MonoBehaviour
         yield return new WaitForSeconds(duration);
         button.interactable = toggle;
     }
-
-
 
     
 }

@@ -22,7 +22,7 @@ public class ProjectileAttack : WeaponAttack
 
     public override void Attack()
     {
-        GameObject FiredProjectileObject = Instantiate(Projectile, transform.position + transform.rotation * new Vector3(0.1f, 0, 0), transform.rotation);
+        GameObject FiredProjectileObject = Instantiate(Projectile, transform.position, Quaternion.identity);
         Projectile FiredProjectile = FiredProjectileObject.GetComponent<Projectile>();
         Collider2D ProjectileHitbox = FiredProjectileObject.GetComponent<Collider2D>();
         Rigidbody2D rb = FiredProjectileObject.GetComponent<Rigidbody2D>();
@@ -30,11 +30,11 @@ public class ProjectileAttack : WeaponAttack
         FiredProjectile.Damage = Wielder.Damage;
         FiredProjectile.LifeTime = LifeTime;
         FiredProjectile.Team = Wielder.Team;
+        FiredProjectile.transform.localScale = Wielder.transform.localScale;
         ProjectileHitbox.enabled = true;
 
-        rb.velocity = transform.rotation * new Vector3(Speed,0,0);
-        Debug.Log(transform.rotation);
-        Debug.Log(rb.velocity);
+        rb.velocity = new Vector3(Speed * Wielder.transform.localScale.x,0,0);
+        Debug.Log("Initial Velocity: " + rb.velocity);
     }
 
     

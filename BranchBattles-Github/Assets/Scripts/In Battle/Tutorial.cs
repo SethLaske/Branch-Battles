@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 //Handles a lot of the player specific interface to TeamInfo. The buttons bypass the player for spawning, but the rest is done here
 public class Tutorial : MonoBehaviour
 {
+    public GameObject backgroundButton;
+
     public GameObject UI;
 
     public TeamInfo Peasants;
@@ -47,15 +49,17 @@ public class Tutorial : MonoBehaviour
 
         
 
-        Barbarians.SpawnUnit(fighter);
-        Barbarians.SpawnUnit(fighter);
-        Barbarians.SpawnUnit(fighter);
-        Barbarians.SpawnUnit(fighter);
-        Barbarians.SpawnUnit(fighter);
-        Barbarians.SpawnUnit(spear);
-        Barbarians.SpawnUnit(spear);
-        Barbarians.SpawnUnit(spear);
-        Barbarians.SpawnUnit(spear);
+        Barbarians.TrainUnit(fighter);
+        Barbarians.TrainUnit(fighter);
+        //Barbarians.TrainUnit(fighter);
+        //Barbarians.TrainUnit(fighter);
+        Barbarians.TrainUnit(fighter);
+        //Barbarians.TrainUnit(spear);
+        Barbarians.TrainUnit(spear);
+        Barbarians.TrainUnit(spear);
+        //Barbarians.TrainUnit(spear);
+
+        //Barbarians.SetRallyPoint(15);
 
         foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
         {
@@ -65,26 +69,32 @@ public class Tutorial : MonoBehaviour
             }
             
         }
+
+        UI.SetActive(false);
     }
 
     public void StartTutorial() {
         UI.SetActive(true);
 
+        backgroundButton.SetActive(true);
+
+        allTutorialScreens[0].gameObject.SetActive(true);
         allTutorialScreens[0].EnableStep();
         tutorialStepIndex = 0;
+
     }
 
     public void NextTutorialStep() {
-        allTutorialScreens[tutorialStepIndex].DisableStep();
-        tutorialStepIndex++;
-
-        if (tutorialStepIndex == allTutorialScreens.Count) {
-            EndTutorial();
+        backgroundButton.SetActive(false);
+        if (allTutorialScreens[tutorialStepIndex].CheckIfTextIsDone() == false) {
+            StartCoroutine(DelayRoutine());
             return;
         }
 
-        allTutorialScreens[tutorialStepIndex].EnableStep();
+        StartCoroutine(TimerRoutine());
     }
+
+
 
     public void EndTutorial() {
         UI.SetActive(true);
@@ -99,5 +109,37 @@ public class Tutorial : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    
+    IEnumerator DelayRoutine() {
+        yield return new WaitForSeconds(allTutorialScreens[tutorialStepIndex].readBuffer);
+        StartCoroutine(TimerRoutine());
+    }
+    IEnumerator TimerRoutine()
+    {
+        //Time.timeScale = 1;
+        //yield return new WaitForSeconds(allTutorialScreens[tutorialStepIndex].readBuffer);
+
+        allTutorialScreens[tutorialStepIndex].DisableStep();
+        
+
+
+        yield return new WaitForSeconds(allTutorialScreens[tutorialStepIndex].timeToNextStep);
+
+        tutorialStepIndex++;
+
+        if (tutorialStepIndex < allTutorialScreens.Count)
+        {
+
+            allTutorialScreens[tutorialStepIndex].gameObject.SetActive(true);
+            allTutorialScreens[tutorialStepIndex].EnableStep();
+
+            
+            
+            backgroundButton.SetActive(true);
+            
+        }
+        else {
+            EndTutorial();
+        }
+    }
+
 }

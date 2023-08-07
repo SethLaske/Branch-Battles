@@ -363,6 +363,9 @@ public class Soldier : Unit
         {
             return false;
         }
+        if (soldier.Team != Team) {
+            return false;
+        }
         if (humanshield == null)    //Is the shield currently empty
         {
             return true;

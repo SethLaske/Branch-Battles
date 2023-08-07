@@ -2961,7 +2961,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlledTeam: {fileID: 618944029}
   StartSequence:
-  - {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+  - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
   - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
   midGoldThreshold: 75
   soldierDifferenceToAttack: 5

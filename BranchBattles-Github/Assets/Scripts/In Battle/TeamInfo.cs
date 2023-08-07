@@ -86,11 +86,12 @@ public class TeamInfo : MonoBehaviour
             position = new Vector3(barracks.transform.position.x + (Team * 1f), 0, 0);
         }
 
-        Unit freshMeat = Instantiate(spawnUnits[0], position, Quaternion.identity);
+        Unit freshMeat = Instantiate(newUnit, position, Quaternion.identity);
 
         if (Team < 0)
         {
-            freshMeat.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
+            freshMeat.transform.localScale = new Vector3(-1, 1,1);
+            //freshMeat.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
         }
 
         //Name is set for my use, and team controls the direction
@@ -119,12 +120,12 @@ public class TeamInfo : MonoBehaviour
     }
 
 
-    public void UseMagic(Magic magic, float distance) {
+    /*public void UseMagic(Magic magic, float distance) {
         if (souls > magic.SoulCost) {
             Instantiate(magic, new Vector3(distance, 0, 0), Quaternion.Euler(new Vector2(0, 0)));
             souls-= magic.SoulCost;
         }
-    }
+    }*/
 
 
     //Sets the rally point and moves the flag
@@ -136,6 +137,8 @@ public class TeamInfo : MonoBehaviour
         rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y);
         //Play flag noise or smth
         rallyFlag.GetComponent<Animator>().SetTrigger("Drop");
+
+        Debug.Log("Team: " + Team + " is Setting Rally at: " + rally);
     }
 
 

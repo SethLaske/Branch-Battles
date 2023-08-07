@@ -22,6 +22,7 @@ public class General : Unit
 
     void Awake()
     {
+        Debug.Log("HP: " + HP);
         maxHealth = HP;
         baseHP = HP;
         baseArmor = Armor;
@@ -54,13 +55,15 @@ public class General : Unit
         {
             
             Move(new Vector2(currentSpeed * -1 * Time.deltaTime, 0));
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            //transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.localScale = new Vector3(-1, 1, 1);
             waiting = false;
         }
         if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
             Move(new Vector2(currentSpeed * 1 * Time.deltaTime, 0));
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.localScale = new Vector3(1, 1, 1);
             waiting = false;
         }
 
@@ -153,7 +156,7 @@ public class General : Unit
 
     public void OneUnitCharge() {
         SelectedSoldier = null;
-        Vector3 TargetedPoint = transform.position + (transform.rotation * (Vector3.right * 2));
+        Vector3 TargetedPoint = transform.position + (transform.localScale.x * (Vector3.right * 2));
         //Debug.Log("The Targeted point is: " + TargetedPoint);
         float ClosestDistance = 100;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(TargetedPoint, .75f);
@@ -236,6 +239,10 @@ public class General : Unit
 
 
     public void CalculateArmyBuffs() {
+        if (maxHealth < HP) {
+            return;
+        }
+
         //HP is increased by class 0 count- 1 unit = +5% HP
         float oldMaxHP = maxHealth;
         maxHealth = baseHP + (General.troopCategory[0] * .05f * baseHP);

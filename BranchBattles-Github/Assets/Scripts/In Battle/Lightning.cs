@@ -4,7 +4,7 @@ using UnityEngine;
 
 //A magic spell, which strikes an enemy and then chains bolts together to deal damage to additional enemies
 //Might also reduce movement or attack speed
-public class Lightning : Magic
+public class Lightning : MonoBehaviour
 {
     public GameObject Bolt;
     public Collider2D AOE;

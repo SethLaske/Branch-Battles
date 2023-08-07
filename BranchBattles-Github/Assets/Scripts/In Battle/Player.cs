@@ -24,7 +24,15 @@ public class Player : MonoBehaviour
 
     void Awake()
     {
-       
+        if (TheWorld != null) {
+            TheWorld.SetTeamInfo(Peasants);
+            TheWorld.gameObject.SetActive(false);
+        }
+        if (Lightning != null)
+        {
+            Lightning.SetTeamInfo(Peasants);
+            Lightning.gameObject.SetActive(false);
+        }
     }
 
     
@@ -41,6 +49,8 @@ public class Player : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
             Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+            
+            battleUI.UIShadow.SetActive(false);
 
             if (PassRally == true)  //Sets the rally point if rally was already selected
             {
@@ -48,14 +58,16 @@ public class Player : MonoBehaviour
                 PassRally = false;
                 battleUI.DelayRallyButton();
             }
+
+
             else if (UseMagic1 == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.UseMagic(Lightning, Worldpos.x);
+                //Peasants.UseMagic(Lightning, Worldpos.x);
                 UseMagic1 = false;
             }
             else if (UseMagic2 == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.UseMagic(TheWorld, Worldpos.x);
+                //Peasants.UseMagic(TheWorld, Worldpos.x);
                 UseMagic2 = false;
             }
             else {  //Checks to see what the player pressed
@@ -96,12 +108,19 @@ public class Player : MonoBehaviour
     
     //Using two different preps to deal with the magic spells as they cant be under the same section
     public void PrepMagic1() {
-        UseMagic1 = true;
+        if (Lightning.soulCost <= Peasants.souls)
+        {
+            Lightning.gameObject.SetActive(true);
+            battleUI.UIShadow.SetActive(true);
+        }
     }
 
     public void PrepMagic2()
     {
-        UseMagic2 = true;
+        if (TheWorld.soulCost <= Peasants.souls) {
+            TheWorld.gameObject.SetActive(true);
+            battleUI.UIShadow.SetActive(true);
+        }
     }
 
     //Both options are available whether winning or losing
