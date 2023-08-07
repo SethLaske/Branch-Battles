@@ -11,23 +11,26 @@ public class TheWorld : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(StopTime());
+        StartCoroutine(EnterDio());
+        
+        
+    }
+    
+    IEnumerator EnterDio()
+    {
+        if (magicSound != null) magicSound.Play();
+        yield return new WaitForSeconds(magicSound.clip.length);
         Crusaders = GameObject.FindGameObjectsWithTag("Unit");
-        foreach (GameObject crusader in Crusaders) {
+        foreach (GameObject crusader in Crusaders)
+        {
             Unit enemyStand = crusader.GetComponent<Unit>();
-            if (enemyStand != null && Vector3.Distance(this.transform.position, enemyStand.transform.position) > abilityRadius) {
+            if (enemyStand != null && Vector3.Distance(this.transform.position, enemyStand.transform.position) > abilityRadius)
+            {
                 //enemyStand.Stun(TimeStopTime, 1000);
                 Debug.Log("REMOVED STUN");
                 enemyStand.Die();
             }
         }
-        
-    }
-    
-    IEnumerator StopTime()
-    {
-
-        yield return new WaitForSeconds(TimeStopTime);
         Destroy(gameObject);
     }
 
