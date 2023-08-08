@@ -6,6 +6,7 @@ public class Magic : MonoBehaviour
 {
     private TeamInfo team;
 
+    public Sprite buttonUI; //Will use this to automatically assign the magic to the battleUI later
     
     public int soulCost;
 
@@ -16,6 +17,11 @@ public class Magic : MonoBehaviour
     //Will likely need to figure out enums to give it a type, for example lighting is offensive, The World is utility, and maybe a buffing or healing type spell
 
 
+    private void Start()
+    {
+        mouseTracker.SetActive(true);
+        magicEffect.SetActive(false);
+    }
 
     private void Update()
     {

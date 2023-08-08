@@ -6,50 +6,43 @@ using UnityEngine;
 //Might also reduce movement or attack speed
 public class Lightning : MonoBehaviour
 {
-    public GameObject Bolt;
-    public Collider2D AOE;
-    public float duration;
-    public float dropSpeed;
+    public GameObject lightningBolt;
+    public float stormSpawnHeight;
+    public float lightningDuration; 
+    public float spawnRadius;
+    public float spawnHeightRange;
+    public int chanceToSpawn; //Will get called each frame so will be quite low
 
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = new Vector3(transform.position.x, 4f, 0);
-        StartCoroutine(LightningBolt());
-        //Instantiate(Bolt, transform.position, Quaternion.Euler(new Vector2(0, 0)));
-        //Instantiate(Bolt, transform.position, Quaternion.Euler(new Vector2(0, 180)));
+        transform.position = new Vector3(transform.position.x, stormSpawnHeight, 0);
+        StartCoroutine(LightningStorm());
     }
 
     // Update is called once per frame
     void Update()
     {
-        AOE.offset += Vector2.down * dropSpeed * Time.deltaTime;
-    }
-
-
-
-    //Very easy to hit two units at a time which spawns in two pairs of bolts, but the second pair dont move
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        GameObject other = collider.gameObject;
-        Unit unit = other.GetComponent<Unit>();
-        if (unit != null)
-        { //Bolt would need a team check... but its lightning 
-            
-            //unit.Stun 
-            Debug.Log("Spawning new bolts");
-            Instantiate(Bolt, unit.transform.position + new Vector3(1, 0, 0), Quaternion.Euler(new Vector2(0, 0)));
-            Instantiate(Bolt, unit.transform.position + new Vector3(-1, 0, 0), Quaternion.Euler(new Vector2(0, 180)));
-            
-            Destroy(gameObject);
-            unit.TakeDamage(50);
+        if (Random.Range(0, 1000) < chanceToSpawn) {
+            SpawnLightningBolt();
         }
     }
 
-    IEnumerator LightningBolt()
+    private void SpawnLightningBolt() {
+        float xPos = Random.Range(transform.position.x - spawnRadius, transform.position.x + spawnRadius);
+        float yPos = Random.Range(transform.position.y - spawnHeightRange/2, transform.position.y + spawnHeightRange/2);
+        Instantiate(lightningBolt, new Vector3(xPos, yPos, 0), Quaternion.identity);
+    }
+
+    IEnumerator LightningStorm()
     {
 
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(lightningDuration);
         Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(transform.position, new Vector3(spawnRadius * 2, spawnHeightRange, 1));
     }
 }

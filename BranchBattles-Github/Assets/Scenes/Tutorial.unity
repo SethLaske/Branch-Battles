@@ -4198,6 +4198,7 @@ MonoBehaviour:
   miner: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
   fighter: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   spear: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+  screenToChargeOn: 4
   allTutorialScreens:
   - {fileID: 1531961646}
   - {fileID: 1200009152}
@@ -6719,7 +6720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1848603112021790815, guid: 7d2ab0f5d2acdfd429e3398ac81ec00e, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1848603112021790815, guid: 7d2ab0f5d2acdfd429e3398ac81ec00e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6872,9 +6873,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Peasants: {fileID: 4324115701979177115}
-  PassRally: 0
-  UseMagic1: 0
-  UseMagic2: 0
   Lightning: {fileID: 2990680021001393328}
   TheWorld: {fileID: 689201314}
 --- !u!1001 &6185429638831244432
@@ -6961,17 +6959,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magic - Lightning
       objectReference: {fileID: 0}
-    - target: {fileID: 5696295148291148336, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5696295148291148338, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 5696295148291148338, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 22.5
       objectReference: {fileID: 0}
     - target: {fileID: 5696295148291148338, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7007,6 +7001,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696295148291148338, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241463505994274371, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

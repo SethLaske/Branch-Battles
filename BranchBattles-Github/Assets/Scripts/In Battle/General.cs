@@ -81,6 +81,7 @@ public class General : Unit
         //Taunt
         if (Input.GetKeyDown(KeyCode.T))
         {
+            //this.Stun(10, 2);
             animator.SetTrigger("Taunt");
             
         }
@@ -138,10 +139,10 @@ public class General : Unit
 
     IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
-        yield return new WaitForSeconds(attackHitTime);
+        yield return new WaitForSeconds(attackHitTime * DebuffMult);
         attackSound.Play();
         Offense.Attack();
-        yield return new WaitForSeconds(attackAnimation.length - attackHitTime);
+        yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult);
         if (Input.GetKey("space") == false)
         {
             animator.SetBool("Attacking", false);

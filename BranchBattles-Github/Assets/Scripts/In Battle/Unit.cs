@@ -47,7 +47,7 @@ public class Unit : Damageable
 
     public AudioSource attackSound;
 
-    private float DebuffMult = 1;   //Stores speed multipliers so they can be undone when passed back to the general  
+    protected float DebuffMult = 1;   //Stores speed multipliers so they can be undone when passed back to the general  
 
     public Soldier humanshield;
 
@@ -186,14 +186,15 @@ public class Unit : Damageable
     IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
         Attacking = true;
-        currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
+        //currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
         DebuffMult *= 2;
-        yield return new WaitForSeconds(attackHitTime);
+
+        yield return new WaitForSeconds(attackHitTime * DebuffMult);
         attackSound?.Play();
         Offense.Attack();
-        yield return new WaitForSeconds(attackAnimation.length - attackHitTime);
+        yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult);
         Attacking = false;
-        currentSpeed *= 2;
+        //currentSpeed *= 2;
         DebuffMult /= 2;
     }
 
@@ -301,7 +302,7 @@ public class Unit : Damageable
     /// <summary>
     /// Slows down the units move speed and attack speed by a factor of the intensity for the length of the duration
     /// </summary>
-    /*public void Stun(float Duration, float Intensity)
+    public void Stun(float Duration, float Intensity)
     {
         StartCoroutine(StunDebuff(Duration, Intensity));
     }
@@ -309,21 +310,23 @@ public class Unit : Damageable
     //Implementing it as such will allow the effects to stack, for better or worse
     IEnumerator StunDebuff(float Duration, float Intensity)
     {
-        currentSpeed /= Intensity;
+        //currentSpeed /= Intensity;
         DebuffMult *= Intensity;
+        animator.speed /= Intensity;
         //AttackCooldown *= Intensity;
 
         yield return new WaitForSeconds(Duration);
 
-        currentSpeed *= Intensity;
+        //currentSpeed *= Intensity;
         DebuffMult /= Intensity;
+        animator.speed *= Intensity;
         //AttackCooldown /= Intensity;
-    }*/
+    }
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
     public bool Move(Vector2 movement)
     {
-        Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) + transform.position;
+        Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) / DebuffMult + transform.position;
         if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
         {
             transform.position = NewPosition;

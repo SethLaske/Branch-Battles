@@ -11,10 +11,7 @@ public class Player : MonoBehaviour
 
     public TeamInfo Peasants;
 
-    public bool PassRally;
-
-    public bool UseMagic1;
-    public bool UseMagic2;
+    private bool PassRally;
 
     //public bool UseLightning;
     //public bool UseTheWorld;
@@ -59,17 +56,6 @@ public class Player : MonoBehaviour
                 battleUI.DelayRallyButton();
             }
 
-
-            else if (UseMagic1 == true)  //Sets the rally point if rally was already selected
-            {
-                //Peasants.UseMagic(Lightning, Worldpos.x);
-                UseMagic1 = false;
-            }
-            else if (UseMagic2 == true)  //Sets the rally point if rally was already selected
-            {
-                //Peasants.UseMagic(TheWorld, Worldpos.x);
-                UseMagic2 = false;
-            }
             else {  //Checks to see what the player pressed
                 RaycastHit2D hit = Physics2D.Raycast(Worldpos, Vector2.zero, 10, 1);
 

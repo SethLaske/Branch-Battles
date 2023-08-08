@@ -17,6 +17,8 @@ public class Tutorial : MonoBehaviour
     public Unit fighter;
     public Unit spear;
 
+    public int screenToChargeOn;
+
     public List<TutorialExplanation> allTutorialScreens;
     public int tutorialStepIndex = 0;
 
@@ -47,8 +49,8 @@ public class Tutorial : MonoBehaviour
 
         PlayerInfo.TroopSpaces = 2;
 
-        
 
+        Barbarians.gold = 1000;
         Barbarians.TrainUnit(fighter);
         Barbarians.TrainUnit(fighter);
         //Barbarians.TrainUnit(fighter);
@@ -58,7 +60,8 @@ public class Tutorial : MonoBehaviour
         Barbarians.TrainUnit(spear);
         Barbarians.TrainUnit(spear);
         //Barbarians.TrainUnit(spear);
-
+        Barbarians.gold = 00;
+        Barbarians.AFKGoldAmount = 0;
         //Barbarians.SetRallyPoint(15);
 
         foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
@@ -85,6 +88,7 @@ public class Tutorial : MonoBehaviour
     }
 
     public void NextTutorialStep() {
+        
         backgroundButton.SetActive(false);
         if (allTutorialScreens[tutorialStepIndex].CheckIfTextIsDone() == false) {
             StartCoroutine(DelayRoutine());
@@ -106,6 +110,9 @@ public class Tutorial : MonoBehaviour
             }
         }
 
+        Barbarians.gold = 100;
+        Barbarians.AFKGoldAmount = 5;
+
         this.gameObject.SetActive(false);
     }
 
@@ -125,6 +132,28 @@ public class Tutorial : MonoBehaviour
         yield return new WaitForSeconds(allTutorialScreens[tutorialStepIndex].timeToNextStep);
 
         tutorialStepIndex++;
+
+        if (screenToChargeOn == tutorialStepIndex)
+        {
+            int enemiesToSend = 3;
+
+            GameObject[] allUnits = GameObject.FindGameObjectsWithTag("Unit");
+            foreach (GameObject unit in allUnits)
+            {
+                Soldier soldier = unit.GetComponent<Soldier>();
+                if (soldier != null)
+                {
+                    if (soldier.Team == Barbarians.Team && enemiesToSend > 0)
+                    {
+                        soldier.ReceiveGeneralOrders();
+                        enemiesToSend--;
+                    }
+                }
+            }
+
+            Barbarians.gold = 100;
+            Barbarians.AFKGoldAmount = 5;
+        }
 
         if (tutorialStepIndex < allTutorialScreens.Count)
         {

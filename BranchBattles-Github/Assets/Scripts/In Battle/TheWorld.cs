@@ -26,9 +26,9 @@ public class TheWorld : MonoBehaviour
             Unit enemyStand = crusader.GetComponent<Unit>();
             if (enemyStand != null && Vector3.Distance(this.transform.position, enemyStand.transform.position) > abilityRadius)
             {
-                //enemyStand.Stun(TimeStopTime, 1000);
-                Debug.Log("REMOVED STUN");
-                enemyStand.Die();
+                enemyStand.Stun(TimeStopTime, 1000);
+                //Debug.Log("REMOVED STUN");
+                //enemyStand.Die();
             }
         }
         Destroy(gameObject);

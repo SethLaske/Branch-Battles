@@ -659,6 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746afffabdf9f98499f7ed8509d055ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonUI: {fileID: 0}
   soulCost: 0
   mouseTracker: {fileID: 1848603111089439949}
   yHeight: 2
@@ -1037,7 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magicSound: {fileID: 7885464878785148547}
-  TimeStopTime: 3
+  TimeStopTime: 5
   abilityRadius: 5
 --- !u!82 &7885464878785148547
 AudioSource:
@@ -1057,7 +1058,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 42
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
