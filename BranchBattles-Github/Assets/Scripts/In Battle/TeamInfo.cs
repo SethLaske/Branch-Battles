@@ -55,6 +55,11 @@ public class TeamInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.gameState != GameState.InGame)
+        {
+            return;
+        }
+
         //Passive gold timer       
         goldCounter += Time.deltaTime;
         if (goldCounter >= AFKGoldTime)
@@ -175,5 +180,6 @@ public class TeamInfo : MonoBehaviour
         }
         //Changing this to be implemented inside the general script, and to be based off of 
         general.CalculateArmyBuffs();
+        Debug.Log("Calculating general buffs");
     }
 }

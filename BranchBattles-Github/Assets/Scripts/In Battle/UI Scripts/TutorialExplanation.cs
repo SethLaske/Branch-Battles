@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TutorialExplanation : MonoBehaviour
 {
     //public Tutorial tutorialManager;
+    private Tutorial tutorial;
 
     public float readBuffer = .25f;
     public float timeToNextStep = 5;
@@ -13,6 +15,9 @@ public class TutorialExplanation : MonoBehaviour
     public GameObject blocker;
 
     public List<GameObject> elementsToDisplay;  //
+
+    public Button forcedButtonToClick;
+    private Transform forcedButtonToClickParent;
 
     public GameObject UIRevealed;
    
@@ -26,15 +31,26 @@ public class TutorialExplanation : MonoBehaviour
 
     private void Awake()
     {
-        DisableStep();
         explanationText = explanationTextObject.text;
         explanationTextObject.text = "";
+
+        tutorial = GetComponentInParent<Tutorial>();
+
+        DisableStep();
     }
+
+    
 
     public void DisableStep() {
         foreach (GameObject displayedElement in elementsToDisplay)
         {
             displayedElement.SetActive(false);
+        }
+
+        if (forcedButtonToClick != null && forcedButtonToClickParent != null)
+        {
+            forcedButtonToClick.transform.SetParent(forcedButtonToClickParent);
+            forcedButtonToClick.onClick.RemoveListener(tutorial.NextTutorialStep);
         }
 
         this.gameObject.SetActive(false);
@@ -50,6 +66,11 @@ public class TutorialExplanation : MonoBehaviour
         
         if(UIRevealed != null) UIRevealed.SetActive(true);
 
+        if (forcedButtonToClick != null) {
+            forcedButtonToClickParent = forcedButtonToClick.transform.parent;
+            forcedButtonToClick.transform.SetParent(transform);
+            forcedButtonToClick.onClick.AddListener(tutorial.NextTutorialStep);
+        }
         
 
         Invoke("TextDelay", .25f);

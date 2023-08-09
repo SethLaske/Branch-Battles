@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum GameState { 
+    Paused,
+    InGame,
+    Gameover
+}
+
 //Level manager ends up in the UI and deals with managing the level
 public class LevelManager : MonoBehaviour
 {
+    public static GameState gameState;
     public bool buttonStart;    //Allows me to choose if I want to press a button to start level
 
     [Header ("Player Progression Variables")]
@@ -37,6 +44,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameState = GameState.Paused;
         if (PlayerInfo.PlayerTroops[0] == null)
         {
             saver.LoadPlayer();
@@ -63,6 +71,8 @@ public class LevelManager : MonoBehaviour
 
     //Can be called from a variety of places, and will deal with changing the states that can be used for animations later
     public void GameOver(int losingTeam) {
+        gameState = GameState.Gameover;
+
         BattleUI.SetActive(false);
          
         //Assign each unit individually its win or loss state
@@ -110,7 +120,7 @@ public class LevelManager : MonoBehaviour
 
     //Generic level stuff below
     public void StartLevel() {
-        Time.timeScale = 1;
+        LevelManager.gameState = GameState.InGame;
 
         StartScreen.SetActive(false);
 

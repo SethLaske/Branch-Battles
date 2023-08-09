@@ -31,6 +31,11 @@ public class LevelTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.gameState != GameState.InGame)
+        {
+            return;
+        }
+
         levelTime += direction * Time.deltaTime;
         minutes = Mathf.FloorToInt(levelTime / 60);
         seconds = Mathf.FloorToInt(levelTime % 60);
@@ -39,11 +44,11 @@ public class LevelTimer : MonoBehaviour
             if (countDown)
             {
                 levelmanager.GameOver(1);
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
             }
             else if (survival) {
                 levelmanager.GameOver(-1);
-                Destroy(this.gameObject);
+                //Destroy(this.gameObject);
             }
         }
     }

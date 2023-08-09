@@ -35,6 +35,11 @@ public class General : Unit
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.gameState != GameState.InGame)
+        {
+            return;
+        }
+
         //Health bar clearing
         if (HealthTimer < AppearanceTime)
         {
@@ -246,16 +251,19 @@ public class General : Unit
 
         //HP is increased by class 0 count- 1 unit = +5% HP
         float oldMaxHP = maxHealth;
-        maxHealth = baseHP + (General.troopCategory[0] * .05f * baseHP);
+        maxHealth = baseHP + (General.troopCategory[0] * .15f * baseHP);
         HP = HP * maxHealth / oldMaxHP;
 
         //Armor is increased by class 1 count- 3units = +1 Armor
         Armor = baseArmor + (General.troopCategory[1]/3);
+        //Debug.Log("Armor Gain: " + (General.troopCategory[1]/3));
         //Damage is increased by class 2 count- 1 unit = +1 Damage
         Damage = baseDamage + General.troopCategory[2];
-
+        //Debug.Log("Damage Gain: " + (General.troopCategory[2]));
         //Speed is increased by class 3 count- 2 units = +1 speed
         currentSpeed = baseSpeed + (General.troopCategory[3] / 2);
+        //Debug.Log("Speed Gain: " + (General.troopCategory[3] / 2));
+        Debug.Log("HP Gain: " + (General.troopCategory[0] * .15f * baseHP + "\nArmor Gain: " + (General.troopCategory[1] / 3) + "\nDamage Gain: " + (General.troopCategory[2]) + "\nSpeed Gain: " + (General.troopCategory[3] / 2)));
     }
 
     public void SetLevelManager(LevelManager levelManager) {

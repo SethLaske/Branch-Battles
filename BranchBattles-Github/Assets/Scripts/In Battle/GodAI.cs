@@ -37,6 +37,11 @@ public class GodAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.gameState != GameState.InGame)
+        {
+            return;
+        }
+
         if (controlledTeam.barracks == null || controlledTeam.Opponent.barracks == null) {
             return;
         }

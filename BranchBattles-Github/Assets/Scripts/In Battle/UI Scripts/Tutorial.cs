@@ -22,6 +22,8 @@ public class Tutorial : MonoBehaviour
     public List<TutorialExplanation> allTutorialScreens;
     public int tutorialStepIndex = 0;
 
+    private bool stepActive = false;    //Using to ensure the user cant double click through steps
+
     /*
     [Header ("Tutorial Explanation Screens")]
     public GameObject CameraScreen;
@@ -76,6 +78,16 @@ public class Tutorial : MonoBehaviour
         UI.SetActive(false);
     }
 
+    private void Update()
+    {
+        if (LevelManager.gameState == GameState.Gameover)
+        {
+            //I dont really like adding this update, but I want the tutorial to immediately go away if we reach a gameover, and I don't want to add a check in Level manager for a tutorial
+            gameObject.SetActive(false);
+            return;
+        }
+    }
+
     public void StartTutorial() {
         UI.SetActive(true);
 
@@ -83,12 +95,18 @@ public class Tutorial : MonoBehaviour
 
         allTutorialScreens[0].gameObject.SetActive(true);
         allTutorialScreens[0].EnableStep();
+        stepActive = true;
         tutorialStepIndex = 0;
 
+        LevelManager.gameState = GameState.InGame;
     }
 
     public void NextTutorialStep() {
-        
+        if (stepActive == false) {
+            return;
+        }
+
+        stepActive = false;
         backgroundButton.SetActive(false);
         if (allTutorialScreens[tutorialStepIndex].CheckIfTextIsDone() == false) {
             StartCoroutine(DelayRoutine());
@@ -101,6 +119,7 @@ public class Tutorial : MonoBehaviour
 
 
     public void EndTutorial() {
+        LevelManager.gameState = GameState.InGame;
         UI.SetActive(true);
         foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
         {
@@ -164,7 +183,8 @@ public class Tutorial : MonoBehaviour
             
             
             backgroundButton.SetActive(true);
-            
+            stepActive = true;
+
         }
         else {
             EndTutorial();

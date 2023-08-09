@@ -77,24 +77,24 @@ public class Unit : Damageable
     {
 
         if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
-            Debug.Log("Need to consider shield");
+            //Debug.Log("Need to consider shield");
             if (Target != null && humanshield.State == "Attack") {
                 
                 
                 
-                Debug.Log("Moving to an enemy to attack");
+                //Debug.Log("Moving to an enemy to attack");
                 
                 return;
             }
             
             if (.5f > (humanshield.transform.position.x - transform.position.x) * Team) 
             {
-                Debug.Log("Waiting for shield");
+                //Debug.Log("Waiting for shield");
                 return;
             }
             else if (1.5f > (humanshield.transform.position.x - transform.position.x) * Team)
             {
-                Debug.Log("Walking with shield");
+                //Debug.Log("Walking with shield");
 
                 //Need to be using the speed of the furthest forward shield.
                 Soldier frontHumanSheild = humanshield;

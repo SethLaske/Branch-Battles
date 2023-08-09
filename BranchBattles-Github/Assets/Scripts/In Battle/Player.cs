@@ -35,6 +35,10 @@ public class Player : MonoBehaviour
     
     void Update()
     {
+        if (LevelManager.gameState != GameState.InGame) {
+            return;
+        }
+
         if (PassRally == true) {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
