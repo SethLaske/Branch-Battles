@@ -10,16 +10,7 @@ public class UnitButtons : MonoBehaviour
     public TextMeshProUGUI UnitName;
     public TextMeshProUGUI UnitCost;
     // Start is called before the first frame update
-    void Start()
-    {
-        //thisButton.GetComponent<Image>().alphaHitTestMinimumThreshold = .1f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 
     public void SetUnitType(Unit unit) {
         UnitName.text = unit.unitName;

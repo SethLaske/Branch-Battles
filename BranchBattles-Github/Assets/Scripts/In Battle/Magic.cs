@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Magic : MonoBehaviour
 {
+    public string magicName;
+    public float cooldownTime;
     private TeamInfo team;
 
     public Sprite buttonUI; //Will use this to automatically assign the magic to the battleUI later
@@ -16,9 +18,21 @@ public class Magic : MonoBehaviour
     public GameObject magicEffect;
     //Will likely need to figure out enums to give it a type, for example lighting is offensive, The World is utility, and maybe a buffing or healing type spell
 
+    [HideInInspector] public MagicButtons magicButton;
+
+    private bool magicUsed;
+
 
     private void Start()
     {
+        magicUsed = false;
+        mouseTracker.SetActive(true);
+        magicEffect.SetActive(false);
+    }
+    
+    public void TriggerMagic() {
+        magicUsed = false;
+        gameObject.SetActive(true);
         mouseTracker.SetActive(true);
         magicEffect.SetActive(false);
     }
@@ -26,9 +40,8 @@ public class Magic : MonoBehaviour
     private void Update()
     {
         TrackMouse();
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && magicUsed == false) {
             ActivateMagic();
-            this.gameObject.SetActive(false);
         }
     }
 
@@ -48,11 +61,18 @@ public class Magic : MonoBehaviour
         if (mouseWorldPos.y > yHeight)
         {
             Debug.Log("Mouse is too high, magic cancelled");
+            gameObject.SetActive(false);
             return;
         }
 
-        Instantiate(magicEffect, new Vector3(mouseTracker.transform.position.x, 0, 0), Quaternion.identity).SetActive(true);
+        magicEffect.transform.position = new Vector3(mouseTracker.transform.position.x, magicEffect.transform.position.y, 0);
+        magicEffect.SetActive(true);
+        magicEffect.SendMessage("UseMagic");
+        mouseTracker.SetActive(false);
         team.souls -= soulCost;
+
+        magicButton.MagicActivated();
+        magicUsed = true;
     }
 
     public void SetTeamInfo(TeamInfo teamInfo) {

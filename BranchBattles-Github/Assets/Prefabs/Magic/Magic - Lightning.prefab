@@ -237,8 +237,8 @@ Transform:
   m_GameObject: {fileID: 3298425973199555231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.356, y: -0.1518, z: 0}
-  m_LocalScale: {x: 5.094306, y: 3.5717368, z: 3}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: -5.094306, y: 3.5717368, z: 3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7235865763162753504}
   m_RootOrder: 6
@@ -540,7 +540,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5696295148291148338
 Transform:
   m_ObjectHideFlags: 0
@@ -571,11 +571,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746afffabdf9f98499f7ed8509d055ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonUI: {fileID: 0}
-  soulCost: 0
+  magicName: Lightning
+  cooldownTime: 5
+  buttonUI: {fileID: 21300000, guid: fb7a630e94c26e44aaa198b724554625, type: 3}
+  soulCost: 1
   mouseTracker: {fileID: 5696295147058912928}
   yHeight: 2
   magicEffect: {fileID: 6241463505994274371}
+  magicButton: {fileID: 0}
 --- !u!1 &5696295148806934106
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +930,7 @@ MonoBehaviour:
   lightningDuration: 10
   spawnRadius: 6
   spawnHeightRange: 3
-  chanceToSpawn: 4
+  chanceToSpawn: 5
 --- !u!1 &6745984668996772780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1060,8 +1063,8 @@ Transform:
   m_GameObject: {fileID: 6928512449506103894}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.8297, y: 0.6629, z: 0}
-  m_LocalScale: {x: 7.488498, y: 3.1634362, z: 3}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: -7.488498, y: 3.1634362, z: 3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7235865763162753504}
   m_RootOrder: 2

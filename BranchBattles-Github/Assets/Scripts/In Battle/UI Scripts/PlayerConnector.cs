@@ -34,11 +34,11 @@ public class PlayerConnector : MonoBehaviour
             
 
         //This is the good way for when the troops are slowly added and memory works properly. Until then the bad way must be used
-        InitButton(battleUI.pacifist1, PlayerInfo.PlayerTroops[0]);
-        InitButton(battleUI.soldier1, PlayerInfo.PlayerTroops[1]);
-        InitButton(battleUI.soldier2, PlayerInfo.PlayerTroops[2]);
-        InitButton(battleUI.soldier3, PlayerInfo.PlayerTroops[3]);
-        InitButton(battleUI.soldier4, PlayerInfo.PlayerTroops[4]);
+        InitTrainButton(battleUI.pacifist1, PlayerInfo.PlayerTroops[0]);
+        InitTrainButton(battleUI.soldier1, PlayerInfo.PlayerTroops[1]);
+        InitTrainButton(battleUI.soldier2, PlayerInfo.PlayerTroops[2]);
+        InitTrainButton(battleUI.soldier3, PlayerInfo.PlayerTroops[3]);
+        InitTrainButton(battleUI.soldier4, PlayerInfo.PlayerTroops[4]);
 
 
         //soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
@@ -46,8 +46,13 @@ public class PlayerConnector : MonoBehaviour
         //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
         //soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
 
+        InitMagicButton(battleUI.magicPrep1, player.magic1);
         battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
+        InitMagicButton(battleUI.magicPrep2, player.magic2);
         battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
+        //battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
+
+        //battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
 
         battleUI.UIShadow.SetActive(false);
             
@@ -62,7 +67,7 @@ public class PlayerConnector : MonoBehaviour
         battleUI.enemyBase.slider.maxValue = battleUI.enemyBase.HealthObject.HP;*/
     }
 
-    private void InitButton(Button button, Unit unit) {
+    private void InitTrainButton(Button button, Unit unit) {
         if (unit == null)
         {
             Debug.Log("Was null");
@@ -74,5 +79,12 @@ public class PlayerConnector : MonoBehaviour
             script.SetUnitType(unit);
         }
         
+    }
+
+    private void InitMagicButton(Button button, Magic magic) {
+        
+        button.GetComponent<Image>().sprite = magic.buttonUI;
+        MagicButtons script = button.GetComponent<MagicButtons>();
+        script.SetMagicType(magic);
     }
 }

@@ -16,19 +16,23 @@ public class Player : MonoBehaviour
     //public bool UseLightning;
     //public bool UseTheWorld;
 
-    public Magic Lightning;
-    public Magic TheWorld;
+    public Magic magic1;
+    public Magic magic2;
 
     void Awake()
     {
-        if (TheWorld != null) {
-            TheWorld.SetTeamInfo(Peasants);
-            TheWorld.gameObject.SetActive(false);
-        }
-        if (Lightning != null)
+        if (magic1 != null)
         {
-            Lightning.SetTeamInfo(Peasants);
-            Lightning.gameObject.SetActive(false);
+            magic1 = Instantiate(magic1, Vector3.zero, Quaternion.identity);
+            magic1.SetTeamInfo(Peasants);
+            magic1.gameObject.SetActive(false);
+        }
+
+        if (magic2 != null)
+        {
+            magic2 = Instantiate(magic2, Vector3.zero, Quaternion.identity);
+            magic2.SetTeamInfo(Peasants);
+            magic2.gameObject.SetActive(false);
         }
     }
 
@@ -42,26 +46,26 @@ public class Player : MonoBehaviour
         if (PassRally == true) {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
-            Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
-            Peasants.rallyFlag.transform.position = new Vector3(Worldpos.x, Peasants.rallyFlag.transform.position.y, 0);
+            Vector3 worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+            Peasants.rallyFlag.transform.position = new Vector3(worldpos.x, Peasants.rallyFlag.transform.position.y, 0);
         }
         if (Input.GetMouseButtonDown(0))    //All of the various options for what a player can press (excluding UI buttons)
         {
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
-            Vector3 Worldpos = Camera.main.ScreenToWorldPoint(mousePos);
+            Vector3 worldpos = Camera.main.ScreenToWorldPoint(mousePos);
             
             battleUI.UIShadow.SetActive(false);
 
             if (PassRally == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.SetRallyPoint(Worldpos.x);
+                Peasants.SetRallyPoint(worldpos.x);
                 PassRally = false;
                 battleUI.DelayRallyButton();
             }
 
-            else {  //Checks to see what the player pressed
-                RaycastHit2D hit = Physics2D.Raycast(Worldpos, Vector2.zero, 10, 1);
+            /*else {  //Checks to see what the player pressed
+                RaycastHit2D hit = Physics2D.Raycast(worldpos, Vector2.zero, 10, 1);
 
 
                 //Debug.Log("Mouse Pressed at " + Worldpos);
@@ -82,7 +86,7 @@ public class Player : MonoBehaviour
                     }
                     
                 }
-            }
+            }*/
             
 
             
@@ -98,17 +102,20 @@ public class Player : MonoBehaviour
     
     //Using two different preps to deal with the magic spells as they cant be under the same section
     public void PrepMagic1() {
-        if (Lightning.soulCost <= Peasants.souls)
+        if (magic1.soulCost <= Peasants.souls)
         {
-            Lightning.gameObject.SetActive(true);
+            //magic1.gameObject.SetActive(true);
+            magic1.TriggerMagic();
             battleUI.UIShadow.SetActive(true);
         }
     }
 
     public void PrepMagic2()
     {
-        if (TheWorld.soulCost <= Peasants.souls) {
-            TheWorld.gameObject.SetActive(true);
+        
+        if (magic2.soulCost <= Peasants.souls) {
+            //magic2.gameObject.SetActive(true);
+            magic2.TriggerMagic();
             battleUI.UIShadow.SetActive(true);
         }
     }

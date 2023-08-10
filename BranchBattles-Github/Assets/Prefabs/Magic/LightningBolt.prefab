@@ -101,7 +101,7 @@ MonoBehaviour:
   layerToDamage:
     serializedVersion: 2
     m_Bits: 64
-  lightningDistance: 5.5
+  lightningDistance: 6
   timeToStrike: 0.25
   lightningDamage: 5
   lightningStunTime: 4

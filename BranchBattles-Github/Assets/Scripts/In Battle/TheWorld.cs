@@ -9,11 +9,9 @@ public class TheWorld : MonoBehaviour
     public float abilityRadius;
     private GameObject[] Crusaders;
     // Start is called before the first frame update
-    void Start()
+    public void UseMagic()
     {
         StartCoroutine(EnterDio());
-        
-        
     }
     
     IEnumerator EnterDio()
@@ -31,7 +29,7 @@ public class TheWorld : MonoBehaviour
                 //enemyStand.Die();
             }
         }
-        Destroy(gameObject);
+        transform.parent.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()

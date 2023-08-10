@@ -14,7 +14,7 @@ public class Lightning : MonoBehaviour
     public int chanceToSpawn; //Will get called each frame so will be quite low
 
     // Start is called before the first frame update
-    void Start()
+    public void UseMagic()
     {
         transform.position = new Vector3(transform.position.x, stormSpawnHeight, 0);
         StartCoroutine(LightningStorm());
@@ -38,7 +38,7 @@ public class Lightning : MonoBehaviour
     {
 
         yield return new WaitForSeconds(lightningDuration);
-        Destroy(gameObject);
+        transform.parent.gameObject.SetActive(false);
     }
 
     private void OnDrawGizmos()
