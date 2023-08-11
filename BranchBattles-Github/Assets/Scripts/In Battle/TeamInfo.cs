@@ -143,9 +143,14 @@ public class TeamInfo : MonoBehaviour
         //Play flag noise or smth
         rallyFlag.GetComponent<Animator>().SetTrigger("Drop");
 
-        Debug.Log("Team: " + Team + " is Setting Rally at: " + rally);
+        //Debug.Log("Team: " + Team + " is Setting Rally at: " + rally);
     }
 
+    public void ReloadRallyFlag() {
+        rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y);
+        //Play flag noise or smth
+        //rallyFlag.GetComponent<Animator>().SetTrigger("Drop");
+    }
 
     //Immediately goes for the enemy base
     public void Charge() {

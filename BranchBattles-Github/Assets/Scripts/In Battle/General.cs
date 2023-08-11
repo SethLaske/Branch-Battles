@@ -8,6 +8,7 @@ public class General : Unit
     private BattleUI battleUI;
     
     private bool waiting = true;
+    private bool taunting; 
     
     public float regenTime = .25f;
     private float regenTimer = 0;
@@ -28,6 +29,7 @@ public class General : Unit
         baseArmor = Armor;
         baseDamage = Damage;
         currentSpeed = baseSpeed;
+        taunting = false;
         //MoveSpeed = baseSpeed;
         
     }
@@ -52,7 +54,18 @@ public class General : Unit
         }
 
 
-        if (Attacking) return;      //Gonna just turn off movement while attacking for a bit, see how I like it
+        if (Attacking || taunting) return;      //Gonna just turn off movement while attacking for a bit, see how I like it
+
+        //Attack Controls
+        if (Input.GetKey("space") && Attacking == false)
+        {
+            animator.SetBool("Attacking", true);
+            Attacking = true;
+            //currentSpeed = 2;
+            StartCoroutine(PlayAttack());
+            
+            return;
+        }
 
         waiting = true;
         //Movement Controls
@@ -88,17 +101,10 @@ public class General : Unit
         {
             //this.Stun(10, 2);
             animator.SetTrigger("Taunt");
+            taunting = true;
             
         }
 
-        //Attack Controls
-        if (Input.GetKey("space") && Attacking == false)
-        {
-            animator.SetBool("Attacking", true);
-            Attacking = true;
-            //currentSpeed = 2;
-            StartCoroutine(PlayAttack());
-        }
 
         if (Input.GetKeyDown(KeyCode.R))    
         {
@@ -160,6 +166,9 @@ public class General : Unit
         //currentSpeed = baseSpeed;
     }
 
+    public void EndTaunt() {
+        taunting = false;
+    }
     public void OneUnitCharge() {
         SelectedSoldier = null;
         Vector3 TargetedPoint = transform.position + (transform.localScale.x * (Vector3.right * 2));

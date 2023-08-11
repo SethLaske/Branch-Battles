@@ -47,7 +47,16 @@ public class Player : MonoBehaviour
             Vector3 mousePos = Input.mousePosition;
             mousePos.z = Camera.main.nearClipPlane;
             Vector3 worldpos = Camera.main.ScreenToWorldPoint(mousePos);
-            Peasants.rallyFlag.transform.position = new Vector3(worldpos.x, Peasants.rallyFlag.transform.position.y, 0);
+
+            //Decide if I want to reset its position, disappear it, or merely have it not follow
+
+            if (worldpos.y <= 3) { 
+                Peasants.rallyFlag.transform.position = new Vector3(worldpos.x, Peasants.rallyFlag.transform.position.y, 0);
+            }
+            else
+            {
+                Peasants.ReloadRallyFlag();
+            }
         }
         if (Input.GetMouseButtonDown(0))    //All of the various options for what a player can press (excluding UI buttons)
         {
@@ -57,11 +66,21 @@ public class Player : MonoBehaviour
             
             battleUI.UIShadow.SetActive(false);
 
+            
+
             if (PassRally == true)  //Sets the rally point if rally was already selected
             {
-                Peasants.SetRallyPoint(worldpos.x);
                 PassRally = false;
                 battleUI.DelayRallyButton();
+
+                if (worldpos.y <= 3)
+                {
+                    Peasants.SetRallyPoint(worldpos.x);
+
+                    
+                }
+                
+                
             }
 
             /*else {  //Checks to see what the player pressed

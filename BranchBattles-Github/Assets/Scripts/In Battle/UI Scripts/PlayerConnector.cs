@@ -46,10 +46,16 @@ public class PlayerConnector : MonoBehaviour
         //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
         //soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
 
-        InitMagicButton(battleUI.magicPrep1, player.magic1);
-        battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
-        InitMagicButton(battleUI.magicPrep2, player.magic2);
-        battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
+        if (player.magic1 != null) { 
+            InitMagicButton(battleUI.magicPrep1, player.magic1);
+            battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
+        }
+
+        if (player.magic2 != null)
+        {
+            InitMagicButton(battleUI.magicPrep2, player.magic2);
+            battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
+        }
         //battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
 
         //battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);

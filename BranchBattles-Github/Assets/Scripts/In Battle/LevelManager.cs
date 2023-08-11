@@ -55,7 +55,7 @@ public class LevelManager : MonoBehaviour
 
         if (buttonStart)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             BattleUI.SetActive(false);
 
             //PlayerObject.SetActive(false);
