@@ -2,24 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelButton : MonoBehaviour
 {
-    public int ThisLevel;
-    public int RequiredLevel;
-    public Image sprite;
+    [SerializeField] private string levelName;
+
+    [SerializeField] private int thisLevel;
+    [SerializeField] private int requiredLevel;
+
+    [SerializeField] private Button mapButton;
+    [SerializeField] private GameObject levelDescription;
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log(PlayerPrefs.GetInt("CompletedLevels"));
-        //sprite = GetComponent<Image>();
-        if (PlayerInfo.LevelKeys.ContainsKey(ThisLevel)) {
-            if (PlayerInfo.LevelKeys[ThisLevel] == true)
+        Image sprite = mapButton.GetComponent<Image>();
+
+        levelDescription.SetActive(false);
+
+        if (PlayerInfo.LevelKeys.ContainsKey(thisLevel)) {
+            if (PlayerInfo.LevelKeys[thisLevel] == true)
             {
                 gameObject.SetActive(true);
                 sprite.color = Color.green;
             }
-            else if (PlayerInfo.LevelKeys[RequiredLevel] == true)
+            else if (PlayerInfo.LevelKeys[requiredLevel] == true)
             {
                 gameObject.SetActive(true);
                 sprite.color = Color.red;
@@ -29,30 +36,39 @@ public class LevelButton : MonoBehaviour
                 gameObject.SetActive(false);
             }
         }
-        
-
-        /*
-        if (PlayerPrefs.GetInt("CompletedLevels") < (ThisLevel - 1))
-        {
-            gameObject.SetActive(false);
-        }
-
-        if (PlayerPrefs.GetInt("CompletedLevels") >= (ThisLevel - 1))
-        {
-            gameObject.SetActive(true);
-            sprite.color = Color.green;
-        }
-
-        if (PlayerPrefs.GetInt("CompletedLevels") == (ThisLevel - 1))
-        {
-            sprite.color = Color.red;
-        }*/
-
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowLevelDescription() {
+        DisableAllSiblingInfo();
+        levelDescription.SetActive(true);
+    }
+
+    public void HideLevelDescription() {
+        levelDescription.SetActive(false);
+    }
+
+    public void GoToLevel()
     {
-        
+        SceneManager.LoadScene(levelName);
     }
+
+    private void DisableAllSiblingInfo() {
+        Transform parentTransform = transform.parent;
+
+        if (parentTransform != null)
+        {
+            foreach (Transform sibling in parentTransform)
+            {
+                LevelButton siblingButton = sibling.GetComponent<LevelButton>();
+                if (siblingButton != null) {
+                    siblingButton.HideLevelDescription();
+                }
+            }
+        }
+        else
+        {
+            Debug.LogWarning("This object has no parent.");
+        }
+    }
+
 }

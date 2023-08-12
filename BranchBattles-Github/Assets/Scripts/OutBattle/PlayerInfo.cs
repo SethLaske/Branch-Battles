@@ -15,6 +15,12 @@ public class PlayerInfo
     //public static Unit PlayerSoldier3;
     //public static Unit PlayerSoldier4;
 
-
+    public static void ClearPlayerInfo()
+    {
+        LevelKeys.Clear();
+        TroopKeys.Clear();
+        TroopSpaces = 0;
+        PlayerTroops = new Unit[5];
+    }
    
 }

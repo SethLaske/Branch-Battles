@@ -2,51 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TitleScreen : MonoBehaviour
 {
+    public Button continueGame;
+
     public Unit initMiner;
     public Unit initFighter;
     public Unit initSpear;
-    
 
+    public SaveManager saveManager;
     void Start()
     {
-        for (int i = -1; i < 11; i++) {
+        //load game
+        saveManager.LoadPlayer();
+        if (PlayerInfo.PlayerTroops[0] == null)
+        {
+            continueGame.interactable = false;
+        }
+        else {
+            continueGame.interactable = true;
+        }
+    }
+
+
+
+    /*public void startGame(string LevelSelect) {
+        SceneManager.LoadScene(LevelSelect);
+        
+    }*/
+
+    //Technically this doesn't save to new game so I will need a save button later
+    public void NewGame(string tutorialScene)
+    {
+        PlayerInfo.ClearPlayerInfo();
+
+        for (int i = -1; i < 11; i++)
+        {
             PlayerInfo.LevelKeys.Add(i, false);
             PlayerInfo.TroopKeys.Add(i, false);
         }
         //PlayerInfo.LevelKeys[-1] = true;
         PlayerInfo.TroopSpaces = 0;
 
-        //PlayerPrefs.SetInt("CompletedLevels", -1);
-        //PlayerPrefs.SetInt("UnlockedTroops", 2);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void startGame(string LevelSelect) {
-        SceneManager.LoadScene(LevelSelect);
-        
-    }
-
-    public void newGame(string tutorialScene)
-    {
-        for (int i = -1; i < 11; i++)
-        {
-            PlayerInfo.LevelKeys.Add(i, false);
-            PlayerInfo.TroopKeys.Add(i, false);
-        }
-        PlayerInfo.TroopSpaces = 0;
-
         SceneManager.LoadScene(tutorialScene);
     }
 
-    public void loadGame(string LevelScene)
+    public void ContinueGame(string LevelScene)
     {
         //Loads previous data
 

@@ -15,24 +15,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Troop Selection.unity
     guid: c042a288ac4755840a33b31c959b0cff
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
-    guid: 3d25a9c0a55b2584ebe9b66fb6be7356
-  - enabled: 1
-    path: Assets/Scenes/Level 2.unity
-    guid: efa44f5d35b427b4f8da8c58254edee4
-  - enabled: 1
-    path: Assets/Scenes/Level 3.unity
-    guid: c4e3433b63ba46a42890145959c30c35
-  - enabled: 1
-    path: Assets/Scenes/Level 4.unity
-    guid: 4235f7780dee19449abbdfcdc6580041
-  - enabled: 1
-    path: Assets/Scenes/Level 5.unity
-    guid: 574b1698f3d8064449b5c57e7c3bf2ec
-  - enabled: 1
     path: Assets/Scenes/PC Test.unity
     guid: 2925268850d8296428b86f48814ec283
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: f1b510b8f9bbcc54283d5a34b3699c56
+  - enabled: 1
+    path: Assets/Scenes/Standard.unity
+    guid: 4be9de4450e958b4fb0ef6c0e42380b2
+  - enabled: 1
+    path: Assets/Scenes/Survival.unity
+    guid: 1513864cee4328345bac1d33c0c999dc
+  - enabled: 1
+    path: Assets/Scenes/Count Down.unity
+    guid: a0c6cf20ec843d54096c01c3851c13d9
   m_configObjects: {}
