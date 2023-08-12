@@ -7,7 +7,7 @@ public class General : Unit
     private LevelManager levelmanager;
     private BattleUI battleUI;
     
-    private bool waiting = true;
+    private bool walking = false;
     private bool taunting; 
     
     public float regenTime = .25f;
@@ -67,46 +67,17 @@ public class General : Unit
             return;
         }
 
-        waiting = true;
-        //Movement Controls
-        if (Input.GetKey(KeyCode.A))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-        {
-            
-            Move(new Vector2(currentSpeed * -1 * Time.deltaTime, 0));
-            //transform.rotation = Quaternion.Euler(0, 180, 0);
-            transform.localScale = new Vector3(-1, 1, 1);
-            waiting = false;
-        }
-        if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-        {
-            Move(new Vector2(currentSpeed * 1 * Time.deltaTime, 0));
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
-            transform.localScale = new Vector3(1, 1, 1);
-            waiting = false;
-        }
-
-        if (Input.GetKey(KeyCode.W))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-        {
-            Move(new Vector2(0, currentSpeed * 1 * Time.deltaTime));
-            waiting = false;
-        }
-        if (Input.GetKey(KeyCode.S))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
-        {
-            Move(new Vector2(0, currentSpeed * -1 * Time.deltaTime));
-            waiting = false;
-        }
-
         //Taunt
         if (Input.GetKeyDown(KeyCode.T))
         {
             //this.Stun(10, 2);
             animator.SetTrigger("Taunt");
             taunting = true;
-            
+            return;
         }
 
 
-        if (Input.GetKeyDown(KeyCode.R))    
+        /*if (Input.GetKeyDown(KeyCode.R))
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2);
             foreach (Collider2D collider in colliders)
@@ -118,26 +89,48 @@ public class General : Unit
                     miner.changeResource();
                 }
             }
-        }
+        }*/
 
-        if (Input.GetKey(KeyCode.C)) {
+        if (Input.GetKey(KeyCode.C))
+        {
             OneUnitCharge();
         }
+
         if (Input.GetKeyUp(KeyCode.C))
         {
             troopselector.SetActive(false);
-            SelectedSoldier?.ReceiveGeneralOrders();    
+            SelectedSoldier?.ReceiveGeneralOrders();
         }
 
-
-        if (waiting == true)
+        walking = false;
+        //Movement Controls
+        if (Input.GetKey(KeyCode.A))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
         {
-            animator.SetBool("Waiting", true);
+            Move(new Vector2(currentSpeed * -1 * Time.deltaTime, 0));
+            //transform.rotation = Quaternion.Euler(0, 180, 0);
+            transform.localScale = new Vector3(-1, 1, 1);
+            walking = true;
         }
-        else {
-            animator.SetBool("Waiting", false);
+        if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        {
+            Move(new Vector2(currentSpeed * 1 * Time.deltaTime, 0));
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.localScale = new Vector3(1, 1, 1);
+            walking = true;
         }
 
+        if (Input.GetKey(KeyCode.W))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        {
+            Move(new Vector2(0, currentSpeed * 1 * Time.deltaTime));
+            walking = true;
+        }
+        if (Input.GetKey(KeyCode.S))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        {
+            Move(new Vector2(0, currentSpeed * -1 * Time.deltaTime));
+            walking = true;
+        }
+
+        animator.SetBool("Walking", walking);
     }
 
     //Ends the level and stops the enemy from spawning more units

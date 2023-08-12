@@ -71,7 +71,7 @@ public class Miner : Unit
     {
         Full = true;
         //Debug.Log("Time Starting");
-        yield return new WaitForSeconds(attackAnimation.length);
+        yield return new WaitForSeconds(attackAnimation.length * 3);
 
 
         animator.SetTrigger("Walking");

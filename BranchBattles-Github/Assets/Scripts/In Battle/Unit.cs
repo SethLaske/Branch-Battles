@@ -258,7 +258,8 @@ public class Unit : Damageable
         maxHealth = HP;
         currentSpeed = baseSpeed;
         //AttackTimer = attackAnimation;
-        State = "Walk";
+        if(State == "" || State == null) State = "Walk";
+
         if (Team < 0)
         {
             HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
@@ -327,6 +328,8 @@ public class Unit : Damageable
     public bool Move(Vector2 movement)
     {
         Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) / DebuffMult + transform.position;
+        
+       
         if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
         {
             transform.position = NewPosition;

@@ -10,4 +10,10 @@ public class GeneralAnimationEvents : MonoBehaviour
         Debug.Log("End General Taunt");
         general.EndTaunt();
     }
+
+    public void EndGeneralAttack()
+    {
+        Debug.Log("End General Attack");
+        general.EndTaunt();
+    }
 }

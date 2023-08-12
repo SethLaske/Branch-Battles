@@ -18,7 +18,7 @@ public class Projectile : MonoBehaviour
         if (LifeTime <= 0) {
             Destroy(gameObject);
         }
-        Debug.Log(GetComponent<Rigidbody2D>().velocity);
+        //Debug.Log(GetComponent<Rigidbody2D>().velocity);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

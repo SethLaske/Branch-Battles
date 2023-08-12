@@ -23,26 +23,44 @@ public class DevControls : MonoBehaviour
         
     }
 
-    public void setNewPlayer() {
+    public void SetNewPlayer() {
+        PlayerInfo.ClearPlayerInfo();
+        for (int i = -1; i < 11; i++)
+        {
+            PlayerInfo.LevelKeys.Add(i, false);
+            PlayerInfo.TroopKeys.Add(i, false);
+        }
+        //PlayerInfo.LevelKeys[-1] = true;
+        PlayerInfo.TroopSpaces = 2;
+
         PlayerInfo.PlayerTroops[0] = miner;
         PlayerInfo.PlayerTroops[1] = fighter;
         PlayerInfo.PlayerTroops[2] = spear;
         PlayerInfo.PlayerTroops[3] = null;
         PlayerInfo.PlayerTroops[4] = null;
-        PlayerPrefs.SetInt("CompletedLevels", 0);
-        PlayerPrefs.SetInt("UnlockedTroops", 2);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        
     }
 
-    public void setFinishedPlayer()
+    public void SetFinishedPlayer()
     {
+        PlayerInfo.ClearPlayerInfo();
+        for (int i = -1; i < 11; i++)
+        {
+            PlayerInfo.LevelKeys.Add(i, true);
+            PlayerInfo.TroopKeys.Add(i, true);
+        }
+        //PlayerInfo.LevelKeys[-1] = true;
+        PlayerInfo.TroopSpaces = 4;
+
         PlayerInfo.PlayerTroops[0] = miner;
-        PlayerInfo.PlayerTroops[1] = soldier;
-        PlayerInfo.PlayerTroops[2] = archer;
+        PlayerInfo.PlayerTroops[1] = fighter;
+        PlayerInfo.PlayerTroops[2] = spear;
         PlayerInfo.PlayerTroops[3] = rage;
-        PlayerInfo.PlayerTroops[4] = kill;
-        PlayerPrefs.SetInt("CompletedLevels", 10);
-        PlayerPrefs.SetInt("UnlockedTroops", 10);
+        PlayerInfo.PlayerTroops[4] = archer;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

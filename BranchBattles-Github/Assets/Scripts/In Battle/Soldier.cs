@@ -273,6 +273,7 @@ public class Soldier : Unit
     /// Unit becomes unaffected by player orders, and only moves forward and attacks all enemies
     /// </summary>
     public void ReceiveGeneralOrders() {
+        Debug.Log("Receieved general orders");
         //Change state to Charge
         //Apply visual affects and animation
         State = "Charge";
