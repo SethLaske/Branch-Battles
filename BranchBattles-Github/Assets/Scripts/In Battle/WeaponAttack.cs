@@ -16,7 +16,7 @@ public class WeaponAttack : MonoBehaviour
     private void Start()
     {
         AttackBox = GetComponent<Collider2D>();
-
+        AttackBox.enabled = false;
         Wielder = gameObject.GetComponentInParent<Unit>();
         //Damage = Wielder.Damage;
 

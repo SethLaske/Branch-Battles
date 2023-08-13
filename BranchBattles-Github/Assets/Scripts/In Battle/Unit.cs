@@ -55,17 +55,34 @@ public class Unit : Damageable
     public Sprite identifierSprite;
 
     /// <summary>
+    /// Initializes the typical start script for the different unit classes, including setting max health, speeds, attack timer, state, sprite color, and assigning its general
+    /// </summary>
+    public virtual void StandardStart()
+    {
+        maxHealth = HP;
+        currentSpeed = baseSpeed;
+        //AttackTimer = attackAnimation;
+        if (State == "" || State == null) State = "Walk";
+
+        if (Team < 0)
+        {
+            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        general = General.general;
+    }
+
+    /// <summary>
     /// The Unit is roughly in position, and will face towards the enemy base
     /// </summary>
     public virtual void Wait() {
+        
+        
         if (Team < 0)
         {
-            //transform.rotation = Quaternion.Euler(0, 180, 0);
             transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
@@ -77,25 +94,21 @@ public class Unit : Damageable
     {
 
         if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
-            //Debug.Log("Need to consider shield");
-            if (Target != null && humanshield.State == "Attack") {
-                
-                
-                
-                //Debug.Log("Moving to an enemy to attack");
-                
+           
+            /*if (Target != null && humanshield.State == "Attack") {
+                //TODO - Given the unit is behind a human shield, and has a target, and is out of attack condition threshold, when the shield starts attacks, then ???
                 return;
-            }
+            }*/
             
-            if (.5f > (humanshield.transform.position.x - transform.position.x) * Team) 
+            float minimumDistanceBehindShield = .5f;
+            float maximumDistanceBehindShield = 1.5f;
+            if (minimumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team) 
             {
                 //Debug.Log("Waiting for shield");
                 return;
             }
-            else if (1.5f > (humanshield.transform.position.x - transform.position.x) * Team)
+            else if (maximumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team)
             {
-                //Debug.Log("Walking with shield");
-
                 //Need to be using the speed of the furthest forward shield.
                 Soldier frontHumanSheild = humanshield;
                 while (frontHumanSheild.humanshield != null) {
@@ -144,7 +157,6 @@ public class Unit : Damageable
         if (Target == null) return;     //Should never be triggered
 
         if (Attacking == false) {
-            
             StartCoroutine(PlayAttack());
         }
 
@@ -177,27 +189,38 @@ public class Unit : Damageable
         else {
             //transform.rotation = Quaternion.Euler(0, 180, 0);
             transform.localScale = new Vector3(-1, 1, 1);
-        }
-        
-        
+        } 
     }
 
     //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
     IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
+        animator.SetBool("Attacking", true);
         Attacking = true;
         //currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
-        DebuffMult *= 2;
 
-        yield return new WaitForSeconds(attackHitTime * DebuffMult);
-        attackSound?.Play();
+        float attackDebuff = 3;
+        DebuffMult *= attackDebuff;
+
+        //Debuff mult can be affecting other things but we dont want it to affect this attack. However, the debuff mult can be triggered by stun so I need to divide it by the attack debuff
+        yield return new WaitForSeconds(attackHitTime * DebuffMult/attackDebuff);
+        attackSound.Play();
         Offense.Attack();
-        yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult);
+        Debug.Log("Offense Hitting");
+        yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult/attackDebuff);
         Attacking = false;
         //currentSpeed *= 2;
-        DebuffMult /= 2;
-    }
+        DebuffMult /= attackDebuff;
+        if (IsTargetAggroable() && IsTargetAttackable())
+        {
+            StartCoroutine(PlayAttack());
+        }
+        else
+        {
+            animator.SetBool("Attacking", false);
 
+        }
+    }
 
     /// <summary>
     /// Checking if the unit is within an acceptable range from the teams rally point, using RearPoint and AssemblePoint
@@ -248,25 +271,6 @@ public class Unit : Damageable
         return true;
     }
 
-    
-    
-
-    /// <summary>
-    /// Initializes the typical start script for the different unit classes, including setting max health, speeds, attack timer, state, sprite color, and assigning its general
-    /// </summary>
-    public virtual void StandardStart() {
-        maxHealth = HP;
-        currentSpeed = baseSpeed;
-        //AttackTimer = attackAnimation;
-        if(State == "" || State == null) State = "Walk";
-
-        if (Team < 0)
-        {
-            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        }
-        general = General.general;
-    }
-
     //Override take damage to allow for the health bar to be displayed
     public override void TakeDamage(float Damage)
     {
@@ -282,8 +286,6 @@ public class Unit : Damageable
         
         General.troopCount -= TroopSpaces;
         General.troopCategory[unitClassification]--;
-        //General.totalSpeed -= (baseSpeed);
-        //General.activeCount--;
         General.souls++;
         General.UpdateGeneral();
         Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
@@ -311,17 +313,13 @@ public class Unit : Damageable
     //Implementing it as such will allow the effects to stack, for better or worse
     IEnumerator StunDebuff(float Duration, float Intensity)
     {
-        //currentSpeed /= Intensity;
         DebuffMult *= Intensity;
         animator.speed /= Intensity;
-        //AttackCooldown *= Intensity;
-
+        
         yield return new WaitForSeconds(Duration);
 
-        //currentSpeed *= Intensity;
         DebuffMult /= Intensity;
-        animator.speed *= Intensity;
-        //AttackCooldown /= Intensity;
+        animator.speed *= Intensity; 
     }
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
@@ -372,5 +370,6 @@ public class Unit : Damageable
         return displacement;
     }
 
+    
 
 }

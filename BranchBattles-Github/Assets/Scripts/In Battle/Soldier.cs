@@ -18,6 +18,11 @@ public class Soldier : Unit
 
     public GameObject RedAura;
 
+    [SerializeField] float shieldDetectionRadius;
+
+    
+    [SerializeField] Vector2 targetDetectionBoxSize;
+    [SerializeField] Transform targetDetectionCenter;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +38,8 @@ public class Soldier : Unit
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.gameState != GameState.InGame) return; 
+
         //Deals with timer for the health bar
         if (HealthTimer < AppearanceTime)
         {
@@ -48,7 +55,9 @@ public class Soldier : Unit
         
         CalculateAssemblePoints();
 
-        SpreadOut();    //Performs flocking mechanics every update, regardless of state
+        if(State != "Charge")   SpreadOut();    //Performs flocking mechanics every update, regardless of state
+
+        FindTarget();
 
         //Performs the various actions per the state it is in
         if (State == "Wait")
@@ -60,6 +69,7 @@ public class Soldier : Unit
         else if (State == "Walk")
         {
             //Debug.Log("State is walk");
+            FindShield();   //Only need to check it if we are actually walking
             Walk();
         }
         else if (State == "Attack")
@@ -74,14 +84,7 @@ public class Soldier : Unit
             Charge();
             //animator.SetBool("Attacking", false);
         }
-
-        /*if (Attacking == false&& State != "Attacking") {
-            animator.SetBool("Attacking", false);
-            Debug.Log("Why is attack off");
-        }*/
-        if (assembled == false) {
-            animator.SetBool("Waiting", false);
-        }
+       
     }
 
    //General structure for states to follow
@@ -113,9 +116,11 @@ public class Soldier : Unit
         //I also want them to spread spaces above and below them if they cant move forward to allow for a good looking army, but ideally not completely grid like
 
         if (assembled == true) {
-            animator.SetBool("Waiting", true);
+            animator.SetBool("Walking", false);
             return;
         }
+
+        animator.SetBool("Walking", true);
 
         if ((AssemblePoint * Team) - .3f > (transform.position.x * Team))
         {
@@ -178,7 +183,7 @@ public class Soldier : Unit
 
     public override void Walk()
     {
-       
+        animator.SetBool("Walking", true);
         if (IsTargetAggroable() == true && IsTargetAttackable() == true)
         {
             State = "Attack";
@@ -213,18 +218,18 @@ public class Soldier : Unit
         if (Target == null) 
         {
             State = "Walk";
-            animator.SetBool("Attacking", false);
+            //animator.SetBool("Attacking", false);
             //Debug.Log("Target null");
         }
         else if (IsTargetAggroable() == false) {
             State = "Walk";
-            animator.SetBool("Attacking", false);
+            //animator.SetBool("Attacking", false);
             //Debug.Log("Target not aggroable");
         }
         else if (IsTargetAttackable() == false)     //Both are needed to ensure the troop will not get ahead on accident
         {
             State = "Walk";
-            animator.SetBool("Attacking", false);
+            //animator.SetBool("Attacking", false);
             //Debug.Log("Target not attackable");
             //Debug.Log("Attack > Walk");
         }
@@ -232,7 +237,7 @@ public class Soldier : Unit
         {
             //Debug.Log("In attack state and trying to attack");
             base.Attack();
-            animator.SetBool("Attacking", true);
+            //animator.SetBool("Attacking", true);
         }
         
     }
@@ -241,19 +246,19 @@ public class Soldier : Unit
 
     //Cant use the base functions, once in general it either walks forward, walks at, or attacks. No way to change its state from here
     public void Charge() {
-        if (Attacking) return;
+        
         if (Target == null)
         {
             this.Move(new Vector3(Mathf.Sign(Team) * currentSpeed * Time.deltaTime, 0, 0));
         }
-        else if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange) {
+        else if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange && Attacking == false) {
             this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
-            animator.SetBool("Attacking", false);
+            //animator.SetBool("Attacking", false);
         }
         else
         { //kill
             base.Attack();
-            animator.SetBool("Attacking", true);
+            //animator.SetBool("Attacking", true);
         }
     
     }
@@ -277,8 +282,8 @@ public class Soldier : Unit
         //Change state to Charge
         //Apply visual affects and animation
         State = "Charge";
-        animator.SetBool("Waiting", false);
-        animator.SetBool("Attacking", false);
+        //animator.SetBool("Waiting", false);
+        //animator.SetBool("Attacking", false);
         RedAura.SetActive(true);
     }
 
@@ -337,52 +342,9 @@ public class Soldier : Unit
                 humanshield = null;
             }
         }
-        PulseUpdate();
+        //PulseUpdate();
     }
 
-    //Experimental to start getting some stuff out of update. Could contain the rally updates, shield updates, and maybe even some of the normal behavior
-    public void PulseUpdate() {
-
-        //Checks for shield
-        humanshield = null;
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + Team * 2 * Vector3.right, new Vector2(5, 5), 0);
-        foreach (Collider2D collider in colliders)
-        {
-            Soldier soldier = collider.GetComponent<Soldier>();
-            if (CheckShieldConditions(soldier) == true)
-            {
-                humanshield = soldier;
-            }
-        }
-    }
-
-    public bool CheckShieldConditions(Soldier soldier) {
-        if (soldier == null) {  //This better be redundant
-            return false;
-        }
-        if (soldier.unitClassification >= unitClassification) //Something we actually want to stay behind
-        {
-            return false;
-        }
-        if (soldier.Team != Team) {
-            return false;
-        }
-        if (humanshield == null)    //Is the shield currently empty
-        {
-            return true;
-        }
-        //Now there are some decisions
-        //Should it fall behind the closest in class, for now I will say yes
-        if (humanshield.unitClassification > soldier.unitClassification) {
-            return false;
-        }
-        //Will we follow the closest? I say yes
-        if (Vector3.Distance(transform.position, humanshield.transform.position) < Vector3.Distance(transform.position, soldier.transform.position)) {
-            return false;
-        }
-
-        return true;
-    }
 
     public void CalculateAssemblePoints() {
         //Fun Stuff Below
@@ -454,4 +416,103 @@ public class Soldier : Unit
         
     }
 
+    private void FindTarget()
+    {
+        if (Target != null && Mathf.Abs(transform.position.x - Target.transform.position.x) > AgroRange) {
+            Target = null;
+        }
+        if (Attacking) return;
+
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(targetDetectionCenter.position, targetDetectionBoxSize, 0);
+        foreach (Collider2D collider in colliders)
+        {
+            Damageable damageable = collider.GetComponent<Damageable>();
+            if (damageable != null && damageable.Team != Team)
+            {
+                //Check conditions for assigning a target. I could maybe use this to try and break up every unit from targetting the same unit?
+                if (Target == null) {
+                    Target = damageable;
+                }
+                else if (Vector3.Distance(transform.position, damageable.transform.position) < Vector3.Distance(transform.position, Target.transform.position))
+                {
+                    Target = damageable;
+                }
+
+            }
+
+        }
+    }
+
+    private void FindShield()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, shieldDetectionRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            Soldier soldier = collider.GetComponent<Soldier>();
+            if (soldier != null && soldier.Team == Team)
+            {
+                if (CheckShieldConditions(soldier) == true)
+                {
+                    humanshield = soldier;
+                }
+            }
+
+        }
+    }
+
+    private bool CheckShieldConditions(Soldier soldier)
+    {
+        if (soldier == null)
+        {  //This better be redundant
+            return false;
+        }
+        if (soldier.unitClassification >= unitClassification) //Something we actually want to stay behind
+        {
+            return false;
+        }
+        if (soldier.Team != Team)
+        {
+            return false;
+        }
+        if (humanshield == null)    //Is the shield currently empty
+        {
+            return true;
+        }
+        //Now there are some decisions
+        //Should it fall behind the closest in class, for now I will say yes
+        if (humanshield.unitClassification > soldier.unitClassification)
+        {
+            return false;
+        }
+        //Will we follow the closest? I say yes
+        if (Vector3.Distance(transform.position, humanshield.transform.position) < Vector3.Distance(transform.position, soldier.transform.position))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, shieldDetectionRadius);
+        if (humanshield != null) {
+            Gizmos.DrawLine(transform.position, humanshield.transform.position);
+        }
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(targetDetectionCenter.position, (targetDetectionBoxSize));
+        if (Target != null) {
+            Gizmos.DrawLine(transform.position, Target.transform.position);
+        }
+        Gizmos.color = Color.white;
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + transform.localScale.x * AgroRange, transform.position.y, 0));
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + transform.localScale.x * AttackRange, transform.position.y, 0));
+
+
+        
+    }
+
+    
 }

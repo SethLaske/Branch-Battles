@@ -36,7 +36,7 @@ public class TargetDetection : MonoBehaviour
                 Wielder.humanshield = null;
             }
         }
-        Wielder.GetComponent<Soldier>().PulseUpdate();
+        //Wielder.GetComponent<Soldier>().PulseUpdate();
     }
 
     public bool CheckShieldConditions(Soldier soldier)

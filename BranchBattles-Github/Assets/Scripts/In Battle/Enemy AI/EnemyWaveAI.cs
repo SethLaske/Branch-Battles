@@ -85,7 +85,12 @@ public class EnemyWaveAI : MonoBehaviour
 
     private void ArcherBarrage() {
         if (lastArcherSpawnTime + timeBetweenArchers < Time.time) {
+
+
             Unit archerSpam = Instantiate(archerUnit, archerSpawnPoint, Quaternion.identity).GetComponent<Unit>();
+            
+            controlledTeam.troopCount += archerSpam.TroopSpaces;
+            controlledTeam.troopCategory[archerSpam.unitClassification]++;
 
             if (controlledTeam.Team < 0)
             {

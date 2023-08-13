@@ -2846,12 +2846,20 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
+      propertyPath: gold
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 917133922}
     - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
+      propertyPath: AFKGoldAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: maxTroopCount
-      value: 25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3665526228847971978, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: m_Color.b

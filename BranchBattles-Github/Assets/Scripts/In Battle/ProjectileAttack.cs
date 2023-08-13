@@ -34,7 +34,7 @@ public class ProjectileAttack : WeaponAttack
         ProjectileHitbox.enabled = true;
 
         rb.velocity = new Vector3(Speed * Wielder.transform.localScale.x,0,0);
-        Debug.Log("Initial Velocity: " + rb.velocity);
+        //Debug.Log("Initial Velocity: " + rb.velocity);
     }
 
     
