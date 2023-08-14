@@ -3920,7 +3920,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1290589290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4714,7 +4714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: Move the camera with the left and right arrows, or hold right click.
+      value: Move the camera by holding right click down and moving the mouse.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092192, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_Name
@@ -5204,7 +5204,7 @@ PrefabInstance:
       objectReference: {fileID: 2115650025}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: timeToNextStep
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: tutorialManager

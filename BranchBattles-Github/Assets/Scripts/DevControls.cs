@@ -12,15 +12,9 @@ public class DevControls : MonoBehaviour
     public Unit rage;
     public Unit kill;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void GoToLevel(string level) {
+        SceneManager.LoadScene(level);
     }
 
     public void SetNewPlayer() {

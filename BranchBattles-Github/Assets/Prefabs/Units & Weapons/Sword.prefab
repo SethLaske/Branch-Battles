@@ -182,7 +182,7 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 35
-  Armor: 0
+  Armor: 1
   animator: {fileID: 8141524261004105529}
   unitName: Sword
   UnitNumber: 4

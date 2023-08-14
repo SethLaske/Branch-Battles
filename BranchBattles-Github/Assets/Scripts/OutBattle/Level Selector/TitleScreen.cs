@@ -59,4 +59,8 @@ public class TitleScreen : MonoBehaviour
 
         SceneManager.LoadScene(LevelScene);
     }
+
+    public void ExitGame() {
+        Application.Quit();
+    }
 }

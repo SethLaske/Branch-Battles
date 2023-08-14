@@ -89,7 +89,9 @@ public class LevelManager : MonoBehaviour
                 else {
                     Troop.Victory();
                 }
-               
+                Troop.animator.SetBool("Walking", false);
+                Troop.animator.SetBool("Attacking", false);
+
             }
         }
 

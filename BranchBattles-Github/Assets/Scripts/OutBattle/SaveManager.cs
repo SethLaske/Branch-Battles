@@ -94,6 +94,12 @@ public class SaveManager : MonoBehaviour
         //Pulls the data out
         GameData SaveFile = LoadGame();
 
+        if (SaveFile == null) {
+            Debug.Log("No save file found, clearing player info then saving");
+            ClearPlayerSave();
+            return;
+        }
+
         //Recopies most of the data
         PlayerInfo.LevelKeys = SaveFile.LevelKeys;
         PlayerInfo.TroopKeys = SaveFile.TroopKeys;
