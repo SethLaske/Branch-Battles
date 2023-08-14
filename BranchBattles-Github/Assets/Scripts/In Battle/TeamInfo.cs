@@ -185,6 +185,6 @@ public class TeamInfo : MonoBehaviour
         }
         //Changing this to be implemented inside the general script, and to be based off of 
         general.CalculateArmyBuffs();
-        Debug.Log("Calculating general buffs");
+        //Debug.Log("Calculating general buffs");
     }
 }

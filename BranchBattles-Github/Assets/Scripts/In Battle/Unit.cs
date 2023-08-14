@@ -206,7 +206,7 @@ public class Unit : Damageable
         yield return new WaitForSeconds(attackHitTime * DebuffMult/attackDebuff);
         attackSound.Play();
         Offense.Attack();
-        Debug.Log("Offense Hitting");
+        //Debug.Log("Offense Hitting");
         yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult/attackDebuff);
         Attacking = false;
         //currentSpeed *= 2;

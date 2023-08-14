@@ -381,6 +381,7 @@ MonoBehaviour:
   initFighter: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   initSpear: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
   saveManager: {fileID: 374891201}
+  forceNewGame: 1
 --- !u!114 &374891201
 MonoBehaviour:
   m_ObjectHideFlags: 0

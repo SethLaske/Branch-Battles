@@ -25,7 +25,7 @@ public class SaveManager : MonoBehaviour
 
     };*/
 
-    private void Start()
+    private void Awake()
     {
         // Set the file path to save data to
         saveFilePath = Application.persistentDataPath + "/savedata.dat";
@@ -68,6 +68,8 @@ public class SaveManager : MonoBehaviour
         SaveFile.LevelKeys = PlayerInfo.LevelKeys;
         SaveFile.TroopKeys = PlayerInfo.TroopKeys;
         SaveFile.TroopSpaces = PlayerInfo.TroopSpaces;
+
+        Debug.Log("Saving a player with this many troop spaces: " + PlayerInfo.TroopSpaces);
 
         //Codes the units into an array based on their numbers
         int [] CodedRoster = new int[PlayerInfo.PlayerTroops.Length];
@@ -113,5 +115,9 @@ public class SaveManager : MonoBehaviour
         }
     }
 
+    public void ClearPlayerSave() {
+        PlayerInfo.ClearPlayerInfo();
+        SavePlayer();
+    }
     
 }

@@ -30,7 +30,7 @@ public class LightningBolt : MonoBehaviour
         // Check if the raycast hit a collider.
         if (hit.collider != null)
         {
-            Debug.Log("hit this: " + hit.collider.gameObject.name);
+            //Debug.Log("hit this: " + hit.collider.gameObject.name);
             Unit hitUnit = hit.collider.gameObject.GetComponent<Unit>();
             // Check if the hit GameObject has the tag "Unit".
             if (hitUnit != null)

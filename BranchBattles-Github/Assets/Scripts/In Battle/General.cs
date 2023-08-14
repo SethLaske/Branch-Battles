@@ -23,7 +23,7 @@ public class General : Unit
 
     void Awake()
     {
-        Debug.Log("HP: " + HP);
+        //Debug.Log("HP: " + HP);
         maxHealth = HP;
         baseHP = HP;
         baseArmor = Armor;
@@ -265,7 +265,7 @@ public class General : Unit
         //Speed is increased by class 3 count- 2 units = +1 speed
         currentSpeed = baseSpeed + (General.troopCategory[3] / 2);
         //Debug.Log("Speed Gain: " + (General.troopCategory[3] / 2));
-        Debug.Log("HP Gain: " + (General.troopCategory[0] * .15f * baseHP + "\nArmor Gain: " + (General.troopCategory[1] / 3) + "\nDamage Gain: " + (General.troopCategory[2]) + "\nSpeed Gain: " + (General.troopCategory[3] / 2)));
+        //Debug.Log("HP Gain: " + (General.troopCategory[0] * .15f * baseHP + "\nArmor Gain: " + (General.troopCategory[1] / 3) + "\nDamage Gain: " + (General.troopCategory[2]) + "\nSpeed Gain: " + (General.troopCategory[3] / 2)));
     }
 
     public void SetLevelManager(LevelManager levelManager) {

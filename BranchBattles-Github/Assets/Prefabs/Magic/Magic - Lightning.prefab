@@ -574,7 +574,7 @@ MonoBehaviour:
   magicName: Lightning
   cooldownTime: 5
   buttonUI: {fileID: 21300000, guid: fb7a630e94c26e44aaa198b724554625, type: 3}
-  soulCost: 1
+  soulCost: 4
   mouseTracker: {fileID: 5696295147058912928}
   yHeight: 2
   magicEffect: {fileID: 6241463505994274371}
@@ -927,10 +927,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightningBolt: {fileID: 2566739171514498056, guid: d52b54e35289e254c8eda8ec6011f221, type: 3}
   stormSpawnHeight: 5
-  lightningDuration: 10
+  lightningDuration: 8
   spawnRadius: 6
   spawnHeightRange: 3
-  chanceToSpawn: 5
+  chanceToSpawn: 13
 --- !u!1 &6745984668996772780
 GameObject:
   m_ObjectHideFlags: 0

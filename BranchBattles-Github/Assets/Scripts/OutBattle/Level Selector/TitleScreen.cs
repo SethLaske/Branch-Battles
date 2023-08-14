@@ -13,16 +13,20 @@ public class TitleScreen : MonoBehaviour
     public Unit initSpear;
 
     public SaveManager saveManager;
+
+    public bool forceNewGame;
     void Start()
     {
         //load game
         saveManager.LoadPlayer();
-        if (PlayerInfo.PlayerTroops[0] == null)
+        
+        if (PlayerInfo.PlayerTroops[0] == null || forceNewGame)
         {
             continueGame.interactable = false;
         }
         else {
             continueGame.interactable = true;
+            Debug.Log(PlayerInfo.PlayerTroops[0].unitName);
         }
     }
 
@@ -43,8 +47,8 @@ public class TitleScreen : MonoBehaviour
             PlayerInfo.LevelKeys.Add(i, false);
             PlayerInfo.TroopKeys.Add(i, false);
         }
-        //PlayerInfo.LevelKeys[-1] = true;
-        PlayerInfo.TroopSpaces = 0;
+        PlayerInfo.LevelKeys[0] = true;
+        PlayerInfo.TroopSpaces = 2;
 
         SceneManager.LoadScene(tutorialScene);
     }

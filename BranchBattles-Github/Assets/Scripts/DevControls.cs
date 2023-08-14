@@ -30,7 +30,7 @@ public class DevControls : MonoBehaviour
             PlayerInfo.LevelKeys.Add(i, false);
             PlayerInfo.TroopKeys.Add(i, false);
         }
-        //PlayerInfo.LevelKeys[-1] = true;
+        PlayerInfo.LevelKeys[0] = true;
         PlayerInfo.TroopSpaces = 2;
 
         PlayerInfo.PlayerTroops[0] = miner;
@@ -43,6 +43,8 @@ public class DevControls : MonoBehaviour
 
         
     }
+
+    
 
     public void SetFinishedPlayer()
     {

@@ -662,7 +662,7 @@ MonoBehaviour:
   magicName: Dio?
   cooldownTime: 5
   buttonUI: {fileID: 21300000, guid: 15c4c30c64fc2964ca044c3c824f5231, type: 3}
-  soulCost: 1
+  soulCost: 6
   mouseTracker: {fileID: 1848603111089439949}
   yHeight: 2
   magicEffect: {fileID: 7827246461068230770}
@@ -882,7 +882,7 @@ Transform:
   m_GameObject: {fileID: 7510160805376506490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6486652604222143336}
@@ -952,13 +952,14 @@ GameObject:
   - component: {fileID: 6591822893868208726}
   - component: {fileID: 13590467845131076}
   - component: {fileID: 7885464878785148547}
+  - component: {fileID: 2806199827220950881}
   m_Layer: 0
   m_Name: TheWorld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6486652604222143336
 Transform:
   m_ObjectHideFlags: 0
@@ -1016,7 +1017,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 4
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 0.92168975, g: 1, b: 0, a: 1}
   m_FlipX: 0
@@ -1139,3 +1140,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2806199827220950881
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7827246461068230770}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3274dc256ba43f045afccb74817797be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

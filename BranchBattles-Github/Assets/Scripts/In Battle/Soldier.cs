@@ -278,7 +278,7 @@ public class Soldier : Unit
     /// Unit becomes unaffected by player orders, and only moves forward and attacks all enemies
     /// </summary>
     public void ReceiveGeneralOrders() {
-        Debug.Log("Receieved general orders");
+        //Debug.Log("Receieved general orders");
         //Change state to Charge
         //Apply visual affects and animation
         State = "Charge";
@@ -377,7 +377,7 @@ public class Soldier : Unit
         foreach (Collider2D collider in colliders)
         {
             Unit unit = collider.GetComponent<Unit>();
-            if (collider.gameObject != this.gameObject && unit != null && unit.Team == Team && unit.unitClassification <= unitClassification)
+            if (collider.gameObject != this.gameObject && unit != null && unit.Team == Team && unit.unitClassification == unitClassification)
             {
                 //Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
 
