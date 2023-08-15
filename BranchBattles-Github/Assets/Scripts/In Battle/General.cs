@@ -247,7 +247,7 @@ public class General : Unit
 
 
     public void CalculateArmyBuffs() {
-        if (maxHealth < HP) {
+        if (maxHealth < 5) {
             return;
         }
 

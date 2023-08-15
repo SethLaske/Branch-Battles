@@ -288,7 +288,8 @@ public class Unit : Damageable
         General.troopCategory[unitClassification]--;
         General.souls++;
         General.UpdateGeneral();
-        Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
+        corpse = Instantiate(corpse, transform.position + new Vector3(0, -.25f, 0), Quaternion.identity);
+        corpse.transform.localScale = new Vector3(corpse.transform.localScale.x * transform.localScale.x, corpse.transform.localScale.y, corpse.transform.localScale.z);
         Destroy(gameObject);
     }
 

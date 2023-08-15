@@ -6,7 +6,7 @@ public class Soldier : Unit
 {
     public bool assembled;
 
-    public float FullSpaces;
+    private float FullSpaces;
 
     private float DistanceFromMiddlePoint;
     private float MaxDistanceFromMiddlePoint;
@@ -282,12 +282,12 @@ public class Soldier : Unit
         //Change state to Charge
         //Apply visual affects and animation
         State = "Charge";
-        //animator.SetBool("Waiting", false);
+        animator.SetBool("Walking", true);
         //animator.SetBool("Attacking", false);
         RedAura.SetActive(true);
     }
 
-    //Sets the target as the closest available target
+    /*//Sets the target as the closest available target
     private void OnTriggerStay2D(Collider2D collision)
     {
        
@@ -320,8 +320,8 @@ public class Soldier : Unit
             
         }
 
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
+    }*/
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
         Soldier soldier = collision.GetComponent<Soldier>();
         if (soldier != null) //It is a soldier and this soldier wants to stay behind it
@@ -343,7 +343,7 @@ public class Soldier : Unit
             }
         }
         //PulseUpdate();
-    }
+    }*/
 
 
     public void CalculateAssemblePoints() {
@@ -366,6 +366,7 @@ public class Soldier : Unit
         MaxDistanceFromMiddlePoint = Mathf.Abs((AssemblePoint - RearPoint) / 2);    //needed for ratios later, could be calculated with classifications but this is easier
     }
 
+
     private void SpreadOut() {
 
         Vector3 separation = Vector3.zero;
@@ -377,19 +378,23 @@ public class Soldier : Unit
         foreach (Collider2D collider in colliders)
         {
             Unit unit = collider.GetComponent<Unit>();
-            if (collider.gameObject != this.gameObject && unit != null && unit.Team == Team && unit.unitClassification == unitClassification)
+            if (collider.gameObject == this.gameObject || unit == null || unit.Team != Team || unit.unitClassification > unitClassification)
             {
-                //Debug.Log("The soldiers collider is overlapping with " + collider.gameObject.name);
-
-                Vector3 diff = transform.position - collider.transform.position;
-
-                if (diff == Vector3.zero) continue;     //Infinity breaks things
-
-                if (diff.magnitude < separationDistance)    //Checks if close enough to count
-                {
-                    separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5))/(diff.magnitude * 2);
-                }
+                continue;
             }
+            Vector3 diff = transform.position - collider.transform.position;
+            Debug.Log("Before" + diff.magnitude);
+
+            if (unit.unitClassification == 0) diff.x = 0;   //Move vertically to avoid miners but don't let them slow down units
+
+            Debug.Log("After" + diff.magnitude);
+
+            if (diff == Vector3.zero || diff.magnitude > separationDistance) 
+            {
+                continue;     //Infinity breaks things
+            }
+
+            separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5))/(diff.magnitude * 2);
 
         }
         

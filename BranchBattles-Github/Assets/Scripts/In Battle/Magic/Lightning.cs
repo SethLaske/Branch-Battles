@@ -13,19 +13,39 @@ public class Lightning : MonoBehaviour
     public float spawnHeightRange;
     public int chanceToSpawn; //Will get called each frame so will be quite low
 
+    private float timeStarted;
+    private float timer;
+    [SerializeField]  private float  startfinishDelayTime;
+
     // Start is called before the first frame update
     public void UseMagic()
     {
+        timer = 0;
         transform.position = new Vector3(transform.position.x, stormSpawnHeight, 0);
-        StartCoroutine(LightningStorm());
+        //StartCoroutine(LightningStorm());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Random.Range(0, 1000) < chanceToSpawn) {
+        timer += Time.deltaTime;
+        if (timeStarted + startfinishDelayTime > timer) {
+            return;
+        }
+       
+
+        if (Random.Range(0, 1000) < chanceToSpawn && timeStarted + lightningDuration + startfinishDelayTime > timer)
+        {
             SpawnLightningBolt();
         }
+        
+        
+        if (timeStarted + lightningDuration + 2 * startfinishDelayTime < timer)
+        {
+            transform.parent.gameObject.SetActive(false);
+        }
+        
+
     }
 
     private void SpawnLightningBolt() {
@@ -34,12 +54,10 @@ public class Lightning : MonoBehaviour
         Instantiate(lightningBolt, new Vector3(xPos, yPos, 0), Quaternion.identity);
     }
 
-    IEnumerator LightningStorm()
+    /*IEnumerator LightningStorm()
     {
-
-        yield return new WaitForSeconds(lightningDuration);
-        transform.parent.gameObject.SetActive(false);
-    }
+        
+    }*/
 
     private void OnDrawGizmos()
     {
