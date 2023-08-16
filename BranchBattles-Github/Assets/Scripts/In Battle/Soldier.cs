@@ -383,11 +383,11 @@ public class Soldier : Unit
                 continue;
             }
             Vector3 diff = transform.position - collider.transform.position;
-            Debug.Log("Before" + diff.magnitude);
+            //Debug.Log("Before" + diff.magnitude);
 
             if (unit.unitClassification == 0) diff.x = 0;   //Move vertically to avoid miners but don't let them slow down units
 
-            Debug.Log("After" + diff.magnitude);
+            //Debug.Log("After" + diff.magnitude);
 
             if (diff == Vector3.zero || diff.magnitude > separationDistance) 
             {

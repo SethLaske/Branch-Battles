@@ -154,7 +154,7 @@ public class Tutorial : MonoBehaviour
 
         if (screenToChargeOn == tutorialStepIndex)
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(4);
             int enemiesToSend = 3;
 
             GameObject[] allUnits = GameObject.FindGameObjectsWithTag("Unit");

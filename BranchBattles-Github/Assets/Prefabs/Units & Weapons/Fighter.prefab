@@ -455,7 +455,6 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: 688bf5b471f19c1478740605ef5d21ae, type: 2}
   identifierSprite: {fileID: 2056357258, guid: a8da293ef185ad5479aa963b3806f8d9, type: 3}
   assembled: 0
-  FullSpaces: 0
   separationDistance: 1.25
   separationForce: 0.5
   minimumForce: 0.1

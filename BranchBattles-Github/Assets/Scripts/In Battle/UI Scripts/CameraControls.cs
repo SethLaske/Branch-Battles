@@ -6,12 +6,11 @@ public class CameraControls : MonoBehaviour
 {
     public Transform PlayerGeneral;
 
-    public int CameraDirection = 0;
-    public int cameraSpeed = 5;
-    private bool border = false;
-    public float cameraAcceleration = 0;
+    private int CameraDirection = 0;
+    [SerializeField] private int cameraSpeed = 5;
+    private float cameraAcceleration = 0;
 
-    public float mapWidth;
+    [SerializeField] private float mapWidth;
 
     public GameObject FrontGround;
     public float FGSpeed;
@@ -20,40 +19,20 @@ public class CameraControls : MonoBehaviour
     public GameObject DBG;
     public float DBGSpeed;
 
-    public float magnitude;
-    public float duration;
+    //public float magnitude;
+    //public float duration;
+
     // Start is called before the first frame update
     void Start()
     {
         CameraDirection = 0;
-
-        GameObject mapBorder = new GameObject();
-        mapBorder.name = "Map Borders";
-
-        BoxCollider2D colliderL = mapBorder.AddComponent<BoxCollider2D>();
-        colliderL.size = new Vector2(1, 10);
-        colliderL.offset = new Vector2(mapWidth / -2, 0);
-        colliderL.isTrigger = true;
-        colliderL.gameObject.tag = "Border";
-
-        BoxCollider2D colliderR = mapBorder.AddComponent<BoxCollider2D>();
-        colliderR.size = new Vector2(1, 10);
-        colliderR.offset = new Vector2(mapWidth / 2, 0);
-        colliderR.isTrigger = true;
-        colliderR.gameObject.tag = "Border";
-
-
-        Camera cam = Camera.main;
-        float height = 2f * cam.orthographicSize;
-        float width = height * cam.aspect;
-
-        BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
-        boxCollider.size = new Vector3(width, height, 0);
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Could add a check if the player is actually in game to be able to move around
+
         CameraDirection = 0;
 
         if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space)) && PlayerGeneral!=null) {
@@ -95,27 +74,16 @@ public class CameraControls : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("Border")) {
-            border = true;
-            //Debug.Log("Touched border");
-        }
-    }
-
     public void MoveCamera(float X) {
-        if (!border || (transform.position.x * X < 0))
+
+        if (Mathf.Abs(transform.position.x + X) > mapWidth / 2)     return;
+
+        transform.position += new Vector3(X, 0, 0);
+        if (FrontGround != null)
         {
-            transform.position += new Vector3(X, 0, 0);
-            if (FrontGround != null)
-            {
-                FrontGround.transform.position += new Vector3((X * FGSpeed), 0, 0);
-                CBG.transform.position += new Vector3((X * CBGSpeed), 0, 0);
-                DBG.transform.position += new Vector3((X * DBGSpeed), 0, 0);
-            }
-
-
-            border = false;
+            FrontGround.transform.position += new Vector3((X * FGSpeed), 0, 0);
+            CBG.transform.position += new Vector3((X * CBGSpeed), 0, 0);
+            DBG.transform.position += new Vector3((X * DBGSpeed), 0, 0);
         }
     }
 

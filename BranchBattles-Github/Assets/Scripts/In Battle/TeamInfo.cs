@@ -107,7 +107,7 @@ public class TeamInfo : MonoBehaviour
         //Appies buffs/debuffs
         freshMeat.HP *= advantage;
         freshMeat.Damage *= advantage;
-        
+
         UpdateGeneral();
     }
 
@@ -122,6 +122,7 @@ public class TeamInfo : MonoBehaviour
 
             spawnUnits.Add(newUnit);
         }
+        UpdateGeneral();
     }
 
 

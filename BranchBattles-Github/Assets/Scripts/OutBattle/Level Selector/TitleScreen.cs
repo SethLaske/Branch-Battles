@@ -60,6 +60,11 @@ public class TitleScreen : MonoBehaviour
         SceneManager.LoadScene(LevelScene);
     }
 
+    public void NewPlayer() {
+        saveManager.ClearPlayerSave();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void ExitGame() {
         Application.Quit();
     }

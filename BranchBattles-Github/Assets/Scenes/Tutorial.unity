@@ -294,7 +294,7 @@ PrefabInstance:
       objectReference: {fileID: 417003166}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: timeToNextStep
-      value: 5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: tutorialManager
@@ -1426,7 +1426,7 @@ PrefabInstance:
       objectReference: {fileID: 92739413}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: timeToNextStep
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: tutorialManager
@@ -2362,7 +2362,7 @@ PrefabInstance:
       objectReference: {fileID: 645982805}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: timeToNextStep
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: tutorialManager
@@ -3612,7 +3612,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: timeToNextStep
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: tutorialManager
@@ -4481,7 +4481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: AFKGoldTime
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3665526228847971978, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: m_Color.b
@@ -5655,7 +5655,7 @@ PrefabInstance:
       objectReference: {fileID: 264376301}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: timeToNextStep
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: tutorialManager
@@ -6023,7 +6023,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6301,7 +6301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: souls
-      value: 20
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: general

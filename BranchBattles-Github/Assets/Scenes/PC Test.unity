@@ -2379,18 +2379,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerGeneral: {fileID: 1568962464537845631}
-  CameraDirection: 0
   cameraSpeed: 50
-  cameraAcceleration: 0
-  mapWidth: 70
+  mapWidth: 60
   FrontGround: {fileID: 31112087}
   FGSpeed: -0.5
   CBG: {fileID: 1112019403}
   CBGSpeed: 0.5
   DBG: {fileID: 1758793611}
   DBGSpeed: 0.75
-  magnitude: 0.25
-  duration: 1
 --- !u!61 &519420034
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2859,7 +2855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: maxTroopCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3665526228847971978, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: m_Color.b

@@ -272,7 +272,7 @@ MonoBehaviour:
   animator: {fileID: 2678390886374889586}
   unitName: General Kenobi
   UnitNumber: 0
-  unitClassification: 0
+  unitClassification: 1
   Offense: {fileID: 6185429638716345863}
   baseSpeed: 4
   Damage: 5
