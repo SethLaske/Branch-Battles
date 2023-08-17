@@ -73,6 +73,8 @@ MonoBehaviour:
   HealthBar: {fileID: 8761439705502324260}
   AppearanceTime: 1.5
   State: 
+  spriteRenderer: {fileID: 1116175229950816096}
+  spriteMaterial: {fileID: 0}
   Target: {fileID: 0}
   MovementBlockers:
     serializedVersion: 2
@@ -83,7 +85,6 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: e467a781b26310d4ab8aa161df805648, type: 2}
   identifierSprite: {fileID: -1902883712, guid: 13a04ad69c2ed8b419dfe1fcd20df366, type: 3}
   assembled: 0
-  FullSpaces: 0
   separationDistance: 1
   separationForce: 0.5
   minimumForce: 0.1
@@ -277,7 +278,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 98a8a08d4b7f9f34cab1fee06347ecb4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

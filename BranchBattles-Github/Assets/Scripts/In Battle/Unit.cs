@@ -34,6 +34,8 @@ public class Unit : Damageable
     protected float HealthTimer = 0;
 
     public string State;    //Determines what actions they need to pursue
+    public SpriteRenderer spriteRenderer;
+    public Material spriteMaterial;
 
     public Damageable Target;   //Targets are always for the enemy      //Could go private 
     protected float AssemblePoint;         //Could go private 
@@ -69,6 +71,10 @@ public class Unit : Damageable
             HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
         }
         general = General.general;
+
+
+        ChangeUnitColors();
+
     }
 
     /// <summary>
@@ -116,7 +122,12 @@ public class Unit : Damageable
                 }
 
                 float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
-                this.Move(new Vector3(Mathf.Sign(distance) * frontHumanSheild.currentSpeed * Time.deltaTime, 0, 0));
+                if (frontHumanSheild.currentSpeed > currentSpeed) {
+                    this.Move(new Vector3(Mathf.Sign(distance) * currentSpeed * Time.deltaTime, 0, 0));
+                }
+                else { 
+                    this.Move(new Vector3(Mathf.Sign(distance) * frontHumanSheild.currentSpeed * Time.deltaTime, 0, 0));
+                }
                 return;
             }
         }
@@ -321,6 +332,22 @@ public class Unit : Damageable
 
         DebuffMult /= Intensity;
         animator.speed *= Intensity; 
+    }
+
+    public void ChangeUnitColors() {
+        spriteMaterial = new Material(spriteRenderer.material);
+
+        if (spriteMaterial == null)
+        {
+            Debug.Log("Skipping colors");
+            return;
+        }
+        Debug.Log("Setting colors");
+        spriteMaterial.SetColor("_PantColor", General.unitPantsColor);
+        spriteMaterial.SetColor("_BeltColor", General.unitBeltColor);
+        spriteMaterial.SetColor("_ShoulderColor", General.unitShouldersColor);
+        spriteMaterial.SetColor("_HornColor", General.unitHornColor);
+        spriteRenderer.material = spriteMaterial;
     }
 
     //Essentially the same as transform += vector3, but checks to make sure it can step there.

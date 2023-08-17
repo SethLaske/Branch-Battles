@@ -43,6 +43,11 @@ public class TeamInfo : MonoBehaviour
 
     public AudioSource warHorn;
 
+    public Color unitPantsColor;
+    public Color unitBeltColor;
+    public Color unitShouldersColor;
+    public Color unitHornColor;
+
     //Set up a rally near to the first barracks
     void Start()
     {
@@ -107,6 +112,8 @@ public class TeamInfo : MonoBehaviour
         //Appies buffs/debuffs
         freshMeat.HP *= advantage;
         freshMeat.Damage *= advantage;
+
+        //freshMeat.ChangeUnitColors(unitPantsColor, unitBeltColor, unitShouldersColor);
 
         UpdateGeneral();
     }

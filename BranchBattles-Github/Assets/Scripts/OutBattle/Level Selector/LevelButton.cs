@@ -9,7 +9,7 @@ public class LevelButton : MonoBehaviour
     [SerializeField] private string levelName;
 
     [SerializeField] private int thisLevel;
-    [SerializeField] private int requiredLevel;
+    [SerializeField] private List<int> requiredLevels;
 
     [SerializeField] private Button mapButton;
     [SerializeField] private GameObject levelDescription;
@@ -25,16 +25,19 @@ public class LevelButton : MonoBehaviour
             {
                 gameObject.SetActive(true);
                 sprite.color = Color.green;
+                return;
             }
-            else if (PlayerInfo.LevelKeys[requiredLevel] == true)
-            {
-                gameObject.SetActive(true);
-                sprite.color = Color.red;
+
+            foreach (int level in requiredLevels) {
+                if (PlayerInfo.LevelKeys[level] == false)
+                {
+                    gameObject.SetActive(false);
+                    return;
+                }
             }
-            else
-            {
-                gameObject.SetActive(false);
-            }
+
+            gameObject.SetActive(true);
+            sprite.color = Color.red;
         }
     }
 

@@ -285,6 +285,8 @@ MonoBehaviour:
   HealthBar: {fileID: 7342008067088611566}
   AppearanceTime: 1.5
   State: 
+  spriteRenderer: {fileID: 0}
+  spriteMaterial: {fileID: 0}
   Target: {fileID: 0}
   MovementBlockers:
     serializedVersion: 2
