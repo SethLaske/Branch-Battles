@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
     //Used for troop unlocks and level progression on the map
     public int currentLevel;
     public int maxPlayerTroops;
+    public string popUpName;
 
     //public static bool paused = true;   //Could also switch it to semaphore interpretation. Going to hold off for now, but makes sense to have a static variable controlling paused or not
     [Header("Assigned in Prefab")]
@@ -110,7 +111,11 @@ public class LevelManager : MonoBehaviour
             if (maxPlayerTroops > PlayerInfo.TroopSpaces) {
                 PlayerInfo.TroopSpaces = maxPlayerTroops;
             }
-            
+
+            if (popUpName != "" && PlayerPrefs.HasKey(popUpName) == false)
+            {
+                PlayerPrefs.SetInt(popUpName, -1);
+            }
 
         }
         else if (losingTeam == 1)

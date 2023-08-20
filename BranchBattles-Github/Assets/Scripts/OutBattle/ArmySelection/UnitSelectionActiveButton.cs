@@ -32,7 +32,7 @@ public class UnitSelectionActiveButton : MonoBehaviour
         }
         else
         {
-            currentTroopText.text = "NO UNIT ASSIGNED";
+            currentTroopText.text = "     ";
         }
 
     }
