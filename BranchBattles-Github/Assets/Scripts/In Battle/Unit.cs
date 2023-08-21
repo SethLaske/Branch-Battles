@@ -82,15 +82,8 @@ public class Unit : Damageable
     /// </summary>
     public virtual void Wait() {
         
-        
-        if (Team < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
+        transform.localScale = new Vector3(Team, 1, 1);
+       
     }
 
     /// <summary>
@@ -387,7 +380,7 @@ public class Unit : Damageable
         // Check if we've already reached the target position
         if (distance <= maxDistanceDelta || distance == 0f)
         {
-            return target;
+            return direction;
         }
 
         direction = direction.normalized;

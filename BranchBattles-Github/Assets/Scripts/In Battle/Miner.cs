@@ -6,19 +6,30 @@ using UnityEngine;
 //This should be the super class to all pacifists, but currently just directly handles the miner
 public class Miner : Unit
 {
-    public string Resource = "Mine";
-    public bool Full = false;
+    private string Resource = "Mine";
+    //public bool Full = false;
 
-    public int BagAmount;
+    public float miningSpeed;
+    public int maxGoldAmount;
+    private int currentGoldAmount;
     public AudioSource dropOff;
 
-    public SpriteRenderer pick;
+    public float miningIncrement;
+
+    private Mine mine;
+    private Vector3 mineSpot;
+    private Vector3 nullMine = new Vector3(0, 100, -100);
+
+    [SerializeField] Vector2 mineDetectionBoxSize;
+    [SerializeField] Transform mineDetectionCenter;
     // Start is called before the first frame update
     void Start()
     {
         StandardStart();
         animator.SetTrigger("Walking");
         animator.ResetTrigger("Walking");
+        currentGoldAmount = 0;
+        mineSpot = nullMine;
     }
 
     // Update is called once per frame
@@ -54,34 +65,52 @@ public class Miner : Unit
     {
         
         //Walk information
-        if (!Full)
-        {
-            this.Move(new Vector3(currentSpeed * Team * Time.deltaTime, 0, 0));
-        }
-        else
+        if (currentGoldAmount == maxGoldAmount)
         {
             this.Move(new Vector3(currentSpeed * -Team * Time.deltaTime, 0, 0));
+        }
+        else if (mineSpot != nullMine)
+        {
+            this.Move(Advance(transform.position, mineSpot, Mathf.Abs(currentSpeed) * Time.deltaTime));
+            if ((transform.position - mineSpot).magnitude < .1f) {
+                
+                State = "Mining";   //Being in the mining State should mean that it does nothing
+                StartCoroutine(IMine(mine.miningTimeMultiplier));
+                
+            }
+        }
+        else {
+            FindMine();
+            this.Move(new Vector3(currentSpeed * Team * Time.deltaTime, 0, 0));
         }
 
         
     }
 
 
-    IEnumerator IMine()
+    IEnumerator IMine(float mineHardness)
     {
-        Full = true;
-        //Debug.Log("Time Starting");
-        yield return new WaitForSeconds(attackAnimation.length * 3);
+        float direction = Mathf.Sign(mine.transform.position.x - transform.position.x);
+        transform.localScale = new Vector3(direction, 1, 1);
 
+        mine.IncreaseMultiplier(miningIncrement);
+        Debug.Log("Starting to mine");
+        animator.SetTrigger("Mining");
+        float swings = Mathf.Ceil((float)maxGoldAmount * mineHardness / miningSpeed);
+        //Debug.Log("Time Starting");
+        yield return new WaitForSeconds(attackAnimation.length * swings);
+        currentGoldAmount = maxGoldAmount;
 
         animator.SetTrigger("Walking");
         State = "Walk";
-        transform.Rotate(new Vector3(0, 180, 0));
+        transform.localScale = new Vector3(-1 * Team, 1, 1);
+        mineSpot = nullMine;
+        mine = null;
 
         //Debug.Log("Time ending");
     }
 
-    public void changeResource() {
+    /*public void changeResource() {
         if (!Full)
         {
             if (Resource.Equals("Mine"))
@@ -96,38 +125,65 @@ public class Miner : Unit
 
             }
         } 
+    }*/
+    private void FindMine() {
+        //Debug.Log("Trying to find a mine");
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(mineDetectionCenter.position, mineDetectionBoxSize, 0);
+        foreach (Collider2D collider in colliders)
+        {
+            //Debug.Log("Miner collides with: " + collider.name);
+            Mine foundMine = collider.GetComponent<Mine>();
+            if (foundMine != null)
+            {
+                if (mineSpot == nullMine) {
+                    this.mine = foundMine;
+                    mineSpot = GetMineSpot(foundMine);
+                }
+                else if ((foundMine.transform.position - transform.position).magnitude < (mineSpot - transform.position).magnitude)  
+                {
+                    this.mine = foundMine;
+                    mineSpot = GetMineSpot(foundMine);
+                }
+            }
+
+        }
+    }
+
+    private Vector3 GetMineSpot(Mine mine) {
+        float randomAngle = Random.Range(0f, Mathf.PI * 2f);
+
+        // Calculate random point within the circle using trigonometry
+        float x = mine.transform.position.x + mine.radius * Mathf.Cos(randomAngle);
+        float y = mine.transform.position.y + mine.radius * Mathf.Sin(randomAngle);
+
+        return new Vector3(x, y, y/5);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag(Resource))        
-        {
-            Mine mine = collision.GetComponent<Mine>();
-            animator.SetTrigger("Mining");
-            //animator.ResetTrigger("Mining");
-            State = "Mining";   //Being in the mining State should mean that it does nothing
-            StartCoroutine(IMine());
-        }
+        
 
         if (collision.gameObject.CompareTag("Building"))         //Will be compared to barracks/team base eventually
         {
-            if (Full == true) {
+            if (currentGoldAmount > 0) {
                 dropOff.Play();
                 if (Resource.Equals("Mine"))
                 {
-                    General.gold += BagAmount;
+                    General.gold += currentGoldAmount;
                 }
-                /*else if (Resource.Equals("Gem") && General.gems < 2) {
-                    General.Gems++;
-                }*/
-                
-                Full = false;
-                transform.Rotate(new Vector3(0, 180, 0));
             }
+
+            transform.localScale = new Vector3(1 * Team, 1, 1);
+            currentGoldAmount = 0;
             //State = "Walk";
-           
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(mineDetectionCenter.position, mineDetectionBoxSize);
     }
 
 }

@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4501772934317610804
 Transform:
   m_ObjectHideFlags: 0
@@ -120,6 +120,7 @@ Transform:
   - {fileID: 4501772934317610804}
   - {fileID: 5878721805305184155}
   - {fileID: 6104834648900329794}
+  - {fileID: 1153210368801299880}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,11 +167,12 @@ MonoBehaviour:
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 2bd8a471796ed6c49ac1a5af433a1a01, type: 2}
   identifierSprite: {fileID: -1395150292, guid: c41c4cc7633b80f418b1e77bef76abcd, type: 3}
-  Resource: Mine
-  Full: 0
-  BagAmount: 25
+  miningSpeed: 10
+  maxGoldAmount: 30
   dropOff: {fileID: 7331307722458310760}
-  pick: {fileID: 2367348665075804681}
+  miningIncrement: 0.025
+  mineDetectionBoxSize: {x: 8, y: 5}
+  mineDetectionCenter: {fileID: 1153210368801299880}
 --- !u!58 &2420170742448308730
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -513,3 +515,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5846857261489608486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153210368801299880}
+  m_Layer: 0
+  m_Name: Mine Detection Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1153210368801299880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846857261489608486}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1792269021062788901}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

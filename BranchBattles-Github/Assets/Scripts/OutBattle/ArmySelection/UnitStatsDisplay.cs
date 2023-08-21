@@ -100,5 +100,6 @@ public class UnitStatsDisplay : MonoBehaviour
         Destroy(renderTexture);
 
         cam.gameObject.SetActive(false);
+        image.gameObject.SetActive(true);
     }
 }
