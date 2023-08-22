@@ -128,6 +128,7 @@ public class LevelManager : MonoBehaviour
     //Generic level stuff below
     public void StartLevel() {
         LevelManager.gameState = GameState.InGame;
+        Time.timeScale = 1;
 
         StartScreen.SetActive(false);
 
@@ -143,6 +144,7 @@ public class LevelManager : MonoBehaviour
 
     public void ReturnToMap()
     {
+        Time.timeScale = 1;
         Debug.Log("Returning to the map");
         SceneManager.LoadScene("LevelSelect");
     }

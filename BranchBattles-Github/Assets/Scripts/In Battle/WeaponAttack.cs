@@ -5,10 +5,10 @@ using UnityEngine;
 public class WeaponAttack : MonoBehaviour
 {
     //[HideInInspector] public float Damage;
-    private Collider2D AttackBox;
+    protected Collider2D AttackBox;
     public bool MultiHit;
 
-    private bool FinishedAttack;
+    protected bool FinishedAttack;
 
     protected Unit Wielder;
 

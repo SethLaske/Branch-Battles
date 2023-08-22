@@ -17,6 +17,16 @@ public class General : Unit
     public GameObject HealingAura;
     public GameObject troopselector;
 
+    public GameObject goldBar;
+    public float goldBarAppearanceTime;
+    private float goldBarTimer;
+    public Transform minePoint;
+    public int goldPerHit;
+    public int maxGoldAmount;
+    public float miningIncrement;
+    private int currentGoldAmount;
+    public AudioSource goldDropOff;
+
     private float baseHP;
     private float baseArmor;
     private float baseDamage;
@@ -53,6 +63,15 @@ public class General : Unit
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
+        if (goldBar.activeSelf)
+        {
+            goldBarTimer += Time.deltaTime;
+            if (goldBarTimer > goldBarAppearanceTime)
+            {
+                goldBar.SetActive(false);
+            }
+        }
+        
 
         if (Attacking || taunting) return;      //Gonna just turn off movement while attacking for a bit, see how I like it
 
@@ -64,6 +83,16 @@ public class General : Unit
             //currentSpeed = 2;
             StartCoroutine(PlayAttack());
             
+            return;
+        }
+
+        if (Input.GetKey(KeyCode.V) && Attacking == false)
+        {
+            animator.SetBool("Attacking", true);
+            Attacking = true;
+            //currentSpeed = 2;
+            StartCoroutine(GeneralMine());
+
             return;
         }
 
@@ -159,6 +188,50 @@ public class General : Unit
         //currentSpeed = baseSpeed;
     }
 
+    IEnumerator GeneralMine()   //Might need recover to deal with animations, otherwise easy fix to remove it
+    {
+        yield return new WaitForSeconds(attackHitTime * DebuffMult);
+
+        Ray2D ray = new Ray2D(minePoint.position, Vector2.right * transform.localScale.x);
+
+        // Perform the raycast and store the hit information in a RaycastHit2D variable.
+        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, 2);
+
+        // Check if the raycast hit a collider.
+        foreach (RaycastHit2D hit in hits)
+        {
+            Debug.Log("hit this mining: " + hit.collider.gameObject.name);
+            Mine mine = hit.collider.gameObject.GetComponent<Mine>();
+            if(mine != null){
+                Debug.Log("Made contact with mine");
+
+                if (currentGoldAmount != maxGoldAmount) {
+                    goldBar.SetActive(true);
+                    goldBarTimer = 0;
+                }
+                currentGoldAmount += goldPerHit;
+                if (currentGoldAmount > maxGoldAmount) currentGoldAmount = maxGoldAmount;
+
+                mine.IncreaseMultiplier(miningIncrement);
+                goldBar.transform.localScale = new Vector3((float)currentGoldAmount / maxGoldAmount, goldBar.transform.localScale.y, goldBar.transform.localScale.z);
+
+            }
+        }
+        yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult);
+
+        if (Input.GetKey("space") == false)
+        {
+            animator.SetBool("Attacking", false);
+            Attacking = false;
+        }
+        else
+        {
+            StartCoroutine(PlayAttack());
+        }
+
+        //currentSpeed = baseSpeed;
+    }
+
     public void EndTaunt() {
         taunting = false;
     }
@@ -229,6 +302,16 @@ public class General : Unit
             baseDamage += 3;
             //levelmanager.BattleUIUnits.SetActive(true);
             battleUI.EnableTroops();
+        }
+
+        TeamBase teamBase = collider.GetComponent<TeamBase>();
+        if(teamBase != null && teamBase.Team == Team)
+        {
+            if (currentGoldAmount > 0) goldDropOff.Play();
+            General.gold += currentGoldAmount;
+            currentGoldAmount = 0;
+            
+            //Audio source and updating any UI
         }
     }
 
