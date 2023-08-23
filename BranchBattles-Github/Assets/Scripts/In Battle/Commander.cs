@@ -8,20 +8,17 @@ public class Commander : Soldier
     // Start is called before the first frame update
     void Start()
     {
-        transform.Rotate(new Vector3(0, 180, 0));
+        StandardStart();
 
-        maxHealth = HP;
+        ReceiveGeneralOrders();
         
-        State = "Walk";
-        if (Team < 0)
-        {
-            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (LevelManager.gameState != GameState.InGame) return;
+
         //Deals with timer for the health bar
         if (HealthTimer < AppearanceTime)
         {
@@ -33,30 +30,14 @@ public class Commander : Soldier
             HealthTimer = AppearanceTime; //Stops the timer from continuing to add
         }
 
-        //Checks if anything is ahead or behind it
-
-        //The one can likely be replaced with larger/smaller units sizes to do stuff like that
-        //Attack Range must be greater than this check distance
-        //Debug.Log("Coords to check ahead are: " + (transform.position + new Vector3(.9f * Team, 0, 0)));
-        
-
-        
-
-        //Performs the various actions per the state it is in
-        if (State == "Wait")
+        //literally just copying in the charge function from soldier
+        FindTarget();
+        animator.SetBool("Walking", true);
+        if (State == "Charge")    //Only can be given by the king
         {
-            Wait();
-            animator.SetBool("Attacking", false);
-        }
-        else if (State == "Walk")
-        {
-            Walk();
-            animator.SetBool("Attacking", false);
-        }
-        else if (State == "Attack")
-        {
-            Attack();
-            animator.SetBool("Attacking", true);
+            //Debug.Log("State is to die by command of the king");
+            Charge();
+            //animator.SetBool("Attacking", false);
         }
     }
 

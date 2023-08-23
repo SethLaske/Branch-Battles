@@ -250,9 +250,11 @@ public class Soldier : Unit
         if (Target == null)
         {
             this.Move(new Vector3(Mathf.Sign(Team) * currentSpeed * Time.deltaTime, 0, 0));
+            transform.localScale = new Vector3(Team, 1, 1);
         }
         else if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange && Attacking == false) {
             this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
+            transform.localScale = new Vector3(Mathf.Sign(Target.transform.position.x - transform.position.x), 1, 1);
             //animator.SetBool("Attacking", false);
         }
         else
@@ -421,7 +423,7 @@ public class Soldier : Unit
         
     }
 
-    private void FindTarget()
+    protected void FindTarget()
     {
         if (Target != null && Mathf.Abs(transform.position.x - Target.transform.position.x) > AgroRange) {
             Target = null;

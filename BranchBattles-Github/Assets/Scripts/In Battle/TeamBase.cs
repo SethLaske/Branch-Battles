@@ -7,7 +7,7 @@ using UnityEngine.UI;
 //Not a great class, but handles game overs for now, and will be fine unless a team can have multiple barracks
 public class TeamBase : Building
 {
-    private Slider healthBar;
+    
     private CameraControls playercamera;
     private LevelManager levelmanager;
 
@@ -20,11 +20,7 @@ public class TeamBase : Building
         levelmanager = GameObject.FindGameObjectWithTag("Level Manager").GetComponent<LevelManager>();
     }
 
-    public void SetHealthBar(Slider slider) {
-        healthBar = slider;
-        healthBar.maxValue = HP;
-        healthBar.value = HP;
-    }
+    
     //Could also call it result screen and condense it to one screen per base
     public override void Die()
     {
@@ -40,10 +36,6 @@ public class TeamBase : Building
         if (Team == 1) {
             float amount = (.3f * ((maxHealth - HP) / maxHealth)) + .1f;
             playercamera.CallShake(amount, amount);
-        }
-
-        if (healthBar != null) {
-            healthBar.value = HP;
         }
         
     }

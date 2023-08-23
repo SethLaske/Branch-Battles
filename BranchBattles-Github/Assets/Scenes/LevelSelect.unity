@@ -3478,6 +3478,10 @@ PrefabInstance:
       propertyPath: requiredLevels.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6710935520640469688, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1834375061, guid: ccb3c25d28aebb740a81734ea881748c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
 --- !u!224 &1473214331 stripped
@@ -3731,6 +3735,10 @@ PrefabInstance:
       propertyPath: requiredLevels.Array.data[1]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6710935520640469688, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1507088638, guid: ccb3c25d28aebb740a81734ea881748c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
 --- !u!224 &1611079276 stripped

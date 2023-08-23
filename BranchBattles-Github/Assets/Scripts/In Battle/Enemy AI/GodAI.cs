@@ -55,7 +55,7 @@ public class GodAI : MonoBehaviour
     private void PositionArmy() {
 
         //If either side is at the full troop count charge. Puts the AI at a disadvantage, but I dont want games dragging out for no reason. Might change that for different game modes
-        if (controlledTeam.troopCount == controlledTeam.maxTroopCount || controlledTeam.Opponent.troopCount == controlledTeam.Opponent.maxTroopCount) {
+        if (controlledTeam.troopCount == controlledTeam.maxTroopCount || controlledTeam.Opponent.troopCount == controlledTeam.Opponent.maxTroopCount || controlledTeam.maxTroopCount == 0) {
             controlledTeam.Charge();
         }
 

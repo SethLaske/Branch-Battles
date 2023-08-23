@@ -33,7 +33,7 @@ public class TeamInfo : MonoBehaviour
     public General general;
 
     //The building troops will spawn from
-    public TeamBase barracks;
+    public Building barracks;
     public float rallyPoint;    //The point units will move to unless acted upon
     public GameObject rallyFlag;    //Visual representation of where the rally is
     public float spacing = 2f;
