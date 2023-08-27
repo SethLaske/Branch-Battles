@@ -41,7 +41,7 @@ public class General : Unit
         currentSpeed = baseSpeed;
         taunting = false;
         //MoveSpeed = baseSpeed;
-        
+        HealthBar.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,15 +52,12 @@ public class General : Unit
             return;
         }
 
-        //Health bar clearing
-        if (HealthTimer < AppearanceTime)
-        {
-            HealthTimer += Time.deltaTime;
-        }
-        else if (HealthTimer > AppearanceTime)
+        if (HP >= maxHealth)
         {
             HealthBar.SetActive(false);
-            HealthTimer = AppearanceTime; //Stops the timer from continuing to add
+        }
+        else {
+            HealthBar.SetActive(true);
         }
 
         if (goldBar.activeSelf)
@@ -86,15 +83,15 @@ public class General : Unit
             return;
         }
 
-        if (Input.GetKey(KeyCode.V) && Attacking == false)
+       /* if (Input.GetKey(KeyCode.V) && Attacking == false)
         {
             animator.SetBool("Attacking", true);
             Attacking = true;
             //currentSpeed = 2;
-            StartCoroutine(GeneralMine());
+            //StartCoroutine(GeneralMine());
 
             return;
-        }
+        }*/
 
         //Taunt
         if (Input.GetKeyDown(KeyCode.T))
@@ -173,8 +170,11 @@ public class General : Unit
     IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
         yield return new WaitForSeconds(attackHitTime * DebuffMult);
+
         attackSound.Play();
         Offense.Attack();
+        GeneralMine();
+
         yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult);
         if (Input.GetKey("space") == false)
         {
@@ -188,7 +188,7 @@ public class General : Unit
         //currentSpeed = baseSpeed;
     }
 
-    IEnumerator GeneralMine()   //Might need recover to deal with animations, otherwise easy fix to remove it
+    /*IEnumerator GeneralMine()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
         yield return new WaitForSeconds(attackHitTime * DebuffMult);
 
@@ -230,6 +230,36 @@ public class General : Unit
         }
 
         //currentSpeed = baseSpeed;
+    }*/
+
+    private void GeneralMine() {
+        Ray2D ray = new Ray2D(minePoint.position, Vector2.right * transform.localScale.x);
+
+        // Perform the raycast and store the hit information in a RaycastHit2D variable.
+        RaycastHit2D[] hits = Physics2D.RaycastAll(ray.origin, ray.direction, 2);
+
+        // Check if the raycast hit a collider.
+        foreach (RaycastHit2D hit in hits)
+        {
+            Debug.Log("hit this mining: " + hit.collider.gameObject.name);
+            Mine mine = hit.collider.gameObject.GetComponent<Mine>();
+            if (mine != null)
+            {
+                Debug.Log("Made contact with mine");
+
+                if (currentGoldAmount != maxGoldAmount)
+                {
+                    goldBar.SetActive(true);
+                    goldBarTimer = 0;
+                }
+                currentGoldAmount += goldPerHit;
+                if (currentGoldAmount > maxGoldAmount) currentGoldAmount = maxGoldAmount;
+
+                mine.IncreaseMultiplier(miningIncrement);
+                goldBar.transform.localScale = new Vector3((float)currentGoldAmount / maxGoldAmount, goldBar.transform.localScale.y, goldBar.transform.localScale.z);
+
+            }
+        }
     }
 
     public void EndTaunt() {
@@ -281,8 +311,8 @@ public class General : Unit
                     regenTimer = 0;
                     HP++;
                     HealthBar.transform.localScale = new Vector3(HP / maxHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
-                    HealthBar.SetActive(true);
-                    HealthTimer = 0;
+                    //HealthBar.SetActive(true);
+                    //HealthTimer = 0;
                 }
             }
             else {

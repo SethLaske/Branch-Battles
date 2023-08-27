@@ -5,6 +5,7 @@ using UnityEngine;
 public class CommanderOuthouse : Building
 {
     [SerializeField] private Commander resident;
+    [SerializeField] private Building nextBarracks;
 
     [SerializeField] private Magic spawnMagic;
     [SerializeField] private float magicSpawnPosition;
@@ -34,7 +35,7 @@ public class CommanderOuthouse : Building
         //Spawn a wave of enemies 
         float spawnPosition = transform.position.x + (-1 * Team * spaceToFirstEnemy);
         foreach (Unit unit in finalEnemies) {
-            General.SpawnUnit(unit, new Vector3(spawnPosition, transform.position.y, transform.position.z));
+            General.ForceSpawnUnit(unit, new Vector3(spawnPosition, transform.position.y, transform.position.z));
             spawnPosition += (-1 * Team * spaceBetweenEnemies);
         }
 
@@ -43,6 +44,8 @@ public class CommanderOuthouse : Building
         resident.enabled = true;
         resident.gameObject.SetActive(true);
         General.maxTroopCount = 0;
+
+        General.barracks = nextBarracks;
 
         base.Die();
     }

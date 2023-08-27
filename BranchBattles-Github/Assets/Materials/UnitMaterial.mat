@@ -74,6 +74,7 @@ Material:
     - _BeltColor: {r: 0.078431375, g: 0.04705883, b: 0.43137258, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
+    - _HornColor: {r: 0, g: 0, b: 0, a: 0}
     - _PantColor: {r: 0.09019608, g: 0.09019608, b: 0.18039216, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShoulderColor: {r: 0.2901961, g: 0.2392157, b: 0.17254902, a: 1}

@@ -132,6 +132,19 @@ public class TeamInfo : MonoBehaviour
         UpdateGeneral();
     }
 
+    public void ForceSpawnUnit(Unit newUnit, Vector3 position = default) {
+        if (position == default)
+        {
+            position = new Vector3(barracks.transform.position.x + (Team * 1f), 0, 0);
+        }
+
+        troopCount += newUnit.TroopSpaces;
+        troopCategory[newUnit.unitClassification]++;
+
+        SpawnUnit(newUnit, position);
+
+        UpdateGeneral();
+    }
 
     /*public void UseMagic(Magic magic, float distance) {
         if (souls > magic.SoulCost) {
@@ -147,7 +160,7 @@ public class TeamInfo : MonoBehaviour
             return;
         }
         rallyPoint = rally;
-        rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y);
+        rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y, rallyFlag.transform.position.z);
         //Play flag noise or smth
         rallyFlag.GetComponent<Animator>().SetTrigger("Drop");
 
