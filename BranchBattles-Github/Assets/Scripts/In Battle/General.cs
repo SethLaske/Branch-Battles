@@ -256,6 +256,7 @@ public class General : Unit
                 if (currentGoldAmount > maxGoldAmount) currentGoldAmount = maxGoldAmount;
 
                 mine.IncreaseMultiplier(miningIncrement);
+                mine.MineHit(transform.position);
                 goldBar.transform.localScale = new Vector3((float)currentGoldAmount / maxGoldAmount, goldBar.transform.localScale.y, goldBar.transform.localScale.z);
 
             }

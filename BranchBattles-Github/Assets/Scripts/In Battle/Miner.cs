@@ -98,7 +98,12 @@ public class Miner : Unit
         animator.SetTrigger("Mining");
         float swings = Mathf.Ceil((float)maxGoldAmount * mineHardness / miningSpeed);
         //Debug.Log("Time Starting");
-        yield return new WaitForSeconds(attackAnimation.length * swings);
+        for (int i = 0; i < swings; i++) {
+            yield return new WaitForSeconds(attackAnimation.length/2);
+            mine.MineHit(transform.position);
+            yield return new WaitForSeconds(attackAnimation.length / 2);
+        }
+        //yield return new WaitForSeconds(attackAnimation.length * swings);
         currentGoldAmount = maxGoldAmount;
 
         animator.SetTrigger("Walking");
@@ -109,6 +114,7 @@ public class Miner : Unit
 
         //Debug.Log("Time ending");
     }
+
 
     /*public void changeResource() {
         if (!Full)
