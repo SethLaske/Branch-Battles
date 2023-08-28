@@ -6,17 +6,16 @@ public class PopUpScreen : MonoBehaviour
 {
     [SerializeField] private string popUpName;
 
-
     void Start()
     {
-        if (PlayerPrefs.HasKey(popUpName) == false) {
+        if (PlayerInfo.PopUpKeys.ContainsKey(popUpName) == false) {
             gameObject.SetActive(false);
             return;
         }
 
-        if (PlayerPrefs.GetInt(popUpName) == -1)
+        if (PlayerInfo.PopUpKeys[popUpName] == false)
         {
-            PlayerPrefs.SetInt(popUpName, 1);
+            PlayerInfo.PopUpKeys[popUpName] = true;
             gameObject.SetActive(true);
         }
         else {

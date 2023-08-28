@@ -6,6 +6,7 @@ public class PlayerInfo
 {
     public static Dictionary<int, bool> LevelKeys = new Dictionary<int, bool>();
     public static Dictionary<int, bool> TroopKeys = new Dictionary<int, bool>();
+    public static Dictionary<string, bool> PopUpKeys = new Dictionary<string, bool>();
     public static int TroopSpaces;
 
     public static Unit[] PlayerTroops = new Unit[5];
@@ -17,9 +18,18 @@ public class PlayerInfo
 
     public static void ClearPlayerInfo()
     {
+        InitPlayerInfo();
         LevelKeys.Clear();
         TroopKeys.Clear();
+        PopUpKeys.Clear();
         TroopSpaces = 0;
+        PlayerTroops = new Unit[5];
+    }
+
+    public static void InitPlayerInfo() {
+        LevelKeys = new Dictionary<int, bool>();
+        TroopKeys = new Dictionary<int, bool>();
+        PopUpKeys = new Dictionary<string, bool>();
         PlayerTroops = new Unit[5];
     }
    

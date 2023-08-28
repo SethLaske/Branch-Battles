@@ -241,11 +241,11 @@ public class General : Unit
         // Check if the raycast hit a collider.
         foreach (RaycastHit2D hit in hits)
         {
-            Debug.Log("hit this mining: " + hit.collider.gameObject.name);
+            //Debug.Log("hit this mining: " + hit.collider.gameObject.name);
             Mine mine = hit.collider.gameObject.GetComponent<Mine>();
             if (mine != null)
             {
-                Debug.Log("Made contact with mine");
+                //Debug.Log("Made contact with mine");
 
                 if (currentGoldAmount != maxGoldAmount)
                 {

@@ -9,6 +9,7 @@ public class GameData
 {
     public Dictionary<int, bool> LevelKeys = new Dictionary<int, bool>();
     public Dictionary<int, bool> TroopKeys = new Dictionary<int, bool>();
+    public Dictionary<string, bool> PopUpKeys = new Dictionary<string, bool>();
     public int TroopSpaces;
     public int[] ActiveRoster = new int [5];
 }
@@ -68,6 +69,7 @@ public class SaveManager : MonoBehaviour
         //Saves most of the data directly from the static player info script
         SaveFile.LevelKeys = PlayerInfo.LevelKeys;
         SaveFile.TroopKeys = PlayerInfo.TroopKeys;
+        SaveFile.PopUpKeys = PlayerInfo.PopUpKeys;
         SaveFile.TroopSpaces = PlayerInfo.TroopSpaces;
 
         Debug.Log("Saving a player with this many troop spaces: " + PlayerInfo.TroopSpaces);
@@ -104,12 +106,13 @@ public class SaveManager : MonoBehaviour
         //Recopies most of the data
         PlayerInfo.LevelKeys = SaveFile.LevelKeys;
         PlayerInfo.TroopKeys = SaveFile.TroopKeys;
+        PlayerInfo.PopUpKeys = SaveFile.PopUpKeys;
         PlayerInfo.TroopSpaces = SaveFile.TroopSpaces;
 
         //I am using a list since it was easy to edit in the inspector but decodes the troops to the player for their use
         for (int i = 0; i < PlayerInfo.PlayerTroops.Length; i++)
         {
-            //Debug.Log("Coded Roster is " + SaveFile.ActiveRoster[i]);
+            
             if (SaveFile.ActiveRoster[i] >= 0)
             {
                 PlayerInfo.PlayerTroops[i] = UnitCoder[SaveFile.ActiveRoster[i]];

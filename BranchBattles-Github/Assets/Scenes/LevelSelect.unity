@@ -885,6 +885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 299072453}
+  - component: {fileID: 299072454}
   m_Layer: 5
   m_Name: PopUpScreens
   m_TagString: Untagged
@@ -916,6 +917,23 @@ RectTransform:
   m_AnchoredPosition: {x: -116.70599, y: -29.653992}
   m_SizeDelta: {x: 795.292, y: 825.89}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &299072454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299072452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab6ceb17fab543e4a98f3c4cc5e7d31d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpScreens:
+  - {fileID: 378303524}
+  - {fileID: 337812898}
+  - {fileID: 804168601}
+  - {fileID: 1076997783}
 --- !u!1 &329447535
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +966,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &337812898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5516872789552934010, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+  m_PrefabInstance: {fileID: 5516872790039961559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &365752639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1106,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 365752639}
   m_CullTransparentMesh: 1
+--- !u!1 &378303524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5516872789552934010, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+  m_PrefabInstance: {fileID: 1383123284}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &391816077
 GameObject:
   m_ObjectHideFlags: 0
@@ -1796,6 +1824,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &804168601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5516872789552934010, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+  m_PrefabInstance: {fileID: 1085591728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &883162308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2374,6 +2407,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047505707}
   m_CullTransparentMesh: 1
+--- !u!1 &1076997783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5516872789552934010, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+  m_PrefabInstance: {fileID: 1905380654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1085591728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3018,6 +3056,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 299072453}
     m_Modifications:
+    - target: {fileID: 2512984851932595834, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
+      objectReference: {fileID: 0}
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
       value: 'Not only can you heal and train soldiers in your camp, but you also
@@ -3119,7 +3161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934010, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789740352452, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
@@ -5034,6 +5076,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 299072453}
     m_Modifications:
+    - target: {fileID: 1891708762629920007, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_text
+      value: 'The shield wielders respected your combat abilities and will join your
+        army
+
+        Go to the barracks to edit your army composition between battles '
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516872789540063063, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934009, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -5129,6 +5186,10 @@ PrefabInstance:
     - target: {fileID: 5516872789740352452, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
       value: Your Army Grows
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516872789740352454, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}

@@ -112,9 +112,13 @@ public class LevelManager : MonoBehaviour
                 PlayerInfo.TroopSpaces = maxPlayerTroops;
             }
 
-            if (popUpName != "" && PlayerPrefs.HasKey(popUpName) == false)
+            
+
+            if (popUpName != "" && PlayerInfo.PopUpKeys.ContainsKey(popUpName) == false)
             {
-                PlayerPrefs.SetInt(popUpName, -1);
+                
+                PlayerInfo.PopUpKeys.Add(popUpName, false);
+               
             }
 
         }
