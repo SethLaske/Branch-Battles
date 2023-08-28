@@ -18,7 +18,7 @@ public class Tutorial : MonoBehaviour
     public Unit spear;
 
     public int screenToChargeOn;
-
+    public GameObject introPrompt;
     public List<TutorialExplanation> allTutorialScreens;
     public int tutorialStepIndex = 0;
 
@@ -41,6 +41,7 @@ public class Tutorial : MonoBehaviour
     
     void Start()
     {
+        introPrompt.SetActive(true);
         PlayerInfo.PlayerTroops[0] = miner;
         PlayerInfo.PlayerTroops[1] = fighter;
         PlayerInfo.PlayerTroops[2] = spear;
@@ -55,14 +56,14 @@ public class Tutorial : MonoBehaviour
         Barbarians.gold = 1000;
         Barbarians.TrainUnit(fighter);
         Barbarians.TrainUnit(fighter);
-        //Barbarians.TrainUnit(fighter);
+        Barbarians.TrainUnit(fighter);
         //Barbarians.TrainUnit(fighter);
         Barbarians.TrainUnit(fighter);
-        //Barbarians.TrainUnit(spear);
         Barbarians.TrainUnit(spear);
         Barbarians.TrainUnit(spear);
+        Barbarians.TrainUnit(spear);
         //Barbarians.TrainUnit(spear);
-        Barbarians.gold = 00;
+        Barbarians.gold = 0;
         Barbarians.AFKGoldAmount = 0;
         //Barbarians.SetRallyPoint(15);
 
@@ -129,8 +130,8 @@ public class Tutorial : MonoBehaviour
             }
         }
 
-        Barbarians.gold = 100;
-        Barbarians.AFKGoldAmount = 5;
+        Barbarians.gold = 50;
+        Barbarians.AFKGoldAmount = 3;
 
         this.gameObject.SetActive(false);
     }
@@ -171,8 +172,8 @@ public class Tutorial : MonoBehaviour
                 }
             }
 
-            Barbarians.gold = 100;
-            Barbarians.AFKGoldAmount = 5;
+            Barbarians.gold = 50;
+            Barbarians.AFKGoldAmount = 3;
         }
 
         if (tutorialStepIndex < allTutorialScreens.Count)

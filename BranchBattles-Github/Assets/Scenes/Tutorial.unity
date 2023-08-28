@@ -266,7 +266,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: You need men to sacrifice. Approach the tent and train some new fighters
+      value: While in your camp train some new fighters. Some of them may die but
+        that is a sacrifice you are willing to make.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_fontSize
@@ -326,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1431,7 +1432,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2473,7 +2474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2734,6 +2735,168 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &930912876
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1290589293}
+    m_Modifications:
+    - target: {fileID: 1336048651021269985, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6232027502955992732, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_text
+      value: Once you've collected some gold walk it back to the tent. You can also
+        use space to break skulls instead of rocks if you want.
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092192, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_Name
+      value: Mine General
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092192, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: UseTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: ReadBuffer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: UIRevealed
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: NextTutorial
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: timeToNextStep
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: tutorialManager
+      value: 
+      objectReference: {fileID: 1290589294}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703791310099057299, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+--- !u!224 &930912877 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+  m_PrefabInstance: {fileID: 930912876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &930912878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
+  m_PrefabInstance: {fileID: 930912876}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89638d1457a16404fbb5e0c440db2980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &933379148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3372,7 +3535,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: Glad you could join the party. Don't die. WASD to move. Space to attack.
+      value: Glad you could join the party. Don't die. WASD to move. Go warm up by
+        hitting space near some rocks.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092192, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_Name
@@ -3400,7 +3564,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: timeToNextStep
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092194, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: tutorialManager
@@ -3701,6 +3865,7 @@ RectTransform:
   - {fileID: 871400994132602262}
   - {fileID: 781885642}
   - {fileID: 1380735940}
+  - {fileID: 930912877}
   - {fileID: 327011310}
   - {fileID: 417003167}
   - {fileID: 2115650026}
@@ -3729,15 +3894,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundButton: {fileID: 1196024794}
   UI: {fileID: 569506430}
-  Peasants: {fileID: 0}
+  Peasants: {fileID: 734543688}
   Barbarians: {fileID: 1511580421}
   miner: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
   fighter: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   spear: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
-  screenToChargeOn: 4
+  screenToChargeOn: 5
+  introPrompt: {fileID: 871400994132602261}
   allTutorialScreens:
   - {fileID: 1531961646}
   - {fileID: 1200009152}
+  - {fileID: 930912878}
   - {fileID: 99973721}
   - {fileID: 1754176370}
   - {fileID: 468733548}
@@ -4052,7 +4219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4186,6 +4353,10 @@ PrefabInstance:
     - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: AFKGoldTime
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872321043829000162, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
+      propertyPath: maxTroopCount
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3665526228847971978, guid: 2f3db527c97d2a94799684e7ad0f1017, type: 3}
       propertyPath: m_Color.b
@@ -4417,7 +4588,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: Move the camera by holding right click down and moving the mouse.
+      value: Move the camera by holding right click down and moving the mouse in
+        the direction you would like to see.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092192, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_Name
@@ -4786,8 +4958,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: Soldiers are expensive. Send the children to the mines, train some miners
-        to get gold faster
+      value: Soldiers are expensive and you are tired. Train some minors to get gold
+        faster, after all they yearn for the mines
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_fontSize
@@ -4851,7 +5023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5383,7 +5555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092195, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_AnchorMax.x
@@ -5726,7 +5898,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -5837,7 +6009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &871400994132602262
 RectTransform:
   m_ObjectHideFlags: 0
