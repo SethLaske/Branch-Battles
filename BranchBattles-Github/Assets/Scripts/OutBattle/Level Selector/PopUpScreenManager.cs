@@ -5,7 +5,7 @@ using UnityEngine;
 public class PopUpScreenManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> popUpScreens;
-    void Start()
+    void Awake()
     {
         foreach (GameObject popUp in popUpScreens) {
             popUp.SetActive(true);

@@ -251,7 +251,7 @@ MonoBehaviour:
   goldBar: {fileID: 4728883907409749206}
   goldBarAppearanceTime: 1.5
   minePoint: {fileID: 3552886358842626078}
-  goldPerHit: 5
+  goldPerHit: 15
   maxGoldAmount: 50
   miningIncrement: 0.03
   goldDropOff: {fileID: 343894948525383817}

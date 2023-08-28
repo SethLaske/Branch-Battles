@@ -9,7 +9,7 @@ public class TheWorld : MonoBehaviour
     public float abilityRadius;
     private GameObject[] Crusaders;
     // Start is called before the first frame update
-    public void UseMagic()
+    public void OnEnable()
     {
         StartCoroutine(EnterDio());
     }

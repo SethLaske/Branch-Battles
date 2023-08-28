@@ -684,14 +684,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Level Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 3552476931986461190, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 338
-      objectReference: {fileID: 0}
-    - target: {fileID: 3552476931986461190, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -159
-      objectReference: {fileID: 0}
     - target: {fileID: 3842601180672011752, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
       value: 1

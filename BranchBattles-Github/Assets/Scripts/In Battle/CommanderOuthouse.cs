@@ -19,6 +19,13 @@ public class CommanderOuthouse : Building
     // Start is called before the first frame update
     void Start()
     {
+        if (spawnMagic != null)
+        {
+            spawnMagic = Instantiate(spawnMagic, Vector3.zero, Quaternion.identity);
+            spawnMagic.SetTeamInfo(General);
+            spawnMagic.gameObject.SetActive(false);
+        }
+
         Team = General.Team;
         resident.gameObject.SetActive(false);
     }
@@ -30,7 +37,22 @@ public class CommanderOuthouse : Building
 
     IEnumerator CommanderSpawnRoutine() {
         //Throw down two lightning spells
+        if (spawnMagic != null) {
+            //spawnMagic.TriggerMagic();
+            spawnMagic.ActivateMagic(magicSpawnPosition);
 
+            spawnMagic = Instantiate(spawnMagic, Vector3.zero, Quaternion.identity);
+            spawnMagic.SetTeamInfo(General);
+            spawnMagic.gameObject.SetActive(false);
+
+            spawnMagic.ActivateMagic(magicSpawnPosition);
+            spawnMagic = Instantiate(spawnMagic, Vector3.zero, Quaternion.identity);
+            spawnMagic.SetTeamInfo(General);
+            spawnMagic.gameObject.SetActive(false);
+
+            spawnMagic.ActivateMagic(magicSpawnPosition);
+        }
+        yield return new WaitForSeconds(5);
 
         //Spawn a wave of enemies 
         float spawnPosition = transform.position.x + (-1 * Team * spaceToFirstEnemy);

@@ -42,6 +42,7 @@ public class General : Unit
         taunting = false;
         //MoveSpeed = baseSpeed;
         HealthBar.SetActive(false);
+        healthBarStartScale = HealthBar.transform.localScale.x;
     }
 
     // Update is called once per frame

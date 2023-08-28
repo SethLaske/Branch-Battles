@@ -5571,6 +5571,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
+      propertyPath: souls
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: general
       value: 
       objectReference: {fileID: 1136284411}

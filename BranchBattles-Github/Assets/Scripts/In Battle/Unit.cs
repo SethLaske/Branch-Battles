@@ -29,6 +29,7 @@ public class Unit : Damageable
 
     [Header("Misc")]
     public GameObject HealthBar;    //Health bar is currently handled here... probably shouldnt
+    protected float healthBarStartScale;
     public float AppearanceTime = 1.5f;
 
     protected float HealthTimer = 0;
@@ -71,7 +72,7 @@ public class Unit : Damageable
             HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
         }
         general = General.general;
-
+        healthBarStartScale = HealthBar.transform.localScale.x;
 
         ChangeUnitColors();
 
@@ -279,7 +280,7 @@ public class Unit : Damageable
     public override void TakeDamage(float Damage)
     {
         base.TakeDamage(Damage);
-        HealthBar.transform.localScale = new Vector3(HP / maxHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
+        HealthBar.transform.localScale = new Vector3(healthBarStartScale * HP / maxHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
         //slider.value = HealthObject.HP;
         HealthBar.SetActive(true);
         HealthTimer = 0;

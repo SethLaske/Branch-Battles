@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magicName: Dio?
-  cooldownTime: 5
+  cooldownTime: 13
   buttonUI: {fileID: 21300000, guid: 15c4c30c64fc2964ca044c3c824f5231, type: 3}
   soulCost: 6
   mouseTracker: {fileID: 1848603111089439949}

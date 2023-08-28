@@ -18,9 +18,10 @@ public class Lightning : MonoBehaviour
     [SerializeField]  private float  startfinishDelayTime;
 
     // Start is called before the first frame update
-    public void UseMagic()
+    public void OnEnable()
     {
         timer = 0;
+        Debug.Log("Setting Storm Y");
         transform.position = new Vector3(transform.position.x, stormSpawnHeight, 0);
         //StartCoroutine(LightningStorm());
     }
