@@ -160,19 +160,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 0
-  HP: 20
-  Armor: 0
+  HP: 30
+  Armor: 1
   animator: {fileID: 2093407103127303479}
   unitName: Archer
   UnitNumber: 5
   unitClassification: 3
   Offense: {fileID: 6513884397966661677}
   baseSpeed: 4
-  Damage: 2
+  Damage: 3
   AttackRange: 12
   AgroRange: 20
   attackHitTime: 0.6
-  Cost: 70
+  Cost: 175
   TroopSpaces: 2
   SpawnTime: 6
   HealthBar: {fileID: 6538940209353703374}

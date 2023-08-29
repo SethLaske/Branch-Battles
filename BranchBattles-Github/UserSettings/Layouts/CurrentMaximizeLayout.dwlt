@@ -210,8 +210,8 @@ MonoBehaviour:
     y: 0
     width: 303.2
     height: 508
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 7}
   m_Panes:
   - {fileID: 7}
@@ -248,9 +248,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: dc720000
+      m_SelectedIDs: ca790000
       m_LastClickedID: 0
-      m_ExpandedIDs: 28fefcff6e2dfdff8c30fdff543bfdff8c45fdff3ad4fdffa2d5fdffec13feffdc1bfeffe465feff7a68feff0e70feffca89feffbe94feff0295feff9897feffecddfeff02defeff04defeff46f4feff5cf4feff5ef4feffa035ffff963bffffac3bffffae3bffffe03fffffe83fffff5240ffffb84effff6850ffffbe53ffff665effff706bffffea79ffff8489ffff2894ffffd495ffff7e9dffff949dffff969dffff2aa9ffff2ca9ffffc4b0ffffa0b6ffffb6b6ffffb8b6ffff72c9ffff88c9ffff8ac9ffff0aceffffc0f3ffff20fbffff2a9d00004e9d00001cda000040da0000ace00000d0e00000a652010006cb010030cb0100
+      m_ExpandedIDs: 6ae8ffff80f3fffff4f4ffff04f5ffff12f5ffff28fbffff1a7a0000447a0000647a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -550,9 +550,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 621.0442, y: 365.47836, z: -6.9888377}
+    m_Target: {x: 898.47217, y: 586.33875, z: -4.85576}
     speed: 2
-    m_Value: {x: 621.0442, y: 365.47836, z: -6.9888377}
+    m_Value: {x: 898.47217, y: 586.33875, z: -4.85576}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -603,9 +603,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 748.62744
+    m_Target: 535.3197
     speed: 2
-    m_Value: 748.62744
+    m_Value: 535.3197
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1826,22 +1826,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/Magic
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/Magic
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\small\OneDrive\Documents\GitHub\Personal-Game\BranchBattles-Github
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 191}
-    m_SelectedIDs: be7f0000
-    m_LastClickedID: 32702
-    m_ExpandedIDs: 00000000e2780000e4780000e6780000e8780000ea780000ec780000ee780000f0780000f2780000f4780000f6780000f8780000fa780000fc780000fe780000007900000279000004790000067900001679000000ca9a3b
+    scrollPos: {x: 0, y: 131}
+    m_SelectedIDs: 98790000
+    m_LastClickedID: 31128
+    m_ExpandedIDs: 000000003e79000040790000427900004479000046790000487900004a7900004c7900004e79000050790000527900005479000056790000587900005a7900005c7900005e79000060790000627900006479000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1869,7 +1869,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e2780000e4780000e6780000e8780000ea780000ec780000ee780000f0780000f2780000f4780000f6780000f8780000fa780000fc780000fe780000007900000279000004790000067900001679000000ca9a3b
+    m_ExpandedIDs: 000000003e79000040790000427900004479000046790000487900004a7900004c7900004e79000050790000527900005479000056790000587900005a7900005c7900005e79000060790000627900006479000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1894,10 +1894,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: dc720000
-    m_LastClickedInstanceID: 29404
-    m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300006a670000c8620000a26a0000f8630000d8710000a8610000766e00004c90000078630000e8150100b28000004064000030690000e46300007c620000ee6b0000b8630000186800001a7c0000d06a00003e6a0000b46b0000ca960000966c0100d4630000cc630000c0660000b46300005c0b0400f62a0400da6c0000228b00007a650000c66500004a6700001470000092730000c06b0000000000009e7c00005e890000a47100008e7900009c740000
+    m_SelectedInstanceIDs: ca790000
+    m_LastClickedInstanceID: 31178
+    m_HadKeyboardFocusLastEvent: 1
+    m_ExpandedInstanceIDs: c62300006a670000c8620000a26a0000f8630000d8710000a8610000766e00004c90000078630000e8150100b28000004064000030690000e46300007c620000ee6b0000b8630000186800001a7c0000d06a00003e6a0000b46b0000ca960000966c0100d4630000cc630000c0660000b46300005c0b0400f62a0400da6c0000228b00007a650000c66500004a6700001470000092730000c06b0000000000009e7c00005e890000a47100008e7900009c740000727e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1983,7 +1983,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -184978
+  m_LastSelectedObjectID: -2836
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52

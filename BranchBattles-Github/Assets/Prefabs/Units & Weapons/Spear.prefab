@@ -293,11 +293,11 @@ MonoBehaviour:
   unitClassification: 3
   Offense: {fileID: 4280810500101309706}
   baseSpeed: 4
-  Damage: 7
+  Damage: 5
   AttackRange: 5
   AgroRange: 12
   attackHitTime: 1.05
-  Cost: 45
+  Cost: 125
   TroopSpaces: 1
   SpawnTime: 2.5
   HealthBar: {fileID: 5300005156802094862}

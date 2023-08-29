@@ -216,8 +216,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 1
-  HP: 25
-  Armor: 1
+  HP: 40
+  Armor: 0
   animator: {fileID: 2678390886374889586}
   unitName: General Kenobi
   UnitNumber: 0

@@ -111,7 +111,7 @@ public class Miner : Unit
         transform.localScale = new Vector3(-1 * Team, 1, 1);
         mineSpot = nullMine;
         mine = null;
-
+        DebuffMult *= 1.5f;
         //Debug.Log("Time ending");
     }
 
@@ -182,6 +182,7 @@ public class Miner : Unit
 
             transform.localScale = new Vector3(1 * Team, 1, 1);
             currentGoldAmount = 0;
+            DebuffMult /= 1.5f;
             //State = "Walk";
         }
     }

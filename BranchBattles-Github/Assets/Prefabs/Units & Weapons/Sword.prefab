@@ -179,7 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 0
-  HP: 35
+  HP: 40
   Armor: 1
   animator: {fileID: 8141524261004105529}
   unitName: Sword
@@ -191,7 +191,7 @@ MonoBehaviour:
   AttackRange: 1.5
   AgroRange: 8
   attackHitTime: 0.5
-  Cost: 55
+  Cost: 200
   TroopSpaces: 1
   SpawnTime: 4
   HealthBar: {fileID: 3473122022346028965}

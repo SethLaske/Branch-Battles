@@ -54,7 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   General: {fileID: 0}
   Team: 0
-  HP: 45
+  HP: 50
   Armor: 5
   animator: {fileID: 2161251198339348535}
   unitName: Shield
@@ -62,11 +62,11 @@ MonoBehaviour:
   unitClassification: 1
   Offense: {fileID: 6059042076321823989}
   baseSpeed: 3
-  Damage: 5
+  Damage: 4
   AttackRange: 1
   AgroRange: 8
   attackHitTime: 1.3
-  Cost: 60
+  Cost: 250
   TroopSpaces: 2
   SpawnTime: 1
   HealthBar: {fileID: 4752767468309713435}

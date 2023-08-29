@@ -52,7 +52,7 @@ MonoBehaviour:
   Team: 1
   AFKGoldAmount: 5
   AFKGoldTime: 5
-  gold: 100
+  gold: 300
   troopCount: 0
   maxTroopCount: 20
   souls: 3

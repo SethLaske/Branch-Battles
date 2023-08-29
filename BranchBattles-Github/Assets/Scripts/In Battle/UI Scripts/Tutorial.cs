@@ -130,7 +130,7 @@ public class Tutorial : MonoBehaviour
             }
         }
 
-        Barbarians.gold = 50;
+        Barbarians.gold = 200;
         Barbarians.AFKGoldAmount = 3;
 
         this.gameObject.SetActive(false);
@@ -172,7 +172,7 @@ public class Tutorial : MonoBehaviour
                 }
             }
 
-            Barbarians.gold = 50;
+            Barbarians.gold = 200;
             Barbarians.AFKGoldAmount = 3;
         }
 

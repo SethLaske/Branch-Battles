@@ -57,7 +57,7 @@ MonoBehaviour:
   General: {fileID: 0}
   Team: 0
   HP: 75
-  Armor: 2
+  Armor: 3
   animator: {fileID: 827475495931192477}
   unitName: Rage
   UnitNumber: 6
@@ -68,7 +68,7 @@ MonoBehaviour:
   AttackRange: 2
   AgroRange: 1000
   attackHitTime: 0.5
-  Cost: 100
+  Cost: 500
   TroopSpaces: 3
   SpawnTime: 9
   HealthBar: {fileID: 6300745623428976305}

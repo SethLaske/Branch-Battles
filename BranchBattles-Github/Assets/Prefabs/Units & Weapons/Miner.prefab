@@ -150,7 +150,7 @@ MonoBehaviour:
   AttackRange: 2
   AgroRange: 0
   attackHitTime: 0
-  Cost: 30
+  Cost: 100
   TroopSpaces: 1
   SpawnTime: 1
   HealthBar: {fileID: 3822985507771200833}
@@ -167,8 +167,8 @@ MonoBehaviour:
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 2bd8a471796ed6c49ac1a5af433a1a01, type: 2}
   identifierSprite: {fileID: -1395150292, guid: c41c4cc7633b80f418b1e77bef76abcd, type: 3}
-  miningSpeed: 10
-  maxGoldAmount: 30
+  miningSpeed: 15
+  maxGoldAmount: 40
   dropOff: {fileID: 7331307722458310760}
   miningIncrement: 0.025
   mineDetectionBoxSize: {x: 8, y: 5}
