@@ -284,6 +284,7 @@ MonoBehaviour:
     PotentialSpawns:
     - {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
     - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+  lightningMagic: {fileID: 5696295148291148339, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
 --- !u!1 &7236281997680776217
 GameObject:
   m_ObjectHideFlags: 0

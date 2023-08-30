@@ -665,6 +665,7 @@ MonoBehaviour:
   soulCost: 6
   mouseTracker: {fileID: 1848603111089439949}
   yHeight: 2
+  trackerMoveSpeed: 8
   magicEffect: {fileID: 7827246461068230770}
   magicButton: {fileID: 0}
 --- !u!1 &1848603112241430739

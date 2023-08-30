@@ -17,24 +17,25 @@ public class Magic : MonoBehaviour
 
     public GameObject mouseTracker;
     public float yHeight;
+    public float trackerMoveSpeed;
 
     public GameObject magicEffect;
     //Will likely need to figure out enums to give it a type, for example lighting is offensive, The World is utility, and maybe a buffing or healing type spell
 
     [HideInInspector] public MagicButtons magicButton;
 
-    private bool magicUsed;
+    private bool magicAvailable = true;
 
 
     /*private void Start()
     {
-        magicUsed = false;
+        magicAvailable = false;
         mouseTracker.SetActive(true);
         magicEffect.SetActive(false);
     }*/
     
     public void TriggerMagic() {
-        magicUsed = false;
+        magicAvailable = true;
         gameObject.SetActive(true);
         mouseTracker.SetActive(true);
         magicEffect.SetActive(false);
@@ -46,7 +47,7 @@ public class Magic : MonoBehaviour
             return;
         }
 
-        if (magicUsed == true) {
+        if (magicAvailable == false) {
             return;
         }
             
@@ -74,6 +75,30 @@ public class Magic : MonoBehaviour
     }
 
     //TODO: Make a function (Coroutine that moves the tracker over to its desired position, giving the player time to respond and see whats going on)
+    public void SendMagicToLocation(float startXPosition, float endXPosition) {
+        if (magicAvailable == false) return;
+        
+        TriggerMagic();
+        magicAvailable = false;
+        mouseTracker.transform.position = new Vector3(startXPosition, mouseTracker.transform.position.y, 0);
+        StartCoroutine(MoveTrackerToPoint(endXPosition));
+    }
+
+    IEnumerator MoveTrackerToPoint(float endPosition)
+    {
+        Vector3 finalPosition = new Vector3(endPosition, mouseTracker.transform.position.y, mouseTracker.transform.position.z);
+        while(mouseTracker.transform.position.x != endPosition)
+        {
+            if (LevelManager.gameState == GameState.InGame)
+            { 
+                mouseTracker.transform.position = Vector3.MoveTowards(mouseTracker.transform.position, finalPosition, trackerMoveSpeed * Time.deltaTime); 
+            }
+
+            yield return null;
+        }
+
+        ActivateMagic(endPosition);
+    }
 
     public void ActivateMagic(float xPosition)     
     {
@@ -90,10 +115,11 @@ public class Magic : MonoBehaviour
 
         if (magicButton != null) {
             magicButton.thisButton.interactable = false;
-            Invoke("EnableButton", cooldownTime);
         }
+        
+        Invoke("RefreshMagic", cooldownTime);
         //StartCoroutine(ButtonCooldown());
-        magicUsed = true;
+        //magicAvailable = true;
     }
 
     public void SetTeamInfo(TeamInfo teamInfo) {
@@ -107,10 +133,15 @@ public class Magic : MonoBehaviour
 
         yield return new WaitForSeconds(cooldownTime);
 
+        magicAvailable = true;
         magicButton.thisButton.interactable = true;
     }
 
-    private void EnableButton() {
-        magicButton.thisButton.interactable = true;
+    private void RefreshMagic() {
+        if (magicButton != null)
+        {
+            magicButton.thisButton.interactable = true;
+        }
+        magicAvailable = true;
     }
 }

@@ -293,7 +293,7 @@ MonoBehaviour:
   unitClassification: 3
   Offense: {fileID: 4280810500101309706}
   baseSpeed: 4
-  Damage: 5
+  Damage: 6
   AttackRange: 5
   AgroRange: 12
   attackHitTime: 1.05

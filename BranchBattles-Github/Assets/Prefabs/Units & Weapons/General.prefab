@@ -253,7 +253,7 @@ MonoBehaviour:
   minePoint: {fileID: 3552886358842626078}
   goldPerHit: 15
   maxGoldAmount: 50
-  miningIncrement: 0.03
+  miningIncrement: 0
   goldDropOff: {fileID: 343894948525383817}
 --- !u!58 &5403574557600635432
 CircleCollider2D:

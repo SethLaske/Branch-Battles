@@ -29,7 +29,13 @@ public class Lightning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+
+        if (LevelManager.gameState != GameState.InGame)
+        {
+            return;
+        }
+
+            timer += Time.deltaTime;
         if (timeStarted + startfinishDelayTime > timer) {
             return;
         }

@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
             //Decide if I want to reset its position, disappear it, or merely have it not follow
 
             if (worldpos.y <= 3) { 
-                Peasants.rallyFlag.transform.position = new Vector3(worldpos.x, Peasants.rallyFlag.transform.position.y, 0);
+                Peasants.rallyFlag.transform.position = new Vector3(worldpos.x, Peasants.rallyFlag.transform.position.y, Peasants.rallyFlag.transform.position.z);
             }
             else
             {

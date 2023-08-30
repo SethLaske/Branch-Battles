@@ -5635,6 +5635,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: lightningMagic
+      value: 
+      objectReference: {fileID: 5696295148291148339, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: souls
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: Opponent
       value: 
