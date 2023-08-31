@@ -601,10 +601,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2748978945758067262, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2867035553263183690, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_TagString
       value: Level Manager
@@ -822,10 +818,6 @@ PrefabInstance:
       value: Welcome to the testing level. If you were invited here, you should be
         scared
       objectReference: {fileID: 0}
-    - target: {fileID: 9005457932819885957, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9109510945635343111, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -843,6 +835,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &208384112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2748978945758067262, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+  m_PrefabInstance: {fileID: 208384110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &208384113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9005457932819885957, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+  m_PrefabInstance: {fileID: 208384110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &229337824
 GameObject:
   m_ObjectHideFlags: 0
@@ -3912,6 +3914,9 @@ MonoBehaviour:
   - {fileID: 1858108115}
   - {fileID: 1452581696}
   tutorialStepIndex: 0
+  disabledOptionsOnFirstPlaythrough:
+  - {fileID: 208384113}
+  - {fileID: 208384112}
 --- !u!224 &1335778447 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2684548667079945193, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
@@ -4478,6 +4483,7 @@ MonoBehaviour:
   finalSpawns:
     PotentialSpawns:
     - {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+  lightningMagic: {fileID: 0}
 --- !u!1 &1531653577
 GameObject:
   m_ObjectHideFlags: 0

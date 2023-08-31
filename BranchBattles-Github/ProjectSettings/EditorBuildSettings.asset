@@ -21,15 +21,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: f1b510b8f9bbcc54283d5a34b3699c56
   - enabled: 1
-    path: Assets/Scenes/Standard.unity
+    path: Assets/Scenes/Section 1 Levels/Standard.unity
     guid: 4be9de4450e958b4fb0ef6c0e42380b2
   - enabled: 1
-    path: Assets/Scenes/Survival.unity
+    path: Assets/Scenes/Section 1 Levels/Survival.unity
     guid: 1513864cee4328345bac1d33c0c999dc
   - enabled: 1
-    path: Assets/Scenes/Count Down.unity
+    path: Assets/Scenes/Section 1 Levels/Count Down.unity
     guid: a0c6cf20ec843d54096c01c3851c13d9
   - enabled: 1
-    path: Assets/Scenes/Commander Fight.unity
+    path: Assets/Scenes/Section 1 Levels/Commander Fight.unity
     guid: 861a5a21291b505428ccb4ebeaad6c1d
   m_configObjects: {}

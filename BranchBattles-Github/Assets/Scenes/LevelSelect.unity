@@ -744,7 +744,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088295438812, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: requiredLevels.Array.data[0]
-      value: 3
+      value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088295438812, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: requiredLevels.Array.data[1]
@@ -3694,6 +3694,10 @@ PrefabInstance:
       propertyPath: requiredLevels.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4677096088295438812, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
+      propertyPath: requiredLevels.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6710935520640469688, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3941,7 +3945,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088295438812, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: requiredLevels.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088295438812, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: requiredLevels.Array.data[0]

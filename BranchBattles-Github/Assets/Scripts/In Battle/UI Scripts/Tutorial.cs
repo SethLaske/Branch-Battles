@@ -24,6 +24,8 @@ public class Tutorial : MonoBehaviour
 
     private bool stepActive = false;    //Using to ensure the user cant double click through steps
 
+    public List<GameObject> disabledOptionsOnFirstPlaythrough;
+
     /*
     [Header ("Tutorial Explanation Screens")]
     public GameObject CameraScreen;
@@ -76,6 +78,11 @@ public class Tutorial : MonoBehaviour
             
         }
 
+        if (PlayerInfo.LevelKeys[0] == false) {
+            foreach (GameObject option in disabledOptionsOnFirstPlaythrough) {
+                option.SetActive(false);
+            }
+        }
         UI.SetActive(false);
     }
 

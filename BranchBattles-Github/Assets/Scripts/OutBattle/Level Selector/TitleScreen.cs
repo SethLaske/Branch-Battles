@@ -47,7 +47,7 @@ public class TitleScreen : MonoBehaviour
             PlayerInfo.LevelKeys.Add(i, false);
             PlayerInfo.TroopKeys.Add(i, false);
         }
-        PlayerInfo.LevelKeys[0] = true;
+        //PlayerInfo.LevelKeys[0] = true;
         PlayerInfo.TroopSpaces = 2;
 
         SceneManager.LoadScene(tutorialScene);
