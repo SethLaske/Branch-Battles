@@ -18,23 +18,24 @@ public class EnemyWaveAI : MonoBehaviour
     [SerializeField] private float lastWaveSendTime;
     private int currentWaveIndex = 0;
 
-    public GameObject archerUnit;   //Will spam player with archers, constantly
-    [SerializeField] private float lastArcherSpawnTime;
-    private Vector3 archerSpawnPoint;
-    private Soldier lastArcher;
-    [SerializeField] private float timeBetweenArchers;
+    public EnemySpawnWaves spamUnits;   //Will spam player with archers, constantly
+    private float lastSpamSpawnTime;
+    private Vector3 spamSpawnPoint;
+    private List<Unit> lastSpamWave = new List<Unit>();
+    //private float timeToChargeSpam;
+    //[SerializeField] private float timeBetweenSpam;
     
 
     void Start()
     {
         controlledTeam.gold = 10000;    //For now I want them to just be spawning the exact waves at the exact times
         lastWaveSendTime = Time.time;
-        lastArcherSpawnTime = Time.time;
+        lastSpamSpawnTime = Time.time;
         controlledTeam.SetRallyPoint(controlledTeam.barracks.transform.position.x + (10 * controlledTeam.Team));
 
         TrainWave(enemyWaves[currentWaveIndex].Wave);
 
-        archerSpawnPoint = new Vector3(controlledTeam.barracks.transform.position.x + (5 * controlledTeam.Team), 0, 0);
+        spamSpawnPoint = new Vector3(controlledTeam.barracks.transform.position.x + (5 * controlledTeam.Team), 0, 0);
     }
 
     // Update is called once per frame
@@ -42,13 +43,15 @@ public class EnemyWaveAI : MonoBehaviour
     {
         if (LevelManager.gameState != GameState.InGame) {
             lastWaveSendTime += Time.deltaTime;
-            lastArcherSpawnTime += Time.deltaTime;
+            lastSpamSpawnTime += Time.deltaTime;
             return;
         }
         SpawnWaves();
 
-        ArcherBarrage();
-
+        if (lastSpamSpawnTime + spamUnits.timeToSendWave < Time.time)
+        {
+            StartCoroutine(Barrage());
+        }
 
         
     }
@@ -83,39 +86,49 @@ public class EnemyWaveAI : MonoBehaviour
         }
     }
 
-    private void ArcherBarrage() {
-        if (lastArcherSpawnTime + timeBetweenArchers < Time.time) {
+    IEnumerator Barrage() {
+        
+        lastSpamSpawnTime = Time.time;
+        //timeToChargeSpam = .15f;
 
-
-            Unit archerSpam = Instantiate(archerUnit, archerSpawnPoint, Quaternion.identity).GetComponent<Unit>();
+        foreach (Unit unit in spamUnits.Wave) { 
+            Unit spamUnit = Instantiate(unit, spamSpawnPoint, Quaternion.identity).GetComponent<Unit>();
             
-            controlledTeam.troopCount += archerSpam.TroopSpaces;
-            controlledTeam.troopCategory[archerSpam.unitClassification]++;
+            controlledTeam.troopCount += spamUnit.TroopSpaces;
+            controlledTeam.troopCategory[spamUnit.unitClassification]++;
 
             if (controlledTeam.Team < 0)
             {
-                archerSpam.transform.localScale = new Vector3(-1, 1, 1);
+                spamUnit.transform.localScale = new Vector3(-1, 1, 1);
                 //archerSpam.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
             }
 
-           
-            archerSpam.name = "Spam Archer";
-            archerSpam.General = controlledTeam;
-            archerSpam.Team = controlledTeam.Team;
+
+            spamUnit.name = "Spam " + spamUnit.name;
+            spamUnit.General = controlledTeam;
+            spamUnit.Team = controlledTeam.Team;
 
             //Appies buffs/debuffs
-            archerSpam.HP *= controlledTeam.advantage;
-            archerSpam.Damage *= controlledTeam.advantage;
+            spamUnit.HP *= controlledTeam.advantage;
+            spamUnit.Damage *= controlledTeam.advantage;
 
-            lastArcher = archerSpam.GetComponent<Soldier>();
-            Invoke(nameof(OrderArcher), .15f);
+            //timeToChargeSpam += spamUnit.SpawnTime;
 
-            lastArcherSpawnTime = Time.time;
+            yield return new WaitForSeconds(1f);
+            lastSpamWave.Add(spamUnit);
         }
+
+        OrderSpam();
+        
     }
 
-    private void OrderArcher() {
-        lastArcher.ReceiveGeneralOrders();
+    private void OrderSpam() {
+        foreach (Soldier soldier in lastSpamWave) {
+            Debug.Log("Ordering spam forward");
+            soldier.ReceiveGeneralOrders();
+        }
+
+        lastSpamWave.Clear();
     }
 
     private void OnDrawGizmos()

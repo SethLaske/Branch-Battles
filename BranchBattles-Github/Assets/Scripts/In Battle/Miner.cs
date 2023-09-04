@@ -94,7 +94,7 @@ public class Miner : Unit
         transform.localScale = new Vector3(direction, 1, 1);
 
         mine.IncreaseMultiplier(miningIncrement);
-        Debug.Log("Starting to mine");
+        //Debug.Log("Starting to mine");
         animator.SetTrigger("Mining");
         float swings = Mathf.Ceil((float)maxGoldAmount * mineHardness / miningSpeed);
         //Debug.Log("Time Starting");

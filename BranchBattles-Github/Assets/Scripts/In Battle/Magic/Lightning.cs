@@ -21,7 +21,7 @@ public class Lightning : MonoBehaviour
     public void OnEnable()
     {
         timer = 0;
-        Debug.Log("Setting Storm Y");
+        //Debug.Log("Setting Storm Y");
         transform.position = new Vector3(transform.position.x, stormSpawnHeight, 0);
         //StartCoroutine(LightningStorm());
     }

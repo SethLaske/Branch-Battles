@@ -30,7 +30,7 @@ public class SaveManager : MonoBehaviour
     {
         // Set the file path to save data to
         saveFilePath = Application.persistentDataPath + "/savedata.dat";
-        Debug.Log("Save File Path: " + saveFilePath);
+        //Debug.Log("Save File Path: " + saveFilePath);
     }
 
     // Save the game data to disk

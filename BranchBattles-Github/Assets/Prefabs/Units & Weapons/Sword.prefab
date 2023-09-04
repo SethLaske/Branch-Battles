@@ -191,9 +191,9 @@ MonoBehaviour:
   AttackRange: 1.5
   AgroRange: 8
   attackHitTime: 0.5
-  Cost: 200
-  TroopSpaces: 1
-  SpawnTime: 4
+  Cost: 300
+  TroopSpaces: 2
+  SpawnTime: 5
   HealthBar: {fileID: 3473122022346028965}
   AppearanceTime: 1.5
   State: 

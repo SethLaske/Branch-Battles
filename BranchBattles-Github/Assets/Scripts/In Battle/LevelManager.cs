@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
         if (PlayerInfo.PlayerTroops[0] == null)
         {
             saver.LoadPlayer();
-            Debug.Log("Player has this many troops " + PlayerInfo.TroopSpaces);
+            //Debug.Log("Player has this many troops " + PlayerInfo.TroopSpaces);
         }
 
         playerConnector.InitializeUI();

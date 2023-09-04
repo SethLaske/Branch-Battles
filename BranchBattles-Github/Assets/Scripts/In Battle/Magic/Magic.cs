@@ -102,12 +102,12 @@ public class Magic : MonoBehaviour
 
     public void ActivateMagic(float xPosition)     
     {
-        Debug.Log("Magic is being activated");
+        //Debug.Log("Magic is being activated");
         magicEffect.SetActive(false);   
         gameObject.SetActive(true);     //Called from scripts where this might not be active
         mouseTracker.SetActive(false);
 
-        Debug.Log("Setting Storm X");
+        //Debug.Log("Setting Storm X");
         magicEffect.transform.position = new Vector3(xPosition, 0, 0);
         magicEffect.SetActive(true);
         //magicEffect.SendMessage("UseMagic");

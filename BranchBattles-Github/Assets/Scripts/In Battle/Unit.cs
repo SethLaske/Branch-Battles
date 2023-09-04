@@ -336,7 +336,7 @@ public class Unit : Damageable
             Debug.Log("Skipping colors");
             return;
         }
-        Debug.Log("Setting colors");
+        //Debug.Log("Setting colors");
         spriteMaterial.SetColor("_PantColor", General.unitPantsColor);
         spriteMaterial.SetColor("_BeltColor", General.unitBeltColor);
         spriteMaterial.SetColor("_ShoulderColor", General.unitShouldersColor);

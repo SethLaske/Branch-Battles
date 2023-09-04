@@ -76,13 +76,14 @@ public class PlayerConnector : MonoBehaviour
     private void InitTrainButton(Button button, Unit unit) {
         if (unit == null)
         {
-            Debug.Log("Was null");
+            //Debug.Log("Was null");
             button.gameObject.SetActive(false);
         }
         else {
             button.onClick.AddListener(() => playerTeam.TrainUnit(unit));
             UnitButtons script = button.GetComponent<UnitButtons>();
             script.SetUnitType(unit);
+            button.gameObject.SetActive(true);
         }
         
     }

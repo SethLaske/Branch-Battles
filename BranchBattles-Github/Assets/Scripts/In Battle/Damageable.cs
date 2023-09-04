@@ -15,7 +15,7 @@ public class Damageable : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     { 
-        if (damage > Armor)
+        if (damage >= Armor)
         {
             HP -= damage;
         }

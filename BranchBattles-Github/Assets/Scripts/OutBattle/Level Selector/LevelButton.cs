@@ -29,7 +29,7 @@ public class LevelButton : MonoBehaviour
             }
 
             foreach (int level in requiredLevels) {
-                if (PlayerInfo.LevelKeys[level] == false)
+                if (PlayerInfo.LevelKeys.ContainsKey(level) == false || PlayerInfo.LevelKeys[level] == false)
                 {
                     gameObject.SetActive(false);
                     return;

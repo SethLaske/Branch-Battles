@@ -264,7 +264,7 @@ MonoBehaviour:
   StartSequence:
   - {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
   - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
-  midGoldThreshold: 75
+  midGoldThreshold: 200
   soldierDifferenceToAttack: 5
   minTroops: 0100000001000000020000000200000000000000
   midTroops: 0400000003000000050000000400000000000000
