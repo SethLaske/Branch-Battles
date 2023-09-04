@@ -883,7 +883,7 @@ PrefabInstance:
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: unlockableTroop
       value: 
-      objectReference: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 7509279166465159987, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_Color.a
       value: 0.83137256
