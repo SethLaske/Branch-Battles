@@ -3171,10 +3171,50 @@ PrefabInstance:
       propertyPath: lightningMagic
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: StartSequence.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: StartSequence.Array.data[0]
+      value: 
+      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: finalSpawns.PotentialSpawns.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: finalSpawns.PotentialSpawns.Array.data[0]
+      value: 
+      objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: finalSpawns.PotentialSpawns.Array.data[1]
+      value: 
+      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: finalSpawns.PotentialSpawns.Array.data[2]
+      value: 
+      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: SpawnableUnits.Array.data[2].PotentialSpawns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: SpawnableUnits.Array.data[3].PotentialSpawns.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 1396025715}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: advantage
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: AFKGoldAmount
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1886392379807972341, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: m_Name
       value: Standard Enemy

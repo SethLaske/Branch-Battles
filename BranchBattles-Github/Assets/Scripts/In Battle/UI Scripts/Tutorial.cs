@@ -17,6 +17,8 @@ public class Tutorial : MonoBehaviour
     public Unit fighter;
     public Unit spear;
 
+    public List<Unit> enemyStartSpawns;
+
     public int screenToChargeOn;
     public GameObject introPrompt;
     public List<TutorialExplanation> allTutorialScreens;
@@ -56,7 +58,10 @@ public class Tutorial : MonoBehaviour
 
 
         Barbarians.gold = 1000;
-        Barbarians.TrainUnit(fighter);
+        foreach (Unit unit in enemyStartSpawns) {
+            Barbarians.TrainUnit(unit);
+        }
+        /*Barbarians.TrainUnit(fighter);
         Barbarians.TrainUnit(fighter);
         Barbarians.TrainUnit(fighter);
         //Barbarians.TrainUnit(fighter);
@@ -64,7 +69,8 @@ public class Tutorial : MonoBehaviour
         Barbarians.TrainUnit(spear);
         Barbarians.TrainUnit(spear);
         Barbarians.TrainUnit(spear);
-        //Barbarians.TrainUnit(spear);
+        //Barbarians.TrainUnit(spear);*/
+
         Barbarians.gold = 0;
         Barbarians.AFKGoldAmount = 0;
         //Barbarians.SetRallyPoint(15);
@@ -72,18 +78,20 @@ public class Tutorial : MonoBehaviour
         foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
         {
             tutorialScreen.DisableStep();
-            if (tutorialScreen.UIRevealed != null) {
+            if (tutorialScreen.UIRevealed != null)
+            {
+                Debug.Log("Disabling object: " + tutorialScreen.UIRevealed.name);
                 tutorialScreen.UIRevealed.SetActive(false);
             }
-            
+
         }
 
-        if (PlayerInfo.LevelKeys[0] == false) {
+
+        if (PlayerInfo.LevelKeys.ContainsKey(0) == false || PlayerInfo.LevelKeys[0] == false) {
             foreach (GameObject option in disabledOptionsOnFirstPlaythrough) {
                 option.SetActive(false);
             }
         }
-        UI.SetActive(false);
     }
 
     private void Update()
@@ -97,6 +105,19 @@ public class Tutorial : MonoBehaviour
     }
 
     public void StartTutorial() {
+        
+
+        foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
+        {
+            tutorialScreen.DisableStep();
+            if (tutorialScreen.UIRevealed != null)
+            {
+                Debug.Log("Disabling object: " + tutorialScreen.UIRevealed.name);
+                tutorialScreen.UIRevealed.SetActive(false);
+            }
+
+        }
+
         UI.SetActive(true);
 
         backgroundButton.SetActive(true);

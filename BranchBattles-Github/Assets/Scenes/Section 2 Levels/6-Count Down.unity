@@ -698,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: popUpName
-      value: 
+      value: ARCHER
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: EnemyObject
@@ -710,7 +710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: currentLevel
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: maxPlayerTroops
@@ -719,7 +719,7 @@ PrefabInstance:
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: unlockableTroop
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
     - target: {fileID: 7509279166465159987, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_Color.a
       value: 0.83137256

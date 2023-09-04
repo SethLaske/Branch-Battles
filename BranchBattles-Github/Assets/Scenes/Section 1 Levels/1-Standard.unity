@@ -988,12 +988,20 @@ PrefabInstance:
       objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: gold
-      value: 425
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 2023385610}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: advantage
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: AFKGoldAmount
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1886392379807972341, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: m_Name
       value: Standard Enemy

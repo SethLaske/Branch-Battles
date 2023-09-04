@@ -5620,6 +5620,14 @@ PrefabInstance:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 485392741}
+    - target: {fileID: 3265943756731257881, guid: a7bd8e2c7c4e4714fa3e3fd211e9cdb0, type: 3}
+      propertyPath: advantage
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265943756731257881, guid: a7bd8e2c7c4e4714fa3e3fd211e9cdb0, type: 3}
+      propertyPath: AFKGoldAmount
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3794604408213705726, guid: a7bd8e2c7c4e4714fa3e3fd211e9cdb0, type: 3}
       propertyPath: archerUnit
       value: 
@@ -5840,7 +5848,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8459818094367189350, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.7
+      value: -9
       objectReference: {fileID: 0}
     - target: {fileID: 8459818094367189350, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
       propertyPath: m_LocalPosition.y

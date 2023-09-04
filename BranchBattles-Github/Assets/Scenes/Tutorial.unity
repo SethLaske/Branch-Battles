@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &31112088
 Transform:
   m_ObjectHideFlags: 0
@@ -635,27 +635,27 @@ PrefabInstance:
       objectReference: {fileID: 546282230}
     - target: {fileID: 6690825056452972210, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879395270173538441, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6879395270173538441, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6879395270173538441, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6879395270173538441, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6879395270287625351, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6879395270287625351, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6879395270287625351, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.39999998
       objectReference: {fileID: 0}
     - target: {fileID: 6879395270320857613, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
@@ -2092,6 +2092,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
+      propertyPath: gold
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: general
       value: 
       objectReference: {fileID: 1136284411}
@@ -2755,7 +2759,7 @@ PrefabInstance:
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
       value: Once you've collected some gold walk it back to the tent. You can also
-        use space to break skulls instead of rocks if you want.
+        use SPACE to break skulls instead of rocks if you want.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_fontSize
@@ -3538,7 +3542,7 @@ PrefabInstance:
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
       value: Glad you could join the party. Don't die. WASD to move. Go warm up by
-        hitting space near some rocks.
+        hitting SPACE near some rocks.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092192, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_Name
@@ -3901,7 +3905,17 @@ MonoBehaviour:
   miner: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
   fighter: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
   spear: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
-  screenToChargeOn: 5
+  enemyStartSpawns:
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+  - {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+  screenToChargeOn: 6
   introPrompt: {fileID: 871400994132602261}
   allTutorialScreens:
   - {fileID: 1531961646}
@@ -4470,7 +4484,7 @@ MonoBehaviour:
   midGoldThreshold: 50
   soldierDifferenceToAttack: 10
   minTroops: 0000000000000000000000000000000000000000
-  midTroops: 0300000000000000060000000500000000000000
+  midTroops: 0100000000000000060000000500000000000000
   SpawnableUnits:
   - PotentialSpawns:
     - {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
@@ -4483,6 +4497,7 @@ MonoBehaviour:
   finalSpawns:
     PotentialSpawns:
     - {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+    - {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
   lightningMagic: {fileID: 0}
 --- !u!1 &1531653577
 GameObject:
@@ -4964,8 +4979,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: Soldiers are expensive and you are tired. Train some minors to get gold
-        faster, after all they yearn for the mines
+      value: Soldiers are expensive and you are tired. Train some miners to get gold
+        faster, they yearn for the mines
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_fontSize

@@ -32,4 +32,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Section 1 Levels/4-Commander Fight.unity
     guid: 861a5a21291b505428ccb4ebeaad6c1d
+  - enabled: 1
+    path: Assets/Scenes/Section 2 Levels/5-Standard.unity
+    guid: 0d05666557046254ebb77c2ebd7b6c9a
+  - enabled: 1
+    path: Assets/Scenes/Section 2 Levels/6-Count Down.unity
+    guid: bb84a2be640729244bbb69c014322435
+  - enabled: 1
+    path: Assets/Scenes/Section 2 Levels/7-Standard.unity
+    guid: 8a2de3b3df7b14b468c8a5a349d2f6d5
+  - enabled: 1
+    path: Assets/Scenes/Section 2 Levels/8-Survival.unity
+    guid: 418a211961a98f04c980069a7c393caf
+  - enabled: 1
+    path: Assets/Scenes/Section 2 Levels/9-Commander Fight.unity
+    guid: 8fc6d8be3eccb1a40b3b434acdce461a
   m_configObjects: {}

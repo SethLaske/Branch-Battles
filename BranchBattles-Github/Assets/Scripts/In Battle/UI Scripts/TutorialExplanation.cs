@@ -71,9 +71,9 @@ public class TutorialExplanation : MonoBehaviour
             forcedButtonToClick.transform.SetParent(transform);
             forcedButtonToClick.onClick.AddListener(tutorial.NextTutorialStep);
         }
-        
 
-        Invoke("TextDelay", .25f);
+        StartCoroutine(ShowExplanationText());
+        //Invoke("TextDelay", .25f);
     }
 
     public bool CheckIfTextIsDone() {
@@ -94,6 +94,7 @@ public class TutorialExplanation : MonoBehaviour
     }
 
     IEnumerator ShowExplanationText() {
+        yield return new WaitForSeconds(.25f);
         textOnScreen = false;
 
         foreach (char c in explanationText.ToCharArray()) {
