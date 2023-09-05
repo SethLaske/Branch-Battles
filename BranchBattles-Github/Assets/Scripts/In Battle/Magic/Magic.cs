@@ -102,6 +102,7 @@ public class Magic : MonoBehaviour
 
     public void ActivateMagic(float xPosition)     
     {
+        magicAvailable = false;
         //Debug.Log("Magic is being activated");
         magicEffect.SetActive(false);   
         gameObject.SetActive(true);     //Called from scripts where this might not be active

@@ -9,6 +9,8 @@ public class CommanderOuthouse : Building
 
     [SerializeField] private Magic spawnMagic;
     [SerializeField] private float magicSpawnPosition;
+    [SerializeField] private float spawnMagicCount;
+
 
     [SerializeField] private Unit[] finalEnemies;
     [SerializeField] private float spaceToFirstEnemy;
@@ -41,16 +43,20 @@ public class CommanderOuthouse : Building
             //spawnMagic.TriggerMagic();
             spawnMagic.ActivateMagic(magicSpawnPosition);
 
-            spawnMagic = Instantiate(spawnMagic, Vector3.zero, Quaternion.identity);
+            for (int i = 1; i < spawnMagicCount; i++) { 
+                spawnMagic = Instantiate(spawnMagic, Vector3.zero + (i * Vector3.left), Quaternion.identity);
+                spawnMagic.SetTeamInfo(General);
+                spawnMagic.gameObject.SetActive(false);
+
+                spawnMagic.ActivateMagic(magicSpawnPosition);
+            }
+
+
+           /* spawnMagic = Instantiate(spawnMagic, Vector3.zero, Quaternion.identity);
             spawnMagic.SetTeamInfo(General);
             spawnMagic.gameObject.SetActive(false);
 
-            spawnMagic.ActivateMagic(magicSpawnPosition);
-            spawnMagic = Instantiate(spawnMagic, Vector3.zero, Quaternion.identity);
-            spawnMagic.SetTeamInfo(General);
-            spawnMagic.gameObject.SetActive(false);
-
-            spawnMagic.ActivateMagic(magicSpawnPosition);
+            spawnMagic.ActivateMagic(magicSpawnPosition);*/
         }
         yield return new WaitForSeconds(5);
 

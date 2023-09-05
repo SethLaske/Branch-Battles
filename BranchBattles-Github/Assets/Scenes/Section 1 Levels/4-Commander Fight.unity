@@ -890,7 +890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801217308692902379, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
-      value: Destroy the enemy base before you or your base fall
+      value: Thats an odd looking enemy base. Check to see if anyone is home
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
@@ -5787,7 +5787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.size
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[0]
@@ -5797,6 +5797,14 @@ PrefabInstance:
       propertyPath: finalEnemies.Array.data[1]
       value: 
       objectReference: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[4]
       value: 
@@ -5808,11 +5816,15 @@ PrefabInstance:
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[6]
       value: 
-      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[7]
       value: 
-      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.data[8]
+      value: 
+      objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
 --- !u!1001 &6185429638831244432

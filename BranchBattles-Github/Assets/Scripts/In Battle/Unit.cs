@@ -216,7 +216,7 @@ public class Unit : Damageable
         Attacking = false;
         //currentSpeed *= 2;
         DebuffMult /= attackDebuff;
-        if (IsTargetAggroable() && IsTargetAttackable())
+        if (IsTargetAggroable() && IsTargetAttackable() && State == "Attack")
         {
             StartCoroutine(PlayAttack());
         }

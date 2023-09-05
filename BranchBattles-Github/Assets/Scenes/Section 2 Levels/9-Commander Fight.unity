@@ -4443,6 +4443,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1271781560611564293, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: fb247fcf969711c409049380c331f70f, type: 2}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: HP
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: Armor
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: Damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: baseSpeed
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3615745364217577614, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_Name
       value: Commander Enemy
@@ -4451,6 +4471,14 @@ PrefabInstance:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 2023385610}
+    - target: {fileID: 5884994696500183697, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5999380921589601184, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1557242734, guid: 64fdbd535f2226448b8e990262e72ee4, type: 3}
     - target: {fileID: 6009564312438030107, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4494,6 +4522,54 @@ PrefabInstance:
     - target: {fileID: 6009564312438030107, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: HP
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: Armor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: spawnMagicCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalEnemies.Array.data[6]
+      value: 
+      objectReference: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.047109
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.827265
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6376
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0537b40335229db469640ec2a4dc545c, type: 3}

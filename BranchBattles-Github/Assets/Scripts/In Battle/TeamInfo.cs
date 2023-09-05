@@ -168,7 +168,7 @@ public class TeamInfo : MonoBehaviour
     }
 
     public void ReloadRallyFlag() {
-        rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y);
+        rallyFlag.transform.position = new Vector3(rallyPoint, rallyFlag.transform.position.y, rallyFlag.transform.position.z);
         //Play flag noise or smth
         //rallyFlag.GetComponent<Animator>().SetTrigger("Drop");
     }

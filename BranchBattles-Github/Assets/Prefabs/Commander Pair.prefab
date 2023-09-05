@@ -5520,6 +5520,7 @@ MonoBehaviour:
   nextBarracks: {fileID: 0}
   spawnMagic: {fileID: 5696295148291148339, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
   magicSpawnPosition: 25
+  spawnMagicCount: 3
   finalEnemies: []
   spaceToFirstEnemy: 0
   spaceBetweenEnemies: 0
