@@ -11,6 +11,9 @@ public class TeamBase : Building
     private CameraControls playercamera;
     private LevelManager levelmanager;
 
+    [SerializeField] private List<Unit> reinforcements;
+    [SerializeField] private float distanceToSpawnReinforcements;
+
     // Finds the stuff itself so I dont need to drag and drop for every base
     void Start()
     {
@@ -36,6 +39,15 @@ public class TeamBase : Building
         if (Team == 1) {
             float amount = (.3f * ((maxHealth - HP) / maxHealth)) + .1f;
             playercamera.CallShake(amount, amount);
+        }
+
+        if (HP <= maxHealth / 2) {
+
+            while (reinforcements.Count > 0) {
+                General.ForceSpawnUnit(reinforcements[0], new Vector3(transform.position.x - (Team * distanceToSpawnReinforcements), transform.position.y));
+                distanceToSpawnReinforcements += 2;
+                reinforcements.RemoveAt(0);
+            }
         }
         
     }

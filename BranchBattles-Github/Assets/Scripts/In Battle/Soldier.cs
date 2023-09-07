@@ -289,63 +289,6 @@ public class Soldier : Unit
         RedAura.SetActive(true);
     }
 
-    /*//Sets the target as the closest available target
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-       
-        Damageable thing = collision.GetComponent<Damageable>();
-        if (thing != null)    //Need to change this to a damageable check
-        {
-            if (thing.Team != Team)
-            {
-                //Debug.Log("Viable Target found");
-                if (Target == null) //No target around found
-                {
-                    //Debug.Log("Adding Target");
-                    Target = thing;
-                }
-                else if (Vector3.Distance(transform.position, thing.transform.position) < Vector3.Distance(transform.position, Target.transform.position)/2)
-                {
-                    Target = thing;
-                }
-                //State = "Attack";
-
-            }
-            else {
-                //This automatically opens the gate for units, which is fine for AI, but bad for player
-                //Gate blocker = collision.GetComponent<Gate>();
-                //if (blocker != null && ManAhead) {
-                //    blocker.gateSelected();
-                //}
-            }
-
-            
-        }
-
-    }*/
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Soldier soldier = collision.GetComponent<Soldier>();
-        if (soldier != null) //It is a soldier and this soldier wants to stay behind it
-        {
-            if (CheckShieldConditions(soldier) == true) {
-                humanshield = soldier;
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        Soldier soldier = collision.GetComponent<Soldier>();
-        if (soldier != null) //It is a soldier and this soldier wants to stay behind it
-        {
-            if (humanshield == soldier)
-            {
-                humanshield = null;
-            }
-        }
-        //PulseUpdate();
-    }*/
 
 
     public void CalculateAssemblePoints() {
@@ -384,10 +327,11 @@ public class Soldier : Unit
             {
                 continue;
             }
+
             Vector3 diff = transform.position - collider.transform.position;
             //Debug.Log("Before" + diff.magnitude);
 
-            if (unit.unitClassification == 0) diff.x = 0;   //Move vertically to avoid miners but don't let them slow down units
+            if (unit.unitClassification == 0 && State != "Wait") diff = Vector3.zero;   //Miners can only push soldiers when they are waiting
 
             //Debug.Log("After" + diff.magnitude);
 

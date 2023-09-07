@@ -608,9 +608,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 4
-
-        Commander'
+      value: Level 4
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1977,9 +1975,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 6
-
-        Count down'
+      value: Level 6
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1995,7 +1991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Hope you haven''t been camping, thats not going to work today
+      value: 'Careful, they are in the trees
 
 '
       objectReference: {fileID: 0}
@@ -2150,9 +2146,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 7
-
-        Standard'
+      value: Level 7
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2166,13 +2160,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GoToLevel
       objectReference: {fileID: 0}
-    - target: {fileID: 4677096088218962127, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -184
-      objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: Thats crazy, howd you go from level 4 to 7?
+      value: Thats crazy, how'd you go from level 4 to 7?
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088264646829, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3023,9 +3013,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 5
-
-        Standard'
+      value: Level 5
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3039,15 +3027,9 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GoToLevel
       objectReference: {fileID: 0}
-    - target: {fileID: 4677096088218962127, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -184
-      objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Hope you had fun, cause you are doing it again
-
-'
+      value: Early game is over, now its time to get serious
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088264646829, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3832,9 +3814,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 1
-
-        Standard'
+      value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -3847,10 +3831,6 @@ PrefabInstance:
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: GoToLevel
-      objectReference: {fileID: 0}
-    - target: {fileID: 4677096088218962127, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -184
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
@@ -4074,9 +4054,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 2
-
-        Survival'
+      value: Level 8
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4092,9 +4070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Tic Toc, survive the clock
-
-'
+      value: Its taken you some serious pluck to get this far
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088264646829, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4243,9 +4219,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 2
-
-        Survival'
+      value: Survival
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4496,9 +4470,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 9
-
-        Commander'
+      value: Level 9
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4514,9 +4486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Be careful of whos tent you break, someone might not like that here
-
-'
+      value: This guy has to be over compensating for something
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088264646829, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4669,9 +4639,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 3
-
-        Count down'
+      value: Level 3
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -4687,7 +4655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Hope you haven''t been camping, thats not going to work today
+      value: 'Win very quickly or you won''t win at all
 
 '
       objectReference: {fileID: 0}
@@ -5811,9 +5779,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Level 0
-
-        Tutorial'
+      value: Tutorial
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

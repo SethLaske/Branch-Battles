@@ -375,10 +375,10 @@ public class General : Unit
         Armor = baseArmor + (General.troopCategory[1]/3);
         //Debug.Log("Armor Gain: " + (General.troopCategory[1]/3));
         //Damage is increased by class 2 count- 1 unit = +1 Damage
-        Damage = baseDamage + General.troopCategory[2];
+        Damage = baseDamage + Mathf.Min(General.troopCategory[2]/2, 5);
         //Debug.Log("Damage Gain: " + (General.troopCategory[2]));
         //Speed is increased by class 3 count- 2 units = +1 speed
-        currentSpeed = baseSpeed + (General.troopCategory[3] / 2);
+        currentSpeed = baseSpeed + Mathf.Min((General.troopCategory[3] / 3), 3.5f);
         //Debug.Log("Speed Gain: " + (General.troopCategory[3] / 2));
         //Debug.Log("HP Gain: " + (General.troopCategory[0] * .15f * baseHP + "\nArmor Gain: " + (General.troopCategory[1] / 3) + "\nDamage Gain: " + (General.troopCategory[2]) + "\nSpeed Gain: " + (General.troopCategory[3] / 2)));
     }

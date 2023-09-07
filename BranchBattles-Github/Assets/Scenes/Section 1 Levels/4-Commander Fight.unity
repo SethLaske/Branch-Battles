@@ -5677,6 +5677,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570292771440307688, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Size.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 570292771440307688, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 570292771440307688, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 570292771440307688, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: StartSequence.Array.size
       value: 3
@@ -5825,6 +5841,22 @@ PrefabInstance:
       propertyPath: finalEnemies.Array.data[8]
       value: 
       objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.3212433
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.1688123
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.6742
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0971
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
 --- !u!1001 &6185429638831244432
