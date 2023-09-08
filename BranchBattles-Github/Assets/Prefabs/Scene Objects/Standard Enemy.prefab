@@ -337,7 +337,7 @@ MonoBehaviour:
   HP: 300
   Armor: 0
   reinforcements: []
-  distanceToSpawnReinforcements: 0
+  distanceToSpawnReinforcements: 8
 --- !u!61 &7236281997680776229
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -159,7 +159,11 @@ public class Unit : Damageable
     /// The Unit is within range of attacking a target and will continue to do so while the target is alive and in agro range
     /// </summary>
     public virtual void Attack() {
-        if (Target == null) return;     //Should never be triggered
+        if (Target == null)
+        {
+            Debug.Log("Attacking without a target");
+            return;     //Should never be triggered
+        }
 
         if (Attacking == false) {
             StartCoroutine(PlayAttack());
@@ -200,6 +204,7 @@ public class Unit : Damageable
     //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
     IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
+        Debug.Log("Starting Attack");
         animator.SetBool("Attacking", true);
         Attacking = true;
         //currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
@@ -209,10 +214,18 @@ public class Unit : Damageable
 
         //Debuff mult can be affecting other things but we dont want it to affect this attack. However, the debuff mult can be triggered by stun so I need to divide it by the attack debuff
         yield return new WaitForSeconds(attackHitTime * DebuffMult/attackDebuff);
+        while (DebuffMult > 100) {
+            yield return null;  //I really hate these but its required to allow The World to work using stun
+        }
         attackSound.Play();
+        Debug.Log("Middle of Attack");
         Offense.Attack();
         //Debug.Log("Offense Hitting");
         yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult/attackDebuff);
+        while (DebuffMult > 100)
+        {
+            yield return null;
+        }
         Attacking = false;
         //currentSpeed *= 2;
         DebuffMult /= attackDebuff;
@@ -225,6 +238,7 @@ public class Unit : Damageable
             animator.SetBool("Attacking", false);
 
         }
+        Debug.Log("Ending Attack");
     }
 
     /// <summary>
