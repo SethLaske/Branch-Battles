@@ -2594,8 +2594,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1396025715}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: AFKGoldAmount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: maxTroopCount
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1886392379807972341, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: m_Name

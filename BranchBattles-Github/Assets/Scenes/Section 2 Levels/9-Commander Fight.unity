@@ -3990,7 +3990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: gold
-      value: 350
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: general
@@ -4000,6 +4000,10 @@ PrefabInstance:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 1217124650123186763}
+    - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
+      propertyPath: maxTroopCount
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8173800613702200346, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4491,6 +4495,14 @@ PrefabInstance:
       propertyPath: minTroops.Array.data[0]
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: StartSequence.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: StartSequence.Array.data[3]
+      value: 
+      objectReference: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
     - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: HP
       value: 125
@@ -4525,12 +4537,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4099510361625385788, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: gold
-      value: 1000
+      value: 1050
       objectReference: {fileID: 0}
     - target: {fileID: 4099510361625385788, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 2023385610}
+    - target: {fileID: 4099510361625385788, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: maxTroopCount
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5884994696500183697, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_Enabled
       value: 0

@@ -1018,6 +1018,18 @@ PrefabInstance:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 2023385610}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: advantage
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: AFKGoldAmount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: maxTroopCount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1886392379807972341, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: m_Name
       value: Standard Enemy
@@ -4113,7 +4125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: gold
-      value: 350
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: general
@@ -4123,6 +4135,10 @@ PrefabInstance:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 289501709}
+    - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
+      propertyPath: maxTroopCount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8173800613702200346, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: m_RootOrder
       value: 2
