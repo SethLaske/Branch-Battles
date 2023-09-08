@@ -4491,6 +4491,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: fb247fcf969711c409049380c331f70f, type: 2}
+    - target: {fileID: 1602721397135461587, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: minTroops.Array.data[0]
       value: 2
