@@ -168,7 +168,7 @@ MonoBehaviour:
   attackAnimation: {fileID: 7400000, guid: 2bd8a471796ed6c49ac1a5af433a1a01, type: 2}
   identifierSprite: {fileID: -1395150292, guid: c41c4cc7633b80f418b1e77bef76abcd, type: 3}
   miningSpeed: 15
-  maxGoldAmount: 40
+  maxGoldAmount: 45
   dropOff: {fileID: 7331307722458310760}
   miningIncrement: 0.025
   mineDetectionBoxSize: {x: 8, y: 5}

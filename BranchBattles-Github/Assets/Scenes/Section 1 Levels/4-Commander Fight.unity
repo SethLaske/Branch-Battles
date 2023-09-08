@@ -5737,6 +5737,18 @@ PrefabInstance:
       propertyPath: SpawnableUnits.Array.data[3].PotentialSpawns.Array.data[1]
       value: 
       objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: HP
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: Armor
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: Damage
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 3615745364217577614, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_Name
       value: Commander Enemy

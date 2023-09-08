@@ -30,6 +30,17 @@ public class Miner : Unit
         animator.ResetTrigger("Walking");
         currentGoldAmount = 0;
         mineSpot = nullMine;
+        if (Team == 1) {    //Speeding up player mining once they've reached higher levels (could also be cool to add like 10% for each completed level)
+            if (PlayerInfo.LevelKeys.ContainsKey(4) && PlayerInfo.LevelKeys[4] == true) {
+                miningSpeed *= 1.3f;
+                maxGoldAmount = (int)(1.2f * maxGoldAmount);
+            }
+            else if (PlayerInfo.LevelKeys.ContainsKey(9) && PlayerInfo.LevelKeys[9] == true)
+            {
+                miningSpeed *= 1.6f;
+                maxGoldAmount = (int)(1.8f * maxGoldAmount);
+            }
+        }
     }
 
     // Update is called once per frame

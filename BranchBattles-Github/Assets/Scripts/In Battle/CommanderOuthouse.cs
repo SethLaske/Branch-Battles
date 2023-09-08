@@ -44,7 +44,7 @@ public class CommanderOuthouse : Building
             spawnMagic.ActivateMagic(magicSpawnPosition);
 
             for (int i = 1; i < spawnMagicCount; i++) { 
-                spawnMagic = Instantiate(spawnMagic, Vector3.zero + (i * Vector3.left), Quaternion.identity);
+                spawnMagic = Instantiate(spawnMagic, Vector3.zero + (i * 2.5f * Vector3.left), Quaternion.identity);
                 spawnMagic.SetTeamInfo(General);
                 spawnMagic.gameObject.SetActive(false);
 

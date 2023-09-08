@@ -4493,11 +4493,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: HP
-      value: 150
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: Armor
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: Damage
@@ -4505,12 +4505,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: baseSpeed
-      value: 0.8
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: AttackRange
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: attackHitTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: attackAnimation
+      value: 
+      objectReference: {fileID: 7400000, guid: b89678cd91ccdd547b93dd460d30a2f5, type: 2}
     - target: {fileID: 3615745364217577614, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_Name
       value: Commander Enemy
@@ -4585,7 +4593,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: HP
@@ -4601,7 +4609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.size
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[0]
@@ -4729,6 +4737,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6577832073623993378, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
+      propertyPath: miningTimeMultiplier
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 8459818094367189345, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
       propertyPath: m_Name
       value: Mine
