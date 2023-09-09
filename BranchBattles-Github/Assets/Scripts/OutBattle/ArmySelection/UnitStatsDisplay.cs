@@ -56,15 +56,15 @@ public class UnitStatsDisplay : MonoBehaviour
 
         polygon.points = points;
         PolygonMesh2D polygonScript = polygon.GetComponent<PolygonMesh2D>();
-        polygonScript.OnColliderUpdate();
+        polygonScript.UpdateCollider();
     }
 
     private Vector2 GetPointPosition(Slider slider)
     {
         float distanceMultiplier = (slider.value - slider.minValue) / (slider.maxValue - slider.minValue);
-        Debug.Log("Distance Multiplier = " + distanceMultiplier);
+        //Debug.Log("Distance Multiplier = " + distanceMultiplier);
 
-        Debug.Log("Slider angle = " + slider.transform.localRotation.eulerAngles.z);
+        //Debug.Log("Slider angle = " + slider.transform.localRotation.eulerAngles.z);
         float angle = slider.transform.localRotation.eulerAngles.z * Mathf.Deg2Rad;
 
         float x = (distanceMultiplier * maxPolygonDistance + startOffset) * Mathf.Cos(angle);

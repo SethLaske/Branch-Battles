@@ -718,7 +718,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801217308692902379, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
-      value: Survive until the timer runs out, the enemy will show no mercy
+      value: You've gone quite far out of your way to come here. Maybe it'll be worth
+        it
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f731966e54d04458d33b73fd20294e, type: 3}

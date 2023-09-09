@@ -45,7 +45,25 @@ public class PolygonMesh2D : MonoBehaviour {
 	void Update() {
 		if (!Application.isPlaying) OnColliderUpdate();
 	}
-	#endif
+#endif
+
+	public void UpdateCollider()
+	{
+		Vector2[] path = polygon.GetPath(pathIndex);
+		Mesh msh = new Mesh();
+
+		msh.vertices = path.Select(v => new Vector3(v.x, v.y, zPosition)).ToArray();
+		msh.triangles = new Triangulator(path).Triangulate();
+
+		msh.RecalculateNormals();
+		msh.RecalculateBounds();
+		meshFilter.mesh = msh;
+
+		//recalculate UV
+		Bounds bounds = msh.bounds;
+
+		msh.uv = path.Select(v => new Vector2(v.x / bounds.size.x, v.y / bounds.size.y)).ToArray();
+	}
 }
 
 class Triangulator {

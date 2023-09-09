@@ -773,7 +773,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: 'Be careful of whos tent you break, someone might not like that here
+      value: 'Be careful of whos outhouse you break, the owner might show up and
+        ask you to get out
 
 '
       objectReference: {fileID: 0}
@@ -1032,7 +1033,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: "Welcome to \nDungeon 13..."
+      value: "Welcome to \nDungeon 13...\nSorry, wrong script"
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088264646829, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1955,6 +1956,10 @@ PrefabInstance:
       propertyPath: m_text
       value: To think you started out as just a nobody. And now?
       objectReference: {fileID: 0}
+    - target: {fileID: 5516872789540063062, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -41
+      objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
       value: LEVEL15
@@ -2418,7 +2423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088218962160, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: Will you fight on the beaches?
+      value: So close, yet so far away.
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088264646829, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3304,14 +3309,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 299072453}
     m_Modifications:
+    - target: {fileID: 2512984851932595834, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -28
+      objectReference: {fileID: 0}
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
-      value: 'And so the commander falls.
+      value: 'And so a commander falls.
+
 
         You may now add another soldier
-        to your active army.
+        to your active army in the barracks.
 
-        Continue on your path if you must'
+        Continue on your path if you
+        must.'
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
@@ -3711,10 +3722,10 @@ PrefabInstance:
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
       value: 'Soldiers sent forward by pressing and holding C will not return once
-        unleashed
+        unleashed.
 
         Move the general to ensure the right soldier is selected
-        before release'
+        before release.'
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
@@ -4768,9 +4779,9 @@ PrefabInstance:
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
       value: 'Not only can you heal and train soldiers in your camp, but you also
-        will deal more damage to enemies
+        will deal more damage to enemies.
 
-        Choose your ground accordingly'
+        Choose your ground accordingly.'
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
@@ -5545,14 +5556,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 299072453}
     m_Modifications:
+    - target: {fileID: 2512984851932595834, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -26
+      objectReference: {fileID: 0}
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
       value: 'Another commander falls to your army.
 
-        Its the final push to
-        the end now.
 
-        Conquer it all if you must'
+        Its the final push
+        to the end now.
+
+        Conquer it all if you must.'
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
@@ -6043,13 +6059,19 @@ PrefabInstance:
       propertyPath: m_text
       value: 'And so the nation is fallen.
 
+
         Congratulations, there are none
         to stop you now.
 
         My secret weapon will join your army now.
 
+
         Enjoy
         your victory.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5516872789540063062, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
@@ -6173,7 +6195,7 @@ PrefabInstance:
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
       value: "Training different army compositions will buff the general in different
-        ways. \nEnsure to train a large army to buff yourself as much as possible"
+        ways. \nEnsure to train a large army to buff yourself as much as possible."
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
@@ -7324,6 +7346,10 @@ PrefabInstance:
         to an extent. They will never turn their back on an enemy that approaches
         them'
       objectReference: {fileID: 0}
+    - target: {fileID: 5516872789540063062, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 138
+      objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
       value: LEVEL12
@@ -7964,9 +7990,9 @@ PrefabInstance:
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
       value: 'The shield wielders respected your combat abilities and will join your
-        army
+        army.
 
-        Go to the barracks to edit your army composition between battles '
+        Go to the barracks to edit your army composition between battles.'
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789540063063, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_IsActive

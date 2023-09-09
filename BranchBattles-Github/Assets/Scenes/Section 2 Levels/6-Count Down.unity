@@ -726,7 +726,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801217308692902379, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
-      value: Destroy the enemy quickly, if the time ends so do you
+      value: Finish off the archers once and for all
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f731966e54d04458d33b73fd20294e, type: 3}

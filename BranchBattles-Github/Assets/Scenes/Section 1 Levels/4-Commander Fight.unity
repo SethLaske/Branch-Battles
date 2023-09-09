@@ -682,7 +682,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5357595884900248922, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
-      value: Standard
+      value: Commander
       objectReference: {fileID: 0}
     - target: {fileID: 5482285040536731555, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_RootOrder

@@ -723,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8801217308692902379, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_text
-      value: Destroy the enemy base before you or your base fall
+      value: Welcome to the jungle, it gets worse here every level
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
