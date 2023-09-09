@@ -4555,6 +4555,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1557242734, guid: 64fdbd535f2226448b8e990262e72ee4, type: 3}
+    - target: {fileID: 5999380921589601184, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8926740e1cc9f0b458c121ecb44d9b63, type: 2}
     - target: {fileID: 6009564312438030107, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -4601,15 +4605,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: HP
@@ -4643,6 +4647,10 @@ PrefabInstance:
       propertyPath: finalEnemies.Array.data[6]
       value: 
       objectReference: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+    - target: {fileID: 6402156623788029289, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 273799587, guid: 1160f5188bb8d7047b7e6fe9f589bea4, type: 3}
     - target: {fileID: 6402156623788029289, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_Color.b
       value: 0.7075472

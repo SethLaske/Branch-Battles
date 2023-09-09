@@ -340,7 +340,7 @@ MonoBehaviour:
   animator: {fileID: 4154073713870859847}
   unitName: Commander
   UnitNumber: 0
-  unitClassification: 0
+  unitClassification: 1
   Offense: {fileID: 7116986155554957351}
   baseSpeed: 1
   Damage: 15

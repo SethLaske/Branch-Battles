@@ -732,31 +732,34 @@ MonoBehaviour:
 
     Game Design: Seth Laske
 
-    Art Work:
+    Art:
     Seth Laske
 
+    QA: Seth Laske
+
+    Playtester #1: Josh
+
+    Playtester #2: Hudson
 
 
-
-    Inspiration for Branch Battles:
+    Inspired
+    By:
 
     Stick Wars
 
+    JJBA
+
+    John Wick
+
+    Sans
+
+    Shrek
 
 
 
-    Thanks
-    to Josh and Hudson for playtesting and brain storming, I promise the game has
-    been balanced from the start
 
-
-
-    And naturally we have the Jojos, John Wick,
-    and Undertale references
-
-
-
-    Hope you enjoyed'
+    Until
+    next time'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -847,4 +850,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpeed: 150
   acceleratedSpeed: 690
-  positionToLeaveCredits: 3000
+  positionToLeaveCredits: 2800

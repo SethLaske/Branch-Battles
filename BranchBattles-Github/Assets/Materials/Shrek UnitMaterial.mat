@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UnitMaterial
+  m_Name: Shrek UnitMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 234a9caac19ca30449665086e25fef11, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -71,11 +71,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BeltColor: {r: 0.24705884, g: 0.043137256, b: 0.04705883, a: 1}
+    - _BeltColor: {r: 0.031796385, g: 0.2264151, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _HornColor: {r: 0, g: 0, b: 0, a: 1}
-    - _PantColor: {r: 0.14117648, g: 0.12941177, b: 0.13725491, a: 1}
+    - _HornColor: {r: 0.3207547, g: 0.21442856, b: 0.09501601, a: 1}
+    - _PantColor: {r: 0.11619793, g: 0.2264151, b: 0.12645884, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _ShoulderColor: {r: 0.23529413, g: 0.08627451, b: 0.10196079, a: 1}
+    - _ShoulderColor: {r: 0.16037738, g: 0.10884479, b: 0.04145603, a: 1}
   m_BuildTextureStacks: []

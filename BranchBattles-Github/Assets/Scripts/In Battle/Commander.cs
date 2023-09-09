@@ -7,7 +7,16 @@ public class Commander : Soldier
 {
     void Start()
     {
-        StandardStart();
+        maxHealth = HP;
+        currentSpeed = baseSpeed;
+        if (State == "" || State == null) State = "Walk";
+
+        if (Team < 0)
+        {
+            HealthBar.GetComponent<SpriteRenderer>().color = Color.red;
+        }
+        general = General.general;
+        healthBarStartScale = HealthBar.transform.localScale.x;
 
         ReceiveGeneralOrders();
         

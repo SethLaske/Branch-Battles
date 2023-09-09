@@ -2571,7 +2571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: SpawnableUnits.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: soldierDifferenceToAttack
@@ -2619,7 +2619,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: SpawnableUnits.Array.data[3].PotentialSpawns.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: SpawnableUnits.Array.data[0].PotentialSpawns.Array.data[1]
@@ -2632,10 +2632,14 @@ PrefabInstance:
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: SpawnableUnits.Array.data[3].PotentialSpawns.Array.data[0]
       value: 
+      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: SpawnableUnits.Array.data[3].PotentialSpawns.Array.data[1]
+      value: 
       objectReference: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: gold
-      value: 700
+      value: 1600
       objectReference: {fileID: 0}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: Opponent
@@ -2656,6 +2660,10 @@ PrefabInstance:
     - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: HP
       value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: Armor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: reinforcements.Array.size
@@ -3725,7 +3733,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: gold
-      value: 350
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: general
@@ -3735,6 +3743,10 @@ PrefabInstance:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 879113657}
+    - target: {fileID: 1940220531342805053, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
+      propertyPath: maxTroopCount
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 8173800613702200346, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: m_RootOrder
       value: 2

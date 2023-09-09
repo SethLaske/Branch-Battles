@@ -5691,7 +5691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: StartSequence.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: StartSequence.Array.data[0]
@@ -5704,7 +5704,11 @@ PrefabInstance:
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: StartSequence.Array.data[2]
       value: 
-      objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: StartSequence.Array.data[3]
+      value: 
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalSpawns.PotentialSpawns.Array.size
       value: 3
@@ -5765,6 +5769,10 @@ PrefabInstance:
       propertyPath: AFKGoldAmount
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5999380921589601184, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ffa032560111700469ecf33de6d71ebc, type: 2}
     - target: {fileID: 6009564312438030107, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -5809,14 +5817,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2857143
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029286, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: spawnMagicCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: spaceToFirstEnemy
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.size
-      value: 9
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: timeBeforeCommanderSpawns
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[0]
       value: 
-      objectReference: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
+      objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[1]
       value: 
@@ -5824,7 +5860,7 @@ PrefabInstance:
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[2]
       value: 
-      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+      objectReference: {fileID: 3194577094383344460, guid: ce011568387938540bd1409974d64e52, type: 3}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[3]
       value: 
@@ -5836,7 +5872,7 @@ PrefabInstance:
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[5]
       value: 
-      objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[6]
       value: 
@@ -5848,7 +5884,23 @@ PrefabInstance:
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: finalEnemies.Array.data[8]
       value: 
-      objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+    - target: {fileID: 6402156623788029289, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1843070124, guid: 1160f5188bb8d7047b7e6fe9f589bea4, type: 3}
+    - target: {fileID: 6402156623788029289, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029289, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029289, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6444875778069543821, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.3212433

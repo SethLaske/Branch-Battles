@@ -121,20 +121,20 @@ public class GodAI : MonoBehaviour
         if (controlledTeam.troopCount < 4 && controlledTeam.Opponent.troopCount > 4) {
             //Find the front most enemy and spawn lightning there
             Vector3 hitPosition = FindClosestEnemy();
-            lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, hitPosition.x);
+            lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, hitPosition.x -2f);
         }
 
         //Just trying to hit as many enemies as possible
         if (controlledTeam.Opponent.troopCount > 10) { 
             
             Vector3 hitPosition = FindLargestEnemyGroup();
-            lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, hitPosition.x - 3.5f);
+            lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, hitPosition.x);
         }
 
         //Hitting the enemy with lightning to try and kill the miners
         if (controlledTeam.Opponent.troopCount < 10 && controlledTeam.Opponent.troopCategory[0] >= 3) {
             //Send lightning to behind the rally flag
-            lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, controlledTeam.Opponent.rallyPoint - 4.5f);
+            lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, controlledTeam.Opponent.rallyPoint - 4f);
         }
 
 
