@@ -12,7 +12,6 @@ public class LightningBolt : MonoBehaviour
     public float lightningStunTime;
     public float lightningStunIntensity;
     
-    // Start is called before the first frame update
     void Start()
     {
         
@@ -24,15 +23,15 @@ public class LightningBolt : MonoBehaviour
 
         Ray2D ray = new Ray2D(transform.position, Vector2.down);
 
-        // Perform the raycast and store the hit information in a RaycastHit2D variable.
+        
         RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, lightningDistance, layerToDamage);
 
-        // Check if the raycast hit a collider.
+        
         if (hit.collider != null)
         {
-            //Debug.Log("hit this: " + hit.collider.gameObject.name);
+            
             Unit hitUnit = hit.collider.gameObject.GetComponent<Unit>();
-            // Check if the hit GameObject has the tag "Unit".
+            
             if (hitUnit != null)
             {
                 hitUnit.Stun(lightningStunTime, lightningStunIntensity);
@@ -40,7 +39,7 @@ public class LightningBolt : MonoBehaviour
             }
         }
 
-        //Perhaps wait a duration for the animation to finish
+        
         Destroy(gameObject);
     }
 

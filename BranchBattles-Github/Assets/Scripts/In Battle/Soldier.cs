@@ -62,25 +62,25 @@ public class Soldier : Unit
         //Performs the various actions per the state it is in
         if (State == "Wait")
         {
-            //Debug.Log("State is wait");
+            
             Wait();
             //animator.SetBool("Waiting", true);
         }
         else if (State == "Walk")
         {
-            //Debug.Log("State is walk");
+            
             FindShield();   //Only need to check it if we are actually walking
             Walk();
         }
         else if (State == "Attack")
         {
-            //Debug.Log("State is attack");
+           
             Attack();
             //animator.SetBool("Attacking", true);
         }
         else if (State == "Charge")    //Only can be given by the king
         {
-            //Debug.Log("State is to die by command of the king");
+            
             Charge();
             //animator.SetBool("Attacking", false);
         }
@@ -105,7 +105,6 @@ public class Soldier : Unit
             State = "Walk";
             assembled = false;
            
-            //Debug.Log("Target is near: Wait > Walk");
             return;
         }
         
@@ -149,19 +148,16 @@ public class Soldier : Unit
 
             if (FUp && FDown) //Nothing in front of its box
             {
-                //Debug.Log("Both, forward");
                 this.Move(new Vector3(1 * Team * currentSpeed * Time.deltaTime, 0, 0));
             }
             else if (FUp)  //Nothing above and forward
             {
-                //Debug.Log("Up");
                 if (this.Move(new Vector3(.5f * Team * currentSpeed * Time.deltaTime, .5f * currentSpeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
             }
             else if (FDown)    //Nothing below and forward
             {
-                //Debug.Log("Down");
                 if (this.Move(new Vector3(.5f * Team * currentSpeed * Time.deltaTime, -.5f * currentSpeed * Time.deltaTime, 0)) == false) {
                     assembled = true;
                 }
@@ -196,10 +192,8 @@ public class Soldier : Unit
         if(IsWithinAssemble() == true && IsTargetAggroable() == false)
        
         {
-            //Debug.Log("Reached assemble");
             State = "Wait";
             assembled = false;
-            //Debug.Log("Walk > Wait at X coord: " + transform.position.x.ToString("0.0"));
             return;
         }
        
@@ -219,23 +213,18 @@ public class Soldier : Unit
         {
             State = "Walk";
             //animator.SetBool("Attacking", false);
-            //Debug.Log("Target null");
         }
         else if (IsTargetAggroable() == false) {
             State = "Walk";
             //animator.SetBool("Attacking", false);
-            //Debug.Log("Target not aggroable");
         }
         else if (IsTargetAttackable() == false)     //Both are needed to ensure the troop will not get ahead on accident
         {
             State = "Walk";
             //animator.SetBool("Attacking", false);
-            //Debug.Log("Target not attackable");
-            //Debug.Log("Attack > Walk");
         }
         else
         {
-            //Debug.Log("In attack state and trying to attack");
             base.Attack();
             //animator.SetBool("Attacking", true);
         }
@@ -280,7 +269,6 @@ public class Soldier : Unit
     /// Unit becomes unaffected by player orders, and only moves forward and attacks all enemies
     /// </summary>
     public void ReceiveGeneralOrders() {
-        //Debug.Log("Receieved general orders");
         //Change state to Charge
         //Apply visual affects and animation
         State = "Charge";
@@ -329,11 +317,11 @@ public class Soldier : Unit
             }
 
             Vector3 diff = transform.position - collider.transform.position;
-            //Debug.Log("Before" + diff.magnitude);
+            
 
             if (unit.unitClassification == 0 && State != "Wait") diff = Vector3.zero;   //Miners can only push soldiers when they are waiting
 
-            //Debug.Log("After" + diff.magnitude);
+            
 
             if (diff == Vector3.zero || diff.magnitude > separationDistance) 
             {
@@ -344,17 +332,13 @@ public class Soldier : Unit
 
         }
         
-        //Debug.Log("Dist from mid point: " + DistanceFromMiddlePoint);
-        //Debug.Log("Max Dist from mid point: " + MaxDistanceFromMiddlePoint);
-        //Debug.Log("Percent from end point: " + Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint));
-
+        
         if (Mathf.Sign(separation.x) != Mathf.Sign(DistanceFromMiddlePoint))
         { //If the seperation is the same direction as the distance then we want to apply the weaker force in that direction (want to push things inward rather than outward)
             separation.x *= Mathf.Abs((MaxDistanceFromMiddlePoint - Mathf.Abs(DistanceFromMiddlePoint)) / MaxDistanceFromMiddlePoint);  //Gradual scaling back, a unit cant be pushed out
-            //Debug.Log("Weakening the force");
+            
         }
-        //Debug.Log("Seperation Magnitude: " + separation.magnitude);
-       
+        
 
         //.1 seems to be a really good value to avoid shaking in place
         if (separation.magnitude > minimumForce) {

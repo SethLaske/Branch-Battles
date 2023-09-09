@@ -18,7 +18,6 @@ public class CommanderOuthouse : Building
 
     [SerializeField] private float timeBeforeCommanderSpawns;
 
-    // Start is called before the first frame update
     void Start()
     {
         if (spawnMagic != null)
@@ -40,7 +39,6 @@ public class CommanderOuthouse : Building
     IEnumerator CommanderSpawnRoutine() {
         //Throw down two lightning spells
         if (spawnMagic != null) {
-            //spawnMagic.TriggerMagic();
             spawnMagic.ActivateMagic(magicSpawnPosition);
 
             for (int i = 1; i < spawnMagicCount; i++) { 
@@ -52,11 +50,7 @@ public class CommanderOuthouse : Building
             }
 
 
-           /* spawnMagic = Instantiate(spawnMagic, Vector3.zero, Quaternion.identity);
-            spawnMagic.SetTeamInfo(General);
-            spawnMagic.gameObject.SetActive(false);
-
-            spawnMagic.ActivateMagic(magicSpawnPosition);*/
+           
         }
         yield return new WaitForSeconds(5);
 

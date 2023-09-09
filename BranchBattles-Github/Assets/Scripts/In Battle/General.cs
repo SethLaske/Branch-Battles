@@ -33,19 +33,16 @@ public class General : Unit
 
     void Awake()
     {
-        //Debug.Log("HP: " + HP);
         maxHealth = HP;
         baseHP = HP;
         baseArmor = Armor;
         baseDamage = Damage;
         currentSpeed = baseSpeed;
         taunting = false;
-        //MoveSpeed = baseSpeed;
         HealthBar.SetActive(false);
         healthBarStartScale = HealthBar.transform.localScale.x;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (LevelManager.gameState != GameState.InGame)
@@ -73,7 +70,7 @@ public class General : Unit
 
         if (Attacking || taunting) return;      //Gonna just turn off movement while attacking for a bit, see how I like it
 
-        //Attack Controls
+
         if (Input.GetKey("space") && Attacking == false)
         {
             animator.SetBool("Attacking", true);
@@ -84,15 +81,7 @@ public class General : Unit
             return;
         }
 
-       /* if (Input.GetKey(KeyCode.V) && Attacking == false)
-        {
-            animator.SetBool("Attacking", true);
-            Attacking = true;
-            //currentSpeed = 2;
-            //StartCoroutine(GeneralMine());
-
-            return;
-        }*/
+       
 
         //Taunt
         if (Input.GetKeyDown(KeyCode.T))
@@ -104,19 +93,7 @@ public class General : Unit
         }
 
 
-        /*if (Input.GetKeyDown(KeyCode.R))
-        {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 2);
-            foreach (Collider2D collider in colliders)
-            {
-                //Debug.Log("The generals collider is overlapping with " + collider.gameObject.name);
-                Miner miner = collider.GetComponent<Miner>();
-                if (miner != null)
-                {
-                    miner.changeResource();
-                }
-            }
-        }*/
+       
 
         if (Input.GetKey(KeyCode.C))
         {
@@ -131,27 +108,25 @@ public class General : Unit
 
         walking = false;
         //Movement Controls
-        if (Input.GetKey(KeyCode.A))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        if (Input.GetKey(KeyCode.A))   
         {
             Move(new Vector2(currentSpeed * -1 * Time.deltaTime, 0));
-            //transform.rotation = Quaternion.Euler(0, 180, 0);
             transform.localScale = new Vector3(-1, 1, 1);
             walking = true;
         }
-        if (Input.GetKey(KeyCode.D))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        if (Input.GetKey(KeyCode.D))    
         {
             Move(new Vector2(currentSpeed * 1 * Time.deltaTime, 0));
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
             transform.localScale = new Vector3(1, 1, 1);
             walking = true;
         }
 
-        if (Input.GetKey(KeyCode.W))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        if (Input.GetKey(KeyCode.W))  
         {
             Move(new Vector2(0, currentSpeed * 1 * Time.deltaTime));
             walking = true;
         }
-        if (Input.GetKey(KeyCode.S))    //|| Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
+        if (Input.GetKey(KeyCode.S))  
         {
             Move(new Vector2(0, currentSpeed * -1 * Time.deltaTime));
             walking = true;
@@ -373,14 +348,12 @@ public class General : Unit
 
         //Armor is increased by class 1 count- 3units = +1 Armor
         Armor = baseArmor + (General.troopCategory[1]/3);
-        //Debug.Log("Armor Gain: " + (General.troopCategory[1]/3));
+        
         //Damage is increased by class 2 count- 1 unit = +1 Damage
         Damage = baseDamage + Mathf.Min(General.troopCategory[2]/2, 5);
-        //Debug.Log("Damage Gain: " + (General.troopCategory[2]));
+
         //Speed is increased by class 3 count- 2 units = +1 speed
         currentSpeed = baseSpeed + Mathf.Min((General.troopCategory[3] / 3), 3.5f);
-        //Debug.Log("Speed Gain: " + (General.troopCategory[3] / 2));
-        //Debug.Log("HP Gain: " + (General.troopCategory[0] * .15f * baseHP + "\nArmor Gain: " + (General.troopCategory[1] / 3) + "\nDamage Gain: " + (General.troopCategory[2]) + "\nSpeed Gain: " + (General.troopCategory[3] / 2)));
     }
 
     public void SetLevelManager(LevelManager levelManager) {

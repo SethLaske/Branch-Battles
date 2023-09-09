@@ -11,7 +11,6 @@ public class CategorySpawns
 }
 
 
-
 public class GodAI : MonoBehaviour
 {
     public TeamInfo controlledTeam;
@@ -42,7 +41,7 @@ public class GodAI : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (LevelManager.gameState != GameState.InGame)
@@ -104,12 +103,11 @@ public class GodAI : MonoBehaviour
             if (controlledTeam.troopCategory[i] < midTroops[i] && SpawnableUnits.Length >= i)
             {
                 controlledTeam.TrainUnit(SpawnableUnits[i].PotentialSpawns[Random.Range(0, SpawnableUnits[i].PotentialSpawns.Count)]);
-                //Debug.Log("adding to mid");
+                
                 return;
             }
         }
 
-        //Using this to control the late game spawns
         controlledTeam.TrainUnit(finalSpawns.PotentialSpawns[Random.Range(0, finalSpawns.PotentialSpawns.Count)]);
 
     }
@@ -184,8 +182,6 @@ public class GodAI : MonoBehaviour
             }
         }
 
-        //Debug.Log("Largest group size: " + largestGroupSize);
-        //Debug.Log("Largest group unit: " + largestGroupUnit.name);
 
         return largestGroupUnit.transform.position;
     }

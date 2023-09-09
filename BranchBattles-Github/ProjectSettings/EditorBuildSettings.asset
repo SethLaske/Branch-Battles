@@ -65,4 +65,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Section 3 Levels/15-Commander Fight.unity
     guid: 4eaea046628a0f14f98f3a26e7cae812
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 0954dfcd10c539f4b81cbf151c49ffe3
   m_configObjects: {}

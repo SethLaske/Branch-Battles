@@ -9,7 +9,6 @@ public class UnitButtons : MonoBehaviour
     public Button thisButton; 
     public TextMeshProUGUI UnitName;
     public TextMeshProUGUI UnitCost;
-    // Start is called before the first frame update
    
 
     public void SetUnitType(Unit unit) {

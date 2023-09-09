@@ -7,14 +7,12 @@ using UnityEngine.UI;
 //Not a great class, but handles game overs for now, and will be fine unless a team can have multiple barracks
 public class TeamBase : Building
 {
-    
     private CameraControls playercamera;
     private LevelManager levelmanager;
 
     [SerializeField] private List<Unit> reinforcements;
     [SerializeField] private float distanceToSpawnReinforcements;
 
-    // Finds the stuff itself so I dont need to drag and drop for every base
     void Start()
     {
         Team = General.Team;
@@ -27,8 +25,8 @@ public class TeamBase : Building
     //Could also call it result screen and condense it to one screen per base
     public override void Die()
     {
-        base.Die(); //Destroys the enemy
-        General.Defeat();   //Both these classes are currently empty but could be used to send animations to each sides troops
+        base.Die(); 
+        General.Defeat();
         General.Opponent.Victory();
         levelmanager.GameOver(Team);
     }

@@ -25,7 +25,6 @@ public class TheWorld : MonoBehaviour
             if (enemyStand != null && Vector3.Distance(this.transform.position, enemyStand.transform.position) > abilityRadius)
             {
                 enemyStand.Stun(TimeStopTime, 1000);
-                //Debug.Log("REMOVED STUN");
                 //enemyStand.Die();
             }
         }

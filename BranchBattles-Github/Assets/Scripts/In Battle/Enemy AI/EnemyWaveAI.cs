@@ -22,8 +22,6 @@ public class EnemyWaveAI : MonoBehaviour
     private float lastSpamSpawnTime;
     private Vector3 spamSpawnPoint;
     private List<Unit> lastSpamWave = new List<Unit>();
-    //private float timeToChargeSpam;
-    //[SerializeField] private float timeBetweenSpam;
     
 
     void Start()
@@ -38,7 +36,6 @@ public class EnemyWaveAI : MonoBehaviour
         spamSpawnPoint = new Vector3(controlledTeam.barracks.transform.position.x + (5 * controlledTeam.Team), 0, 0);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (LevelManager.gameState != GameState.InGame) {
@@ -87,9 +84,8 @@ public class EnemyWaveAI : MonoBehaviour
     }
 
     IEnumerator Barrage() {
-        
+
         lastSpamSpawnTime = Time.time;
-        //timeToChargeSpam = .15f;
 
         foreach (Unit unit in spamUnits.Wave) { 
             Unit spamUnit = Instantiate(unit, spamSpawnPoint, Quaternion.identity).GetComponent<Unit>();
@@ -100,7 +96,7 @@ public class EnemyWaveAI : MonoBehaviour
             if (controlledTeam.Team < 0)
             {
                 spamUnit.transform.localScale = new Vector3(-1, 1, 1);
-                //archerSpam.transform.Rotate(new Vector3(0, 180, 0)); //Perhaps redundant now given changes to Unit class
+                
             }
 
 
@@ -112,8 +108,7 @@ public class EnemyWaveAI : MonoBehaviour
             spamUnit.HP *= controlledTeam.advantage;
             spamUnit.Damage *= controlledTeam.advantage;
 
-            //timeToChargeSpam += spamUnit.SpawnTime;
-
+            
             yield return new WaitForSeconds(1f);
             lastSpamWave.Add(spamUnit);
         }

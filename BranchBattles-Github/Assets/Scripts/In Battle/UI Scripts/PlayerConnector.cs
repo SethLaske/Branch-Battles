@@ -31,20 +31,12 @@ public class PlayerConnector : MonoBehaviour
 
         battleUI.counters.SetTeamInfo(playerTeam);
 
-            
-
-        //This is the good way for when the troops are slowly added and memory works properly. Until then the bad way must be used
         InitTrainButton(battleUI.pacifist1, PlayerInfo.PlayerTroops[0]);
         InitTrainButton(battleUI.soldier1, PlayerInfo.PlayerTroops[1]);
         InitTrainButton(battleUI.soldier2, PlayerInfo.PlayerTroops[2]);
         InitTrainButton(battleUI.soldier3, PlayerInfo.PlayerTroops[3]);
         InitTrainButton(battleUI.soldier4, PlayerInfo.PlayerTroops[4]);
 
-
-        //soldier1.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier1));
-        //soldier2.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier2));
-        //soldier3.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier3));
-        //soldier4.onClick.AddListener(() => playerTeam.spawnUnit(playerTeam.Soldier4));
 
         if (player.magic1 != null) { 
             InitMagicButton(battleUI.magicPrep1, player.magic1);
@@ -56,27 +48,17 @@ public class PlayerConnector : MonoBehaviour
             InitMagicButton(battleUI.magicPrep2, player.magic2);
             battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
         }
-        //battleUI.magicPrep1.onClick.AddListener(player.PrepMagic1);
-
-        //battleUI.magicPrep2.onClick.AddListener(player.PrepMagic2);
+       
 
         battleUI.UIShadow.SetActive(false);
             
 
-        /*TeamBase playerbase = playerTeam.barracks.GetComponent<TeamBase>();
-        playerbase.levelmanager = levelManager;
-
-        TeamBase enemybase = playerTeam.barracks.GetComponent<TeamBase>();
-        enemybase.levelmanager = levelManager;*/
        
-        /*battleUI.playerBase.slider.maxValue = battleUI.playerBase.HealthObject.HP;
-        battleUI.enemyBase.slider.maxValue = battleUI.enemyBase.HealthObject.HP;*/
     }
 
     private void InitTrainButton(Button button, Unit unit) {
         if (unit == null)
         {
-            //Debug.Log("Was null");
             button.gameObject.SetActive(false);
         }
         else {

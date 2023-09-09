@@ -20,25 +20,27 @@ public class LevelButton : MonoBehaviour
 
         levelDescription.SetActive(false);
 
-        if (PlayerInfo.LevelKeys.ContainsKey(thisLevel)) {
-            if (PlayerInfo.LevelKeys[thisLevel] == true)
+        //already finished level
+        if (PlayerInfo.LevelKeys.ContainsKey(thisLevel) && PlayerInfo.LevelKeys[thisLevel] == true)
+        {
+            gameObject.SetActive(true);
+            sprite.color = Color.green;
+            return;
+        }
+
+        foreach (int level in requiredLevels) {
+            //One of the required levels is not finished
+            if (PlayerInfo.LevelKeys.ContainsKey(level) == false || PlayerInfo.LevelKeys[level] == false)
             {
-                gameObject.SetActive(true);
-                sprite.color = Color.green;
+                gameObject.SetActive(false);
                 return;
             }
-
-            foreach (int level in requiredLevels) {
-                if (PlayerInfo.LevelKeys.ContainsKey(level) == false || PlayerInfo.LevelKeys[level] == false)
-                {
-                    gameObject.SetActive(false);
-                    return;
-                }
-            }
-
-            gameObject.SetActive(true);
-            sprite.color = Color.red;
         }
+
+        //The required levels were all finished, but this level has not been finished
+        gameObject.SetActive(true);
+        sprite.color = Color.red;
+        
     }
 
     public void ShowLevelDescription() {
@@ -70,7 +72,7 @@ public class LevelButton : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("This object has no parent.");
+            
         }
     }
 

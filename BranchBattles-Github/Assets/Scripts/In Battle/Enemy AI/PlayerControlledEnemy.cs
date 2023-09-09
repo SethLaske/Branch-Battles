@@ -18,14 +18,7 @@ public class PlayerControlledEnemy : MonoBehaviour
 
     public List<SpawnButtonPairs> Pairs;
     public List<SpawnButtonPairs> playerPairs;
-    //public Dictionary<Button, Unit> unitButtonPairs;
-    /*public Button pacifist1;
-    //public Button pacifist2;
-
-    public Button soldier1;
-    public Button soldier2;
-    public Button soldier3;
-    public Button soldier4;*/
+    
     public TextMeshProUGUI gold;
     public TextMeshProUGUI troops;
 
@@ -43,10 +36,7 @@ public class PlayerControlledEnemy : MonoBehaviour
         {
             InitTrainButton(unitButton.button, unitButton.unit, enemyTeamInfo.Opponent);
         }
-        /*InitTrainButton(soldier1, PlayerInfo.PlayerTroops[1]);
-        InitTrainButton(soldier2, PlayerInfo.PlayerTroops[2]);
-        InitTrainButton(soldier3, PlayerInfo.PlayerTroops[3]);
-        InitTrainButton(soldier4, PlayerInfo.PlayerTroops[4]);*/
+        
 
     }
 
@@ -111,7 +101,7 @@ public class PlayerControlledEnemy : MonoBehaviour
     {
         if (unit == null)
         {
-            Debug.Log("Was null");
+            
             button.gameObject.SetActive(false);
         }
         else
@@ -119,7 +109,7 @@ public class PlayerControlledEnemy : MonoBehaviour
             button.onClick.RemoveAllListeners();
             button.gameObject.SetActive(true);
             button.onClick.AddListener(() => team.TrainUnit(unit));
-            Debug.Log("Adding the listener to the enemy buttons");
+           
             UnitButtons script = button.GetComponent<UnitButtons>();
             script.SetUnitType(unit);
         }

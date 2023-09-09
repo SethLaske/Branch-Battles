@@ -79,7 +79,6 @@ public class TutorialExplanation : MonoBehaviour
     public bool CheckIfTextIsDone() {
         blocker.SetActive(false);   //Always turns it off once the player clicked
         if (textOnScreen == false) {
-            //characterSpeed /= 10;     Might change it from auto finishing to just speeding up by 10x
             explanationTextObject.text = explanationText;
             textOnScreen = true;
             return false;
@@ -88,17 +87,14 @@ public class TutorialExplanation : MonoBehaviour
         return true;
     }
 
-    private void TextDelay() {
-        
-        StartCoroutine(ShowExplanationText());
-    }
 
     IEnumerator ShowExplanationText() {
         yield return new WaitForSeconds(.25f);
         textOnScreen = false;
 
         foreach (char c in explanationText.ToCharArray()) {
-            if (textOnScreen == true)   break;      
+            if (textOnScreen == true)   break;  //stop the coroutine if switched early  
+            
             explanationTextObject.text += c;
             yield return new WaitForSeconds(characterSpeed);
         }

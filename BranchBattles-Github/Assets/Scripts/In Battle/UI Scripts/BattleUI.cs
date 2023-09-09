@@ -9,9 +9,8 @@ public class BattleUI : MonoBehaviour
     private Player player;
 
     [Header("Assign in Prefab")]
-    //public int activeButtons = 0;
-    public Slider playerBaseHealth;    //set in prefab
-    public Slider enemyBaseHealth;     //set in prefab
+    public Slider playerBaseHealth; 
+    public Slider enemyBaseHealth;
 
     public Button rally;
     public Button charge;
@@ -19,7 +18,6 @@ public class BattleUI : MonoBehaviour
     public GoldCounter counters;
 
     public Button pacifist1;
-    //public Button pacifist2;
 
     public Button soldier1;
     public Button soldier2;

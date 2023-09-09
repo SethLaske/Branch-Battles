@@ -103,39 +103,24 @@ public class Magic : MonoBehaviour
     public void ActivateMagic(float xPosition)     
     {
         magicAvailable = false;
-        //Debug.Log("Magic is being activated");
         magicEffect.SetActive(false);   
         gameObject.SetActive(true);     //Called from scripts where this might not be active
         mouseTracker.SetActive(false);
 
-        //Debug.Log("Setting Storm X");
         magicEffect.transform.position = new Vector3(xPosition, 0, 0);
         magicEffect.SetActive(true);
-        //magicEffect.SendMessage("UseMagic");
         team.souls -= soulCost;
 
         if (magicButton != null) {
             magicButton.thisButton.interactable = false;
         }
         
+        //This can still fail if paused
         Invoke("RefreshMagic", cooldownTime);
-        //StartCoroutine(ButtonCooldown());
-        //magicAvailable = true;
     }
 
     public void SetTeamInfo(TeamInfo teamInfo) {
         team = teamInfo;
-    }
-
-
-    IEnumerator ButtonCooldown()
-    {
-        magicButton.thisButton.interactable = false;
-
-        yield return new WaitForSeconds(cooldownTime);
-
-        magicAvailable = true;
-        magicButton.thisButton.interactable = true;
     }
 
     private void RefreshMagic() {

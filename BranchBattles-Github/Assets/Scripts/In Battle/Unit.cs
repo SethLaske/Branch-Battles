@@ -5,8 +5,6 @@ using UnityEngine;
 //Super class for all units that can be trained, and fight/have utility  
 public class Unit : Damageable
 {
-    //public float minfollow = 1;
-    //public float maxfollow = 2;
     [Header("Unique Identifiers")]
     public Animator animator;
     public string unitName;     //called to show on buttons etc...
@@ -22,7 +20,6 @@ public class Unit : Damageable
     public float AttackRange;   //Distance from enemy to deal damage
     public float AgroRange;     //The max distance from the rally point a troop will pursue their target
     public float attackHitTime;    //Time from animation start to activating hitbox
-    //protected float AttackTimer;   
     public int Cost;        //Gold required to train the unit
     public int TroopSpaces;     //Troop spaces the unit takes up in the army
     public float SpawnTime;     //Time the unit needs to spawn
@@ -43,8 +40,7 @@ public class Unit : Damageable
     protected float RearPoint;             //Could go private 
     public LayerMask MovementBlockers;  //things that block movement forward
 
-    //public float tolerance = .25f;  //Handles the tolerance to allow for imperfections
-
+    
     public GameObject corpse;
     protected General general;
 
@@ -64,7 +60,6 @@ public class Unit : Damageable
     {
         maxHealth = HP;
         currentSpeed = baseSpeed;
-        //AttackTimer = attackAnimation;
         if (State == "" || State == null) State = "Walk";
 
         if (Team < 0)
@@ -104,7 +99,7 @@ public class Unit : Damageable
             float maximumDistanceBehindShield = 1.5f;
             if (minimumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team) 
             {
-                //Debug.Log("Waiting for shield");
+                
                 return;
             }
             else if (maximumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team)
@@ -131,12 +126,11 @@ public class Unit : Damageable
 
         if (Target != null && IsTargetAggroable() == true)
         {
-            //Debug.Log("Walking at enemy");
+            
             this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
         else {
-            //Debug.Log("Walking at rally");
             float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
             this.Move(new Vector3(Mathf.Sign(distance) * currentSpeed * Time.deltaTime, 0, 0));
             x = Mathf.Sign(distance);
@@ -144,12 +138,10 @@ public class Unit : Damageable
 
         if (x < 0)
         {
-            //transform.rotation = Quaternion.Euler(0, 180, 0);
             transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
             transform.localScale = new Vector3(1, 1, 1);
         }
 
@@ -161,8 +153,7 @@ public class Unit : Damageable
     public virtual void Attack() {
         if (Target == null)
         {
-            Debug.Log("Attacking without a target");
-            return;     //Should never be triggered
+            return;     
         }
 
         if (Attacking == false) {
@@ -176,19 +167,17 @@ public class Unit : Damageable
         {
             adjustments.x = (Mathf.Sign(Target.transform.position.x - transform.position.x) * currentSpeed * Time.deltaTime);
             
-            //transform.position += new Vector3(XMove, 0, 0);
-            //Debug.Log("XMove: " + Mathf.Sign(XMove));
+
         }
         if (Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
             adjustments.y = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentSpeed * Time.deltaTime);
 
-            //transform.position += new Vector3(0, YMove, YMove / 5);
-            //Debug.Log("YMove: " + Mathf.Sign(YMove));
+           
         }
         Move(adjustments);
 
 
-        //Redundant
+        
         
         if (Target.transform.position.x - transform.position.x > 0)
         {
@@ -204,31 +193,32 @@ public class Unit : Damageable
     //Calls the attack and provides timings here. One flaw is that they will attack even if the target already died while they are charging
     IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
-        Debug.Log("Starting Attack");
         animator.SetBool("Attacking", true);
         Attacking = true;
-        //currentSpeed /= 2; //Troops will still be able to move, but this will limit their ability to sprint or retreat once that attack has been done
-
+       
         float attackDebuff = 3;
         DebuffMult *= attackDebuff;
 
-        //Debuff mult can be affecting other things but we dont want it to affect this attack. However, the debuff mult can be triggered by stun so I need to divide it by the attack debuff
+        
         yield return new WaitForSeconds(attackHitTime * DebuffMult/attackDebuff);
+
         while (DebuffMult > 100) {
             yield return null;  //I really hate these but its required to allow The World to work using stun
         }
+
         attackSound.Play();
-        Debug.Log("Middle of Attack");
         Offense.Attack();
-        //Debug.Log("Offense Hitting");
+
         yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult/attackDebuff);
+
         while (DebuffMult > 100)
         {
             yield return null;
         }
+
         Attacking = false;
-        //currentSpeed *= 2;
         DebuffMult /= attackDebuff;
+
         if (IsTargetAggroable() && IsTargetAttackable() && State == "Attack")
         {
             StartCoroutine(PlayAttack());
@@ -238,7 +228,6 @@ public class Unit : Damageable
             animator.SetBool("Attacking", false);
 
         }
-        Debug.Log("Ending Attack");
     }
 
     /// <summary>
@@ -286,7 +275,6 @@ public class Unit : Damageable
             return false;
         }
 
-        //Debug.Log("Target is agroable");
         return true;
     }
 
@@ -295,12 +283,10 @@ public class Unit : Damageable
     {
         base.TakeDamage(Damage);
         HealthBar.transform.localScale = new Vector3(healthBarStartScale * HP / maxHealth, HealthBar.transform.localScale.y, HealthBar.transform.localScale.z);
-        //slider.value = HealthObject.HP;
         HealthBar.SetActive(true);
         HealthTimer = 0;
     }
 
-    //A lot of things get taken care of for the general and team info
     public override void Die() {
         
         General.troopCount -= TroopSpaces;
@@ -347,10 +333,9 @@ public class Unit : Damageable
 
         if (spriteMaterial == null)
         {
-            Debug.Log("Skipping colors");
             return;
         }
-        //Debug.Log("Setting colors");
+       
         spriteMaterial.SetColor("_PantColor", General.unitPantsColor);
         spriteMaterial.SetColor("_BeltColor", General.unitBeltColor);
         spriteMaterial.SetColor("_ShoulderColor", General.unitShouldersColor);
@@ -368,17 +353,16 @@ public class Unit : Damageable
         {
             transform.position = NewPosition;
             return true;
-            //Debug.Log("Moving to a position");
         }
         else if (movement.x * transform.position.x < 0)
         { //If they are spawned outside of lines they can walk linearly in the direction towards 0. hopefully
             transform.position += Vector3.right * movement.x;
             return false;
-            //Debug.Log("Cant move, outside of walk");
+            
         }
         else {
             return false;
-            //Debug.Log("Cant move " + movement);
+           
         }
 
     }
@@ -399,8 +383,7 @@ public class Unit : Damageable
         }
 
         direction = direction.normalized;
-        // Calculate the new position based on the max distance delta
-        //Vector3 newPosition = current + direction.normalized * maxDistanceDelta;
+        
         Vector3 displacement = new Vector3(direction.x, direction.y, direction.y/5) * maxDistanceDelta;
 
         return displacement;

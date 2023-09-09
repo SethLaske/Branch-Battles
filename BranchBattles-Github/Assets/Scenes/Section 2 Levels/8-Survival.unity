@@ -694,7 +694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: popUpName
-      value: SWORD
+      value: LEVEL8
       objectReference: {fileID: 0}
     - target: {fileID: 7135179701743287231, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: EnemyObject
@@ -4420,7 +4420,7 @@ PrefabInstance:
       objectReference: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
     - target: {fileID: 3794604408213705726, guid: a7bd8e2c7c4e4714fa3e3fd211e9cdb0, type: 3}
       propertyPath: enemyWaves.Array.data[0].timeToSendWave
-      value: 60
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 3794604408213705726, guid: a7bd8e2c7c4e4714fa3e3fd211e9cdb0, type: 3}
       propertyPath: enemyWaves.Array.data[1].timeToSendWave

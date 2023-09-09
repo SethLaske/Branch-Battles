@@ -61,26 +61,17 @@ public class Tutorial : MonoBehaviour
         foreach (Unit unit in enemyStartSpawns) {
             Barbarians.TrainUnit(unit);
         }
-        /*Barbarians.TrainUnit(fighter);
-        Barbarians.TrainUnit(fighter);
-        Barbarians.TrainUnit(fighter);
-        //Barbarians.TrainUnit(fighter);
-        Barbarians.TrainUnit(fighter);
-        Barbarians.TrainUnit(spear);
-        Barbarians.TrainUnit(spear);
-        Barbarians.TrainUnit(spear);
-        //Barbarians.TrainUnit(spear);*/
+       
 
         Barbarians.gold = 0;
         Barbarians.AFKGoldAmount = 0;
-        //Barbarians.SetRallyPoint(15);
 
         foreach (TutorialExplanation tutorialScreen in allTutorialScreens)
         {
             tutorialScreen.DisableStep();
             if (tutorialScreen.UIRevealed != null)
             {
-                Debug.Log("Disabling object: " + tutorialScreen.UIRevealed.name);
+               
                 tutorialScreen.UIRevealed.SetActive(false);
             }
 
@@ -98,7 +89,6 @@ public class Tutorial : MonoBehaviour
     {
         if (LevelManager.gameState == GameState.Gameover)
         {
-            //I dont really like adding this update, but I want the tutorial to immediately go away if we reach a gameover, and I don't want to add a check in Level manager for a tutorial
             gameObject.SetActive(false);
             return;
         }
@@ -112,7 +102,6 @@ public class Tutorial : MonoBehaviour
             tutorialScreen.DisableStep();
             if (tutorialScreen.UIRevealed != null)
             {
-                Debug.Log("Disabling object: " + tutorialScreen.UIRevealed.name);
                 tutorialScreen.UIRevealed.SetActive(false);
             }
 
@@ -170,9 +159,7 @@ public class Tutorial : MonoBehaviour
     }
     IEnumerator TimerRoutine()
     {
-        //Time.timeScale = 1;
-        //yield return new WaitForSeconds(allTutorialScreens[tutorialStepIndex].readBuffer);
-
+        
         allTutorialScreens[tutorialStepIndex].DisableStep();
         
 
