@@ -221,7 +221,7 @@ MonoBehaviour:
   animator: {fileID: 2678390886374889586}
   unitName: General Kenobi
   UnitNumber: 0
-  unitClassification: 1
+  unitClassification: 0
   Offense: {fileID: 6185429638716345863}
   baseSpeed: 4
   Damage: 5
@@ -249,7 +249,6 @@ MonoBehaviour:
   HealingAura: {fileID: 712338341447871682}
   troopselector: {fileID: 9001168858411564027}
   goldBar: {fileID: 4728883907409749206}
-  goldBarAppearanceTime: 1.5
   minePoint: {fileID: 3552886358842626078}
   goldPerHit: 20
   maxGoldAmount: 80
@@ -675,7 +674,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.72882384, g: 0.8301887, b: 0, a: 1}
   m_FlipX: 0
@@ -759,7 +758,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0.6415094, b: 0.08805034, a: 1}
   m_FlipX: 0

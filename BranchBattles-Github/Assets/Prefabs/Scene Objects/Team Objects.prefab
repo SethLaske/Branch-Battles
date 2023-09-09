@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768780986695892684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0.06}
   m_LocalScale: {x: 5, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -273,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7886852264383385133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0.8, z: 0.15}
+  m_LocalPosition: {x: 5, y: 0.8, z: 0.05}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -403,6 +403,8 @@ MonoBehaviour:
   Team: 1
   HP: 300
   Armor: 0
+  reinforcements: []
+  distanceToSpawnReinforcements: 0
 --- !u!61 &7886852265146594176
 BoxCollider2D:
   m_ObjectHideFlags: 0
