@@ -76,7 +76,7 @@ public class CameraControls : MonoBehaviour
 
     public void MoveCamera(float X) {
 
-        if (Mathf.Abs(transform.position.x + X) > mapWidth / 2)     return;
+        if (Mathf.Abs(transform.position.x + X) > mapWidth / 2 && Mathf.Sign(transform.position.x) * Mathf.Sign(X) > 0)     return;
 
         transform.position += new Vector3(X, 0, 0);
         if (FrontGround != null)

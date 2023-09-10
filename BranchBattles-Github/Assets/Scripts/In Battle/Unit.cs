@@ -199,7 +199,11 @@ public class Unit : Damageable
         float attackDebuff = 3;
         DebuffMult *= attackDebuff;
 
-        
+        while (DebuffMult > 100)
+        {
+            yield return null;  //I really hate these but its required to allow The World to work using stun
+        }
+
         yield return new WaitForSeconds(attackHitTime * DebuffMult/attackDebuff);
 
         while (DebuffMult > 100) {

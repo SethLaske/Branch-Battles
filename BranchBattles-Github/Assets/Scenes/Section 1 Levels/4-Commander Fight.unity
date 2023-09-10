@@ -5833,6 +5833,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029287, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6402156623788029287, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6402156623788029288, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: spawnMagicCount
       value: 2

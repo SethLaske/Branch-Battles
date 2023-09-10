@@ -582,7 +582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2193355135385538668, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: levelTime
-      value: 300
+      value: 321
       objectReference: {fileID: 0}
     - target: {fileID: 2582395410413635428, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive

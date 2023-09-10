@@ -1962,7 +1962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
-      value: LEVEL15
+      value: LEVEL14
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934009, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_Pivot.x
@@ -4785,7 +4785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934008, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: popUpName
-      value: GENERAL
+      value: LEVEL0
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789552934009, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_Pivot.x

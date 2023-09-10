@@ -3224,11 +3224,23 @@ PrefabInstance:
       value: Standard Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: HP
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: reinforcements.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: reinforcements.Array.data[0]
+      value: 
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+    - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: reinforcements.Array.data[1]
+      value: 
+      objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
+    - target: {fileID: 7236281997680776230, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: reinforcements.Array.data[2]
       value: 
       objectReference: {fileID: 5466881715449489009, guid: 3649a87e0b7f8ae48a22a0eb5a123e3d, type: 3}
     - target: {fileID: 8891856608657327200, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
