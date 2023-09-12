@@ -1,6 +1,7 @@
 # Branch battles
 ## 2D strategy game to fight for domination between vikings, John Wick, and Dio
 Inspired by Stick War and Age of War
+Playable at: https://ratske.itch.io/branch-battles
 
 ## Whats included
 On launch the game will have 
