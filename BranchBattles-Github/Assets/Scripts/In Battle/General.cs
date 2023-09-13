@@ -29,6 +29,9 @@ public class General : Unit
     private float baseArmor;
     private float baseDamage;
 
+    private float attackTimer = 0;
+    private bool playedAttack;
+
     void Awake()
     {
         maxHealth = HP;
@@ -56,13 +59,12 @@ public class General : Unit
             HealthBar.SetActive(true);
         }
 
-        
-        
+
+        GeneralAttackUpdate();
 
         if (Attacking || taunting) return;      //Gonna just turn off movement while attacking for a bit, see how I like it
 
-
-        if (Input.GetKey("space") && Attacking == false)
+        /*if (Input.GetKey("space") && Attacking == false)
         {
             animator.SetBool("Attacking", true);
             Attacking = true;
@@ -70,9 +72,7 @@ public class General : Unit
             StartCoroutine(PlayAttack());
             
             return;
-        }
-
-       
+        }*/      
 
         //Taunt
         if (Input.GetKeyDown(KeyCode.T))
@@ -84,7 +84,6 @@ public class General : Unit
         }
 
 
-       
 
         if (Input.GetKey(KeyCode.C))
         {
@@ -134,7 +133,7 @@ public class General : Unit
 
     }
 
-    IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
+    /*IEnumerator PlayAttack()   //Might need recover to deal with animations, otherwise easy fix to remove it
     {
         yield return new WaitForSeconds(attackHitTime * DebuffMult);
 
@@ -153,9 +152,49 @@ public class General : Unit
         }
         
         //currentSpeed = baseSpeed;
-    }
+    }*/
 
-   
+    private void GeneralAttackUpdate() {
+        if (Input.GetKeyDown("space") && attackTimer == 0f)
+        {
+            animator.SetBool("Attacking", true);
+            Attacking = true;
+            attackTimer = 0.01f;
+            playedAttack = false;
+        }
+
+        if (attackTimer > 0)
+        {
+            attackTimer += Time.deltaTime;
+            if (Input.GetKeyUp("space") && attackTimer < attackHitTime * DebuffMult)
+            {
+                attackTimer = 0;
+                animator.SetBool("Attacking", false);
+                Attacking = false;
+            }
+            else if (attackTimer >= attackHitTime * DebuffMult && playedAttack == false)
+            {
+                attackSound.Play();
+                Offense.Attack();
+                GeneralMine();
+                playedAttack = true;
+            }
+            else if (attackTimer >= (attackAnimation.length) * DebuffMult)
+            {
+                if (Input.GetKey("space") == false)
+                {
+                    animator.SetBool("Attacking", false);
+                    Attacking = false;
+                    attackTimer = 0;
+                }
+                else
+                {
+                    attackTimer = .01f;
+                    playedAttack = false;
+                }
+            }
+        }
+    }
 
     private void GeneralMine() {
         Ray2D ray = new Ray2D(minePoint.position, Vector2.right * transform.localScale.x);
@@ -297,13 +336,13 @@ public class General : Unit
         HP = HP * maxHealth / oldMaxHP;
 
         //Armor is increased by class 1 count- 3units = +1 Armor
-        Armor = baseArmor + (General.troopCategory[1]/3);
+        Armor = baseArmor + (General.troopCategory[1]/3f);
         
         //Damage is increased by class 2 count- 1 unit = +1 Damage
-        Damage = baseDamage + Mathf.Min(General.troopCategory[2]/2, 5);
+        Damage = baseDamage + Mathf.Min(General.troopCategory[2]/2f, 5f);
 
         //Speed is increased by class 3 count- 2 units = +1 speed
-        currentSpeed = baseSpeed + Mathf.Min((General.troopCategory[3] / 3), 3.5f);
+        currentSpeed = baseSpeed + Mathf.Min((General.troopCategory[3] / 3f), 3.5f);
     }
 
     public void SetLevelManager(LevelManager levelManager) {

@@ -922,8 +922,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5696295148291148339, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
+      propertyPath: midTroops.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: midTroops.Array.data[1]
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: midTroops.Array.data[2]
@@ -943,7 +947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: minTroops.Array.data[2]
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 657466697604474784, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: minTroops.Array.data[3]

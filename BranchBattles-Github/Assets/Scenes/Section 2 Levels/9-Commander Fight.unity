@@ -4493,17 +4493,57 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 67dd73a8fb8b99e4d8c8d793c86c4324, type: 3}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: midTroops.Array.data[0]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: midTroops.Array.data[1]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: midTroops.Array.data[3]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: minTroops.Array.data[0]
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: minTroops.Array.data[1]
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: StartSequence.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: soldierDifferenceToAttack
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: StartSequence.Array.data[2]
+      value: 
+      objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: StartSequence.Array.data[3]
       value: 
+      objectReference: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: StartSequence.Array.data[4]
+      value: 
       objectReference: {fileID: 1792269021062788891, guid: 74bd2791572702644a27db7511b89017, type: 3}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalSpawns.PotentialSpawns.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalSpawns.PotentialSpawns.Array.data[0]
+      value: 
+      objectReference: {fileID: 1568962464096031911, guid: c5c0b2d57f49c2e439319bc6d0393ece, type: 3}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: finalSpawns.PotentialSpawns.Array.data[2]
+      value: 
+      objectReference: {fileID: 582674381905752978, guid: b54a5ce09782bdb4183ade956503e1d5, type: 3}
     - target: {fileID: 3552642074385243686, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: HP
       value: 125
@@ -4546,7 +4586,7 @@ PrefabInstance:
       objectReference: {fileID: 2023385610}
     - target: {fileID: 4099510361625385788, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: maxTroopCount
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5884994696500183697, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: m_Enabled

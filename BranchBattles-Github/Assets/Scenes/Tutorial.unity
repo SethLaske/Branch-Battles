@@ -791,6 +791,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 546282230}
+    - target: {fileID: 6259192794310096115, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+      propertyPath: m_text
+      value: Go to Map
+      objectReference: {fileID: 0}
     - target: {fileID: 6690825056452972210, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1001,6 +1005,11 @@ GameObject:
 --- !u!1 &208384113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9005457932819885957, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
+  m_PrefabInstance: {fileID: 208384110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &208384114 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3494739986084183087, guid: d6f731966e54d04458d33b73fd20294e, type: 3}
   m_PrefabInstance: {fileID: 208384110}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &229337824
@@ -2573,8 +2582,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: Diversify your army and train some spearmen to attack from a distance.
-        Not very honorable, but it looks like you need the help.
+      value: Diversify your army and train some spearmen. They can hit from a distance,
+        and training them will speed you up as well.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_fontSize
@@ -4087,6 +4096,7 @@ MonoBehaviour:
   disabledOptionsOnFirstPlaythrough:
   - {fileID: 208384113}
   - {fileID: 208384112}
+  - {fileID: 208384114}
 --- !u!224 &1335778447 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2684548667079945193, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
@@ -4638,7 +4648,7 @@ MonoBehaviour:
   controlledTeam: {fileID: 1511580421}
   StartSequence: []
   midGoldThreshold: 50
-  soldierDifferenceToAttack: 10
+  soldierDifferenceToAttack: 15
   minTroops: 0000000000000000000000000000000000000000
   midTroops: 0100000000000000060000000500000000000000
   SpawnableUnits:

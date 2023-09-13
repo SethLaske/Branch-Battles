@@ -4778,8 +4778,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5516872789540063061, guid: c5011b6e62224a548a1bd636deb7e1c6, type: 3}
       propertyPath: m_text
-      value: 'Not only can you heal and train soldiers in your camp, but you also
-        will deal more damage to enemies.
+      value: 'Not only can you heal and train soldiers in your camp, but you will
+        also deal more damage to enemies.
 
         Choose your ground accordingly.'
       objectReference: {fileID: 0}
@@ -5407,7 +5407,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4677096087623584894, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_text
-      value: Survival
+      value: Level 2
       objectReference: {fileID: 0}
     - target: {fileID: 4677096088028947074, guid: 81244c4b0baab93499f16e71e547a4a2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
