@@ -75,7 +75,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 582674382327557716}
   spriteMaterial: {fileID: 0}
   Target: {fileID: 0}
-  MovementBlockers:
+  walkableLayer:
     serializedVersion: 2
     m_Bits: 512
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}

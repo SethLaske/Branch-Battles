@@ -2266,6 +2266,10 @@ PrefabInstance:
       propertyPath: Opponent
       value: 
       objectReference: {fileID: 1511580421}
+    - target: {fileID: 8060216728871375856, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 8173800613702200346, guid: 3e90f7df6c5617d43842fa0438aace4a, type: 3}
       propertyPath: m_RootOrder
       value: 10

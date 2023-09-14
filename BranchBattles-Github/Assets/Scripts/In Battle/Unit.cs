@@ -38,7 +38,7 @@ public class Unit : Damageable
     public Damageable Target;   //Targets are always for the enemy      //Could go private 
     protected float AssemblePoint;         //Could go private 
     protected float RearPoint;             //Could go private 
-    public LayerMask MovementBlockers;  //things that block movement forward
+    public LayerMask walkableLayer;
 
     
     public GameObject corpse;
@@ -256,7 +256,7 @@ public class Unit : Damageable
             return false;
         }
 
-        if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange)
+        if (Vector3.Distance(transform.position, Target.transform.position) > AttackRange + .2f)
         {
             return false;
         }
@@ -351,9 +351,12 @@ public class Unit : Damageable
     public bool Move(Vector2 movement)
     {
         Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) / DebuffMult + transform.position;
+
         
-       
-        if (Physics2D.OverlapCircle(NewPosition, .2f, MovementBlockers))
+        
+            
+        
+        if (Physics2D.OverlapCircle(NewPosition, .2f, walkableLayer))
         {
             transform.position = NewPosition;
             return true;
