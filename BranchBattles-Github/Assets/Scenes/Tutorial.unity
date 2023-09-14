@@ -4649,6 +4649,8 @@ MonoBehaviour:
   StartSequence: []
   midGoldThreshold: 50
   soldierDifferenceToAttack: 15
+  minimumSoldiers: 4
+  defensiveRallyPoint: 10
   minTroops: 0000000000000000000000000000000000000000
   midTroops: 0100000000000000060000000500000000000000
   SpawnableUnits:

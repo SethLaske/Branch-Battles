@@ -32,6 +32,9 @@ public class CameraControls : MonoBehaviour
     void Update()
     {
         //Could add a check if the player is actually in game to be able to move around
+        if (LevelManager.gameState != GameState.InGame) {
+            return;
+        }
 
         CameraDirection = 0;
 

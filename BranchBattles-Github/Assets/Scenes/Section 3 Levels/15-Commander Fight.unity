@@ -1263,6 +1263,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5696295148291148339, guid: fd90e4169d5d91f4f8ae4ef5411beab4, type: 3}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: minimumSoldiers
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: midTroops.Array.data[0]
       value: 5
       objectReference: {fileID: 0}

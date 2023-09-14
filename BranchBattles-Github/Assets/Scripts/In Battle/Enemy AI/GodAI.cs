@@ -17,6 +17,8 @@ public class GodAI : MonoBehaviour
     public List<Unit> StartSequence = new List<Unit>();
     public int midGoldThreshold = 75;
     public int soldierDifferenceToAttack;
+    [SerializeField] private int minimumSoldiers = 4;
+    [SerializeField] private float defensiveRallyPoint = 10;
     public int[] minTroops = new int[5];
     public int[] midTroops = new int[5];
     public CategorySpawns[] SpawnableUnits;
@@ -31,7 +33,9 @@ public class GodAI : MonoBehaviour
             controlledTeam.TrainUnit(Starter);
         }
 
-        controlledTeam.SetRallyPoint(10);
+        
+
+        controlledTeam.SetRallyPoint(defensiveRallyPoint);
 
         if (lightningMagic != null)
         {
@@ -55,32 +59,37 @@ public class GodAI : MonoBehaviour
 
 
 
-        spawnTroop();
+        SpawnTroop();
         PositionArmy();
         UseLightningMagic();
     }
 
     private void PositionArmy() {
+        int MySoldiers = controlledTeam.troopCount - controlledTeam.troopCategory[0];
 
-        //If either side is at the full troop count charge. Puts the AI at a disadvantage, but I dont want games dragging out for no reason. Might change that for different game modes
-        if (controlledTeam.troopCount == controlledTeam.maxTroopCount || controlledTeam.Opponent.troopCount == controlledTeam.Opponent.maxTroopCount || controlledTeam.maxTroopCount == 0) {
-            controlledTeam.Charge();
+        if (MySoldiers < minimumSoldiers) {
+            controlledTeam.SetRallyPoint(defensiveRallyPoint);
+            return;
         }
 
-        //Currently defends until the AI has a sufficiently high army count and then attacks. Retreats once it is slightly outnumbered
-        int MySoldiers = controlledTeam.troopCount - controlledTeam.troopCategory[0];
+        //Once hit max troops and some extra gold then charge. No sense in stalling the game
+        if (controlledTeam.troopCount == controlledTeam.maxTroopCount && controlledTeam.gold > midGoldThreshold) {
+            controlledTeam.Charge();
+            return;
+        }
+
+        
         int EnemySoldiers = controlledTeam.Opponent.troopCount - controlledTeam.Opponent.troopCategory[0];
 
-        if (MySoldiers - EnemySoldiers > soldierDifferenceToAttack) {
+        if (MySoldiers - EnemySoldiers >= soldierDifferenceToAttack) {
             controlledTeam.Charge();
-        } else if (EnemySoldiers - 2 > MySoldiers) {
-            controlledTeam.SetRallyPoint(10);
-        }
+        } 
 
 
     }
 
-    private void spawnTroop() {
+    private void SpawnTroop() {
+
         if (controlledTeam.troopCount >= controlledTeam.maxTroopCount) return;
 
 
@@ -117,21 +126,21 @@ public class GodAI : MonoBehaviour
 
         if (lightningMagic.soulCost > controlledTeam.souls) return;
 
-        //Hitting the enemy with anything to try and survive
-        if (controlledTeam.troopCount < 4 && controlledTeam.Opponent.troopCount > 4) {
+        
+        if (controlledTeam.troopCount < 4) {
             //Find the front most enemy and spawn lightning there
             Vector3 hitPosition = FindClosestEnemy();
             lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, hitPosition.x -2f);
         }
 
-        //Just trying to hit as many enemies as possible
+        
         if (controlledTeam.Opponent.troopCount > 10) { 
             
             Vector3 hitPosition = FindLargestEnemyGroup();
             lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, hitPosition.x);
         }
 
-        //Hitting the enemy with lightning to try and kill the miners
+        
         if (controlledTeam.Opponent.troopCount < 10 && controlledTeam.Opponent.troopCategory[0] >= 3) {
             //Send lightning to behind the rally flag
             lightningMagic.SendMagicToLocation(controlledTeam.barracks.transform.position.x, controlledTeam.Opponent.rallyPoint - 4f);

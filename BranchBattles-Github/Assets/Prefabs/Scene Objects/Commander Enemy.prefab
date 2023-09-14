@@ -368,6 +368,8 @@ MonoBehaviour:
   - {fileID: 2203268833559490360, guid: 9eaeb89cd0dde1a438f3be2173fe6545, type: 3}
   midGoldThreshold: 300
   soldierDifferenceToAttack: 5
+  minimumSoldiers: 3
+  defensiveRallyPoint: 10
   minTroops: 0300000001000000020000000200000000000000
   midTroops: 0400000003000000050000000400000000000000
   SpawnableUnits:

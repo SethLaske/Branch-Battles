@@ -123,6 +123,7 @@ public class General : Unit
         }
 
         animator.SetBool("Walking", walking);
+        
     }
 
     //Ends the level and stops the enemy from spawning more units
