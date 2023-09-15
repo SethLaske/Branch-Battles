@@ -314,6 +314,7 @@ MonoBehaviour:
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 4c76b6948e6c9174eb92d516c676ddcf, type: 2}
   identifierSprite: {fileID: 21300000, guid: d41e58dcc9c710a4fbefffba27d0729d, type: 3}
+  attackRangeY: 1
   assembled: 0
   separationDistance: 1
   separationForce: 0.5

@@ -245,6 +245,7 @@ MonoBehaviour:
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: e34ca22d0ac5b834b979f8d06f329ad7, type: 2}
   identifierSprite: {fileID: 889348375, guid: e9452931878e2974d937af184522250c, type: 3}
+  attackRangeY: 1
   regenTime: 0.2
   HealingAura: {fileID: 712338341447871682}
   troopselector: {fileID: 9001168858411564027}

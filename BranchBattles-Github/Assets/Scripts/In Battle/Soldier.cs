@@ -55,14 +55,14 @@ public class Soldier : Unit
         
         CalculateAssemblePoints();
 
-        if(State != "Charge" && State != "Attack")   SpreadOut();    //Performs flocking mechanics every update, regardless of state
+        
 
         FindTarget();
 
         //Performs the various actions per the state it is in
         if (State == "Wait")
         {
-            
+            SpreadOut();   
             Wait();
             //animator.SetBool("Waiting", true);
         }
@@ -196,7 +196,10 @@ public class Soldier : Unit
             assembled = false;
             return;
         }
-       
+
+        if (IsTargetAggroable() == false) {
+            SpreadOut();
+        }
         base.Walk();
         
         
@@ -302,35 +305,13 @@ public class Soldier : Unit
 
     private void SpreadOut() {
 
-        Vector3 separation = Vector3.zero;
 
         //This is more consistent than the list of troops that need to be accounted for (but less efficient)
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, separationDistance);
+        
 
 
-        foreach (Collider2D collider in colliders)
-        {
-            Unit unit = collider.GetComponent<Unit>();
-            if (collider.gameObject == this.gameObject || unit == null || unit.Team != Team || unit.unitClassification > unitClassification)
-            {
-                continue;
-            }
-
-            Vector3 diff = transform.position - collider.transform.position;
-            
-
-            if (unit.unitClassification == 0 && State != "Wait") diff = Vector3.zero;   //Miners can only push soldiers when they are waiting
-
-            
-
-            if (diff == Vector3.zero || diff.magnitude > separationDistance) 
-            {
-                continue;     //Infinity breaks things
-            }
-
-            separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5))/(diff.magnitude * 2);
-
-        }
+        
+        Vector3 separation = GetSpreadVector(separationDistance);
         
         
         if (Mathf.Sign(separation.x) != Mathf.Sign(DistanceFromMiddlePoint))

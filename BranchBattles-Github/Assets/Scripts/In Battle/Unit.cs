@@ -53,6 +53,8 @@ public class Unit : Damageable
     public AnimationClip attackAnimation;
     public Sprite identifierSprite;
 
+    [SerializeField] protected float attackRangeY;
+
     /// <summary>
     /// Initializes the typical start script for the different unit classes, including setting max health, speeds, attack timer, state, sprite color, and assigning its general
     /// </summary>
@@ -90,14 +92,19 @@ public class Unit : Damageable
         
         if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
            
-            /*if (Target != null && humanshield.State == "Attack") {
-                //TODO - Given the unit is behind a human shield, and has a target, and is out of attack condition threshold, when the shield starts attacks, then ???
-                return;
-            }*/
-            
             float minimumDistanceBehindShield = .5f;
             float maximumDistanceBehindShield = 1.5f;
-            if (minimumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team) 
+            if (Target != null && humanshield.State == "Attack") {
+                if (Vector3.Angle(humanshield.transform.position - transform.position, Vector3.right * transform.localScale.x) > 45)
+                {
+
+                }
+                else {
+                    return;
+                }
+            }
+            
+            else if (minimumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team) 
             {
                 
                 return;
@@ -126,9 +133,16 @@ public class Unit : Damageable
 
         if (Target != null && IsTargetAggroable() == true)
         {
-            //Debug.Log("target and agrroable");
-            this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
+            Vector3 spreadVector = GetSpreadVector(.5f);
+            if (Vector3.Angle(spreadVector, Target.transform.position - transform.position) < 90)
+            {
+                //Debug.Log("target and agrroable");
+                this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
+            }
+            else {
+                this.Move(new Vector3(0, spreadVector.y) * Time.deltaTime);
+            }
         }
         else {
             //Debug.Log("not target and agrroable");
@@ -170,29 +184,29 @@ public class Unit : Damageable
             
 
         }
-        if (Mathf.Abs(Target.transform.position.y - transform.position.y) > .25f) {
-            adjustments.y = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentSpeed * Time.deltaTime);
-
-           
+        if (Mathf.Abs(Target.transform.position.y - transform.position.y) > attackRangeY/2) {
+            adjustments.y = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentSpeed * Time.deltaTime); 
         }
 
-        bool canMove = true;
+        
         if (unitClassification != 0)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + adjustments, .5f, 1 << gameObject.layer);
-            foreach (Collider2D collider in colliders)
+            Debug.Log("Adjust attack");
+            Vector3 spreadVector = GetSpreadVector(.5f) * Time.deltaTime;
+            Debug.Log("Spread Vector" + spreadVector);
+            if (adjustments.y * spreadVector.y < 0)
             {
-                if (collider.gameObject != gameObject)
-                {
-                    //Debug.Log("Something is already here");
-                    canMove = false;
-                }
+                adjustments.y = 0;
             }
+            else if (adjustments.y * spreadVector.y == 0) {
+                adjustments.y += spreadVector.y;
+            }
+            Debug.Log("Y Adjustments: " + adjustments.y);
         }
 
-        if (canMove == true) { 
-            Move(adjustments);
-        }
+       
+        Move(adjustments);
+       
 
 
         
@@ -300,6 +314,39 @@ public class Unit : Damageable
         return true;
     }
 
+
+    protected Vector3 GetSpreadVector(float separationDistance) {
+        Vector3 separation = Vector3.zero;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, separationDistance);
+
+        foreach (Collider2D collider in colliders)
+        {
+            Unit unit = collider.GetComponent<Unit>();
+            if (collider.gameObject == this.gameObject || unit == null || unit.Team != Team || unit.unitClassification > unitClassification)
+            {
+                continue;
+            }
+
+            Vector3 diff = transform.position - collider.transform.position;
+
+
+            if (unit.unitClassification == 0 && State != "Wait") diff = Vector3.zero;   //Miners can only push soldiers when they are waiting
+
+
+
+            if (diff == Vector3.zero || diff.magnitude > separationDistance)
+            {
+                continue;     //Infinity breaks things
+            }
+
+            separation += new Vector3(Mathf.Sign(diff.x), 2 * Mathf.Sign(diff.y), 2 * Mathf.Sign(diff.y) / (5)) / (diff.magnitude * 2);
+
+        }
+
+        return separation;
+    }
+
     //Override take damage to allow for the health bar to be displayed
     public override void TakeDamage(float Damage)
     {
@@ -368,7 +415,7 @@ public class Unit : Damageable
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
     public bool Move(Vector2 movement)
     {
-        Debug.Log("Move: " + movement + " With a magnitude of: " + movement.magnitude);
+        //Debug.Log("Move: " + movement + " With a magnitude of: " + movement.magnitude);
         Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) / DebuffMult + transform.position;
 
 /*        if (unitClassification != 0 && State == "Attack") {

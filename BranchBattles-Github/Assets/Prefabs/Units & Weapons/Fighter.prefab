@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1900134500835937368}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.7454, y: -0.1216, z: -0.1}
-  m_LocalScale: {x: 0.85159653, y: 1.6035085, z: 1}
+  m_LocalScale: {x: 1, y: 1.6035085, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5466881715449489010}
@@ -313,6 +313,7 @@ MonoBehaviour:
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: 688bf5b471f19c1478740605ef5d21ae, type: 2}
   identifierSprite: {fileID: 2056357258, guid: a8da293ef185ad5479aa963b3806f8d9, type: 3}
+  attackRangeY: 1.6
   assembled: 0
   separationDistance: 1.25
   separationForce: 0.5
