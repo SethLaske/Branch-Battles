@@ -213,7 +213,7 @@ public class General : Unit
                 if (currentGoldAmount >= maxGoldAmount) 
                 { 
                     currentGoldAmount = maxGoldAmount;
-                    goldBar.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.6f, 0f);
+                    goldBar.GetComponent<SpriteRenderer>().color = new Color(0.25f, 0.3f, 0f);
                 }
 
                 if (currentGoldAmount > 0) {

@@ -87,7 +87,7 @@ public class Unit : Damageable
     /// </summary>
     public virtual void Walk()
     {
-
+        
         if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
            
             /*if (Target != null && humanshield.State == "Attack") {
@@ -126,11 +126,12 @@ public class Unit : Damageable
 
         if (Target != null && IsTargetAggroable() == true)
         {
-            
+            //Debug.Log("target and agrroable");
             this.Move(Advance(transform.position, Target.transform.position, Mathf.Abs(currentSpeed) * Time.deltaTime));
             x = Mathf.Sign(Target.transform.position.x - transform.position.x);
         }
         else {
+            //Debug.Log("not target and agrroable");
             float distance = ((AssemblePoint + RearPoint)/2 - transform.position.x);
             this.Move(new Vector3(Mathf.Sign(distance) * currentSpeed * Time.deltaTime, 0, 0));
             x = Mathf.Sign(distance);
@@ -162,19 +163,36 @@ public class Unit : Damageable
 
         
         //Making slight adjustments to keep enemies cleanly within the attack range
-        Vector2 adjustments = new Vector2();
+        Vector3 adjustments = new Vector3();
         if (Mathf.Abs(Target.transform.position.x - transform.position.x) > AttackRange * .95f)   
         {
             adjustments.x = (Mathf.Sign(Target.transform.position.x - transform.position.x) * currentSpeed * Time.deltaTime);
             
 
         }
-        if (Mathf.Abs(Target.transform.position.y - transform.position.y) > .1) {
+        if (Mathf.Abs(Target.transform.position.y - transform.position.y) > .25f) {
             adjustments.y = (Mathf.Sign(Target.transform.position.y - transform.position.y) * currentSpeed * Time.deltaTime);
 
            
         }
-        Move(adjustments);
+
+        bool canMove = true;
+        if (unitClassification != 0)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position + adjustments, .5f, 1 << gameObject.layer);
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.gameObject != gameObject)
+                {
+                    //Debug.Log("Something is already here");
+                    canMove = false;
+                }
+            }
+        }
+
+        if (canMove == true) { 
+            Move(adjustments);
+        }
 
 
         
@@ -350,9 +368,20 @@ public class Unit : Damageable
     //Essentially the same as transform += vector3, but checks to make sure it can step there.
     public bool Move(Vector2 movement)
     {
+        Debug.Log("Move: " + movement + " With a magnitude of: " + movement.magnitude);
         Vector3 NewPosition = new Vector3 (movement.x, movement.y, movement.y/5) / DebuffMult + transform.position;
 
-        
+/*        if (unitClassification != 0 && State == "Attack") {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(NewPosition, .5f, 1 << gameObject.layer);
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.gameObject != gameObject)
+                {
+                    Debug.Log("Something is already here");
+                    return false;
+                }
+            }
+        }*/
         
             
         
@@ -377,6 +406,7 @@ public class Unit : Damageable
     //Very similar to Unitys movetowards, but ignores the z in favor of my method
     public Vector3 Advance(Vector3 current, Vector3 target, float maxDistanceDelta)
     {
+        
         // Get the direction from the current position to the target position
         Vector2 direction = new Vector2(target.x, target.y) - new Vector2(current.x, current.y);
 
@@ -386,7 +416,7 @@ public class Unit : Damageable
         // Check if we've already reached the target position
         if (distance <= maxDistanceDelta || distance == 0f)
         {
-            return direction;
+            return new Vector3(direction.x, direction.y, direction.y / 5) * maxDistanceDelta;
         }
 
         direction = direction.normalized;

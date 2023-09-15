@@ -55,7 +55,7 @@ public class Soldier : Unit
         
         CalculateAssemblePoints();
 
-        if(State != "Charge")   SpreadOut();    //Performs flocking mechanics every update, regardless of state
+        if(State != "Charge" && State != "Attack")   SpreadOut();    //Performs flocking mechanics every update, regardless of state
 
         FindTarget();
 

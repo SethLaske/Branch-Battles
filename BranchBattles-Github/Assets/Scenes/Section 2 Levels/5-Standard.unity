@@ -1028,7 +1028,7 @@ PrefabInstance:
       objectReference: {fileID: 4568610540820579212, guid: 6921ed8fc4d0648449a08b9682d6b331, type: 3}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: gold
-      value: 800
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 1217124649833832519, guid: 997339dd9b8a35c41aa6a69f13db1795, type: 3}
       propertyPath: Opponent
@@ -4721,6 +4721,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6577832073623993378, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
+      propertyPath: miningTimeMultiplier
+      value: 1.25
+      objectReference: {fileID: 0}
     - target: {fileID: 8459818094367189345, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
       propertyPath: m_Name
       value: Mine
@@ -4731,7 +4735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8459818094367189350, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 8459818094367189350, guid: 607762290843b9247ad77e46bc982a9c, type: 3}
       propertyPath: m_LocalPosition.y

@@ -4586,7 +4586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4099510361625385788, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: gold
-      value: 1050
+      value: 1150
       objectReference: {fileID: 0}
     - target: {fileID: 4099510361625385788, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: Opponent
