@@ -279,26 +279,30 @@ public class Unit : Damageable
         float attackDebuff = 3;
         DebuffMult *= attackDebuff;
 
-        while (DebuffMult > 100)
-        {
-            yield return null;  //I really hate these but its required to allow The World to work using stun
+        while (DebuffMult > 100) {
+            yield return new WaitForSeconds(.05f);
         }
 
         yield return new WaitForSeconds(attackHitTime * DebuffMult/attackDebuff);
 
-        while (DebuffMult > 100) {
-            yield return null;  //I really hate these but its required to allow The World to work using stun
+
+        while (DebuffMult > 100)
+        {
+            yield return new WaitForSeconds(.05f);
         }
 
         attackSound.Play();
         Offense.Attack();
 
-        yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult/attackDebuff);
+
+        
+        yield return new WaitForSeconds((attackAnimation.length - attackHitTime) * DebuffMult / attackDebuff);
 
         while (DebuffMult > 100)
         {
-            yield return null;
+            yield return new WaitForSeconds(.05f);
         }
+
 
         Attacking = false;
         DebuffMult /= attackDebuff;
@@ -480,7 +484,7 @@ public class Unit : Damageable
         
             
         
-        if (Physics2D.OverlapCircle(NewPosition, .2f, walkableLayer))
+        if (Physics2D.OverlapCircle(NewPosition, .2f, walkableLayer) || !Physics2D.OverlapCircle(transform.position, .25f, walkableLayer))
         {
             transform.position = NewPosition;
             return true;

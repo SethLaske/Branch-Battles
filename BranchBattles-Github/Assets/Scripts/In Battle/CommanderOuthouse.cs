@@ -52,7 +52,7 @@ public class CommanderOuthouse : Building
 
            
         }
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(6);
 
         //Spawn a wave of enemies 
         float spawnPosition = transform.position.x + (-1 * Team * spaceToFirstEnemy);

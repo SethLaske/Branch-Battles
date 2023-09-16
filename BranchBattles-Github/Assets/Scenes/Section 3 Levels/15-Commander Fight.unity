@@ -1267,6 +1267,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
+      propertyPath: defensiveRallyPoint
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386820829072350427, guid: 0537b40335229db469640ec2a4dc545c, type: 3}
       propertyPath: midTroops.Array.data[0]
       value: 5
       objectReference: {fileID: 0}

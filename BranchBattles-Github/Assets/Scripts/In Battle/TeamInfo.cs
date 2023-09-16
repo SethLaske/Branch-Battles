@@ -49,7 +49,7 @@ public class TeamInfo : MonoBehaviour
     public Color unitHornColor;
 
     //Set up a rally near to the first barracks
-    void Start()
+    void Awake()
     {
         SetRallyPoint(barracks.transform.position.x + (Team * 10));
         //rallyPoint = barracks.transform.position.x + (Team * 10);

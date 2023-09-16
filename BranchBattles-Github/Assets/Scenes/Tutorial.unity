@@ -2925,8 +2925,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
-      value: Once you've collected some gold walk it back to the tent. You can also
-        use SPACE to break skulls instead of rocks if you want.
+      value: Once you've collected some gold walk it back to the tent. Also, surprisingly,
+        your sword works as a weapon as well
       objectReference: {fileID: 0}
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_fontSize
@@ -3590,7 +3590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -3709,7 +3709,7 @@ PrefabInstance:
     - target: {fileID: 8703791308818801660, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_text
       value: Glad you could join the party. Don't die. WASD to move. Go warm up by
-        hitting SPACE near some rocks.
+        holding SPACE near some rocks.
       objectReference: {fileID: 0}
     - target: {fileID: 8703791309963092192, guid: f21303f1d5a7dcd45b25063712184375, type: 3}
       propertyPath: m_Name

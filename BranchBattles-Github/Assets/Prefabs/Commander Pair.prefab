@@ -356,14 +356,15 @@ MonoBehaviour:
   spriteRenderer: {fileID: 8881784245583943394}
   spriteMaterial: {fileID: 0}
   Target: {fileID: 0}
-  MovementBlockers:
+  walkableLayer:
     serializedVersion: 2
-    m_Bits: 320
+    m_Bits: 0
   corpse: {fileID: 7096270957510694538, guid: f793e939acf9c074a842b80706170fd5, type: 3}
   attackSound: {fileID: 4485154227551127953}
   humanshield: {fileID: 0}
   attackAnimation: {fileID: 7400000, guid: f3af9d5ac8a183c4faa89f37a44713ca, type: 2}
   identifierSprite: {fileID: 0}
+  attackRangeY: 0
   assembled: 0
   separationDistance: 0.5
   separationForce: 2
@@ -5609,7 +5610,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9104199200386024384}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalPosition: {x: 0, y: 1.9, z: 0}
   m_LocalScale: {x: 5, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5656,7 +5657,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 1, b: 0.13681841, a: 1}
   m_FlipX: 0
