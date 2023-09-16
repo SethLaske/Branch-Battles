@@ -54,6 +54,7 @@ public class Unit : Damageable
     public Sprite identifierSprite;
 
     [SerializeField] protected float attackRangeY;
+    private float distanceBehindShield = 1;
 
     /// <summary>
     /// Initializes the typical start script for the different unit classes, including setting max health, speeds, attack timer, state, sprite color, and assigning its general
@@ -91,41 +92,40 @@ public class Unit : Damageable
     {
         
         if (humanshield != null && transform.position.x * Team < (AssemblePoint + RearPoint) / 2 * Team) { // Will try and stay behind the shield, but only when it needs to walk forward to its destination
-           
-            float minimumDistanceBehindShield = .5f;
-            float maximumDistanceBehindShield = 1.5f;
-            if (Target != null && humanshield.State == "Attack") {
-                if (Vector3.Angle(humanshield.transform.position - transform.position, Vector3.right * transform.localScale.x) > 45)
-                {
 
-                }
-                else {
-                    return;
-                }
-            }
-            
-            else if (minimumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team) 
+            float distanceFromGoal = 0;
+            float distanceFromShield = Mathf.Abs(humanshield.transform.position.x - transform.position.x);
+            float shieldDistanceFromGoal = 0;
+
+            if (Target != null)
             {
-                
+                distanceFromGoal = Mathf.Abs(Target.transform.position.x - transform.position.x);
+                shieldDistanceFromGoal = Mathf.Abs(Target.transform.position.x - humanshield.transform.position.x);
+            }
+            else { 
+                distanceFromGoal = Mathf.Abs(General.rallyPoint - transform.position.x);
+                shieldDistanceFromGoal = Mathf.Abs(General.rallyPoint - humanshield.transform.position.x);
+            }
+
+            if (Target != null && humanshield.State == "Attack")
+            {
+                //Handle Attacks
+            } else if (Target != humanshield.Target) { 
+                //skip
+            }
+            else if (shieldDistanceFromGoal + distanceBehindShield > distanceFromGoal)
+            {
+                //get behind shield
+                RetreatBehindShield();
                 return;
             }
-            else if (maximumDistanceBehindShield > (humanshield.transform.position.x - transform.position.x) * Team)
-            {
-                //Need to be using the speed of the furthest forward shield.
-                Soldier frontHumanSheild = humanshield;
-                while (frontHumanSheild.humanshield != null) {
-                    frontHumanSheild = frontHumanSheild.humanshield;
-                }
-
-                float distance = ((AssemblePoint + RearPoint) / 2 - transform.position.x);
-                if (frontHumanSheild.currentSpeed > currentSpeed) {
-                    this.Move(new Vector3(Mathf.Sign(distance) * currentSpeed * Time.deltaTime, 0, 0));
-                }
-                else { 
-                    this.Move(new Vector3(Mathf.Sign(distance) * frontHumanSheild.currentSpeed * Time.deltaTime, 0, 0));
-                }
+            else {
+                //Walk behind shield
+                WalkBehindShield();
                 return;
             }
+      
+
         }
 
         
@@ -151,6 +151,7 @@ public class Unit : Damageable
             x = Mathf.Sign(distance);
         }
 
+        //Debug.Log("Setting the direction from the main walk function");
         if (x < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -160,6 +161,53 @@ public class Unit : Damageable
             transform.localScale = new Vector3(1, 1, 1);
         }
 
+    }
+
+    private void WalkBehindShield() {
+        if (humanshield == null) {
+            return;
+        }
+
+        //Need to be using the speed of the furthest forward shield.
+        Soldier frontHumanSheild = humanshield;
+        while (frontHumanSheild.humanshield != null)
+        {
+            frontHumanSheild = frontHumanSheild.humanshield;
+        }
+
+        float direction = humanshield.transform.position.x - (distanceBehindShield * humanshield.transform.localScale.x) - transform.position.x;
+        if (frontHumanSheild.currentSpeed > currentSpeed)
+        {
+            this.Move(new Vector3(Mathf.Sign(direction) * currentSpeed * Time.deltaTime, 0, 0));
+        }
+        else
+        {
+            this.Move(new Vector3(Mathf.Sign(direction) * frontHumanSheild.currentSpeed * Time.deltaTime, 0, 0));
+        }
+
+        transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
+
+        //Debug.Log("Walking behind shield, moving in the " + Mathf.Sign(direction) + " direction, facing in the " + transform.localScale.x);
+
+        return;
+    }
+
+    private void RetreatBehindShield()
+    {
+        if (humanshield == null)
+        {
+            return;
+        }
+
+
+        float direction = (humanshield.transform.position.x - (distanceBehindShield * humanshield.transform.localScale.x)) - transform.position.x;
+
+        this.Move(new Vector3(Mathf.Sign(direction) * currentSpeed/4 * Time.deltaTime, 0, 0));
+
+        transform.localScale = new Vector3(Mathf.Sign(-1 * direction), 1, 1);
+
+        //Debug.Log("Retreating behind shield, moving in the " + Mathf.Sign(direction) + " direction, facing in the " + transform.localScale.x);
+        return;
     }
 
     /// <summary>
@@ -191,9 +239,9 @@ public class Unit : Damageable
         
         if (unitClassification != 0)
         {
-            Debug.Log("Adjust attack");
+            //Debug.Log("Adjust attack");
             Vector3 spreadVector = GetSpreadVector(.5f) * Time.deltaTime;
-            Debug.Log("Spread Vector" + spreadVector);
+            //Debug.Log("Spread Vector" + spreadVector);
             if (adjustments.y * spreadVector.y < 0)
             {
                 adjustments.y = 0;
@@ -201,7 +249,7 @@ public class Unit : Damageable
             else if (adjustments.y * spreadVector.y == 0) {
                 adjustments.y += spreadVector.y;
             }
-            Debug.Log("Y Adjustments: " + adjustments.y);
+            //Debug.Log("Y Adjustments: " + adjustments.y);
         }
 
        
