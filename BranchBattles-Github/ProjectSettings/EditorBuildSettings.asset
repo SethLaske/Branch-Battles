@@ -68,4 +68,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 0954dfcd10c539f4b81cbf151c49ffe3
+  - enabled: 1
+    path: Assets/Scenes/RunningBPM Calc.unity
+    guid: b336779578413314dbc6bd64bd342ec2
   m_configObjects: {}

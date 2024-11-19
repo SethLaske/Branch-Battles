@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TitleScreen : MonoBehaviour
 {
     public Button continueGame;
-
+    public Button runningBPMButton;
     public Unit initMiner;
     public Unit initFighter;
     public Unit initSpear;
@@ -28,6 +28,8 @@ public class TitleScreen : MonoBehaviour
             continueGame.interactable = true;
             Debug.Log(PlayerInfo.PlayerTroops[0].unitName);
         }
+        
+        runningBPMButton.interactable = PlayerInfo.LevelKeys[15];
     }
 
 
