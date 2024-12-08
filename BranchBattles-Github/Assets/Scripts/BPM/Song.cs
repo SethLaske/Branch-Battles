@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
 
+[Serializable]
 public class Song
 {
     public string Name { get; set; }
@@ -86,6 +88,7 @@ public static class SongSaver
                 {
                     songFoundInSongs1 = true;
                     song.BPM = checkedSong.BPM;     //Pass in updated BPM if it exists
+                    song.TrackId = checkedSong.TrackId;
                 }
             }
 
@@ -96,5 +99,41 @@ public static class SongSaver
         }
 
         return songs1;
+    }
+
+    public static List<Song> GetNonRecordedSongsFromList(List<Song> argNewSongs)
+    {
+        List<Song> newSongs = new List<Song>();
+
+        if (cachedSongs.Count == 0)
+        {
+            LoadSongs();
+        }
+        
+        foreach (Song potentialNewSong in argNewSongs)
+        {
+            bool songFoundInList = false;
+
+            foreach (Song existingSong in cachedSongs)
+            {
+                if (potentialNewSong.Name == existingSong.Name && potentialNewSong.Artist == existingSong.Artist)
+                {
+                    potentialNewSong.TrackId = existingSong.TrackId;
+                    if (existingSong.BPM >= 1)
+                    {
+                        songFoundInList = true;
+                    }
+                }
+            }
+
+            if (songFoundInList == false)
+            {
+                newSongs.Add(potentialNewSong);
+            }
+        }
+        
+        LoadingScreenController.instance.addingSongProgressData.sortingProgress = 1;
+        LoadingScreenController.instance.UpdateProgress();
+        return newSongs;
     }
 }

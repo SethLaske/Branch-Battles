@@ -86,7 +86,9 @@ public class XMLSongParser
                 }
             }
         }
-
+        LoadingScreenController.instance.addingSongProgressData.parsingProgress = 1;
+        LoadingScreenController.instance.UpdateProgress();
+        
         return songs;
     }
 }
